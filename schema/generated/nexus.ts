@@ -250,12 +250,14 @@ export interface NexusGenInputs {
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserCreateInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     email: string; // String!
     firstName: string; // String!
+    lastName: string; // String!
     password: string; // String!
   }
   UserCreateManyInput: { // input type
@@ -263,6 +265,7 @@ export interface NexusGenInputs {
     email: string; // String!
     firstName: string; // String!
     id?: number | null; // Int
+    lastName: string; // String!
     password: string; // String!
   }
   UserMaxOrderByAggregateInput: { // input type
@@ -270,6 +273,7 @@ export interface NexusGenInputs {
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserMinOrderByAggregateInput: { // input type
@@ -277,6 +281,7 @@ export interface NexusGenInputs {
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserOrderByWithAggregationInput: { // input type
@@ -289,6 +294,7 @@ export interface NexusGenInputs {
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserOrderByWithRelationInput: { // input type
@@ -296,6 +302,7 @@ export interface NexusGenInputs {
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserScalarWhereWithAggregatesInput: { // input type
@@ -306,6 +313,7 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     firstName?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    lastName?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     password?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
   }
   UserSumOrderByAggregateInput: { // input type
@@ -316,6 +324,7 @@ export interface NexusGenInputs {
     email: string; // String!
     firstName: string; // String!
     id?: number | null; // Int
+    lastName: string; // String!
     password: string; // String!
   }
   UserUncheckedUpdateInput: { // input type
@@ -323,6 +332,7 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     firstName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   UserUncheckedUpdateManyInput: { // input type
@@ -330,18 +340,21 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     firstName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   UserUpdateInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     firstName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   UserUpdateManyMutationInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     firstName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    lastName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   UserWhereInput: { // input type
@@ -352,6 +365,7 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFilter'] | null; // StringFilter
     firstName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    lastName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     password?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
   UserWhereUniqueInput: { // input type
@@ -362,6 +376,7 @@ export interface NexusGenInputs {
     email?: string | null; // String
     firstName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: number | null; // Int
+    lastName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     password?: NexusGenInputs['StringFilter'] | null; // StringFilter
   }
 }
@@ -370,7 +385,7 @@ export interface NexusGenEnums {
   QueryMode: "default" | "insensitive"
   SortOrder: "asc" | "desc"
   TransactionIsolationLevel: "ReadCommitted" | "ReadUncommitted" | "RepeatableRead" | "Serializable"
-  UserScalarFieldEnum: "createdAt" | "email" | "firstName" | "id" | "password"
+  UserScalarFieldEnum: "createdAt" | "email" | "firstName" | "id" | "lastName" | "password"
 }
 
 export interface NexusGenScalars {
@@ -404,6 +419,7 @@ export interface NexusGenObjects {
     email: string; // String!
     firstName: string; // String!
     id: number; // Int!
+    lastName: string; // String!
     password: string; // String!
   }
   UserAvgAggregateOutputType: { // root type
@@ -415,6 +431,7 @@ export interface NexusGenObjects {
     email: number; // Int!
     firstName: number; // Int!
     id: number; // Int!
+    lastName: number; // Int!
     password: number; // Int!
   }
   UserMaxAggregateOutputType: { // root type
@@ -422,6 +439,7 @@ export interface NexusGenObjects {
     email?: string | null; // String
     firstName?: string | null; // String
     id?: number | null; // Int
+    lastName?: string | null; // String
     password?: string | null; // String
   }
   UserMinAggregateOutputType: { // root type
@@ -429,6 +447,7 @@ export interface NexusGenObjects {
     email?: string | null; // String
     firstName?: string | null; // String
     id?: number | null; // Int
+    lastName?: string | null; // String
     password?: string | null; // String
   }
   UserSumAggregateOutputType: { // root type
@@ -470,6 +489,7 @@ export interface NexusGenFieldTypes {
     email: string; // String!
     firstName: string; // String!
     id: number; // Int!
+    lastName: string; // String!
     password: string; // String!
   }
   UserAvgAggregateOutputType: { // field return type
@@ -481,6 +501,7 @@ export interface NexusGenFieldTypes {
     email: number; // Int!
     firstName: number; // Int!
     id: number; // Int!
+    lastName: number; // Int!
     password: number; // Int!
   }
   UserMaxAggregateOutputType: { // field return type
@@ -488,6 +509,7 @@ export interface NexusGenFieldTypes {
     email: string | null; // String
     firstName: string | null; // String
     id: number | null; // Int
+    lastName: string | null; // String
     password: string | null; // String
   }
   UserMinAggregateOutputType: { // field return type
@@ -495,6 +517,7 @@ export interface NexusGenFieldTypes {
     email: string | null; // String
     firstName: string | null; // String
     id: number | null; // Int
+    lastName: string | null; // String
     password: string | null; // String
   }
   UserSumAggregateOutputType: { // field return type
@@ -526,6 +549,7 @@ export interface NexusGenFieldTypeNames {
     email: 'String'
     firstName: 'String'
     id: 'Int'
+    lastName: 'String'
     password: 'String'
   }
   UserAvgAggregateOutputType: { // field return type name
@@ -537,6 +561,7 @@ export interface NexusGenFieldTypeNames {
     email: 'Int'
     firstName: 'Int'
     id: 'Int'
+    lastName: 'Int'
     password: 'Int'
   }
   UserMaxAggregateOutputType: { // field return type name
@@ -544,6 +569,7 @@ export interface NexusGenFieldTypeNames {
     email: 'String'
     firstName: 'String'
     id: 'Int'
+    lastName: 'String'
     password: 'String'
   }
   UserMinAggregateOutputType: { // field return type name
@@ -551,6 +577,7 @@ export interface NexusGenFieldTypeNames {
     email: 'String'
     firstName: 'String'
     id: 'Int'
+    lastName: 'String'
     password: 'String'
   }
   UserSumAggregateOutputType: { // field return type name

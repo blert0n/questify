@@ -11,6 +11,7 @@ export const User = objectType({
     t.string('email')
     t.string('password')
     t.string('firstName')
+    t.string('lastName')
     t.field('createdAt', { type: 'DateTime' })
   },
 })

@@ -263,6 +263,7 @@ type User {
   email: String!
   firstName: String!
   id: Int!
+  lastName: String!
   password: String!
 }
 
@@ -280,6 +281,7 @@ type UserCountAggregateOutputType {
   email: Int!
   firstName: Int!
   id: Int!
+  lastName: Int!
   password: Int!
 }
 
@@ -288,6 +290,7 @@ input UserCountOrderByAggregateInput {
   email: SortOrder
   firstName: SortOrder
   id: SortOrder
+  lastName: SortOrder
   password: SortOrder
 }
 
@@ -295,6 +298,7 @@ input UserCreateInput {
   createdAt: DateTime
   email: String!
   firstName: String!
+  lastName: String!
   password: String!
 }
 
@@ -303,6 +307,7 @@ input UserCreateManyInput {
   email: String!
   firstName: String!
   id: Int
+  lastName: String!
   password: String!
 }
 
@@ -311,6 +316,7 @@ type UserMaxAggregateOutputType {
   email: String
   firstName: String
   id: Int
+  lastName: String
   password: String
 }
 
@@ -319,6 +325,7 @@ input UserMaxOrderByAggregateInput {
   email: SortOrder
   firstName: SortOrder
   id: SortOrder
+  lastName: SortOrder
   password: SortOrder
 }
 
@@ -327,6 +334,7 @@ type UserMinAggregateOutputType {
   email: String
   firstName: String
   id: Int
+  lastName: String
   password: String
 }
 
@@ -335,6 +343,7 @@ input UserMinOrderByAggregateInput {
   email: SortOrder
   firstName: SortOrder
   id: SortOrder
+  lastName: SortOrder
   password: SortOrder
 }
 
@@ -348,6 +357,7 @@ input UserOrderByWithAggregationInput {
   email: SortOrder
   firstName: SortOrder
   id: SortOrder
+  lastName: SortOrder
   password: SortOrder
 }
 
@@ -356,6 +366,7 @@ input UserOrderByWithRelationInput {
   email: SortOrder
   firstName: SortOrder
   id: SortOrder
+  lastName: SortOrder
   password: SortOrder
 }
 
@@ -364,6 +375,7 @@ enum UserScalarFieldEnum {
   email
   firstName
   id
+  lastName
   password
 }
 
@@ -375,6 +387,7 @@ input UserScalarWhereWithAggregatesInput {
   email: StringWithAggregatesFilter
   firstName: StringWithAggregatesFilter
   id: IntWithAggregatesFilter
+  lastName: StringWithAggregatesFilter
   password: StringWithAggregatesFilter
 }
 
@@ -391,6 +404,7 @@ input UserUncheckedCreateInput {
   email: String!
   firstName: String!
   id: Int
+  lastName: String!
   password: String!
 }
 
@@ -399,6 +413,7 @@ input UserUncheckedUpdateInput {
   email: StringFieldUpdateOperationsInput
   firstName: StringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
 }
 
@@ -407,6 +422,7 @@ input UserUncheckedUpdateManyInput {
   email: StringFieldUpdateOperationsInput
   firstName: StringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
 }
 
@@ -414,6 +430,7 @@ input UserUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   firstName: StringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
 }
 
@@ -421,6 +438,7 @@ input UserUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   firstName: StringFieldUpdateOperationsInput
+  lastName: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
 }
 
@@ -432,6 +450,7 @@ input UserWhereInput {
   email: StringFilter
   firstName: StringFilter
   id: IntFilter
+  lastName: StringFilter
   password: StringFilter
 }
 
@@ -443,5 +462,6 @@ input UserWhereUniqueInput {
   email: String
   firstName: StringFilter
   id: Int
+  lastName: StringFilter
   password: StringFilter
 }

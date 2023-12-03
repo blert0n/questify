@@ -12,7 +12,7 @@ export const TransactionIsolationLevel = enumType({
 
 export const UserScalarFieldEnum = enumType({
   name: 'UserScalarFieldEnum',
-  members: ['id', 'email', 'password', 'firstName', 'createdAt'],
+  members: ['id', 'email', 'password', 'firstName', 'lastName', 'createdAt'],
 })
 
 export const SortOrder = enumType({
@@ -38,6 +38,7 @@ export const UserWhereInput = inputObjectType({
     t.field('email', { type: 'StringFilter' })
     t.field('password', { type: 'StringFilter' })
     t.field('firstName', { type: 'StringFilter' })
+    t.field('lastName', { type: 'StringFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
   },
 })
@@ -52,6 +53,7 @@ export const UserOrderByWithRelationInput = inputObjectType({
     t.field('email', { type: 'SortOrder' })
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
+    t.field('lastName', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
   },
 })
@@ -69,6 +71,7 @@ export const UserWhereUniqueInput = inputObjectType({
     t.list.field('NOT', { type: 'UserWhereInput' })
     t.field('password', { type: 'StringFilter' })
     t.field('firstName', { type: 'StringFilter' })
+    t.field('lastName', { type: 'StringFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
   },
 })
@@ -83,6 +86,7 @@ export const UserOrderByWithAggregationInput = inputObjectType({
     t.field('email', { type: 'SortOrder' })
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
+    t.field('lastName', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('_count', { type: 'UserCountOrderByAggregateInput' })
     t.field('_avg', { type: 'UserAvgOrderByAggregateInput' })
@@ -105,6 +109,7 @@ export const UserScalarWhereWithAggregatesInput = inputObjectType({
     t.field('email', { type: 'StringWithAggregatesFilter' })
     t.field('password', { type: 'StringWithAggregatesFilter' })
     t.field('firstName', { type: 'StringWithAggregatesFilter' })
+    t.field('lastName', { type: 'StringWithAggregatesFilter' })
     t.field('createdAt', { type: 'DateTimeWithAggregatesFilter' })
   },
 })
@@ -118,6 +123,7 @@ export const UserCreateInput = inputObjectType({
     t.nonNull.field('email', { type: 'String' })
     t.nonNull.field('password', { type: 'String' })
     t.nonNull.field('firstName', { type: 'String' })
+    t.nonNull.field('lastName', { type: 'String' })
     t.field('createdAt', { type: 'DateTime' })
   },
 })
@@ -132,6 +138,7 @@ export const UserUncheckedCreateInput = inputObjectType({
     t.nonNull.field('email', { type: 'String' })
     t.nonNull.field('password', { type: 'String' })
     t.nonNull.field('firstName', { type: 'String' })
+    t.nonNull.field('lastName', { type: 'String' })
     t.field('createdAt', { type: 'DateTime' })
   },
 })
@@ -145,6 +152,7 @@ export const UserUpdateInput = inputObjectType({
     t.field('email', { type: 'StringFieldUpdateOperationsInput' })
     t.field('password', { type: 'StringFieldUpdateOperationsInput' })
     t.field('firstName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('lastName', { type: 'StringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
@@ -159,6 +167,7 @@ export const UserUncheckedUpdateInput = inputObjectType({
     t.field('email', { type: 'StringFieldUpdateOperationsInput' })
     t.field('password', { type: 'StringFieldUpdateOperationsInput' })
     t.field('firstName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('lastName', { type: 'StringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
@@ -173,6 +182,7 @@ export const UserCreateManyInput = inputObjectType({
     t.nonNull.field('email', { type: 'String' })
     t.nonNull.field('password', { type: 'String' })
     t.nonNull.field('firstName', { type: 'String' })
+    t.nonNull.field('lastName', { type: 'String' })
     t.field('createdAt', { type: 'DateTime' })
   },
 })
@@ -186,6 +196,7 @@ export const UserUpdateManyMutationInput = inputObjectType({
     t.field('email', { type: 'StringFieldUpdateOperationsInput' })
     t.field('password', { type: 'StringFieldUpdateOperationsInput' })
     t.field('firstName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('lastName', { type: 'StringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
@@ -200,6 +211,7 @@ export const UserUncheckedUpdateManyInput = inputObjectType({
     t.field('email', { type: 'StringFieldUpdateOperationsInput' })
     t.field('password', { type: 'StringFieldUpdateOperationsInput' })
     t.field('firstName', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('lastName', { type: 'StringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
@@ -269,6 +281,7 @@ export const UserCountOrderByAggregateInput = inputObjectType({
     t.field('email', { type: 'SortOrder' })
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
+    t.field('lastName', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
   },
 })
@@ -293,6 +306,7 @@ export const UserMaxOrderByAggregateInput = inputObjectType({
     t.field('email', { type: 'SortOrder' })
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
+    t.field('lastName', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
   },
 })
@@ -307,6 +321,7 @@ export const UserMinOrderByAggregateInput = inputObjectType({
     t.field('email', { type: 'SortOrder' })
     t.field('password', { type: 'SortOrder' })
     t.field('firstName', { type: 'SortOrder' })
+    t.field('lastName', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
   },
 })
@@ -581,6 +596,7 @@ export const UserCountAggregateOutputType = objectType({
     t.field('email', { type: 'Int' })
     t.field('password', { type: 'Int' })
     t.field('firstName', { type: 'Int' })
+    t.field('lastName', { type: 'Int' })
     t.field('createdAt', { type: 'Int' })
     t.field('_all', { type: 'Int' })
   },
@@ -616,6 +632,7 @@ export const UserMinAggregateOutputType = objectType({
     t.nullable.field('email', { type: 'String' })
     t.nullable.field('password', { type: 'String' })
     t.nullable.field('firstName', { type: 'String' })
+    t.nullable.field('lastName', { type: 'String' })
     t.nullable.field('createdAt', { type: 'DateTime' })
   },
 })
@@ -630,6 +647,7 @@ export const UserMaxAggregateOutputType = objectType({
     t.nullable.field('email', { type: 'String' })
     t.nullable.field('password', { type: 'String' })
     t.nullable.field('firstName', { type: 'String' })
+    t.nullable.field('lastName', { type: 'String' })
     t.nullable.field('createdAt', { type: 'DateTime' })
   },
 })
