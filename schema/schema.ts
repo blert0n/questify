@@ -25,4 +25,3 @@ const schemaDefinition = makeSchema({
 });
 
 export const schema = applyMiddleware(schemaDefinition, permissions);
-// export const schema = schemaDefinition
