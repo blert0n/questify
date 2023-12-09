@@ -1,9 +1,9 @@
-import { SignIn, useClerk } from "@clerk/nextjs";
+import { SignUp, useClerk } from "@clerk/nextjs";
 import Lottie from "lottie-react";
 import formLottie from "@/public/lotties/forms.json";
 import { clerkAppearance } from "@/lib";
 
-export default function Login() {
+export default function SignUpForm() {
   const { loaded } = useClerk();
   return (
     <>
@@ -27,7 +27,7 @@ export default function Login() {
           </div>
         </div>
         <div className="flex justify-center">
-          {loaded ? <SignIn appearance={clerkAppearance} /> : "Loading..."}
+          {loaded ? <SignUp appearance={clerkAppearance} /> : "Loading..."}
         </div>
       </div>
     </>
