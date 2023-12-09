@@ -67,15 +67,12 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   html,
-  body {
-    @apply h-full;
-  }
-  #__next {
-    @apply h-full;
+  body,
+  div#__next,
+  main {
+    @apply h-screen;
+    @apply w-screen;
   }
   body {
     @apply bg-background text-foreground;
