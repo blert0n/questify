@@ -1,5 +1,11 @@
-import Login from "@/components/Layout/Login";
+import Meta from "@/components/Layout/Title";
+import Login from "@/components/User/Login";
 
 export default function Index() {
-  return <Login />;
+  return (
+    <>
+      <Meta title="Questify - Login" />
+      <Login />
+    </>
+  );
 }

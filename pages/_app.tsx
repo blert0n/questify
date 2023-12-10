@@ -11,21 +11,20 @@ const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 const noLayout = ["/login", "/sign-up", "/_error"];
 
 export default function App({ Component, pageProps, router }: AppProps) {
-  console.log("router", router);
   if (
     noLayout.includes(router.pathname) ||
     router?.pathname.startsWith("/login")
   ) {
     return (
       <ClerkProvider publishableKey={clerkPubKey}>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </ClerkProvider>
     );
   }
   return (
     <ClerkProvider publishableKey={clerkPubKey} appearance={clerkAppearance}>
       <AppLayout>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </AppLayout>
     </ClerkProvider>
   );

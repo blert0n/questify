@@ -11,11 +11,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Search = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, svgClassName, inputClassName, type, ...props }, ref) => {
     return (
-      <div className={cn("relative w-60", className)}>
+      <div className={cn("relative lg:w-60 md:w-40 sm:w-20", className)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={cn(
-            "absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-500 left-3",
+            "absolute top-0 bottom-0 w-4 h-4 my-auto text-gray-500 left-3",
             svgClassName
           )}
           fill="none"
@@ -33,7 +33,7 @@ const Search = React.forwardRef<HTMLInputElement, InputProps>(
           type="text"
           placeholder="Search"
           className={cn(
-            "bg-secondary pl-12 pr-4 rounded-3xl border-gray-200",
+            "bg-secondary lg:pl-12 pl-6 pr-4 rounded-3xl border-gray-200",
             inputClassName
           )}
           ref={ref}

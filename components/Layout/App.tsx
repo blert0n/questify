@@ -7,12 +7,12 @@ interface P {
 export default function AppLayout({ children }: P) {
   return (
     <div className="flex flex-row h-screen">
-      <div className="basis-2/12 bg-primary h-screen text-white p-4">
+      <div className="w-full sm:w-1/5 hidden sm:block bg-primary h-screen text-white p-4">
         <Nav />
       </div>
-      <div className="basis-10/12 flex flex-col w-full">
+      <div className="flex flex-col h-full w-full sm:w-4/5">
         <Header />
-        <div className="bg-secondary h-screen p-4">{children}</div>
+        <div className="h-[100%] bg-secondary p-4">{children}</div>
       </div>
     </div>
   );

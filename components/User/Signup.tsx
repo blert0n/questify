@@ -2,6 +2,7 @@ import { SignUp, useClerk } from "@clerk/nextjs";
 import Lottie from "lottie-react";
 import formLottie from "@/public/lotties/forms.json";
 import { clerkAppearance } from "@/lib";
+import Link from "next/link";
 
 export default function SignUpForm() {
   const { loaded } = useClerk();
@@ -11,7 +12,7 @@ export default function SignUpForm() {
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            Questify
+            <Link href="/">Questify</Link>
           </div>
           <Lottie
             animationData={formLottie}
