@@ -28,7 +28,7 @@ export default function SignUpForm() {
           </div>
         </div>
         <div className="flex justify-center">
-          {loaded ? <SignUp /> : "Loading..."}
+          {loaded ? <SignUp appearance={clerkAppearance} /> : "Loading..."}
         </div>
       </div>
     </>
