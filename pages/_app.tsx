@@ -13,7 +13,8 @@ const noLayout = ["/login", "/sign-up", "/_error"];
 export default function App({ Component, pageProps, router }: AppProps) {
   if (
     noLayout.includes(router.pathname) ||
-    router?.pathname.startsWith("/login")
+    router?.pathname.startsWith("/login") ||
+    router?.pathname.startsWith("/sign-up")
   ) {
     return (
       <ClerkProvider publishableKey={clerkPubKey}>
