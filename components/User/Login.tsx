@@ -28,7 +28,17 @@ export default function Login() {
           </div>
         </div>
         <div className="flex justify-center">
-          {loaded ? <SignIn appearance={clerkAppearance} /> : "Loading..."}
+          {loaded ? (
+            <SignIn
+              appearance={{
+                variables: {
+                  colorPrimary: "#18181B",
+                },
+              }}
+            />
+          ) : (
+            "Loading..."
+          )}
         </div>
       </div>
     </>
