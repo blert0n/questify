@@ -7,7 +7,7 @@ interface P {
 export default function AppLayout({ children }: P) {
   return (
     <div className="flex flex-row h-screen">
-      <div className="w-full sm:w-1/6 hidden sm:block bg-primary h-screen text-white p-4">
+      <div className="w-full sm:w-1/6 hidden sm:block bg-primary h-screen text-white py-4 md:pr-4 pr-2">
         <Nav />
       </div>
       <div className="flex flex-col h-full w-full sm:w-5/6">

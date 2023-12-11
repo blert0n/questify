@@ -20,7 +20,7 @@ export const Header = () => {
             width={48}
             height={48}
             alt="logo"
-            className="hover:animate-spin"
+            className="cursor-pointer hover:animate-spin"
           />
         </div>
         <div className="flex lg:w-1/2 w-5/6 items-center justify-end">
