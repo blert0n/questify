@@ -16,25 +16,31 @@ export default function AppLayout({ children }: P) {
     <>
       <Meta />
       <div className="flex flex-row h-screen">
-        <motion.div
-          animate={smScreen && isNavOpen ? "open" : "closed"}
+        <div
           className={cn(
             "w-full bg-primary sm:w-1/6 sm:block hidden h-screen text-white py-4 md:pr-4 pr-2",
             (!smScreen || !isNavOpen) && "sm:hidden w-screen"
           )}
-          variants={{
-            open: {
-              opacity: 1,
-              x: 0,
-            },
-            closed: {
-              opacity: 0,
-              x: "-100%",
-            },
-          }}
         >
-          <Nav />
-        </motion.div>
+          <motion.div
+            animate={smScreen && isNavOpen ? "open" : "closed"}
+            variants={{
+              open: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  ease: "easeIn",
+                },
+              },
+              closed: {
+                opacity: 0,
+                x: "-100%",
+              },
+            }}
+          >
+            <Nav />
+          </motion.div>
+        </div>
         <div
           className={cn(
             "flex flex-col h-full w-full sm:w-5/6",
