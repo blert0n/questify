@@ -1,0 +1,28 @@
+overwrite: true
+schema: schema/generated/schema.graphql
+documents: ["graphql/**/*.graphql"]
+generates:
+  ./lib/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHooks: true
+      withRefetchFn: false
+      withComponent: false
+      withMutationOptionsType: false
+      withMutationFn: true
+      addDocBlocks: true
+      addOperationExport: false
+      withResultType: true
+      pureMagicComment: true
+      skipTypename: true
+      useTypeImports: true
+      declarationKind: "interface"
+      directiveArgumentAndInputFieldMappingTypeSuffix: Model
+      maybeValue: T | undefined
+      scalars:
+        Decimal: string
+        Number: number
+        DateTime: Date
