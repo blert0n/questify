@@ -1,12 +1,12 @@
 import { mutationField, nonNull } from 'nexus'
 
-export const UserDeleteOneMutation = mutationField('deleteOneUser', {
-  type: 'User',
+export const FormDeleteOneMutation = mutationField('deleteOneForm', {
+  type: 'Form',
   args: {
-    where: nonNull('UserWhereUniqueInput'),
+    where: nonNull('FormWhereUniqueInput'),
   },
   resolve: async (_parent, { where }, { prisma, select }) => {
-    return prisma.user.delete({
+    return prisma.form.delete({
       where,
       ...select,
     })

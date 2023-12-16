@@ -1,48 +1,38 @@
-import { rule, shield } from "graphql-shield";
-import { getUserId } from "../auth";
+import { rule } from "graphql-shield";
 import { Context } from "../context";
 
 export const rules = {
   isAuthenticatedUser: rule()((_parent, _args, context: Context) => {
-    const userId = getUserId(context);
-    return Boolean(userId);
+    return Boolean(context.userId);
   }),
-  accessOwnData: rule()((_parent, args, context: Context) => {
-    const userId = getUserId(context);
-    if (!userId) return false;
+  accessOwnForms: rule()((_parent, args, context: Context) => {
+    if (!context.userId) return false;
     args.where = {
       ...args.where,
-      userId,
-    };
-    return true;
-  }),
-  accessOwnUserData: rule()((_parent, args, context: Context) => {
-    const userId = getUserId(context);
-    if (!userId) return false;
-    args.where = {
-      ...args.where,
-      id: userId,
+      ownerId: context.userId,
     };
     return true;
   }),
 
   injectUserOnCreate: rule()((_parent, args, context: Context) => {
-    const userId = getUserId(context);
-    if (!userId) return false;
+    if (!context.userId) return false;
     args.create = {
       ...args.create,
-      User: {
-        connect: {
-          id: userId,
-        },
-      },
+      ownerId: context.userId,
     };
     return true;
   }),
-  interceptUserId: rule()((_parent, args, context: Context) => {
-    const userId = getUserId(context);
-    if (!userId) return false;
-    args.where = { ...args.where, userId: { equals: userId } };
+  injectUserOnData: rule()((_parent, args, context: Context) => {
+    if (!context.userId) return false;
+    args.data = {
+      ...args.data,
+      ownerId: context.userId,
+    };
+    return true;
+  }),
+  interceptOwnerId: rule()((_parent, args, context: Context) => {
+    if (!context.userId) return false;
+    args.where = { ...args.where, ownerId: { equals: context.userId } };
     return true;
   }),
 };

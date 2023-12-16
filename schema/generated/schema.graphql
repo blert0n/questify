@@ -2,12 +2,20 @@
 ### Do not make changes to this file directly
 
 
-type AggregateUser {
-  _avg: UserAvgAggregateOutputType
-  _count: UserCountAggregateOutputType
-  _max: UserMaxAggregateOutputType
-  _min: UserMinAggregateOutputType
-  _sum: UserSumAggregateOutputType
+type AggregateForm {
+  _avg: FormAvgAggregateOutputType
+  _count: FormCountAggregateOutputType
+  _max: FormMaxAggregateOutputType
+  _min: FormMinAggregateOutputType
+  _sum: FormSumAggregateOutputType
+}
+
+type AggregateFormItem {
+  _avg: FormItemAvgAggregateOutputType
+  _count: FormItemCountAggregateOutputType
+  _max: FormItemMaxAggregateOutputType
+  _min: FormItemMinAggregateOutputType
+  _sum: FormItemSumAggregateOutputType
 }
 
 type BatchPayload {
@@ -28,37 +36,687 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
-input DateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
-input DateTimeFilter {
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime]
-  lt: DateTime
-  lte: DateTime
-  not: NestedDateTimeFilter
-  notIn: [DateTime]
-}
-
-input DateTimeWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedDateTimeFilter
-  _min: NestedDateTimeFilter
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime]
-  lt: DateTime
-  lte: DateTime
-  not: NestedDateTimeWithAggregatesFilter
-  notIn: [DateTime]
-}
-
 """An arbitrary-precision Decimal type"""
 scalar Decimal
+
+input EnumFormTypeFieldUpdateOperationsInput {
+  set: FormType
+}
+
+input EnumFormTypeFilter {
+  equals: FormType
+  in: [FormType]
+  not: NestedEnumFormTypeFilter
+  notIn: [FormType]
+}
+
+input EnumFormTypeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumFormTypeFilter
+  _min: NestedEnumFormTypeFilter
+  equals: FormType
+  in: [FormType]
+  not: NestedEnumFormTypeWithAggregatesFilter
+  notIn: [FormType]
+}
+
+type Form {
+  _count: FormCountOutputType!
+  id: String!
+  items(cursor: FormItemWhereUniqueInput, distinct: [FormItemScalarFieldEnum], orderBy: [FormItemOrderByWithRelationInput], skip: Int, take: Int, where: FormItemWhereInput): [FormItem!]!
+  name: String!
+  order: Int!
+  ownerId: String!
+  style: Json
+}
+
+type FormAvgAggregateOutputType {
+  order: Float
+}
+
+input FormAvgOrderByAggregateInput {
+  order: SortOrder
+}
+
+type FormCountAggregateOutputType {
+  _all: Int!
+  id: Int!
+  name: Int!
+  order: Int!
+  ownerId: Int!
+  style: Int!
+}
+
+input FormCountOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  ownerId: SortOrder
+  style: SortOrder
+}
+
+type FormCountOutputType {
+  items: Int!
+}
+
+input FormCreateInput {
+  id: String
+  items: FormItemCreateNestedManyWithoutFormInput
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+}
+
+input FormCreateManyInput {
+  id: String
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+}
+
+input FormCreateNestedOneWithoutItemsInput {
+  connect: FormWhereUniqueInput
+  connectOrCreate: FormCreateOrConnectWithoutItemsInput
+  create: FormCreateWithoutItemsInput
+}
+
+input FormCreateOrConnectWithoutItemsInput {
+  create: FormCreateWithoutItemsInput!
+  where: FormWhereUniqueInput!
+}
+
+input FormCreateWithoutItemsInput {
+  id: String
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+}
+
+type FormItem {
+  Form: Form!
+  formId: String!
+  id: String!
+  name: String!
+  order: Int!
+  section: Int!
+  style: Json
+  type: FormType!
+}
+
+type FormItemAvgAggregateOutputType {
+  order: Float
+  section: Float
+}
+
+input FormItemAvgOrderByAggregateInput {
+  order: SortOrder
+  section: SortOrder
+}
+
+type FormItemCountAggregateOutputType {
+  _all: Int!
+  formId: Int!
+  id: Int!
+  name: Int!
+  order: Int!
+  section: Int!
+  style: Int!
+  type: Int!
+}
+
+input FormItemCountOrderByAggregateInput {
+  formId: SortOrder
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  section: SortOrder
+  style: SortOrder
+  type: SortOrder
+}
+
+input FormItemCreateInput {
+  Form: FormCreateNestedOneWithoutItemsInput!
+  id: String
+  name: String!
+  order: Int
+  section: Int
+  style: Json
+  type: FormType!
+}
+
+input FormItemCreateManyFormInput {
+  id: String
+  name: String!
+  order: Int
+  section: Int
+  style: Json
+  type: FormType!
+}
+
+input FormItemCreateManyFormInputEnvelope {
+  data: FormItemCreateManyFormInput!
+  skipDuplicates: Boolean
+}
+
+input FormItemCreateManyInput {
+  formId: String!
+  id: String
+  name: String!
+  order: Int
+  section: Int
+  style: Json
+  type: FormType!
+}
+
+input FormItemCreateNestedManyWithoutFormInput {
+  connect: [FormItemWhereUniqueInput]
+  connectOrCreate: [FormItemCreateOrConnectWithoutFormInput]
+  create: [FormItemCreateWithoutFormInput]
+  createMany: FormItemCreateManyFormInputEnvelope
+}
+
+input FormItemCreateOrConnectWithoutFormInput {
+  create: FormItemCreateWithoutFormInput!
+  where: FormItemWhereUniqueInput!
+}
+
+input FormItemCreateWithoutFormInput {
+  id: String
+  name: String!
+  order: Int
+  section: Int
+  style: Json
+  type: FormType!
+}
+
+input FormItemListRelationFilter {
+  every: FormItemWhereInput
+  none: FormItemWhereInput
+  some: FormItemWhereInput
+}
+
+type FormItemMaxAggregateOutputType {
+  formId: String
+  id: String
+  name: String
+  order: Int
+  section: Int
+  type: FormType
+}
+
+input FormItemMaxOrderByAggregateInput {
+  formId: SortOrder
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  section: SortOrder
+  type: SortOrder
+}
+
+type FormItemMinAggregateOutputType {
+  formId: String
+  id: String
+  name: String
+  order: Int
+  section: Int
+  type: FormType
+}
+
+input FormItemMinOrderByAggregateInput {
+  formId: SortOrder
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  section: SortOrder
+  type: SortOrder
+}
+
+input FormItemOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input FormItemOrderByWithAggregationInput {
+  _avg: FormItemAvgOrderByAggregateInput
+  _count: FormItemCountOrderByAggregateInput
+  _max: FormItemMaxOrderByAggregateInput
+  _min: FormItemMinOrderByAggregateInput
+  _sum: FormItemSumOrderByAggregateInput
+  formId: SortOrder
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  section: SortOrder
+  style: SortOrderInput
+  type: SortOrder
+}
+
+input FormItemOrderByWithRelationInput {
+  Form: FormOrderByWithRelationInput
+  formId: SortOrder
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  section: SortOrder
+  style: SortOrderInput
+  type: SortOrder
+}
+
+enum FormItemScalarFieldEnum {
+  formId
+  id
+  name
+  order
+  section
+  style
+  type
+}
+
+input FormItemScalarWhereInput {
+  AND: [FormItemScalarWhereInput]
+  NOT: [FormItemScalarWhereInput]
+  OR: [FormItemScalarWhereInput]
+  formId: StringFilter
+  id: StringFilter
+  name: StringFilter
+  order: IntFilter
+  section: IntFilter
+  style: JsonNullableFilter
+  type: EnumFormTypeFilter
+}
+
+input FormItemScalarWhereWithAggregatesInput {
+  AND: [FormItemScalarWhereWithAggregatesInput]
+  NOT: [FormItemScalarWhereWithAggregatesInput]
+  OR: [FormItemScalarWhereWithAggregatesInput]
+  formId: StringWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  order: IntWithAggregatesFilter
+  section: IntWithAggregatesFilter
+  style: JsonNullableWithAggregatesFilter
+  type: EnumFormTypeWithAggregatesFilter
+}
+
+type FormItemSumAggregateOutputType {
+  order: Int
+  section: Int
+}
+
+input FormItemSumOrderByAggregateInput {
+  order: SortOrder
+  section: SortOrder
+}
+
+input FormItemUncheckedCreateInput {
+  formId: String!
+  id: String
+  name: String!
+  order: Int
+  section: Int
+  style: Json
+  type: FormType!
+}
+
+input FormItemUncheckedCreateNestedManyWithoutFormInput {
+  connect: [FormItemWhereUniqueInput]
+  connectOrCreate: [FormItemCreateOrConnectWithoutFormInput]
+  create: [FormItemCreateWithoutFormInput]
+  createMany: FormItemCreateManyFormInputEnvelope
+}
+
+input FormItemUncheckedCreateWithoutFormInput {
+  id: String
+  name: String!
+  order: Int
+  section: Int
+  style: Json
+  type: FormType!
+}
+
+input FormItemUncheckedUpdateInput {
+  formId: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUncheckedUpdateManyInput {
+  formId: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUncheckedUpdateManyWithoutFormInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUncheckedUpdateManyWithoutFormNestedInput {
+  connect: [FormItemWhereUniqueInput]
+  connectOrCreate: [FormItemCreateOrConnectWithoutFormInput]
+  create: [FormItemCreateWithoutFormInput]
+  createMany: FormItemCreateManyFormInputEnvelope
+  delete: [FormItemWhereUniqueInput]
+  deleteMany: [FormItemScalarWhereInput]
+  disconnect: [FormItemWhereUniqueInput]
+  set: [FormItemWhereUniqueInput]
+  update: [FormItemUpdateWithWhereUniqueWithoutFormInput]
+  updateMany: [FormItemUpdateManyWithWhereWithoutFormInput]
+  upsert: [FormItemUpsertWithWhereUniqueWithoutFormInput]
+}
+
+input FormItemUncheckedUpdateWithoutFormInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUpdateInput {
+  Form: FormUpdateOneRequiredWithoutItemsNestedInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUpdateManyWithWhereWithoutFormInput {
+  data: FormItemUpdateManyMutationInput!
+  where: FormItemScalarWhereInput!
+}
+
+input FormItemUpdateManyWithoutFormNestedInput {
+  connect: [FormItemWhereUniqueInput]
+  connectOrCreate: [FormItemCreateOrConnectWithoutFormInput]
+  create: [FormItemCreateWithoutFormInput]
+  createMany: FormItemCreateManyFormInputEnvelope
+  delete: [FormItemWhereUniqueInput]
+  deleteMany: [FormItemScalarWhereInput]
+  disconnect: [FormItemWhereUniqueInput]
+  set: [FormItemWhereUniqueInput]
+  update: [FormItemUpdateWithWhereUniqueWithoutFormInput]
+  updateMany: [FormItemUpdateManyWithWhereWithoutFormInput]
+  upsert: [FormItemUpsertWithWhereUniqueWithoutFormInput]
+}
+
+input FormItemUpdateWithWhereUniqueWithoutFormInput {
+  data: FormItemUpdateWithoutFormInput!
+  where: FormItemWhereUniqueInput!
+}
+
+input FormItemUpdateWithoutFormInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  style: Json
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
+input FormItemUpsertWithWhereUniqueWithoutFormInput {
+  create: FormItemCreateWithoutFormInput!
+  update: FormItemUpdateWithoutFormInput!
+  where: FormItemWhereUniqueInput!
+}
+
+input FormItemWhereInput {
+  AND: [FormItemWhereInput]
+  Form: FormRelationFilter
+  NOT: [FormItemWhereInput]
+  OR: [FormItemWhereInput]
+  formId: StringFilter
+  id: StringFilter
+  name: StringFilter
+  order: IntFilter
+  section: IntFilter
+  style: JsonNullableFilter
+  type: EnumFormTypeFilter
+}
+
+input FormItemWhereUniqueInput {
+  AND: [FormItemWhereInput]
+  Form: FormRelationFilter
+  NOT: [FormItemWhereInput]
+  OR: [FormItemWhereInput]
+  formId: StringFilter
+  id: String
+  name: String
+  order: IntFilter
+  section: IntFilter
+  style: JsonNullableFilter
+  type: EnumFormTypeFilter
+}
+
+type FormMaxAggregateOutputType {
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+}
+
+input FormMaxOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  ownerId: SortOrder
+}
+
+type FormMinAggregateOutputType {
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+}
+
+input FormMinOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  ownerId: SortOrder
+}
+
+input FormOrderByWithAggregationInput {
+  _avg: FormAvgOrderByAggregateInput
+  _count: FormCountOrderByAggregateInput
+  _max: FormMaxOrderByAggregateInput
+  _min: FormMinOrderByAggregateInput
+  _sum: FormSumOrderByAggregateInput
+  id: SortOrder
+  name: SortOrder
+  order: SortOrder
+  ownerId: SortOrder
+  style: SortOrderInput
+}
+
+input FormOrderByWithRelationInput {
+  id: SortOrder
+  items: FormItemOrderByRelationAggregateInput
+  name: SortOrder
+  order: SortOrder
+  ownerId: SortOrder
+  style: SortOrderInput
+}
+
+input FormRelationFilter {
+  is: FormWhereInput
+  isNot: FormWhereInput
+}
+
+enum FormScalarFieldEnum {
+  id
+  name
+  order
+  ownerId
+  style
+}
+
+input FormScalarWhereWithAggregatesInput {
+  AND: [FormScalarWhereWithAggregatesInput]
+  NOT: [FormScalarWhereWithAggregatesInput]
+  OR: [FormScalarWhereWithAggregatesInput]
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  order: IntWithAggregatesFilter
+  ownerId: StringWithAggregatesFilter
+  style: JsonNullableWithAggregatesFilter
+}
+
+type FormSumAggregateOutputType {
+  order: Int
+}
+
+input FormSumOrderByAggregateInput {
+  order: SortOrder
+}
+
+enum FormType {
+  ATTACHMENT
+  CHECKBOX
+  DATE
+  DROPDOWN
+  LONG
+  MULTIPLE_CHOICE
+  SHORT
+  SINGLE_CHOICE
+  SLIDER
+}
+
+input FormUncheckedCreateInput {
+  id: String
+  items: FormItemUncheckedCreateNestedManyWithoutFormInput
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+}
+
+input FormUncheckedCreateWithoutItemsInput {
+  id: String
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+}
+
+input FormUncheckedUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  items: FormItemUncheckedUpdateManyWithoutFormNestedInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+}
+
+input FormUncheckedUpdateManyInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+}
+
+input FormUncheckedUpdateWithoutItemsInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+}
+
+input FormUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  items: FormItemUpdateManyWithoutFormNestedInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+}
+
+input FormUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+}
+
+input FormUpdateOneRequiredWithoutItemsNestedInput {
+  connect: FormWhereUniqueInput
+  connectOrCreate: FormCreateOrConnectWithoutItemsInput
+  create: FormCreateWithoutItemsInput
+  update: FormUpdateToOneWithWhereWithoutItemsInput
+  upsert: FormUpsertWithoutItemsInput
+}
+
+input FormUpdateToOneWithWhereWithoutItemsInput {
+  data: FormUpdateWithoutItemsInput!
+  where: FormWhereInput
+}
+
+input FormUpdateWithoutItemsInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+}
+
+input FormUpsertWithoutItemsInput {
+  create: FormCreateWithoutItemsInput!
+  update: FormUpdateWithoutItemsInput!
+  where: FormWhereInput
+}
+
+input FormWhereInput {
+  AND: [FormWhereInput]
+  NOT: [FormWhereInput]
+  OR: [FormWhereInput]
+  id: StringFilter
+  items: FormItemListRelationFilter
+  name: StringFilter
+  order: IntFilter
+  ownerId: StringFilter
+  style: JsonNullableFilter
+}
+
+input FormWhereUniqueInput {
+  AND: [FormWhereInput]
+  NOT: [FormWhereInput]
+  OR: [FormWhereInput]
+  id: String
+  items: FormItemListRelationFilter
+  name: String
+  order: IntFilter
+  ownerId: StringFilter
+  style: JsonNullableFilter
+}
 
 input IntFieldUpdateOperationsInput {
   decrement: Int
@@ -100,34 +758,71 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar Json @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
+enum JsonNullValueFilter {
+  AnyNull
+  DbNull
+  JsonNull
+}
+
+input JsonNullableFilter {
+  array_contains: Json
+  array_ends_with: Json
+  array_starts_with: Json
+  equals: Json
+  gt: Json
+  gte: Json
+  lt: Json
+  lte: Json
+  not: Json
+  path: [String]
+  string_contains: String
+  string_ends_with: String
+  string_starts_with: String
+}
+
+input JsonNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedJsonNullableFilter
+  _min: NestedJsonNullableFilter
+  array_contains: Json
+  array_ends_with: Json
+  array_starts_with: Json
+  equals: Json
+  gt: Json
+  gte: Json
+  lt: Json
+  lte: Json
+  not: Json
+  path: [String]
+  string_contains: String
+  string_ends_with: String
+  string_starts_with: String
+}
+
 type Mutation {
-  deleteOneUser(where: UserWhereUniqueInput!): User
-  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  createOneForm(data: FormCreateInput!): Form!
+  createOneFormItem(data: FormItemCreateInput!): FormItem!
+  deleteOneForm(where: FormWhereUniqueInput!): Form
+  deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
+  updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
+  updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
 }
 
-input NestedDateTimeFilter {
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime]
-  lt: DateTime
-  lte: DateTime
-  not: NestedDateTimeFilter
-  notIn: [DateTime]
+input NestedEnumFormTypeFilter {
+  equals: FormType
+  in: [FormType]
+  not: NestedEnumFormTypeFilter
+  notIn: [FormType]
 }
 
-input NestedDateTimeWithAggregatesFilter {
+input NestedEnumFormTypeWithAggregatesFilter {
   _count: NestedIntFilter
-  _max: NestedDateTimeFilter
-  _min: NestedDateTimeFilter
-  equals: DateTime
-  gt: DateTime
-  gte: DateTime
-  in: [DateTime]
-  lt: DateTime
-  lte: DateTime
-  not: NestedDateTimeWithAggregatesFilter
-  notIn: [DateTime]
+  _max: NestedEnumFormTypeFilter
+  _min: NestedEnumFormTypeFilter
+  equals: FormType
+  in: [FormType]
+  not: NestedEnumFormTypeWithAggregatesFilter
+  notIn: [FormType]
 }
 
 input NestedFloatFilter {
@@ -152,6 +847,17 @@ input NestedIntFilter {
   notIn: [Int]
 }
 
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int]
+}
+
 input NestedIntWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -166,6 +872,22 @@ input NestedIntWithAggregatesFilter {
   lte: Int
   not: NestedIntWithAggregatesFilter
   notIn: [Int]
+}
+
+input NestedJsonNullableFilter {
+  array_contains: Json
+  array_ends_with: Json
+  array_starts_with: Json
+  equals: Json
+  gt: Json
+  gte: Json
+  lt: Json
+  lte: Json
+  not: Json
+  path: [String]
+  string_contains: String
+  string_ends_with: String
+  string_starts_with: String
 }
 
 input NestedStringFilter {
@@ -199,9 +921,22 @@ input NestedStringWithAggregatesFilter {
   startsWith: String
 }
 
+enum NullableJsonNullValueInput {
+  DbNull
+  JsonNull
+}
+
+enum NullsOrder {
+  first
+  last
+}
+
 type Query {
-  findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): User
-  findManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): [User!]!
+  findFirstForm(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): Form
+  findManyForm(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): [Form!]!
+  findManyFormCount(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): Int!
+  findManyFormItem(cursor: FormItemWhereUniqueInput, distinct: [FormItemScalarFieldEnum], orderBy: [FormItemOrderByWithRelationInput], skip: Int, take: Int, where: FormItemWhereInput): [FormItem!]!
+  findManyFormItemCount(cursor: FormItemWhereUniqueInput, distinct: [FormItemScalarFieldEnum], orderBy: [FormItemOrderByWithRelationInput], skip: Int, take: Int, where: FormItemWhereInput): Int!
 }
 
 enum QueryMode {
@@ -212,6 +947,11 @@ enum QueryMode {
 enum SortOrder {
   asc
   desc
+}
+
+input SortOrderInput {
+  nulls: NullsOrder
+  sort: SortOrder!
 }
 
 input StringFieldUpdateOperationsInput {
@@ -256,212 +996,4 @@ enum TransactionIsolationLevel {
   ReadUncommitted
   RepeatableRead
   Serializable
-}
-
-type User {
-  createdAt: DateTime!
-  email: String!
-  firstName: String!
-  id: Int!
-  lastName: String!
-  password: String!
-}
-
-type UserAvgAggregateOutputType {
-  id: Float
-}
-
-input UserAvgOrderByAggregateInput {
-  id: SortOrder
-}
-
-type UserCountAggregateOutputType {
-  _all: Int!
-  createdAt: Int!
-  email: Int!
-  firstName: Int!
-  id: Int!
-  lastName: Int!
-  password: Int!
-}
-
-input UserCountOrderByAggregateInput {
-  createdAt: SortOrder
-  email: SortOrder
-  firstName: SortOrder
-  id: SortOrder
-  lastName: SortOrder
-  password: SortOrder
-}
-
-input UserCreateInput {
-  createdAt: DateTime
-  email: String!
-  firstName: String!
-  lastName: String!
-  password: String!
-}
-
-input UserCreateManyInput {
-  createdAt: DateTime
-  email: String!
-  firstName: String!
-  id: Int
-  lastName: String!
-  password: String!
-}
-
-type UserMaxAggregateOutputType {
-  createdAt: DateTime
-  email: String
-  firstName: String
-  id: Int
-  lastName: String
-  password: String
-}
-
-input UserMaxOrderByAggregateInput {
-  createdAt: SortOrder
-  email: SortOrder
-  firstName: SortOrder
-  id: SortOrder
-  lastName: SortOrder
-  password: SortOrder
-}
-
-type UserMinAggregateOutputType {
-  createdAt: DateTime
-  email: String
-  firstName: String
-  id: Int
-  lastName: String
-  password: String
-}
-
-input UserMinOrderByAggregateInput {
-  createdAt: SortOrder
-  email: SortOrder
-  firstName: SortOrder
-  id: SortOrder
-  lastName: SortOrder
-  password: SortOrder
-}
-
-input UserOrderByWithAggregationInput {
-  _avg: UserAvgOrderByAggregateInput
-  _count: UserCountOrderByAggregateInput
-  _max: UserMaxOrderByAggregateInput
-  _min: UserMinOrderByAggregateInput
-  _sum: UserSumOrderByAggregateInput
-  createdAt: SortOrder
-  email: SortOrder
-  firstName: SortOrder
-  id: SortOrder
-  lastName: SortOrder
-  password: SortOrder
-}
-
-input UserOrderByWithRelationInput {
-  createdAt: SortOrder
-  email: SortOrder
-  firstName: SortOrder
-  id: SortOrder
-  lastName: SortOrder
-  password: SortOrder
-}
-
-enum UserScalarFieldEnum {
-  createdAt
-  email
-  firstName
-  id
-  lastName
-  password
-}
-
-input UserScalarWhereWithAggregatesInput {
-  AND: [UserScalarWhereWithAggregatesInput]
-  NOT: [UserScalarWhereWithAggregatesInput]
-  OR: [UserScalarWhereWithAggregatesInput]
-  createdAt: DateTimeWithAggregatesFilter
-  email: StringWithAggregatesFilter
-  firstName: StringWithAggregatesFilter
-  id: IntWithAggregatesFilter
-  lastName: StringWithAggregatesFilter
-  password: StringWithAggregatesFilter
-}
-
-type UserSumAggregateOutputType {
-  id: Int
-}
-
-input UserSumOrderByAggregateInput {
-  id: SortOrder
-}
-
-input UserUncheckedCreateInput {
-  createdAt: DateTime
-  email: String!
-  firstName: String!
-  id: Int
-  lastName: String!
-  password: String!
-}
-
-input UserUncheckedUpdateInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
-  id: IntFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-}
-
-input UserUncheckedUpdateManyInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
-  id: IntFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  firstName: StringFieldUpdateOperationsInput
-  lastName: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-}
-
-input UserWhereInput {
-  AND: [UserWhereInput]
-  NOT: [UserWhereInput]
-  OR: [UserWhereInput]
-  createdAt: DateTimeFilter
-  email: StringFilter
-  firstName: StringFilter
-  id: IntFilter
-  lastName: StringFilter
-  password: StringFilter
-}
-
-input UserWhereUniqueInput {
-  AND: [UserWhereInput]
-  NOT: [UserWhereInput]
-  OR: [UserWhereInput]
-  createdAt: DateTimeFilter
-  email: String
-  firstName: StringFilter
-  id: Int
-  lastName: StringFilter
-  password: StringFilter
 }

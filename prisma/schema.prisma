@@ -7,11 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  firstName String
-  lastName  String
-  createdAt DateTime @default(now())
+model Form {
+  id      String     @id @default(uuid())
+  name    String     @unique
+  ownerId String
+  order   Int        @default(autoincrement())
+  style   Json?
+  items   FormItem[]
+}
+
+model FormItem {
+  id      String   @id @default(uuid())
+  name    String   @unique
+  type    FormType
+  order   Int      @default(autoincrement())
+  style   Json?
+  section Int      @default(0)
+  formId  String
+  Form    Form     @relation(fields: [formId], references: [id])
+}
+
+enum FormType {
+  SHORT
+  LONG
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  DROPDOWN
+  CHECKBOX
+  ATTACHMENT
+  SLIDER
+  DATE
 }
