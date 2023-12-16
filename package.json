@@ -16,16 +16,23 @@
   "dependencies": {
     "@apollo/client": "^3.8.8",
     "@apollo/server": "^4.9.5",
+    "@chakra-ui/media-query": "^3.3.0",
+    "@chakra-ui/system": "^2.6.2",
     "@clerk/nextjs": "^4.27.5",
+    "@emotion/is-prop-valid": "^1.2.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@paljs/nexus": "^6.0.7",
     "@paljs/types": "^6.0.7",
     "@prisma/client": "^5.6.0",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "framer-motion": "^10.16.16",
     "graphql": "^16.8.1",
     "graphql-middleware": "^6.1.35",
     "graphql-shield": "^7.6.5",
@@ -37,7 +44,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.1.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
     "@clerk/types": "^3.58.1",

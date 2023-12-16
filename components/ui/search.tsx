@@ -15,7 +15,7 @@ const Search = React.forwardRef<HTMLInputElement, InputProps>(
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={cn(
-            "absolute top-0 bottom-0 w-4 h-4 my-auto text-gray-500 left-3",
+            "absolute top-0 bottom-0 w-4 h-4 my-auto text-gray-500 left-4",
             svgClassName
           )}
           fill="none"
@@ -33,7 +33,7 @@ const Search = React.forwardRef<HTMLInputElement, InputProps>(
           type="text"
           placeholder="Search"
           className={cn(
-            "bg-secondary lg:pl-12 pl-6 pr-4 rounded-3xl border-gray-200",
+            "bg-secondary pl-8 pr-4 rounded-3xl border-gray-200",
             inputClassName
           )}
           ref={ref}
