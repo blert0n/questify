@@ -30,45 +30,713 @@ export interface Scalars {
   Json: { input: any; output: any; }
 }
 
-export interface AggregateUser {
-  _avg?: Maybe<UserAvgAggregateOutputType>;
-  _count?: Maybe<UserCountAggregateOutputType>;
-  _max?: Maybe<UserMaxAggregateOutputType>;
-  _min?: Maybe<UserMinAggregateOutputType>;
-  _sum?: Maybe<UserSumAggregateOutputType>;
+export interface AggregateForm {
+  _avg?: Maybe<FormAvgAggregateOutputType>;
+  _count?: Maybe<FormCountAggregateOutputType>;
+  _max?: Maybe<FormMaxAggregateOutputType>;
+  _min?: Maybe<FormMinAggregateOutputType>;
+  _sum?: Maybe<FormSumAggregateOutputType>;
+}
+
+export interface AggregateFormItem {
+  _avg?: Maybe<FormItemAvgAggregateOutputType>;
+  _count?: Maybe<FormItemCountAggregateOutputType>;
+  _max?: Maybe<FormItemMaxAggregateOutputType>;
+  _min?: Maybe<FormItemMinAggregateOutputType>;
+  _sum?: Maybe<FormItemSumAggregateOutputType>;
 }
 
 export interface BatchPayload {
   count: Scalars['Int']['output'];
 }
 
-export interface DateTimeFieldUpdateOperationsInput {
-  set?: InputMaybe<Scalars['DateTime']['input']>;
+export interface EnumFormTypeFieldUpdateOperationsInput {
+  set?: InputMaybe<FormType>;
 }
 
-export interface DateTimeFilter {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  gt?: InputMaybe<Scalars['DateTime']['input']>;
-  gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  lt?: InputMaybe<Scalars['DateTime']['input']>;
-  lte?: InputMaybe<Scalars['DateTime']['input']>;
-  not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+export interface EnumFormTypeFilter {
+  equals?: InputMaybe<FormType>;
+  in?: InputMaybe<Array<InputMaybe<FormType>>>;
+  not?: InputMaybe<NestedEnumFormTypeFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<FormType>>>;
 }
 
-export interface DateTimeWithAggregatesFilter {
+export interface EnumFormTypeWithAggregatesFilter {
   _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedDateTimeFilter>;
-  _min?: InputMaybe<NestedDateTimeFilter>;
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  gt?: InputMaybe<Scalars['DateTime']['input']>;
-  gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  lt?: InputMaybe<Scalars['DateTime']['input']>;
-  lte?: InputMaybe<Scalars['DateTime']['input']>;
-  not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  _max?: InputMaybe<NestedEnumFormTypeFilter>;
+  _min?: InputMaybe<NestedEnumFormTypeFilter>;
+  equals?: InputMaybe<FormType>;
+  in?: InputMaybe<Array<InputMaybe<FormType>>>;
+  not?: InputMaybe<NestedEnumFormTypeWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<FormType>>>;
+}
+
+export interface Form {
+  _count: FormCountOutputType;
+  id: Scalars['String']['output'];
+  items: Array<FormItem>;
+  name: Scalars['String']['output'];
+  order: Scalars['Int']['output'];
+  ownerId: Scalars['String']['output'];
+  style?: Maybe<Scalars['Json']['output']>;
+}
+
+
+export interface FormItemsArgs {
+  cursor?: InputMaybe<FormItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormItemScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormItemOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FormItemWhereInput>;
+}
+
+export interface FormAvgAggregateOutputType {
+  order?: Maybe<Scalars['Float']['output']>;
+}
+
+export interface FormAvgOrderByAggregateInput {
+  order?: InputMaybe<SortOrder>;
+}
+
+export interface FormCountAggregateOutputType {
+  _all: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+  order: Scalars['Int']['output'];
+  ownerId: Scalars['Int']['output'];
+  style: Scalars['Int']['output'];
+}
+
+export interface FormCountOrderByAggregateInput {
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+  style?: InputMaybe<SortOrder>;
+}
+
+export interface FormCountOutputType {
+  items: Scalars['Int']['output'];
+}
+
+export interface FormCreateInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<FormItemCreateNestedManyWithoutFormInput>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormCreateManyInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormCreateNestedOneWithoutItemsInput {
+  connect?: InputMaybe<FormWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FormCreateOrConnectWithoutItemsInput>;
+  create?: InputMaybe<FormCreateWithoutItemsInput>;
+}
+
+export interface FormCreateOrConnectWithoutItemsInput {
+  create: FormCreateWithoutItemsInput;
+  where: FormWhereUniqueInput;
+}
+
+export interface FormCreateWithoutItemsInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormItem {
+  Form: Form;
+  formId: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  order: Scalars['Int']['output'];
+  section: Scalars['Int']['output'];
+  style?: Maybe<Scalars['Json']['output']>;
+  type: FormType;
+}
+
+export interface FormItemAvgAggregateOutputType {
+  order?: Maybe<Scalars['Float']['output']>;
+  section?: Maybe<Scalars['Float']['output']>;
+}
+
+export interface FormItemAvgOrderByAggregateInput {
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemCountAggregateOutputType {
+  _all: Scalars['Int']['output'];
+  formId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+  order: Scalars['Int']['output'];
+  section: Scalars['Int']['output'];
+  style: Scalars['Int']['output'];
+  type: Scalars['Int']['output'];
+}
+
+export interface FormItemCountOrderByAggregateInput {
+  formId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+  style?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemCreateInput {
+  Form: FormCreateNestedOneWithoutItemsInput;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type: FormType;
+}
+
+export interface FormItemCreateManyFormInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type: FormType;
+}
+
+export interface FormItemCreateManyFormInputEnvelope {
+  data: FormItemCreateManyFormInput;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+}
+
+export interface FormItemCreateManyInput {
+  formId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type: FormType;
+}
+
+export interface FormItemCreateNestedManyWithoutFormInput {
+  connect?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormItemCreateOrConnectWithoutFormInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormItemCreateWithoutFormInput>>>;
+  createMany?: InputMaybe<FormItemCreateManyFormInputEnvelope>;
+}
+
+export interface FormItemCreateOrConnectWithoutFormInput {
+  create: FormItemCreateWithoutFormInput;
+  where: FormItemWhereUniqueInput;
+}
+
+export interface FormItemCreateWithoutFormInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type: FormType;
+}
+
+export interface FormItemListRelationFilter {
+  every?: InputMaybe<FormItemWhereInput>;
+  none?: InputMaybe<FormItemWhereInput>;
+  some?: InputMaybe<FormItemWhereInput>;
+}
+
+export interface FormItemMaxAggregateOutputType {
+  formId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  section?: Maybe<Scalars['Int']['output']>;
+  type?: Maybe<FormType>;
+}
+
+export interface FormItemMaxOrderByAggregateInput {
+  formId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemMinAggregateOutputType {
+  formId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  section?: Maybe<Scalars['Int']['output']>;
+  type?: Maybe<FormType>;
+}
+
+export interface FormItemMinOrderByAggregateInput {
+  formId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemOrderByRelationAggregateInput {
+  _count?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemOrderByWithAggregationInput {
+  _avg?: InputMaybe<FormItemAvgOrderByAggregateInput>;
+  _count?: InputMaybe<FormItemCountOrderByAggregateInput>;
+  _max?: InputMaybe<FormItemMaxOrderByAggregateInput>;
+  _min?: InputMaybe<FormItemMinOrderByAggregateInput>;
+  _sum?: InputMaybe<FormItemSumOrderByAggregateInput>;
+  formId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+  style?: InputMaybe<SortOrderInput>;
+  type?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemOrderByWithRelationInput {
+  Form?: InputMaybe<FormOrderByWithRelationInput>;
+  formId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+  style?: InputMaybe<SortOrderInput>;
+  type?: InputMaybe<SortOrder>;
+}
+
+export enum FormItemScalarFieldEnum {
+  FormId = 'formId',
+  Id = 'id',
+  Name = 'name',
+  Order = 'order',
+  Section = 'section',
+  Style = 'style',
+  Type = 'type'
+}
+
+export interface FormItemScalarWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
+  formId?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntFilter>;
+  section?: InputMaybe<IntFilter>;
+  style?: InputMaybe<JsonNullableFilter>;
+  type?: InputMaybe<EnumFormTypeFilter>;
+}
+
+export interface FormItemScalarWhereWithAggregatesInput {
+  AND?: InputMaybe<Array<InputMaybe<FormItemScalarWhereWithAggregatesInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FormItemScalarWhereWithAggregatesInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormItemScalarWhereWithAggregatesInput>>>;
+  formId?: InputMaybe<StringWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+  order?: InputMaybe<IntWithAggregatesFilter>;
+  section?: InputMaybe<IntWithAggregatesFilter>;
+  style?: InputMaybe<JsonNullableWithAggregatesFilter>;
+  type?: InputMaybe<EnumFormTypeWithAggregatesFilter>;
+}
+
+export interface FormItemSumAggregateOutputType {
+  order?: Maybe<Scalars['Int']['output']>;
+  section?: Maybe<Scalars['Int']['output']>;
+}
+
+export interface FormItemSumOrderByAggregateInput {
+  order?: InputMaybe<SortOrder>;
+  section?: InputMaybe<SortOrder>;
+}
+
+export interface FormItemUncheckedCreateInput {
+  formId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type: FormType;
+}
+
+export interface FormItemUncheckedCreateNestedManyWithoutFormInput {
+  connect?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormItemCreateOrConnectWithoutFormInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormItemCreateWithoutFormInput>>>;
+  createMany?: InputMaybe<FormItemCreateManyFormInputEnvelope>;
+}
+
+export interface FormItemUncheckedCreateWithoutFormInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type: FormType;
+}
+
+export interface FormItemUncheckedUpdateInput {
+  formId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUncheckedUpdateManyInput {
+  formId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUncheckedUpdateManyWithoutFormInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUncheckedUpdateManyWithoutFormNestedInput {
+  connect?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormItemCreateOrConnectWithoutFormInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormItemCreateWithoutFormInput>>>;
+  createMany?: InputMaybe<FormItemCreateManyFormInputEnvelope>;
+  delete?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  deleteMany?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
+  disconnect?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  set?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  update?: InputMaybe<Array<InputMaybe<FormItemUpdateWithWhereUniqueWithoutFormInput>>>;
+  updateMany?: InputMaybe<Array<InputMaybe<FormItemUpdateManyWithWhereWithoutFormInput>>>;
+  upsert?: InputMaybe<Array<InputMaybe<FormItemUpsertWithWhereUniqueWithoutFormInput>>>;
+}
+
+export interface FormItemUncheckedUpdateWithoutFormInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUpdateInput {
+  Form?: InputMaybe<FormUpdateOneRequiredWithoutItemsNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUpdateManyMutationInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUpdateManyWithWhereWithoutFormInput {
+  data: FormItemUpdateManyMutationInput;
+  where: FormItemScalarWhereInput;
+}
+
+export interface FormItemUpdateManyWithoutFormNestedInput {
+  connect?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormItemCreateOrConnectWithoutFormInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormItemCreateWithoutFormInput>>>;
+  createMany?: InputMaybe<FormItemCreateManyFormInputEnvelope>;
+  delete?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  deleteMany?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
+  disconnect?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  set?: InputMaybe<Array<InputMaybe<FormItemWhereUniqueInput>>>;
+  update?: InputMaybe<Array<InputMaybe<FormItemUpdateWithWhereUniqueWithoutFormInput>>>;
+  updateMany?: InputMaybe<Array<InputMaybe<FormItemUpdateManyWithWhereWithoutFormInput>>>;
+  upsert?: InputMaybe<Array<InputMaybe<FormItemUpsertWithWhereUniqueWithoutFormInput>>>;
+}
+
+export interface FormItemUpdateWithWhereUniqueWithoutFormInput {
+  data: FormItemUpdateWithoutFormInput;
+  where: FormItemWhereUniqueInput;
+}
+
+export interface FormItemUpdateWithoutFormInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
+export interface FormItemUpsertWithWhereUniqueWithoutFormInput {
+  create: FormItemCreateWithoutFormInput;
+  update: FormItemUpdateWithoutFormInput;
+  where: FormItemWhereUniqueInput;
+}
+
+export interface FormItemWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  Form?: InputMaybe<FormRelationFilter>;
+  NOT?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  formId?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntFilter>;
+  section?: InputMaybe<IntFilter>;
+  style?: InputMaybe<JsonNullableFilter>;
+  type?: InputMaybe<EnumFormTypeFilter>;
+}
+
+export interface FormItemWhereUniqueInput {
+  AND?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  Form?: InputMaybe<FormRelationFilter>;
+  NOT?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  formId?: InputMaybe<StringFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<IntFilter>;
+  section?: InputMaybe<IntFilter>;
+  style?: InputMaybe<JsonNullableFilter>;
+  type?: InputMaybe<EnumFormTypeFilter>;
+}
+
+export interface FormMaxAggregateOutputType {
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  ownerId?: Maybe<Scalars['String']['output']>;
+}
+
+export interface FormMaxOrderByAggregateInput {
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FormMinAggregateOutputType {
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  ownerId?: Maybe<Scalars['String']['output']>;
+}
+
+export interface FormMinOrderByAggregateInput {
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FormOrderByWithAggregationInput {
+  _avg?: InputMaybe<FormAvgOrderByAggregateInput>;
+  _count?: InputMaybe<FormCountOrderByAggregateInput>;
+  _max?: InputMaybe<FormMaxOrderByAggregateInput>;
+  _min?: InputMaybe<FormMinOrderByAggregateInput>;
+  _sum?: InputMaybe<FormSumOrderByAggregateInput>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+  style?: InputMaybe<SortOrderInput>;
+}
+
+export interface FormOrderByWithRelationInput {
+  id?: InputMaybe<SortOrder>;
+  items?: InputMaybe<FormItemOrderByRelationAggregateInput>;
+  name?: InputMaybe<SortOrder>;
+  order?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+  style?: InputMaybe<SortOrderInput>;
+}
+
+export interface FormRelationFilter {
+  is?: InputMaybe<FormWhereInput>;
+  isNot?: InputMaybe<FormWhereInput>;
+}
+
+export enum FormScalarFieldEnum {
+  Id = 'id',
+  Name = 'name',
+  Order = 'order',
+  OwnerId = 'ownerId',
+  Style = 'style'
+}
+
+export interface FormScalarWhereWithAggregatesInput {
+  AND?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+  order?: InputMaybe<IntWithAggregatesFilter>;
+  ownerId?: InputMaybe<StringWithAggregatesFilter>;
+  style?: InputMaybe<JsonNullableWithAggregatesFilter>;
+}
+
+export interface FormSumAggregateOutputType {
+  order?: Maybe<Scalars['Int']['output']>;
+}
+
+export interface FormSumOrderByAggregateInput {
+  order?: InputMaybe<SortOrder>;
+}
+
+export enum FormType {
+  Attachment = 'ATTACHMENT',
+  Checkbox = 'CHECKBOX',
+  Date = 'DATE',
+  Dropdown = 'DROPDOWN',
+  Long = 'LONG',
+  MultipleChoice = 'MULTIPLE_CHOICE',
+  Short = 'SHORT',
+  SingleChoice = 'SINGLE_CHOICE',
+  Slider = 'SLIDER'
+}
+
+export interface FormUncheckedCreateInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<FormItemUncheckedCreateNestedManyWithoutFormInput>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUncheckedCreateWithoutItemsInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUncheckedUpdateInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<FormItemUncheckedUpdateManyWithoutFormNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUncheckedUpdateManyInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUncheckedUpdateWithoutItemsInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUpdateInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<FormItemUpdateManyWithoutFormNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUpdateManyMutationInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUpdateOneRequiredWithoutItemsNestedInput {
+  connect?: InputMaybe<FormWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FormCreateOrConnectWithoutItemsInput>;
+  create?: InputMaybe<FormCreateWithoutItemsInput>;
+  update?: InputMaybe<FormUpdateToOneWithWhereWithoutItemsInput>;
+  upsert?: InputMaybe<FormUpsertWithoutItemsInput>;
+}
+
+export interface FormUpdateToOneWithWhereWithoutItemsInput {
+  data: FormUpdateWithoutItemsInput;
+  where?: InputMaybe<FormWhereInput>;
+}
+
+export interface FormUpdateWithoutItemsInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+}
+
+export interface FormUpsertWithoutItemsInput {
+  create: FormCreateWithoutItemsInput;
+  update: FormUpdateWithoutItemsInput;
+  where?: InputMaybe<FormWhereInput>;
+}
+
+export interface FormWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  id?: InputMaybe<StringFilter>;
+  items?: InputMaybe<FormItemListRelationFilter>;
+  name?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntFilter>;
+  ownerId?: InputMaybe<StringFilter>;
+  style?: InputMaybe<JsonNullableFilter>;
+}
+
+export interface FormWhereUniqueInput {
+  AND?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<FormItemListRelationFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<IntFilter>;
+  ownerId?: InputMaybe<StringFilter>;
+  style?: InputMaybe<JsonNullableFilter>;
 }
 
 export interface IntFieldUpdateOperationsInput {
@@ -106,45 +774,103 @@ export interface IntWithAggregatesFilter {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
 }
 
+export enum JsonNullValueFilter {
+  AnyNull = 'AnyNull',
+  DbNull = 'DbNull',
+  JsonNull = 'JsonNull'
+}
+
+export interface JsonNullableFilter {
+  array_contains?: InputMaybe<Scalars['Json']['input']>;
+  array_ends_with?: InputMaybe<Scalars['Json']['input']>;
+  array_starts_with?: InputMaybe<Scalars['Json']['input']>;
+  equals?: InputMaybe<Scalars['Json']['input']>;
+  gt?: InputMaybe<Scalars['Json']['input']>;
+  gte?: InputMaybe<Scalars['Json']['input']>;
+  lt?: InputMaybe<Scalars['Json']['input']>;
+  lte?: InputMaybe<Scalars['Json']['input']>;
+  not?: InputMaybe<Scalars['Json']['input']>;
+  path?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  string_contains?: InputMaybe<Scalars['String']['input']>;
+  string_ends_with?: InputMaybe<Scalars['String']['input']>;
+  string_starts_with?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface JsonNullableWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedJsonNullableFilter>;
+  _min?: InputMaybe<NestedJsonNullableFilter>;
+  array_contains?: InputMaybe<Scalars['Json']['input']>;
+  array_ends_with?: InputMaybe<Scalars['Json']['input']>;
+  array_starts_with?: InputMaybe<Scalars['Json']['input']>;
+  equals?: InputMaybe<Scalars['Json']['input']>;
+  gt?: InputMaybe<Scalars['Json']['input']>;
+  gte?: InputMaybe<Scalars['Json']['input']>;
+  lt?: InputMaybe<Scalars['Json']['input']>;
+  lte?: InputMaybe<Scalars['Json']['input']>;
+  not?: InputMaybe<Scalars['Json']['input']>;
+  path?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  string_contains?: InputMaybe<Scalars['String']['input']>;
+  string_ends_with?: InputMaybe<Scalars['String']['input']>;
+  string_starts_with?: InputMaybe<Scalars['String']['input']>;
+}
+
 export interface Mutation {
-  deleteOneUser?: Maybe<User>;
-  updateOneUser: User;
+  createOneForm: Form;
+  createOneFormItem: FormItem;
+  deleteOneForm?: Maybe<Form>;
+  deleteOneFormItem?: Maybe<FormItem>;
+  updateOneForm: Form;
+  updateOneFormItem: FormItem;
 }
 
 
-export interface MutationDeleteOneUserArgs {
-  where: UserWhereUniqueInput;
+export interface MutationCreateOneFormArgs {
+  data: FormCreateInput;
 }
 
 
-export interface MutationUpdateOneUserArgs {
-  data: UserUpdateInput;
-  where: UserWhereUniqueInput;
+export interface MutationCreateOneFormItemArgs {
+  data: FormItemCreateInput;
 }
 
-export interface NestedDateTimeFilter {
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  gt?: InputMaybe<Scalars['DateTime']['input']>;
-  gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  lt?: InputMaybe<Scalars['DateTime']['input']>;
-  lte?: InputMaybe<Scalars['DateTime']['input']>;
-  not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+
+export interface MutationDeleteOneFormArgs {
+  where: FormWhereUniqueInput;
 }
 
-export interface NestedDateTimeWithAggregatesFilter {
+
+export interface MutationDeleteOneFormItemArgs {
+  where: FormItemWhereUniqueInput;
+}
+
+
+export interface MutationUpdateOneFormArgs {
+  data: FormUpdateInput;
+  where: FormWhereUniqueInput;
+}
+
+
+export interface MutationUpdateOneFormItemArgs {
+  data: FormItemUpdateInput;
+  where: FormItemWhereUniqueInput;
+}
+
+export interface NestedEnumFormTypeFilter {
+  equals?: InputMaybe<FormType>;
+  in?: InputMaybe<Array<InputMaybe<FormType>>>;
+  not?: InputMaybe<NestedEnumFormTypeFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<FormType>>>;
+}
+
+export interface NestedEnumFormTypeWithAggregatesFilter {
   _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedDateTimeFilter>;
-  _min?: InputMaybe<NestedDateTimeFilter>;
-  equals?: InputMaybe<Scalars['DateTime']['input']>;
-  gt?: InputMaybe<Scalars['DateTime']['input']>;
-  gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  lt?: InputMaybe<Scalars['DateTime']['input']>;
-  lte?: InputMaybe<Scalars['DateTime']['input']>;
-  not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  _max?: InputMaybe<NestedEnumFormTypeFilter>;
+  _min?: InputMaybe<NestedEnumFormTypeFilter>;
+  equals?: InputMaybe<FormType>;
+  in?: InputMaybe<Array<InputMaybe<FormType>>>;
+  not?: InputMaybe<NestedEnumFormTypeWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<FormType>>>;
 }
 
 export interface NestedFloatFilter {
@@ -169,6 +895,17 @@ export interface NestedIntFilter {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
 }
 
+export interface NestedIntNullableFilter {
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<NestedIntNullableFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+}
+
 export interface NestedIntWithAggregatesFilter {
   _avg?: InputMaybe<NestedFloatFilter>;
   _count?: InputMaybe<NestedIntFilter>;
@@ -183,6 +920,22 @@ export interface NestedIntWithAggregatesFilter {
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntWithAggregatesFilter>;
   notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+}
+
+export interface NestedJsonNullableFilter {
+  array_contains?: InputMaybe<Scalars['Json']['input']>;
+  array_ends_with?: InputMaybe<Scalars['Json']['input']>;
+  array_starts_with?: InputMaybe<Scalars['Json']['input']>;
+  equals?: InputMaybe<Scalars['Json']['input']>;
+  gt?: InputMaybe<Scalars['Json']['input']>;
+  gte?: InputMaybe<Scalars['Json']['input']>;
+  lt?: InputMaybe<Scalars['Json']['input']>;
+  lte?: InputMaybe<Scalars['Json']['input']>;
+  not?: InputMaybe<Scalars['Json']['input']>;
+  path?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  string_contains?: InputMaybe<Scalars['String']['input']>;
+  string_ends_with?: InputMaybe<Scalars['String']['input']>;
+  string_starts_with?: InputMaybe<Scalars['String']['input']>;
 }
 
 export interface NestedStringFilter {
@@ -216,29 +969,72 @@ export interface NestedStringWithAggregatesFilter {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 }
 
+export enum NullableJsonNullValueInput {
+  DbNull = 'DbNull',
+  JsonNull = 'JsonNull'
+}
+
+export enum NullsOrder {
+  First = 'first',
+  Last = 'last'
+}
+
 export interface Query {
-  findFirstUser?: Maybe<User>;
-  findManyUser: Array<User>;
+  findFirstForm?: Maybe<Form>;
+  findManyForm: Array<Form>;
+  findManyFormCount: Scalars['Int']['output'];
+  findManyFormItem: Array<FormItem>;
+  findManyFormItemCount: Scalars['Int']['output'];
 }
 
 
-export interface QueryFindFirstUserArgs {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  distinct?: InputMaybe<Array<InputMaybe<UserScalarFieldEnum>>>;
-  orderBy?: InputMaybe<Array<InputMaybe<UserOrderByWithRelationInput>>>;
+export interface QueryFindFirstFormArgs {
+  cursor?: InputMaybe<FormWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormOrderByWithRelationInput>>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<UserWhereInput>;
+  where?: InputMaybe<FormWhereInput>;
 }
 
 
-export interface QueryFindManyUserArgs {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  distinct?: InputMaybe<Array<InputMaybe<UserScalarFieldEnum>>>;
-  orderBy?: InputMaybe<Array<InputMaybe<UserOrderByWithRelationInput>>>;
+export interface QueryFindManyFormArgs {
+  cursor?: InputMaybe<FormWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormOrderByWithRelationInput>>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<UserWhereInput>;
+  where?: InputMaybe<FormWhereInput>;
+}
+
+
+export interface QueryFindManyFormCountArgs {
+  cursor?: InputMaybe<FormWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FormWhereInput>;
+}
+
+
+export interface QueryFindManyFormItemArgs {
+  cursor?: InputMaybe<FormItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormItemScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormItemOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FormItemWhereInput>;
+}
+
+
+export interface QueryFindManyFormItemCountArgs {
+  cursor?: InputMaybe<FormItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormItemScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormItemOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FormItemWhereInput>;
 }
 
 export enum QueryMode {
@@ -249,6 +1045,11 @@ export enum QueryMode {
 export enum SortOrder {
   Asc = 'asc',
   Desc = 'desc'
+}
+
+export interface SortOrderInput {
+  nulls?: InputMaybe<NullsOrder>;
+  sort: SortOrder;
 }
 
 export interface StringFieldUpdateOperationsInput {
@@ -295,256 +1096,48 @@ export enum TransactionIsolationLevel {
   Serializable = 'Serializable'
 }
 
-export interface User {
-  createdAt: Scalars['DateTime']['output'];
-  email: Scalars['String']['output'];
-  firstName: Scalars['String']['output'];
-  id: Scalars['Int']['output'];
-  lastName: Scalars['String']['output'];
-  password: Scalars['String']['output'];
-}
-
-export interface UserAvgAggregateOutputType {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-export interface UserAvgOrderByAggregateInput {
-  id?: InputMaybe<SortOrder>;
-}
-
-export interface UserCountAggregateOutputType {
-  _all: Scalars['Int']['output'];
-  createdAt: Scalars['Int']['output'];
-  email: Scalars['Int']['output'];
-  firstName: Scalars['Int']['output'];
-  id: Scalars['Int']['output'];
-  lastName: Scalars['Int']['output'];
-  password: Scalars['Int']['output'];
-}
-
-export interface UserCountOrderByAggregateInput {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  lastName?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-}
-
-export interface UserCreateInput {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  email: Scalars['String']['input'];
-  firstName: Scalars['String']['input'];
-  lastName: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-}
-
-export interface UserCreateManyInput {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  email: Scalars['String']['input'];
-  firstName: Scalars['String']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
-  lastName: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-}
-
-export interface UserMaxAggregateOutputType {
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  firstName?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  lastName?: Maybe<Scalars['String']['output']>;
-  password?: Maybe<Scalars['String']['output']>;
-}
-
-export interface UserMaxOrderByAggregateInput {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  lastName?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-}
-
-export interface UserMinAggregateOutputType {
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  firstName?: Maybe<Scalars['String']['output']>;
-  id?: Maybe<Scalars['Int']['output']>;
-  lastName?: Maybe<Scalars['String']['output']>;
-  password?: Maybe<Scalars['String']['output']>;
-}
-
-export interface UserMinOrderByAggregateInput {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  lastName?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-}
-
-export interface UserOrderByWithAggregationInput {
-  _avg?: InputMaybe<UserAvgOrderByAggregateInput>;
-  _count?: InputMaybe<UserCountOrderByAggregateInput>;
-  _max?: InputMaybe<UserMaxOrderByAggregateInput>;
-  _min?: InputMaybe<UserMinOrderByAggregateInput>;
-  _sum?: InputMaybe<UserSumOrderByAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  lastName?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-}
-
-export interface UserOrderByWithRelationInput {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  firstName?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  lastName?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-}
-
-export enum UserScalarFieldEnum {
-  CreatedAt = 'createdAt',
-  Email = 'email',
-  FirstName = 'firstName',
-  Id = 'id',
-  LastName = 'lastName',
-  Password = 'password'
-}
-
-export interface UserScalarWhereWithAggregatesInput {
-  AND?: InputMaybe<Array<InputMaybe<UserScalarWhereWithAggregatesInput>>>;
-  NOT?: InputMaybe<Array<InputMaybe<UserScalarWhereWithAggregatesInput>>>;
-  OR?: InputMaybe<Array<InputMaybe<UserScalarWhereWithAggregatesInput>>>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  email?: InputMaybe<StringWithAggregatesFilter>;
-  firstName?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<IntWithAggregatesFilter>;
-  lastName?: InputMaybe<StringWithAggregatesFilter>;
-  password?: InputMaybe<StringWithAggregatesFilter>;
-}
-
-export interface UserSumAggregateOutputType {
-  id?: Maybe<Scalars['Int']['output']>;
-}
-
-export interface UserSumOrderByAggregateInput {
-  id?: InputMaybe<SortOrder>;
-}
-
-export interface UserUncheckedCreateInput {
-  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  email: Scalars['String']['input'];
-  firstName: Scalars['String']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
-  lastName: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-}
-
-export interface UserUncheckedUpdateInput {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-}
-
-export interface UserUncheckedUpdateManyInput {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-}
-
-export interface UserUpdateInput {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-}
-
-export interface UserUpdateManyMutationInput {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  firstName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  lastName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-}
-
-export interface UserWhereInput {
-  AND?: InputMaybe<Array<InputMaybe<UserWhereInput>>>;
-  NOT?: InputMaybe<Array<InputMaybe<UserWhereInput>>>;
-  OR?: InputMaybe<Array<InputMaybe<UserWhereInput>>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  email?: InputMaybe<StringFilter>;
-  firstName?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IntFilter>;
-  lastName?: InputMaybe<StringFilter>;
-  password?: InputMaybe<StringFilter>;
-}
-
-export interface UserWhereUniqueInput {
-  AND?: InputMaybe<Array<InputMaybe<UserWhereInput>>>;
-  NOT?: InputMaybe<Array<InputMaybe<UserWhereInput>>>;
-  OR?: InputMaybe<Array<InputMaybe<UserWhereInput>>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  firstName?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  lastName?: InputMaybe<StringFilter>;
-  password?: InputMaybe<StringFilter>;
-}
-
-export type GetFirstUserQueryVariables = Exact<{ [key: string]: never; }>;
+export type FirstFormQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFirstUserQuery = { findFirstUser?: { id: number } | undefined };
+export type FirstFormQuery = { findFirstForm?: { id: string } | undefined };
 
 
-export const GetFirstUserDocument = /*#__PURE__*/ gql`
-    query GetFirstUser {
-  findFirstUser {
+export const FirstFormDocument = /*#__PURE__*/ gql`
+    query FirstForm {
+  findFirstForm {
     id
   }
 }
     `;
 
 /**
- * __useGetFirstUserQuery__
+ * __useFirstFormQuery__
  *
- * To run a query within a React component, call `useGetFirstUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetFirstUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFirstFormQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFirstFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetFirstUserQuery({
+ * const { data, loading, error } = useFirstFormQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetFirstUserQuery(baseOptions?: Apollo.QueryHookOptions<GetFirstUserQuery, GetFirstUserQueryVariables>) {
+export function useFirstFormQuery(baseOptions?: Apollo.QueryHookOptions<FirstFormQuery, FirstFormQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetFirstUserQuery, GetFirstUserQueryVariables>(GetFirstUserDocument, options);
+        return Apollo.useQuery<FirstFormQuery, FirstFormQueryVariables>(FirstFormDocument, options);
       }
-export function useGetFirstUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFirstUserQuery, GetFirstUserQueryVariables>) {
+export function useFirstFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FirstFormQuery, FirstFormQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetFirstUserQuery, GetFirstUserQueryVariables>(GetFirstUserDocument, options);
+          return Apollo.useLazyQuery<FirstFormQuery, FirstFormQueryVariables>(FirstFormDocument, options);
         }
-export function useGetFirstUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetFirstUserQuery, GetFirstUserQueryVariables>) {
+export function useFirstFormSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FirstFormQuery, FirstFormQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetFirstUserQuery, GetFirstUserQueryVariables>(GetFirstUserDocument, options);
+          return Apollo.useSuspenseQuery<FirstFormQuery, FirstFormQueryVariables>(FirstFormDocument, options);
         }
-export type GetFirstUserQueryHookResult = ReturnType<typeof useGetFirstUserQuery>;
-export type GetFirstUserLazyQueryHookResult = ReturnType<typeof useGetFirstUserLazyQuery>;
-export type GetFirstUserSuspenseQueryHookResult = ReturnType<typeof useGetFirstUserSuspenseQuery>;
-export type GetFirstUserQueryResult = Apollo.QueryResult<GetFirstUserQuery, GetFirstUserQueryVariables>;
+export type FirstFormQueryHookResult = ReturnType<typeof useFirstFormQuery>;
+export type FirstFormLazyQueryHookResult = ReturnType<typeof useFirstFormLazyQuery>;
+export type FirstFormSuspenseQueryHookResult = ReturnType<typeof useFirstFormSuspenseQuery>;
+export type FirstFormQueryResult = Apollo.QueryResult<FirstFormQuery, FirstFormQueryVariables>;
