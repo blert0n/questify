@@ -1,4 +1,10 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import {
+  useState,
+  useCallback,
+  useEffect,
+  useRef,
+  HTMLAttributes,
+} from "react";
 import { createEditor } from "slate";
 import { withReact, Slate, Editable } from "slate-react";
 import { MarkType } from "./Elements";
@@ -16,10 +22,11 @@ import { Toolbar } from "./Toolbar";
 import { cn } from "@/lib";
 
 interface P {
-  placeholder?: string;
+  className?: string;
+  useToolbar?: boolean;
 }
 
-const StyledInput = ({ placeholder = "Enter text" }: P) => {
+const StyledInput = ({ className, useToolbar = true }: P) => {
   const [editor] = useState(() => withReact(createEditor()));
 
   const {
@@ -53,7 +60,7 @@ const StyledInput = ({ placeholder = "Enter text" }: P) => {
   }, [containerRef, closeToolbar]);
 
   return (
-    <div ref={containerRef} className="p-2 w-[240px]">
+    <div ref={containerRef} className={cn("p-2 w-[240px]", className)}>
       <Slate
         editor={editor}
         initialValue={initialValue}
@@ -62,10 +69,9 @@ const StyledInput = ({ placeholder = "Enter text" }: P) => {
         <Editable
           className={cn(
             "p-2 transition-all duration-100 ease-in bg-white focus-visible:outline-none styledInput",
-            toolbar && "border-b-4 border-slate-700",
+            toolbar && "border-b-2 border-slate-700",
             !toolbar && "border-b-2 border-slate-400 "
           )}
-          placeholder={placeholder}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           onFocus={() => openToolbar()}
@@ -76,12 +82,12 @@ const StyledInput = ({ placeholder = "Enter text" }: P) => {
                 const mark = HOTKEYS[
                   hotkey as keyof typeof HOTKEYS
                 ] as keyof MarkType;
-                toggleMark(editor, mark);
+                useToolbar && toggleMark(editor, mark);
               }
             }
           }}
         />
-        {toolbar && <Toolbar />}
+        {useToolbar && toolbar && <Toolbar />}
       </Slate>
     </div>
   );

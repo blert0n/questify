@@ -6,8 +6,15 @@ interface P {
   icon: React.ReactNode;
   navigateUrl: string;
   active?: boolean;
+  onClick?: () => void;
 }
-export default function NavItem({ title, icon, active, navigateUrl }: P) {
+export default function NavItem({
+  title,
+  icon,
+  active,
+  navigateUrl,
+  onClick,
+}: P) {
   return (
     <Link
       className={cn(
@@ -16,6 +23,7 @@ export default function NavItem({ title, icon, active, navigateUrl }: P) {
         !active && "ml-1 opacity-50"
       )}
       href={navigateUrl}
+      onClick={() => onClick?.()}
     >
       <div className="basis-1/5">{icon}</div>
       <div className="basis-4/5 text-sm md:text-base">{title}</div>

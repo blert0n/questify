@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetContent } from "../ui/sheet";
 import { Menu } from "lucide-react";
 import Nav from "./Nav";
 import { useBoolean } from "usehooks-ts";
@@ -12,7 +12,7 @@ export default function NavMobile() {
       />
       <SheetContent
         side={"left"}
-        className="bg-primary px-0 text-white w-[200px]"
+        className="bg-primary px-0 text-white w-[200px] focus-visible:ring-0"
         onClose={() => toggle()}
         onEscapeKeyDown={() => toggle()}
       >
