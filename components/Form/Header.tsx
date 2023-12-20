@@ -11,7 +11,7 @@ export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
   return (
     <SheetHeader className=" shadow-md">
       <div className="flex items-center p-4 sm:flex-row flex-col">
-        <div className="flex w-full xs:w-1/2 items-center xs:gap-1 xs:justify-start justify-between">
+        <div className="flex w-full sm:w-1/2 items-center sm:gap-1 sm:justify-start justify-between">
           <FileText
             size={32}
             className="text-slate-700 hover:scale-110 cursor-pointer"
@@ -26,7 +26,7 @@ export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
             strokeWidth={1.5}
           />
         </div>
-        <div className="flex w-full xs:w-1/2 items-center gap-4 sm:m-0 mt-2 sm:justify-end justify-between">
+        <div className="flex w-full sm:w-1/2 items-center gap-4 sm:m-0 mt-2 sm:justify-end justify-between">
           <div className="flex gap-4">
             <Palette
               className="text-slate-700 hover:scale-110 cursor-pointer"

@@ -5,3 +5,4 @@ export * from "./search";
 export * from "./badge";
 export * from "./card";
 export * from "./dialog";
+export * from "./select";

@@ -3,3 +3,4 @@ export * from "./Layout";
 export * from "./User";
 export * from "./StyledInput";
 export * from "./Form";
+export * from "./controlled-inputs";
