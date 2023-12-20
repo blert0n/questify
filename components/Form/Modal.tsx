@@ -1,5 +1,7 @@
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Header } from "./Header";
+import { useBoolean } from "usehooks-ts";
+import { ThemeCustomizer } from "./ThemeCustomizer";
 
 interface P {
   visible: boolean;
@@ -16,6 +18,8 @@ export const FullScreenModal = ({
   saveFn,
   side = "left",
 }: P) => {
+  const { value: themeCustomizer, toggle: toggleThemeCustomizer } =
+    useBoolean(false);
   return (
     <Sheet open={visible}>
       <SheetContent
@@ -24,7 +28,17 @@ export const FullScreenModal = ({
         onClose={() => closeFn()}
         onEscapeKeyDown={() => closeFn()}
       >
-        <Header closeFn={closeFn} />
+        <Header
+          closeFn={closeFn}
+          toggleThemeCustomizer={toggleThemeCustomizer}
+        />
+        <div className="relative h-screen">
+          <div className="flex">A</div>
+          <ThemeCustomizer
+            visible={themeCustomizer}
+            toggle={toggleThemeCustomizer}
+          />
+        </div>
       </SheetContent>
     </Sheet>
   );

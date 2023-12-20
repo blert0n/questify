@@ -4,3 +4,4 @@ export * from "./label";
 export * from "./search";
 export * from "./badge";
 export * from "./card";
+export * from "./dialog";

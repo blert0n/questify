@@ -2,15 +2,15 @@ import Link from "next/link";
 import NavItem from "./NavItem";
 import { useRouter } from "next/router";
 import { Folder, Plus, LayoutDashboardIcon, File } from "lucide-react";
-import { FullScreenModal } from "../Form/Modal";
-import { useBoolean } from "usehooks-ts";
+import { useModalStoreSelectors } from "@/store";
 
 interface P {
   closeNavMobile?: () => void;
 }
 export default function Nav({ closeNavMobile }: P) {
-  const { value, toggle } = useBoolean(false);
   const router = useRouter();
+  const openModal = useModalStoreSelectors.use.openModal();
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-center text-2xl h-[100px]">
@@ -46,9 +46,11 @@ export default function Nav({ closeNavMobile }: P) {
           icon={<Plus size={18} />}
           active={router.pathname.startsWith("/create")}
           navigateUrl=""
-          onClick={toggle}
+          onClick={() => {
+            closeNavMobile?.();
+            openModal();
+          }}
         />
-        <FullScreenModal visible={value} openFn={toggle} closeFn={toggle} />
       </div>
     </div>
   );

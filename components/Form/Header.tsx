@@ -3,14 +3,15 @@ import { Input, Button } from "../ui";
 import { SheetHeader } from "../ui/sheet";
 
 interface P {
-  closeFn?: () => void;
+  closeFn: () => void;
+  toggleThemeCustomizer: () => void;
 }
 
-export const Header = ({ closeFn }: P) => {
+export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
   return (
     <SheetHeader className=" shadow-md">
       <div className="flex items-center p-4 sm:flex-row flex-col">
-        <div className="flex w-full xs:w-1/2 items-center gap-1 xs:justify-start justify-center">
+        <div className="flex w-full xs:w-1/2 items-center xs:gap-1 xs:justify-start justify-between">
           <FileText
             size={32}
             className="text-slate-700 hover:scale-110 cursor-pointer"
@@ -25,19 +26,24 @@ export const Header = ({ closeFn }: P) => {
             strokeWidth={1.5}
           />
         </div>
-        <div className="flex w-full xs:w-1/2 items-center gap-4 sm:m-0 mt-2 sm:justify-end justify-center">
-          <Palette
-            className="text-slate-700 hover:scale-110 cursor-pointer"
-            strokeWidth={1.5}
-          />
-          <Eye
-            className="text-slate-700 hover:scale-110 cursor-pointer"
-            strokeWidth={1.5}
-          />
-          <Button variant={"outline"} onClick={closeFn}>
-            Discard
-          </Button>
-          <Button>Save</Button>
+        <div className="flex w-full xs:w-1/2 items-center gap-4 sm:m-0 mt-2 sm:justify-end justify-between">
+          <div className="flex gap-4">
+            <Palette
+              className="text-slate-700 hover:scale-110 cursor-pointer"
+              strokeWidth={1.5}
+              onClick={toggleThemeCustomizer}
+            />
+            <Eye
+              className="text-slate-700 hover:scale-110 cursor-pointer"
+              strokeWidth={1.5}
+            />
+          </div>
+          <div className="flex gap-4">
+            <Button variant={"outline"} onClick={closeFn}>
+              Discard
+            </Button>
+            <Button>Save</Button>
+          </div>
         </div>
       </div>
     </SheetHeader>

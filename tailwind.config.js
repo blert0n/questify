@@ -22,6 +22,21 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        barlow: "var(--font-barlow)",
+        inter: "var(--font-inter)",
+        lato: "var(--font-lato)",
+        lora: "var(--font-lora)",
+        lobster: "var(--font-lobster)",
+        merriweather: "var(--font-merriweather)",
+        nunito: "var(--font-nunito)",
+        "open-sans": "var(--font-open-sans)",
+        oswald: "var(--font-oswald)",
+        roboto: "var(--font-roboto)",
+        "roboto-condensed": "var(--font-roboto-condensed)",
+        "roboto-mono": "var(--font-roboto-mono)",
+        ubuntu: "var(--font-ubuntu)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
