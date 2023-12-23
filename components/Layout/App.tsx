@@ -53,7 +53,7 @@ export default function AppLayout({ children }: P) {
           )}
         >
           <Header toggleNav={toggleNav} />
-          <div className="h-[100%] bg-secondary p-4">
+          <div className="h-[100%] bg-secondary p-4 overflow-y-auto">
             <FullScreenModal
               visible={isModalVisible}
               openFn={openModal}

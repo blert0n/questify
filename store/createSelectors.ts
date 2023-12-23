@@ -11,7 +11,6 @@ export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
   store.use = {};
   for (const k of Object.keys(store.getState())) {
     (store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
-    console.log(k, "k");
   }
   return store;
 };

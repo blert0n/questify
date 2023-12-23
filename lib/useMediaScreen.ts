@@ -1,5 +1,7 @@
 import { useMediaQuery } from "@chakra-ui/media-query";
 const breakpoints: Record<string, string> = {
+  xxs: "480px",
+  xs: "576px",
   sm: "640px",
   md: "768px",
   lg: "1024px",
