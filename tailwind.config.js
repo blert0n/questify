@@ -23,6 +23,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        alegreya: "var(--font-alegreya)",
         barlow: "var(--font-barlow)",
         inter: "var(--font-inter)",
         lato: "var(--font-lato)",
@@ -32,10 +33,11 @@ module.exports = {
         nunito: "var(--font-nunito)",
         "open-sans": "var(--font-open-sans)",
         oswald: "var(--font-oswald)",
+        raleway: "var(--font-raleway)",
         roboto: "var(--font-roboto)",
         "roboto-condensed": "var(--font-roboto-condensed)",
         "roboto-mono": "var(--font-roboto-mono)",
-        ubuntu: "var(--font-ubuntu)",
+        "space-mono": "var(--font-space-mono)",
       },
       colors: {
         border: "hsl(var(--border))",

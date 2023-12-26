@@ -1,4 +1,5 @@
 import {
+  Alegreya,
   Barlow,
   Inter,
   Lato,
@@ -8,12 +9,17 @@ import {
   Nunito,
   Open_Sans,
   Oswald,
+  Raleway,
   Roboto,
   Roboto_Condensed,
   Roboto_Mono,
-  Ubuntu,
+  Space_Mono,
 } from "next/font/google";
 
+const alegreya = Alegreya({
+  variable: "--font-alegreya",
+  subsets: ["latin"],
+});
 const barlow = Barlow({
   weight: "400",
   variable: "--font-barlow",
@@ -54,6 +60,10 @@ const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
 });
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+});
 const roboto = Roboto({
   weight: "400",
   variable: "--font-roboto",
@@ -67,12 +77,13 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
 });
-const ubuntu = Ubuntu({
+const spaceMono = Space_Mono({
   weight: "400",
-  variable: "--font-ubuntu",
+  variable: "--font-space-mono",
   subsets: ["latin"],
 });
 export {
+  alegreya,
   barlow,
   inter,
   lato,
@@ -82,8 +93,9 @@ export {
   nunito,
   openSans,
   oswald,
+  raleway,
   roboto,
   robotoCondensed,
   robotoMono,
-  ubuntu,
+  spaceMono,
 };

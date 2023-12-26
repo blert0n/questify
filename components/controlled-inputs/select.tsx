@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Select,
   SelectContent,
@@ -7,28 +6,31 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  type SelectVariant,
 } from "@/components/ui/select";
 
-interface P {
+export type AppSelectProps = {
   placeholder?: string | JSX.Element;
   value?: string;
   defaultValue?: string;
   disabled?: boolean;
-  options: {
+  options?: {
     value: string;
     placeholder: string | JSX.Element;
   }[];
   onChange?: (value: string) => void;
-}
+  size?: SelectVariant["size"];
+};
 
-export function CustomSelect({
+export function AppSelect({
   options,
   placeholder = "Select option",
   value,
   defaultValue,
   onChange,
   disabled = false,
-}: P) {
+  size,
+}: AppSelectProps) {
   return (
     <Select
       value={value}
@@ -36,12 +38,12 @@ export function CustomSelect({
       onValueChange={(value) => onChange?.(value)}
       disabled={disabled}
     >
-      <SelectTrigger>
+      <SelectTrigger size={size}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {options.map((option, index) => (
+          {(options ?? []).map((option, index) => (
             <SelectItem key={index} value={option.value}>
               {option.placeholder}
             </SelectItem>
