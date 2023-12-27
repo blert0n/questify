@@ -1,5 +1,5 @@
-import React, { MutableRefObject, useRef, useState } from "react";
-import { Palette, PlusCircle, X } from "lucide-react";
+import React, { useState } from "react";
+import { Palette, PlusCircle, X, CheckCheck, Save } from "lucide-react";
 import { Input } from "../ui/input";
 import Circle from "@uiw/react-color-circle";
 import { FontPicker } from "./FontPicker";
@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Chrome from "@uiw/react-color-chrome";
 import { GithubPlacement } from "@uiw/react-color-github";
 import { Sheet, SheetContent } from "../ui/sheet";
+import { generateShades } from "@/lib";
 
 interface P {
   visible: boolean;
@@ -16,14 +17,22 @@ interface P {
 }
 
 export const ThemeCustomizer = ({ visible, toggle }: P) => {
-  const [customColor, setCustomColor] = useState("");
-  const [hex, setHex] = useState("#fff");
-
+  const { value: isCustomColor, toggle: toggleCustomColor } = useBoolean(false);
+  const [primaryColor, setPrimaryColor] = useState("#db4437");
+  const [shades, setShades] = useState(generateShades(primaryColor));
+  const [secondaryColor, setSecondaryColor] = useState(shades[0]);
   const {
     value: showColorPicker,
     toggle: toggleColorPicker,
     setFalse: closeColorPicker,
   } = useBoolean(false);
+
+  const handlePrimaryColorChange = (color: string) => {
+    setPrimaryColor(color);
+    const updatedShades = generateShades(color);
+    setSecondaryColor(updatedShades[0]);
+    setShades(updatedShades);
+  };
 
   return (
     <Sheet open={visible}>
@@ -90,11 +99,19 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <div className="flex justify-between flex-wrap items-center">
             <p className="font-semibold">Color</p>
-            <PlusCircle
-              className="text-slate-700 cursor-pointer"
-              strokeWidth={1.5}
-              onClick={toggleColorPicker}
-            />
+            {showColorPicker ? (
+              <CheckCheck
+                className="text-slate-700 cursor-pointer"
+                strokeWidth={1.5}
+                onClick={toggleColorPicker}
+              />
+            ) : (
+              <PlusCircle
+                className="text-slate-700 cursor-pointer"
+                strokeWidth={1.5}
+                onClick={toggleColorPicker}
+              />
+            )}
           </div>
           <AnimatePresence initial={false} mode="wait">
             {showColorPicker && (
@@ -109,11 +126,12 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                 className="flex justify-center"
               >
                 <Chrome
-                  color={hex}
+                  color={primaryColor}
                   style={{ float: "left" }}
                   placement={GithubPlacement.Right}
                   onChange={(color) => {
-                    setHex(color.hexa);
+                    !isCustomColor && toggleCustomColor();
+                    handlePrimaryColorChange(color.hex);
                   }}
                 />
               </motion.div>
@@ -130,6 +148,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
               >
                 <Circle
                   key="1"
+                  color={primaryColor}
                   colors={[
                     "#db4437",
                     "#673ab7",
@@ -143,24 +162,23 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                     "#4caf50",
                     "#607d8b",
                     "#9e9e9e",
-                    ...(Boolean(customColor) ? [customColor] : []),
+                    ...(Boolean(isCustomColor) ? [primaryColor] : []),
                   ]}
+                  onChange={(color) => {
+                    handlePrimaryColorChange(color.hex);
+                    isCustomColor && toggleCustomColor();
+                  }}
                 />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
         <div className="p-4 flex flex-col gap-4 shadow-sm">
-          <p className="font-semibold">Color</p>
+          <p className="font-semibold">Background</p>
           <Circle
-            colors={[
-              "#db4437",
-              "#673ab7",
-              "#3f51b5",
-              "#4285f4",
-              "#03a9f4",
-              "#00bcd4",
-            ]}
+            color={secondaryColor}
+            colors={shades}
+            onChange={(color) => setSecondaryColor(color.hex)}
           />
         </div>
       </SheetContent>
