@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Palette, PlusCircle, X, CheckCheck, Save } from "lucide-react";
+import { Palette, PlusCircle, X, CheckCheck } from "lucide-react";
 import { Input } from "../ui/input";
 import Circle from "@uiw/react-color-circle";
 import { FontPicker } from "./FontPicker";
@@ -10,6 +10,8 @@ import Chrome from "@uiw/react-color-chrome";
 import { GithubPlacement } from "@uiw/react-color-github";
 import { Sheet, SheetContent } from "../ui/sheet";
 import { generateShades } from "@/lib";
+import { Uploader } from "../Image";
+import { Button } from "../ui/button";
 
 interface P {
   visible: boolean;
@@ -18,6 +20,11 @@ interface P {
 
 export const ThemeCustomizer = ({ visible, toggle }: P) => {
   const { value: isCustomColor, toggle: toggleCustomColor } = useBoolean(false);
+  const {
+    value: uploadModal,
+    toggle: toggleUploadModal,
+    setFalse: closeUploadModal,
+  } = useBoolean(false);
   const [primaryColor, setPrimaryColor] = useState("#db4437");
   const [shades, setShades] = useState(generateShades(primaryColor));
   const [secondaryColor, setSecondaryColor] = useState(shades[0]);
@@ -94,7 +101,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
         </div>
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <p className="font-semibold">Header</p>
-          <Input type="file" />
+          <Uploader />
         </div>
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <div className="flex justify-between flex-wrap items-center">
