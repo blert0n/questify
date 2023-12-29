@@ -49,7 +49,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
         onClose={toggle}
         onEscapeKeyDown={toggle}
       >
-        <div className="flex justify-between border-b-2 shadow-sm p-4">
+        <div className="flex justify-between items-center h-[73px] border-b-2 shadow-md p-4">
           <div className="flex flex-row gap-2">
             <Palette
               className="text-slate-700 cursor-pointer"
