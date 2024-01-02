@@ -1,8 +1,11 @@
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Header } from "./Header";
+import { Form } from "./Form";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
 import { useCreateFormSelectors } from "@/store";
+import { Options } from "./Options";
+import { AddItem } from "./AddItem";
 
 interface P {
   visible: boolean;
@@ -40,7 +43,10 @@ export const FullScreenModal = ({
           closeFn={handleModalClose}
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
-        <div className="h-full w-full">Form content</div>
+        <div className="flex flex-col gap-8 items-center h-full w-full p-4">
+          <AddItem />
+          <Form />
+        </div>
         <ThemeCustomizer
           visible={themeCustomizer}
           toggle={toggleThemeCustomizer}
