@@ -82,6 +82,27 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
 });
+
+export const fontMapper = {
+  Alegreya: "font-alegreya",
+  Barlow: "font-barlow",
+  Inter: "font-inter",
+  Lato: "font-lato",
+  Lobster: "font-lobster",
+  Lora: "font-lora",
+  Merriweather: "font-merriweather",
+  Nunito: "font-nunito",
+  "Open Sans": "font-open-sans",
+  Oswald: "font-oswald",
+  Raleway: "font-raleway",
+  Roboto: "font-roboto",
+  "Roboto Condensed": "font-roboto-condensed",
+  "Roboto Mono": "font-roboto-mono",
+  "Space Mono": "font-space-mono",
+};
+
+export const generateFontSizeClass = (size: string) => `${size}px`;
+
 export {
   alegreya,
   barlow,

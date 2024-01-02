@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Palette, PlusCircle, X, CheckCheck } from "lucide-react";
-import { Input } from "../ui/input";
 import Circle from "@uiw/react-color-circle";
 import { FontPicker } from "./FontPicker";
 import { FontSizePicker } from "./FontSizePicker";
@@ -11,7 +10,8 @@ import { GithubPlacement } from "@uiw/react-color-github";
 import { Sheet, SheetContent } from "../ui/sheet";
 import { generateShades } from "@/lib";
 import { Uploader } from "../Image";
-import { Button } from "../ui/button";
+import { useCreateFormSelectors } from "@/store";
+import { Theme } from "@/types";
 
 interface P {
   visible: boolean;
@@ -20,24 +20,21 @@ interface P {
 
 export const ThemeCustomizer = ({ visible, toggle }: P) => {
   const { value: isCustomColor, toggle: toggleCustomColor } = useBoolean(false);
-  const {
-    value: uploadModal,
-    toggle: toggleUploadModal,
-    setFalse: closeUploadModal,
-  } = useBoolean(false);
-  const [primaryColor, setPrimaryColor] = useState("#db4437");
-  const [shades, setShades] = useState(generateShades(primaryColor));
-  const [secondaryColor, setSecondaryColor] = useState(shades[0]);
-  const {
-    value: showColorPicker,
-    toggle: toggleColorPicker,
-    setFalse: closeColorPicker,
-  } = useBoolean(false);
+  const { value: showColorPicker, toggle: toggleColorPicker } =
+    useBoolean(false);
+
+  const theme = useCreateFormSelectors.use.theme();
+  const updateHeaderTheme = useCreateFormSelectors.use.updateHeaderTheme();
+  const updateQuestionTheme = useCreateFormSelectors.use.updateQuestionTheme();
+  const updateTextTheme = useCreateFormSelectors.use.updateTextTheme();
+  const updateTheme = useCreateFormSelectors.use.updateTheme();
+
+  const [shades, setShades] = useState(generateShades(theme.primaryColor));
 
   const handlePrimaryColorChange = (color: string) => {
-    setPrimaryColor(color);
+    updateTheme("primaryColor", color);
     const updatedShades = generateShades(color);
-    setSecondaryColor(updatedShades[0]);
+    updateTheme("secondaryColor", updatedShades[0]);
     setShades(updatedShades);
   };
 
@@ -69,10 +66,29 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
             <div>Header</div>
             <div className="flex gap-2 items-center">
               <div className="w-3/4 ">
-                <FontPicker />
+                <FontPicker
+                  defaultValue={theme.Header.fontFamily}
+                  onChange={(font) =>
+                    updateHeaderTheme(
+                      "fontFamily",
+                      font as Theme["Header"]["fontFamily"]
+                    )
+                  }
+                />
               </div>
               <div className="w-1/4">
-                <FontSizePicker start={18} end={24} placeholder={"Size"} />
+                <FontSizePicker
+                  start={18}
+                  end={24}
+                  placeholder={"Size"}
+                  defaultValue={theme.Header.fontSize}
+                  onChange={(size) => {
+                    updateHeaderTheme(
+                      "fontSize",
+                      size as Theme["Header"]["fontSize"]
+                    );
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -80,10 +96,29 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
             <div>Question</div>
             <div className="flex gap-2 items-center">
               <div className="w-3/4 ">
-                <FontPicker />
+                <FontPicker
+                  defaultValue={theme.Question.fontFamily}
+                  onChange={(font) =>
+                    updateQuestionTheme(
+                      "fontFamily",
+                      font as Theme["Question"]["fontFamily"]
+                    )
+                  }
+                />
               </div>
               <div className="w-1/4">
-                <FontSizePicker start={12} end={18} placeholder={"Size"} />
+                <FontSizePicker
+                  start={12}
+                  end={18}
+                  placeholder={"Size"}
+                  defaultValue={theme.Question.fontSize}
+                  onChange={(size) =>
+                    updateQuestionTheme(
+                      "fontSize",
+                      size as Theme["Question"]["fontSize"]
+                    )
+                  }
+                />
               </div>
             </div>
           </div>
@@ -91,10 +126,29 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
             <div>Text</div>
             <div className="flex gap-2 items-center">
               <div className="w-3/4 ">
-                <FontPicker />
+                <FontPicker
+                  defaultValue={theme.Text.fontFamily}
+                  onChange={(font) =>
+                    updateTextTheme(
+                      "fontFamily",
+                      font as Theme["Text"]["fontFamily"]
+                    )
+                  }
+                />
               </div>
               <div className="w-1/4">
-                <FontSizePicker start={9} end={12} placeholder={"Size"} />
+                <FontSizePicker
+                  start={9}
+                  end={12}
+                  placeholder={"Size"}
+                  defaultValue={theme.Text.fontSize}
+                  onChange={(size) =>
+                    updateTextTheme(
+                      "fontSize",
+                      size as Theme["Text"]["fontSize"]
+                    )
+                  }
+                />
               </div>
             </div>
           </div>
@@ -133,7 +187,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                 className="flex justify-center"
               >
                 <Chrome
-                  color={primaryColor}
+                  color={theme.primaryColor}
                   style={{ float: "left" }}
                   placement={GithubPlacement.Right}
                   onChange={(color) => {
@@ -155,7 +209,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
               >
                 <Circle
                   key="1"
-                  color={primaryColor}
+                  color={theme.primaryColor}
                   colors={[
                     "#db4437",
                     "#673ab7",
@@ -169,7 +223,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                     "#4caf50",
                     "#607d8b",
                     "#9e9e9e",
-                    ...(Boolean(isCustomColor) ? [primaryColor] : []),
+                    ...(Boolean(isCustomColor) ? [theme.primaryColor] : []),
                   ]}
                   onChange={(color) => {
                     handlePrimaryColorChange(color.hex);
@@ -183,9 +237,9 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <p className="font-semibold">Background</p>
           <Circle
-            color={secondaryColor}
+            color={theme.secondaryColor}
             colors={shades}
-            onChange={(color) => setSecondaryColor(color.hex)}
+            onChange={(color) => updateTheme("secondaryColor", color.hex)}
           />
         </div>
       </SheetContent>

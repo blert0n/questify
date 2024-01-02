@@ -18,5 +18,5 @@ const generateSizeArray = (start: number, end: number) => {
 
 export const FontSizePicker = ({ start, end, ...props }: Props) => {
   const options = generateSizeArray(start, end);
-  return <AppSelect options={options} placeholder="Size" />;
+  return <AppSelect options={options} placeholder="Size" {...props} />;
 };

@@ -22,6 +22,10 @@ const fonts = [
     value: "Lobster",
   },
   {
+    placeholder: <div className="font-lora">Lora</div>,
+    value: "Lora",
+  },
+  {
     placeholder: <div className="font-merriweather">Merriweather</div>,
     value: "Merriweather",
   },
@@ -30,8 +34,8 @@ const fonts = [
     value: "Nunito",
   },
   {
-    placeholder: <div className="font-open-sans">Open sans</div>,
-    value: "Open sans",
+    placeholder: <div className="font-open-sans">Open Sans</div>,
+    value: "Open Sans",
   },
   {
     placeholder: <div className="font-oswald">Oswald</div>,

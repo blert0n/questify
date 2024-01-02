@@ -39,7 +39,6 @@ export const Uploader = ({
   const imageRef = useRef<HTMLImageElement>(null);
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (!acceptedFiles.length) return;
-    console.log(acceptedFiles[0], "af0");
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       setImage({
@@ -124,8 +123,6 @@ export const Uploader = ({
       dataUrl: canvas.toDataURL(prev.type),
     }));
   };
-
-  console.log(image.dataUrl, "dataUrl");
 
   return (
     <>
