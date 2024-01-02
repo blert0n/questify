@@ -2,6 +2,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Header } from "./Header";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
+import { useCreateFormSelectors } from "@/store";
 
 interface P {
   visible: boolean;
@@ -20,16 +21,23 @@ export const FullScreenModal = ({
 }: P) => {
   const { value: themeCustomizer, toggle: toggleThemeCustomizer } =
     useBoolean(false);
+
+  const resetTheme = useCreateFormSelectors.use.resetTheme();
+
+  const handleModalClose = () => {
+    closeFn();
+    resetTheme();
+  };
   return (
     <Sheet open={visible}>
       <SheetContent
         className="sm:max-w-full w-full h-full max-h-full p-0 flex flex-col gap-0 overflow-y-auto"
         side={side}
-        onClose={closeFn}
-        onEscapeKeyDown={closeFn}
+        onClose={handleModalClose}
+        onEscapeKeyDown={handleModalClose}
       >
         <Header
-          closeFn={closeFn}
+          closeFn={handleModalClose}
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
         <div className="h-full w-full">Form content</div>

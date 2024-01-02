@@ -22,6 +22,7 @@ model FormItem {
   type    FormType
   order   Int      @default(autoincrement())
   style   Json?
+  items   Json?
   section Int      @default(0)
   formId  String
   Form    Form     @relation(fields: [formId], references: [id])

@@ -2,7 +2,7 @@ import { Theme } from "./form";
 
 export const initialFormData: Theme = {
   Header: {
-    fontSize: "20",
+    fontSize: "24",
     fontFamily: "Open Sans",
   },
   Question: {
