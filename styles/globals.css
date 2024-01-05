@@ -77,4 +77,22 @@
   body {
     @apply bg-background text-foreground;
   }
+  .colorPicker div[title="#ffffff"] {
+    border: 1px solid slategray;
+  }
+
+  .colorPicker div[title="#ffffff"] > div {
+    background-color: slategray !important;
+  }
+
+  .colorPicker.white-selected div[title="#ffffff"] {
+    box-shadow: #999 0 0 0 3px inset !important;
+    border: none;
+  }
+
+  .colorPicker.white-selected div[title="#ffffff"]:focus {
+    box-shadow:
+      #999 0 0 0 3px inset,
+      0 0 5px #999 !important;
+  }
 }

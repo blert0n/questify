@@ -1,7 +1,6 @@
 import escapeHtml from "escape-html";
 import { Descendant, Text } from "slate";
 import { CustomElement } from "./Elements";
-import { deserialize } from "./deserializer";
 
 export const serializeNode = (node: CustomElement | Descendant) => {
   if (Text.isText(node)) {
@@ -32,7 +31,5 @@ export const serializeNode = (node: CustomElement | Descendant) => {
 
 export const serialize = (nodes: CustomElement[] | Descendant[]) => {
   const html = nodes.map((n) => serializeNode(n)).join("");
-  // const document = new DOMParser().parseFromString(html, "text/html");
-  // console.log(deserialize(document.body));
   return html;
 };

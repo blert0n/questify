@@ -138,8 +138,8 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
               </div>
               <div className="w-1/4">
                 <FontSizePicker
-                  start={9}
-                  end={12}
+                  start={12}
+                  end={15}
                   placeholder={"Size"}
                   defaultValue={theme.Text.fontSize}
                   onChange={(size) =>
@@ -211,12 +211,12 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                   key="1"
                   color={theme.primaryColor}
                   colors={[
+                    "#ffffff",
                     "#db4437",
                     "#673ab7",
                     "#3f51b5",
                     "#4285f4",
                     "#03a9f4",
-                    "#00bcd4",
                     "#ff5722",
                     "#ff9800",
                     "#009688",
@@ -229,6 +229,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                     handlePrimaryColorChange(color.hex);
                     isCustomColor && toggleCustomColor();
                   }}
+                  className="colorPicker"
                 />
               </motion.div>
             )}
@@ -240,6 +241,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
             color={theme.secondaryColor}
             colors={shades}
             onChange={(color) => updateTheme("secondaryColor", color.hex)}
+            className="colorPicker"
           />
         </div>
       </SheetContent>

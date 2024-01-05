@@ -1,32 +1,40 @@
-import {
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-  HTMLAttributes,
-} from "react";
-import { createEditor } from "slate";
+import { useState, useCallback, useEffect, useRef, CSSProperties } from "react";
+import { Descendant, createEditor } from "slate";
 import { withReact, Slate, Editable } from "slate-react";
 import { MarkType } from "./Elements";
 import isHotkey from "is-hotkey";
-import { serialize } from "./serializer";
 import {
   toggleMark,
   HOTKEYS,
-  initialValue,
+  initialValue as INITIAL_VALUE,
   renderElementFn,
   renderLeafFn,
 } from "./util";
 import { useBoolean } from "usehooks-ts";
 import { Toolbar } from "./Toolbar";
 import { cn } from "@/lib";
+import { deserialize } from "./deserializer";
+import { serialize } from "./serializer";
 
 interface P {
+  initialValue?: Descendant[];
+  placeholder?: string;
   className?: string;
   useToolbar?: boolean;
+  style?: CSSProperties;
+  noLineBreak?: boolean;
+  onChange?: (html: string) => void;
 }
 
-const StyledInput = ({ className, useToolbar = true }: P) => {
+const StyledInput = ({
+  initialValue,
+  placeholder = "",
+  className,
+  useToolbar = true,
+  style,
+  noLineBreak,
+  onChange,
+}: P) => {
   const [editor] = useState(() => withReact(createEditor()));
 
   const {
@@ -60,22 +68,27 @@ const StyledInput = ({ className, useToolbar = true }: P) => {
   }, [containerRef, closeToolbar]);
 
   return (
-    <div ref={containerRef} className={cn("p-2 w-[240px]", className)}>
+    <div
+      ref={containerRef}
+      className={cn("w-[240px]", className)}
+      style={style}
+    >
       <Slate
         editor={editor}
-        initialValue={initialValue}
-        // onChange={(value) => console.log(serialize(value))}
+        initialValue={initialValue ?? INITIAL_VALUE}
+        onChange={(value) => onChange?.(serialize(value))}
       >
         <Editable
           className={cn(
             "p-2 transition-all duration-100 ease-in bg-white focus-visible:outline-none styledInput",
             toolbar && "border-b-2 border-slate-700",
-            !toolbar && "border-b-2 border-slate-400 "
+            !toolbar && "border-b-[0.5px] border-slate-300"
           )}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           onFocus={() => openToolbar()}
           onKeyDown={(event) => {
+            if (event.key === "Enter" && noLineBreak) event.preventDefault();
             for (const hotkey in HOTKEYS) {
               if (isHotkey(hotkey, event)) {
                 event.preventDefault();
@@ -86,6 +99,7 @@ const StyledInput = ({ className, useToolbar = true }: P) => {
               }
             }
           }}
+          placeholder={placeholder}
         />
         {useToolbar && toolbar && <Toolbar />}
       </Slate>

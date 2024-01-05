@@ -4,7 +4,6 @@ import { Form } from "./Form";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
 import { useCreateFormSelectors } from "@/store";
-import { Options } from "./Options";
 import { AddItem } from "./AddItem";
 
 interface P {
@@ -26,6 +25,7 @@ export const FullScreenModal = ({
     useBoolean(false);
 
   const resetTheme = useCreateFormSelectors.use.resetTheme();
+  const theme = useCreateFormSelectors.use.theme();
 
   const handleModalClose = () => {
     closeFn();
@@ -43,7 +43,10 @@ export const FullScreenModal = ({
           closeFn={handleModalClose}
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
-        <div className="flex flex-col gap-8 items-center h-full w-full p-4">
+        <div
+          className="flex flex-col gap-8 items-center h-full w-full p-4"
+          style={{ backgroundColor: theme.secondaryColor }}
+        >
           <AddItem />
           <Form />
         </div>

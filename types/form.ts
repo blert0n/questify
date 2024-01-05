@@ -5,6 +5,7 @@ export interface Theme {
   Header: {
     fontFamily: FontFamily;
     fontSize: `${18 | 19 | 20 | 21 | 22 | 23 | 24}`;
+    text?: string;
     image?: string;
   };
   Question: {
@@ -13,7 +14,8 @@ export interface Theme {
   };
   Text: {
     fontFamily: FontFamily;
-    fontSize: `${9 | 10 | 11 | 12}`;
+    fontSize: `${12 | 13 | 14 | 15}`;
+    text?: string;
   };
   primaryColor: string;
   secondaryColor: string;

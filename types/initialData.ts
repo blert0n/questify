@@ -4,15 +4,17 @@ export const initialFormData: Theme = {
   Header: {
     fontSize: "24",
     fontFamily: "Open Sans",
+    text: "",
   },
   Question: {
-    fontSize: "12",
+    fontSize: "14",
     fontFamily: "Open Sans",
   },
   Text: {
-    fontSize: "11",
+    fontSize: "12",
     fontFamily: "Open Sans",
+    text: "",
   },
-  primaryColor: "#db4437",
-  secondaryColor: "#ba3a2f",
+  primaryColor: "#ffffff",
+  secondaryColor: "#d9d9d9",
 };

@@ -1,7 +1,15 @@
 import { jsx } from "slate-hyperscript";
 import { CustomText } from "./Elements";
 import { Descendant } from "slate";
+import { initialValue } from "./util";
 
+export const deserializeString = (html: string) => {
+  if (!html) return initialValue;
+  const editorState = deserialize(
+    new DOMParser().parseFromString(html, "text/html").body
+  );
+  return Array.isArray(editorState) ? editorState : [editorState];
+};
 export const deserialize = (
   el: HTMLElement,
   markAttributes = {}
@@ -36,7 +44,7 @@ export const deserialize = (
 
   switch (el.nodeName) {
     case "BODY":
-      return jsx("fragment", {}, children);
+      return jsx("element", { type: "paragraph" }, children);
     case "P":
       return jsx("element", { type: "paragraph" }, children);
     case "A":
