@@ -2,6 +2,12 @@ import { Theme, FormItem } from "./form";
 import { FormType } from "@/lib/graphql";
 import { v4 as uuidv4 } from "uuid";
 
+export const iconProps = {
+  size: 20,
+  className: "text-slate-700 hover:scale-110 cursor-pointer",
+  strokeWidth: 1.5,
+};
+
 export const initialFormData: Theme = {
   Header: {
     fontSize: "24",
@@ -25,9 +31,10 @@ export const shortComponentInitialData: (lastOrder?: number) => FormItem = (
   lastOrder: number = 0
 ) => ({
   id: uuidv4(),
-  name: "",
+  name: "Question",
   order: lastOrder + 1,
   origin: "client",
   section: 0,
   type: FormType.Short,
+  required: false,
 });

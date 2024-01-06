@@ -33,7 +33,14 @@ export type ThemeSlice = {
 
 export type ItemSlice = {
   items: FormItem[];
+  updateItem: <K extends keyof FormItem>(
+    id: string,
+    prop: K,
+    value: FormItem[K]
+  ) => void;
   addItem: (type: FormType) => void;
+  deleteItem: (id: string) => void;
+  duplicateItem: (id: string) => void;
   addShortComponent: () => void;
 };
 

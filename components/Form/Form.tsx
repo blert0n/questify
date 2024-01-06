@@ -1,7 +1,7 @@
 import { useFormSelectors } from "@/store";
 import { FormHeader } from "./Items/FormHeader";
 import { HeaderImage } from "./Items/HeaderImage";
-import { Short } from "./Items/Short";
+import { Short } from "./Items/Short/Short";
 import { FormType } from "@/lib/graphql";
 import { FormComponentProps } from "@/types";
 
@@ -23,6 +23,7 @@ interface P {
 
 export const Form = ({ id }: P) => {
   const selectedComponent = useFormSelectors.use.selectedComponent();
+  const editMode = useFormSelectors.use.editMode();
   const items = useFormSelectors.use.items();
 
   return (
@@ -38,6 +39,7 @@ export const Form = ({ id }: P) => {
               item={item}
               key={item.id}
               selected={selectedComponent === item.id}
+              editMode={editMode}
             />
           );
         })}

@@ -44,8 +44,10 @@ export const deserialize = (
 
   switch (el.nodeName) {
     case "BODY":
+      console.log(el.nodeName, "elNodeName BODY");
       return jsx("element", { type: "paragraph" }, children);
     case "P":
+      console.log(el.nodeName, "elNodeName P");
       return jsx("element", { type: "paragraph" }, children);
     case "A":
       return jsx(
@@ -54,6 +56,7 @@ export const deserialize = (
         children
       );
     default:
+      console.log(el.nodeName, "Default");
       return children;
   }
 };

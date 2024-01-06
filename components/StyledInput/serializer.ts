@@ -31,5 +31,6 @@ export const serializeNode = (node: CustomElement | Descendant) => {
 
 export const serialize = (nodes: CustomElement[] | Descendant[]) => {
   const html = nodes.map((n) => serializeNode(n)).join("");
-  return html;
+  const regex = /<p>(<p>(.*?)<\/p>)<\/p>/g;
+  return html.replace(regex, "$1");
 };

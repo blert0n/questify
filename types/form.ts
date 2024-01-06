@@ -31,17 +31,19 @@ export interface Theme {
 }
 
 export interface FormItem {
-  id?: string;
-  name: string;
-  type: FormType;
-  order: number;
-  // items: JSON;
-  section?: number;
+  id: string;
   formId?: string;
+  name: string;
+  order: number;
+  section?: number;
+  required: boolean;
+  image?: Image;
+  type: FormType;
   origin: "server" | "client";
 }
 
 export interface FormComponentProps {
   item: ItemSlice["items"][number];
   selected?: boolean;
+  editMode?: boolean;
 }

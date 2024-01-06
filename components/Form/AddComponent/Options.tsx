@@ -9,12 +9,7 @@ import {
   SlidersHorizontal,
   Calendar,
 } from "lucide-react";
-
-const iconProps = {
-  size: 20,
-  className: "text-slate-700 hover:scale-110 cursor-pointer",
-  strokeWidth: 1.5,
-};
+import { iconProps } from "@/types";
 
 export const Options = () => {
   return (
