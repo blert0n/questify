@@ -1,34 +1,18 @@
 import { create } from "zustand";
-import { Theme, initialFormData } from "@/types";
-
-type State = {
-  theme: Theme;
-};
-
-type Actions = {
-  updateHeaderTheme: <K extends HeaderThemeKeys>(
-    prop: K,
-    value: Theme["Header"][K]
-  ) => void;
-  updateQuestionTheme: <K extends QuestionThemeKeys>(
-    prop: K,
-    value: Theme["Question"][K]
-  ) => void;
-  updateTextTheme: <K extends TextThemeKeys>(
-    prop: K,
-    value: Theme["Text"][K]
-  ) => void;
-  updateTheme: <K extends ThemeKeys>(prop: K, value: Theme[K]) => void;
-  resetTheme: () => void;
-};
-
-type ThemeKeys = keyof Theme;
-type HeaderThemeKeys = keyof Theme["Header"];
-type QuestionThemeKeys = keyof Theme["Question"];
-type TextThemeKeys = keyof Theme["Text"];
+import {
+  Theme,
+  initialFormData,
+  State,
+  Actions,
+  HeaderThemeKeys,
+  QuestionThemeKeys,
+  TextThemeKeys,
+  ThemeKeys,
+} from "@/types";
 
 export const useCreateFormStore = create<State & Actions>((set) => ({
   theme: initialFormData,
+  items: [],
   updateHeaderTheme: <K extends HeaderThemeKeys>(
     prop: K,
     value: Theme["Header"][K]

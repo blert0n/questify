@@ -1,4 +1,5 @@
 import { fontMapper } from "./../lib/fonts";
+import { FormType } from "@/lib/graphql";
 export type FontFamily = keyof typeof fontMapper;
 
 interface Image {
@@ -26,4 +27,15 @@ export interface Theme {
   };
   primaryColor: string;
   secondaryColor: string;
+}
+
+export interface FormItem {
+  id?: string;
+  name: string;
+  type: FormType;
+  order: number;
+  // items: JSON;
+  section?: number;
+  formId?: string;
+  origin: "server" | "client";
 }

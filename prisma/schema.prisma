@@ -21,7 +21,6 @@ model FormItem {
   name    String   @unique
   type    FormType
   order   Int      @default(autoincrement())
-  style   Json?
   items   Json?
   section Int      @default(0)
   formId  String
@@ -34,7 +33,6 @@ enum FormType {
   SINGLE_CHOICE
   MULTIPLE_CHOICE
   DROPDOWN
-  CHECKBOX
   ATTACHMENT
   SLIDER
   DATE

@@ -11,7 +11,6 @@ export const FormItem = objectType({
     t.string('name')
     t.field('type', { type: 'FormType' })
     t.int('order')
-    t.nullable.json('style')
     t.nullable.json('items')
     t.int('section')
     t.string('formId')

@@ -1,4 +1,5 @@
-import { Theme } from "./form";
+import { Theme, FormItem } from "./form";
+import { FormType } from "@/lib/graphql";
 
 export const initialFormData: Theme = {
   Header: {
@@ -18,3 +19,13 @@ export const initialFormData: Theme = {
   primaryColor: "#ffffff",
   secondaryColor: "#d9d9d9",
 };
+
+export const shortComponentInitialData: (lastOrder?: number) => FormItem = (
+  lastOrder: number = 0
+) => ({
+  name: "",
+  order: lastOrder,
+  origin: "client",
+  section: 0,
+  type: FormType.Short,
+});

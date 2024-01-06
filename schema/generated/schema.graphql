@@ -143,7 +143,6 @@ type FormItem {
   name: String!
   order: Int!
   section: Int!
-  style: Json
   type: FormType!
 }
 
@@ -165,7 +164,6 @@ type FormItemCountAggregateOutputType {
   name: Int!
   order: Int!
   section: Int!
-  style: Int!
   type: Int!
 }
 
@@ -176,7 +174,6 @@ input FormItemCountOrderByAggregateInput {
   name: SortOrder
   order: SortOrder
   section: SortOrder
-  style: SortOrder
   type: SortOrder
 }
 
@@ -187,7 +184,6 @@ input FormItemCreateInput {
   name: String!
   order: Int
   section: Int
-  style: Json
   type: FormType!
 }
 
@@ -197,7 +193,6 @@ input FormItemCreateManyFormInput {
   name: String!
   order: Int
   section: Int
-  style: Json
   type: FormType!
 }
 
@@ -213,7 +208,6 @@ input FormItemCreateManyInput {
   name: String!
   order: Int
   section: Int
-  style: Json
   type: FormType!
 }
 
@@ -235,7 +229,6 @@ input FormItemCreateWithoutFormInput {
   name: String!
   order: Int
   section: Int
-  style: Json
   type: FormType!
 }
 
@@ -297,7 +290,6 @@ input FormItemOrderByWithAggregationInput {
   name: SortOrder
   order: SortOrder
   section: SortOrder
-  style: SortOrderInput
   type: SortOrder
 }
 
@@ -309,7 +301,6 @@ input FormItemOrderByWithRelationInput {
   name: SortOrder
   order: SortOrder
   section: SortOrder
-  style: SortOrderInput
   type: SortOrder
 }
 
@@ -320,7 +311,6 @@ enum FormItemScalarFieldEnum {
   name
   order
   section
-  style
   type
 }
 
@@ -334,7 +324,6 @@ input FormItemScalarWhereInput {
   name: StringFilter
   order: IntFilter
   section: IntFilter
-  style: JsonNullableFilter
   type: EnumFormTypeFilter
 }
 
@@ -348,7 +337,6 @@ input FormItemScalarWhereWithAggregatesInput {
   name: StringWithAggregatesFilter
   order: IntWithAggregatesFilter
   section: IntWithAggregatesFilter
-  style: JsonNullableWithAggregatesFilter
   type: EnumFormTypeWithAggregatesFilter
 }
 
@@ -369,7 +357,6 @@ input FormItemUncheckedCreateInput {
   name: String!
   order: Int
   section: Int
-  style: Json
   type: FormType!
 }
 
@@ -386,7 +373,6 @@ input FormItemUncheckedCreateWithoutFormInput {
   name: String!
   order: Int
   section: Int
-  style: Json
   type: FormType!
 }
 
@@ -397,7 +383,6 @@ input FormItemUncheckedUpdateInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -408,7 +393,6 @@ input FormItemUncheckedUpdateManyInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -418,7 +402,6 @@ input FormItemUncheckedUpdateManyWithoutFormInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -442,7 +425,6 @@ input FormItemUncheckedUpdateWithoutFormInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -453,7 +435,6 @@ input FormItemUpdateInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -463,7 +444,6 @@ input FormItemUpdateManyMutationInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -497,7 +477,6 @@ input FormItemUpdateWithoutFormInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
-  style: Json
   type: EnumFormTypeFieldUpdateOperationsInput
 }
 
@@ -518,7 +497,6 @@ input FormItemWhereInput {
   name: StringFilter
   order: IntFilter
   section: IntFilter
-  style: JsonNullableFilter
   type: EnumFormTypeFilter
 }
 
@@ -533,7 +511,6 @@ input FormItemWhereUniqueInput {
   name: String
   order: IntFilter
   section: IntFilter
-  style: JsonNullableFilter
   type: EnumFormTypeFilter
 }
 
@@ -621,7 +598,6 @@ input FormSumOrderByAggregateInput {
 
 enum FormType {
   ATTACHMENT
-  CHECKBOX
   DATE
   DROPDOWN
   LONG
