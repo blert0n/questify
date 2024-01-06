@@ -13,7 +13,6 @@ import {
 import { useBoolean } from "usehooks-ts";
 import { Toolbar } from "./Toolbar";
 import { cn } from "@/lib";
-import { deserialize } from "./deserializer";
 import { serialize } from "./serializer";
 
 interface P {
@@ -23,6 +22,7 @@ interface P {
   useToolbar?: boolean;
   style?: CSSProperties;
   noLineBreak?: boolean;
+  showBottomBorder?: boolean;
   onChange?: (html: string) => void;
 }
 
@@ -33,6 +33,7 @@ const StyledInput = ({
   useToolbar = true,
   style,
   noLineBreak,
+  showBottomBorder,
   onChange,
 }: P) => {
   const [editor] = useState(() => withReact(createEditor()));
@@ -82,7 +83,7 @@ const StyledInput = ({
           className={cn(
             "p-2 transition-all duration-100 ease-in bg-white focus-visible:outline-none styledInput",
             toolbar && "border-b-2 border-slate-700",
-            !toolbar && "border-b-[0.5px] border-slate-300"
+            showBottomBorder && !toolbar && "border-b-[0.5px] border-slate-300"
           )}
           renderElement={renderElement}
           renderLeaf={renderLeaf}

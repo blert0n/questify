@@ -3,7 +3,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "../ui/tooltip";
+} from "../../ui/tooltip";
 import { FormType } from "@/lib/graphql";
 
 interface P {

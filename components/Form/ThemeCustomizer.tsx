@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Palette, PlusCircle, X, CheckCheck } from "lucide-react";
 import Circle from "@uiw/react-color-circle";
-import { FontPicker } from "./FontPicker";
-import { FontSizePicker } from "./FontSizePicker";
+import { FontPicker } from "./Customizers/FontPicker";
+import { FontSizePicker } from "./Customizers/FontSizePicker";
 import { useBoolean } from "usehooks-ts";
 import { AnimatePresence, motion } from "framer-motion";
 import Chrome from "@uiw/react-color-chrome";
@@ -30,6 +30,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
   const updateTheme = useCreateFormSelectors.use.updateTheme();
 
   const [shades, setShades] = useState(generateShades(theme.primaryColor));
+  const [chromeColor, setChromeColor] = useState("");
 
   const handlePrimaryColorChange = (color: string) => {
     updateTheme("primaryColor", color);
@@ -155,7 +156,11 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
         </div>
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <p className="font-semibold">Header</p>
-          <Uploader />
+          <Uploader
+            image={theme.Header.image}
+            onSaveFn={(image) => updateHeaderTheme("image", image)}
+            onRemoveFn={() => updateHeaderTheme("image", undefined)}
+          />
         </div>
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <div className="flex justify-between flex-wrap items-center">
@@ -164,7 +169,10 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
               <CheckCheck
                 className="text-slate-700 cursor-pointer"
                 strokeWidth={1.5}
-                onClick={toggleColorPicker}
+                onClick={() => {
+                  toggleColorPicker();
+                  handlePrimaryColorChange(chromeColor);
+                }}
               />
             ) : (
               <PlusCircle
@@ -187,12 +195,11 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                 className="flex justify-center"
               >
                 <Chrome
-                  color={theme.primaryColor}
+                  color={chromeColor}
                   style={{ float: "left" }}
                   placement={GithubPlacement.Right}
                   onChange={(color) => {
-                    !isCustomColor && toggleCustomColor();
-                    handlePrimaryColorChange(color.hex);
+                    setChromeColor(color.hex);
                   }}
                 />
               </motion.div>

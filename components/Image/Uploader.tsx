@@ -21,21 +21,27 @@ interface Image {
   dataUrl: string;
 }
 interface P {
+  image?: Image;
   aspectRatio?: number;
   lockRatio?: boolean;
   noCrop?: boolean;
-  removeImage?: () => void;
+  onRemoveFn?: () => void;
+  onSaveFn?: (image: Image) => void;
 }
 
 const ASPECT_RATIO = 4 / 1;
 
 export const Uploader = ({
+  image: existingImage,
   aspectRatio = ASPECT_RATIO,
   lockRatio = true,
   noCrop = false,
-  removeImage,
+  onRemoveFn,
+  onSaveFn,
 }: P) => {
-  const [image, setImage] = useState<Image>(INITIAL_IMAGE_PROPERTIES);
+  const [image, setImage] = useState<Image>(
+    existingImage ?? INITIAL_IMAGE_PROPERTIES
+  );
   const imageRef = useRef<HTMLImageElement>(null);
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (!acceptedFiles.length) return;
@@ -66,6 +72,7 @@ export const Uploader = ({
   } = useBoolean(false);
 
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    if (!imageRef?.current) return;
     const imageElement = e.currentTarget;
     const containerWidth = imageElement.parentElement?.offsetWidth || 1;
     const containerHeight = imageElement.parentElement?.offsetHeight || 1;
@@ -81,13 +88,14 @@ export const Uploader = ({
       }
     }
     const newCrop: Crop = {
-      unit: "%",
-      width: (newWidth / containerWidth) * 100,
-      height: (newHeight / containerHeight) * 100,
+      unit: "px",
+      width: (newWidth / containerWidth) * imageRef.current.width,
+      height: (newHeight / containerHeight) * imageRef.current.height,
       x: 0,
       y: 0,
     };
     setCrop(newCrop);
+    onCropComplete(newCrop);
   };
 
   const onCropComplete = (crop: Crop) => {
@@ -145,7 +153,7 @@ export const Uploader = ({
               strokeWidth={1.5}
               onClick={() => {
                 setImage(INITIAL_IMAGE_PROPERTIES);
-                removeImage?.();
+                onRemoveFn?.();
               }}
             />
           </div>
@@ -183,8 +191,8 @@ export const Uploader = ({
             )}
           </div>
           <DialogFooter>
-            <Button size={"sm"}>Save</Button>
             <Button
+              variant={"outline"}
               size={"sm"}
               onClick={() => {
                 setImage(INITIAL_IMAGE_PROPERTIES);
@@ -192,6 +200,15 @@ export const Uploader = ({
               }}
             >
               Close
+            </Button>
+            <Button
+              size={"sm"}
+              onClick={() => {
+                onSaveFn?.(image);
+                closeUploadModal();
+              }}
+            >
+              Save
             </Button>
           </DialogFooter>
         </DialogContent>

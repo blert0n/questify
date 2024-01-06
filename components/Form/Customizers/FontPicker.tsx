@@ -1,4 +1,4 @@
-import { AppSelect, type AppSelectProps } from "../controlled-inputs/select";
+import { AppSelect, type AppSelectProps } from "../../controlled-inputs/select";
 
 const fonts = [
   {

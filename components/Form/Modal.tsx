@@ -4,7 +4,7 @@ import { Form } from "./Form";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
 import { useCreateFormSelectors } from "@/store";
-import { AddItem } from "./AddItem";
+import { AddItem } from "./AddComponent/AddItem";
 
 interface P {
   visible: boolean;
