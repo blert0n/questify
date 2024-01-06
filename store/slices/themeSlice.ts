@@ -1,18 +1,22 @@
-import { create } from "zustand";
+import { StateCreator, create } from "zustand";
 import {
   Theme,
   initialFormData,
-  State,
-  Actions,
   HeaderThemeKeys,
   QuestionThemeKeys,
   TextThemeKeys,
   ThemeKeys,
+  ThemeSlice,
+  ItemSlice,
 } from "@/types";
 
-export const useCreateFormStore = create<State & Actions>((set) => ({
+export const createThemeSlice: StateCreator<
+  ThemeSlice & ItemSlice,
+  [],
+  [],
+  ThemeSlice
+> = (set) => ({
   theme: initialFormData,
-  items: [],
   updateHeaderTheme: <K extends HeaderThemeKeys>(
     prop: K,
     value: Theme["Header"][K]
@@ -64,4 +68,4 @@ export const useCreateFormStore = create<State & Actions>((set) => ({
       },
     })),
   resetTheme: () => set((state) => ({ ...state, theme: initialFormData })),
-}));
+});

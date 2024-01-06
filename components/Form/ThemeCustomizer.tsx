@@ -10,7 +10,7 @@ import { GithubPlacement } from "@uiw/react-color-github";
 import { Sheet, SheetContent } from "../ui/sheet";
 import { generateShades } from "@/lib";
 import { Uploader } from "../Image";
-import { useCreateFormSelectors } from "@/store";
+import { useFormSelectors } from "@/store";
 import { Theme } from "@/types";
 
 interface P {
@@ -23,11 +23,11 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
   const { value: showColorPicker, toggle: toggleColorPicker } =
     useBoolean(false);
 
-  const theme = useCreateFormSelectors.use.theme();
-  const updateHeaderTheme = useCreateFormSelectors.use.updateHeaderTheme();
-  const updateQuestionTheme = useCreateFormSelectors.use.updateQuestionTheme();
-  const updateTextTheme = useCreateFormSelectors.use.updateTextTheme();
-  const updateTheme = useCreateFormSelectors.use.updateTheme();
+  const theme = useFormSelectors.use.theme();
+  const updateHeaderTheme = useFormSelectors.use.updateHeaderTheme();
+  const updateQuestionTheme = useFormSelectors.use.updateQuestionTheme();
+  const updateTextTheme = useFormSelectors.use.updateTextTheme();
+  const updateTheme = useFormSelectors.use.updateTheme();
 
   const [shades, setShades] = useState(generateShades(theme.primaryColor));
   const [chromeColor, setChromeColor] = useState("");

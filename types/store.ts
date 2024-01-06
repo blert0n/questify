@@ -1,8 +1,8 @@
+import { FormType } from "@/lib/graphql";
 import { Theme, FormItem } from "./form";
 
 export type State = {
   theme: Theme;
-  items: FormItem[];
 };
 
 export type Actions = {
@@ -20,6 +20,12 @@ export type Actions = {
   ) => void;
   updateTheme: <K extends ThemeKeys>(prop: K, value: Theme[K]) => void;
   resetTheme: () => void;
+};
+
+export type ThemeSlice = State & Actions;
+
+export type ItemSlice = {
+  items: FormItem[];
 };
 
 export type ThemeKeys = keyof Theme;

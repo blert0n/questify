@@ -1,7 +1,7 @@
 import { createSelectors } from "./createSelectors";
 import { useModalStore } from "./slices/modalStore";
-import { useCreateFormStore } from "./slices/createForm";
+import { useFormStore } from "./slices/form";
 const useModalStoreSelectors = createSelectors(useModalStore);
-const useCreateFormSelectors = createSelectors(useCreateFormStore);
+const useFormSelectors = createSelectors(useFormStore);
 
-export { useModalStoreSelectors, useCreateFormSelectors };
+export { useModalStoreSelectors, useFormSelectors };

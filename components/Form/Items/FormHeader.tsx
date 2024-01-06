@@ -1,7 +1,7 @@
 import { cn } from "@/lib";
 import { fontMapper } from "@/lib/fonts";
 import StyledInput from "../../StyledInput";
-import { useCreateFormSelectors } from "@/store";
+import { useFormSelectors } from "@/store";
 import { deserializeString } from "../../StyledInput/deserializer";
 
 interface P {
@@ -9,9 +9,9 @@ interface P {
 }
 
 export const FormHeader = ({ isEditing }: P) => {
-  const theme = useCreateFormSelectors.use.theme();
-  const updateThemeHeader = useCreateFormSelectors.use.updateHeaderTheme();
-  const updateThemeText = useCreateFormSelectors.use.updateTextTheme();
+  const theme = useFormSelectors.use.theme();
+  const updateThemeHeader = useFormSelectors.use.updateHeaderTheme();
+  const updateThemeText = useFormSelectors.use.updateTextTheme();
   const formHeader = deserializeString("Untitled form");
   const formDescription = deserializeString("Description");
   return (

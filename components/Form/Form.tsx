@@ -1,12 +1,12 @@
-import { useCreateFormSelectors } from "@/store";
+import { useFormSelectors } from "@/store";
 import { deserializeString } from "../StyledInput/deserializer";
 import { useState } from "react";
 import { FormHeader } from "./Items/FormHeader";
 
 export const Form = () => {
-  const theme = useCreateFormSelectors.use.theme();
-  const updateThemeHeader = useCreateFormSelectors.use.updateHeaderTheme();
-  const updateThemeText = useCreateFormSelectors.use.updateTextTheme();
+  const theme = useFormSelectors.use.theme();
+  const updateThemeHeader = useFormSelectors.use.updateHeaderTheme();
+  const updateThemeText = useFormSelectors.use.updateTextTheme();
   const formHeader = deserializeString("Untitled form");
   const formDescription = deserializeString("Description");
   const [editModeComponent, setEditModeComponent] = useState("formHeader");

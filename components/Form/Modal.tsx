@@ -3,7 +3,7 @@ import { Header } from "./Header";
 import { Form } from "./Form";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
-import { useCreateFormSelectors } from "@/store";
+import { useFormSelectors } from "@/store";
 import { AddItem } from "./AddComponent/AddItem";
 
 interface P {
@@ -24,8 +24,8 @@ export const FullScreenModal = ({
   const { value: themeCustomizer, toggle: toggleThemeCustomizer } =
     useBoolean(false);
 
-  const resetTheme = useCreateFormSelectors.use.resetTheme();
-  const theme = useCreateFormSelectors.use.theme();
+  const resetTheme = useFormSelectors.use.resetTheme();
+  const theme = useFormSelectors.use.theme();
 
   const handleModalClose = () => {
     closeFn();
