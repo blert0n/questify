@@ -7,21 +7,18 @@ export const Short = ({ item, selected }: FormComponentProps) => {
   const updateForm = useFormSelectors.use.updateFormDetails();
   return (
     <div
-      className="w-full border-t-[10px] rounded-md h-auto shadow-md"
-      style={{
-        borderColor: theme.primaryColor,
-      }}
+      className={cn(
+        "w-full h-auto rounded-md p-4 bg-white shadow-md",
+        !selected && "cursor-pointer",
+        selected && "border-l-[5px]  border-l-sky-600"
+      )}
       onClick={() => item.id && updateForm("selectedComponent", item.id)}
     >
-      <div
-        className={cn(
-          "h-full rounded-b-md p-4 bg-white",
-          !selected && "cursor-pointer",
-          selected && "border-l-[5px]  border-l-sky-600"
-        )}
-      >
-        Short
-      </div>
+      Short
     </div>
   );
+};
+
+export const NonEditable = ({ item, selected }: FormComponentProps) => {
+  return <>Preview</>;
 };

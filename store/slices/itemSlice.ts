@@ -16,7 +16,7 @@ export const createItemSlice: StateCreator<
   items: [],
   addItem: (type) => {
     switch (type) {
-      case FormType.Attachment:
+      case FormType.Short:
         get().addShortComponent();
         break;
       default:
