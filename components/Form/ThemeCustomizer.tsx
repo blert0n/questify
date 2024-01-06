@@ -171,6 +171,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                 strokeWidth={1.5}
                 onClick={() => {
                   toggleColorPicker();
+                  !isCustomColor && toggleCustomColor();
                   handlePrimaryColorChange(chromeColor);
                 }}
               />
