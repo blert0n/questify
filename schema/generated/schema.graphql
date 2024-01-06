@@ -597,7 +597,6 @@ input FormSumOrderByAggregateInput {
 }
 
 enum FormType {
-  ATTACHMENT
   DATE
   DROPDOWN
   LONG

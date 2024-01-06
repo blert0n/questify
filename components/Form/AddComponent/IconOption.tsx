@@ -1,3 +1,4 @@
+import { useFormSelectors } from "@/store";
 import {
   TooltipProvider,
   Tooltip,
@@ -14,11 +15,15 @@ interface P {
 }
 
 export const IconOption = ({ icon, title, description, type }: P) => {
+  const addItem = useFormSelectors.use.addItem();
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
-          <div className="flex gap-2 items-center p-2 cursor-pointer">
+          <div
+            className="flex gap-2 items-center p-2 cursor-pointer"
+            onClick={() => addItem(type)}
+          >
             {icon}
             <p>{title}</p>
           </div>

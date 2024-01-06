@@ -8,10 +8,11 @@ import {
   ThemeKeys,
   ThemeSlice,
   ItemSlice,
+  FormDetailsSlice,
 } from "@/types";
 
 export const createThemeSlice: StateCreator<
-  ThemeSlice & ItemSlice,
+  ThemeSlice & ItemSlice & FormDetailsSlice,
   [],
   [],
   ThemeSlice

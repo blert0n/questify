@@ -1,11 +1,20 @@
 import { FormType } from "@/lib/graphql";
 import { Theme, FormItem } from "./form";
 
-export type State = {
-  theme: Theme;
+export type FormDetailsSlice = {
+  id?: number;
+  name: string;
+  isFavorite: boolean;
+  selectedComponent: string;
+  editMode: boolean;
+  updateFormDetails: <K extends keyof FormDetailsSlice>(
+    prop: K,
+    value: FormDetailsSlice[K]
+  ) => void;
 };
 
-export type Actions = {
+export type ThemeSlice = {
+  theme: Theme;
   updateHeaderTheme: <K extends HeaderThemeKeys>(
     prop: K,
     value: Theme["Header"][K]
@@ -22,10 +31,10 @@ export type Actions = {
   resetTheme: () => void;
 };
 
-export type ThemeSlice = State & Actions;
-
 export type ItemSlice = {
   items: FormItem[];
+  addItem: (type: FormType) => void;
+  addShortComponent: () => void;
 };
 
 export type ThemeKeys = keyof Theme;

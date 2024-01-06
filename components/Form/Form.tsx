@@ -1,36 +1,46 @@
 import { useFormSelectors } from "@/store";
-import { deserializeString } from "../StyledInput/deserializer";
-import { useState } from "react";
 import { FormHeader } from "./Items/FormHeader";
+import { HeaderImage } from "./Items/HeaderImage";
+import { Short } from "./Items/Short";
+import { FormType } from "@/lib/graphql";
+import { FormComponentProps } from "@/types";
 
-export const Form = () => {
-  const theme = useFormSelectors.use.theme();
-  const updateThemeHeader = useFormSelectors.use.updateHeaderTheme();
-  const updateThemeText = useFormSelectors.use.updateTextTheme();
-  const formHeader = deserializeString("Untitled form");
-  const formDescription = deserializeString("Description");
-  const [editModeComponent, setEditModeComponent] = useState("formHeader");
+type ComponentMapper = ({ item, selected }: FormComponentProps) => JSX.Element;
+
+const componentMapper: Record<FormType, ComponentMapper> = {
+  [FormType.Short]: Short,
+  [FormType.Long]: Short,
+  [FormType.SingleChoice]: Short,
+  [FormType.MultipleChoice]: Short,
+  [FormType.Slider]: Short,
+  [FormType.Date]: Short,
+  [FormType.Dropdown]: Short,
+};
+
+interface P {
+  id?: number;
+}
+
+export const Form = ({ id }: P) => {
+  const selectedComponent = useFormSelectors.use.selectedComponent();
+  const items = useFormSelectors.use.items();
 
   return (
     <div className="flex flex-col gap-4 w-full md:max-w-3xl ">
-      {theme.Header.image && (
-        <div className="w-full h-[150px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={theme.Header.image.dataUrl}
-            className="h-full w-full rounded-md"
-            alt="Header Image"
-          />
-        </div>
-      )}
-      <div
-        className="w-full border-t-[10px] rounded-md h-auto shadow-md"
-        style={{
-          borderColor: theme.primaryColor,
-        }}
-      >
-        <FormHeader isEditing={editModeComponent === "formHeader"} />
-      </div>
+      <HeaderImage />
+      <FormHeader selected={selectedComponent === "formHeader"} />
+      {items
+        .sort((a, b) => a.order - b.order)
+        .map((item) => {
+          const DynamicComponent = componentMapper[item.type];
+          return (
+            <DynamicComponent
+              item={item}
+              key={item.id}
+              selected={selectedComponent === item.id}
+            />
+          );
+        })}
     </div>
   );
 };

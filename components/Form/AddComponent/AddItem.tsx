@@ -13,7 +13,7 @@ export function AddItem() {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="border-2 border-slate-700 rounded-full bg-white"
+          className="border-2 border-slate-700 rounded-full bg-white hover:scale-110"
           size={"icon"}
         >
           <Plus className="text-slate-700 cursor-pointer" strokeWidth={1.5} />

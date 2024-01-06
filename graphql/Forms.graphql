@@ -1,0 +1,5 @@
+query GetForm($id: String) {
+  findFirstForm(where: { id: { equals: $id } }) {
+    id
+  }
+}

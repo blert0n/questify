@@ -53,7 +53,6 @@ export const FormType = enumType({
     'SINGLE_CHOICE',
     'MULTIPLE_CHOICE',
     'DROPDOWN',
-    'ATTACHMENT',
     'SLIDER',
     'DATE',
   ],

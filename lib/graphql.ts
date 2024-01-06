@@ -160,10 +160,10 @@ export interface FormItem {
   Form: Form;
   formId: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  items?: Maybe<Scalars['Json']['output']>;
   name: Scalars['String']['output'];
   order: Scalars['Int']['output'];
   section: Scalars['Int']['output'];
-  style?: Maybe<Scalars['Json']['output']>;
   type: FormType;
 }
 
@@ -181,39 +181,39 @@ export interface FormItemCountAggregateOutputType {
   _all: Scalars['Int']['output'];
   formId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
+  items: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   order: Scalars['Int']['output'];
   section: Scalars['Int']['output'];
-  style: Scalars['Int']['output'];
   type: Scalars['Int']['output'];
 }
 
 export interface FormItemCountOrderByAggregateInput {
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  items?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
-  style?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 }
 
 export interface FormItemCreateInput {
   Form: FormCreateNestedOneWithoutItemsInput;
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type: FormType;
 }
 
 export interface FormItemCreateManyFormInput {
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type: FormType;
 }
 
@@ -225,10 +225,10 @@ export interface FormItemCreateManyFormInputEnvelope {
 export interface FormItemCreateManyInput {
   formId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type: FormType;
 }
 
@@ -246,10 +246,10 @@ export interface FormItemCreateOrConnectWithoutFormInput {
 
 export interface FormItemCreateWithoutFormInput {
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type: FormType;
 }
 
@@ -307,10 +307,10 @@ export interface FormItemOrderByWithAggregationInput {
   _sum?: InputMaybe<FormItemSumOrderByAggregateInput>;
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  items?: InputMaybe<SortOrderInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
-  style?: InputMaybe<SortOrderInput>;
   type?: InputMaybe<SortOrder>;
 }
 
@@ -318,20 +318,20 @@ export interface FormItemOrderByWithRelationInput {
   Form?: InputMaybe<FormOrderByWithRelationInput>;
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  items?: InputMaybe<SortOrderInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
-  style?: InputMaybe<SortOrderInput>;
   type?: InputMaybe<SortOrder>;
 }
 
 export enum FormItemScalarFieldEnum {
   FormId = 'formId',
   Id = 'id',
+  Items = 'items',
   Name = 'name',
   Order = 'order',
   Section = 'section',
-  Style = 'style',
   Type = 'type'
 }
 
@@ -341,10 +341,10 @@ export interface FormItemScalarWhereInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
   formId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
   section?: InputMaybe<IntFilter>;
-  style?: InputMaybe<JsonNullableFilter>;
   type?: InputMaybe<EnumFormTypeFilter>;
 }
 
@@ -354,10 +354,10 @@ export interface FormItemScalarWhereWithAggregatesInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemScalarWhereWithAggregatesInput>>>;
   formId?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
+  items?: InputMaybe<JsonNullableWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   order?: InputMaybe<IntWithAggregatesFilter>;
   section?: InputMaybe<IntWithAggregatesFilter>;
-  style?: InputMaybe<JsonNullableWithAggregatesFilter>;
   type?: InputMaybe<EnumFormTypeWithAggregatesFilter>;
 }
 
@@ -374,10 +374,10 @@ export interface FormItemSumOrderByAggregateInput {
 export interface FormItemUncheckedCreateInput {
   formId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type: FormType;
 }
 
@@ -390,39 +390,39 @@ export interface FormItemUncheckedCreateNestedManyWithoutFormInput {
 
 export interface FormItemUncheckedCreateWithoutFormInput {
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type: FormType;
 }
 
 export interface FormItemUncheckedUpdateInput {
   formId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
 export interface FormItemUncheckedUpdateManyInput {
   formId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
 export interface FormItemUncheckedUpdateManyWithoutFormInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
@@ -442,29 +442,29 @@ export interface FormItemUncheckedUpdateManyWithoutFormNestedInput {
 
 export interface FormItemUncheckedUpdateWithoutFormInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
 export interface FormItemUpdateInput {
   Form?: InputMaybe<FormUpdateOneRequiredWithoutItemsNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
 export interface FormItemUpdateManyMutationInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
@@ -494,10 +494,10 @@ export interface FormItemUpdateWithWhereUniqueWithoutFormInput {
 
 export interface FormItemUpdateWithoutFormInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
-  style?: InputMaybe<Scalars['Json']['input']>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
 
@@ -514,10 +514,10 @@ export interface FormItemWhereInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
   formId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
   section?: InputMaybe<IntFilter>;
-  style?: InputMaybe<JsonNullableFilter>;
   type?: InputMaybe<EnumFormTypeFilter>;
 }
 
@@ -528,10 +528,10 @@ export interface FormItemWhereUniqueInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
   formId?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
   order?: InputMaybe<IntFilter>;
   section?: InputMaybe<IntFilter>;
-  style?: InputMaybe<JsonNullableFilter>;
   type?: InputMaybe<EnumFormTypeFilter>;
 }
 
@@ -618,8 +618,6 @@ export interface FormSumOrderByAggregateInput {
 }
 
 export enum FormType {
-  Attachment = 'ATTACHMENT',
-  Checkbox = 'CHECKBOX',
   Date = 'DATE',
   Dropdown = 'DROPDOWN',
   Long = 'LONG',
@@ -1096,48 +1094,51 @@ export enum TransactionIsolationLevel {
   Serializable = 'Serializable'
 }
 
-export type FirstFormQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetFormQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
-export type FirstFormQuery = { findFirstForm?: { id: string } | undefined };
+export type GetFormQuery = { findFirstForm?: { id: string } | undefined };
 
 
-export const FirstFormDocument = /*#__PURE__*/ gql`
-    query FirstForm {
-  findFirstForm {
+export const GetFormDocument = /*#__PURE__*/ gql`
+    query GetForm($id: String) {
+  findFirstForm(where: {id: {equals: $id}}) {
     id
   }
 }
     `;
 
 /**
- * __useFirstFormQuery__
+ * __useGetFormQuery__
  *
- * To run a query within a React component, call `useFirstFormQuery` and pass it any options that fit your needs.
- * When your component renders, `useFirstFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetFormQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useFirstFormQuery({
+ * const { data, loading, error } = useGetFormQuery({
  *   variables: {
+ *      id: // value for 'id'
  *   },
  * });
  */
-export function useFirstFormQuery(baseOptions?: Apollo.QueryHookOptions<FirstFormQuery, FirstFormQueryVariables>) {
+export function useGetFormQuery(baseOptions?: Apollo.QueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FirstFormQuery, FirstFormQueryVariables>(FirstFormDocument, options);
+        return Apollo.useQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
       }
-export function useFirstFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FirstFormQuery, FirstFormQueryVariables>) {
+export function useGetFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FirstFormQuery, FirstFormQueryVariables>(FirstFormDocument, options);
+          return Apollo.useLazyQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
         }
-export function useFirstFormSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FirstFormQuery, FirstFormQueryVariables>) {
+export function useGetFormSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<FirstFormQuery, FirstFormQueryVariables>(FirstFormDocument, options);
+          return Apollo.useSuspenseQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
         }
-export type FirstFormQueryHookResult = ReturnType<typeof useFirstFormQuery>;
-export type FirstFormLazyQueryHookResult = ReturnType<typeof useFirstFormLazyQuery>;
-export type FirstFormSuspenseQueryHookResult = ReturnType<typeof useFirstFormSuspenseQuery>;
-export type FirstFormQueryResult = Apollo.QueryResult<FirstFormQuery, FirstFormQueryVariables>;
+export type GetFormQueryHookResult = ReturnType<typeof useGetFormQuery>;
+export type GetFormLazyQueryHookResult = ReturnType<typeof useGetFormLazyQuery>;
+export type GetFormSuspenseQueryHookResult = ReturnType<typeof useGetFormSuspenseQuery>;
+export type GetFormQueryResult = Apollo.QueryResult<GetFormQuery, GetFormQueryVariables>;

@@ -1,5 +1,6 @@
 import { fontMapper } from "./../lib/fonts";
 import { FormType } from "@/lib/graphql";
+import { ItemSlice } from "./store";
 export type FontFamily = keyof typeof fontMapper;
 
 interface Image {
@@ -38,4 +39,9 @@ export interface FormItem {
   section?: number;
   formId?: string;
   origin: "server" | "client";
+}
+
+export interface FormComponentProps {
+  item: ItemSlice["items"][number];
+  selected?: boolean;
 }

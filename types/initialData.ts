@@ -1,5 +1,6 @@
 import { Theme, FormItem } from "./form";
 import { FormType } from "@/lib/graphql";
+import { v4 as uuidv4 } from "uuid";
 
 export const initialFormData: Theme = {
   Header: {
@@ -23,8 +24,9 @@ export const initialFormData: Theme = {
 export const shortComponentInitialData: (lastOrder?: number) => FormItem = (
   lastOrder: number = 0
 ) => ({
+  id: uuidv4(),
   name: "",
-  order: lastOrder,
+  order: lastOrder + 1,
   origin: "client",
   section: 0,
   type: FormType.Short,
