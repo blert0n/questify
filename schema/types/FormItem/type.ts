@@ -9,12 +9,13 @@ export const FormItem = objectType({
   definition(t) {
     t.string('id')
     t.string('name')
-    t.field('type', { type: 'FormType' })
     t.int('order')
-    t.nullable.json('items')
-    t.nullable.json('image')
     t.int('section')
     t.string('formId')
+    t.boolean('required')
+    t.nullable.json('items')
+    t.nullable.json('image')
+    t.field('type', { type: 'FormType' })
     t.field('Form', {
       type: 'Form',
       resolve(root: any) {

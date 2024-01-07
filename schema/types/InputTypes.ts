@@ -20,12 +20,13 @@ export const FormItemScalarFieldEnum = enumType({
   members: [
     'id',
     'name',
-    'type',
     'order',
-    'items',
-    'image',
     'section',
     'formId',
+    'required',
+    'items',
+    'image',
+    'type',
   ],
 })
 
@@ -165,12 +166,13 @@ export const FormItemWhereInput = inputObjectType({
     t.list.field('NOT', { type: 'FormItemWhereInput' })
     t.field('id', { type: 'StringFilter' })
     t.field('name', { type: 'StringFilter' })
-    t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('order', { type: 'IntFilter' })
-    t.field('items', { type: 'JsonNullableFilter' })
-    t.field('image', { type: 'JsonNullableFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
+    t.field('required', { type: 'BoolFilter' })
+    t.field('items', { type: 'JsonNullableFilter' })
+    t.field('image', { type: 'JsonNullableFilter' })
+    t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('Form', { type: 'FormRelationFilter' })
   },
 })
@@ -183,12 +185,13 @@ export const FormItemOrderByWithRelationInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('name', { type: 'SortOrder' })
-    t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
-    t.field('items', { type: 'SortOrderInput' })
-    t.field('image', { type: 'SortOrderInput' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
+    t.field('required', { type: 'SortOrder' })
+    t.field('items', { type: 'SortOrderInput' })
+    t.field('image', { type: 'SortOrderInput' })
+    t.field('type', { type: 'SortOrder' })
     t.field('Form', { type: 'FormOrderByWithRelationInput' })
   },
 })
@@ -204,12 +207,13 @@ export const FormItemWhereUniqueInput = inputObjectType({
     t.list.field('AND', { type: 'FormItemWhereInput' })
     t.list.field('OR', { type: 'FormItemWhereInput' })
     t.list.field('NOT', { type: 'FormItemWhereInput' })
-    t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('order', { type: 'IntFilter' })
-    t.field('items', { type: 'JsonNullableFilter' })
-    t.field('image', { type: 'JsonNullableFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
+    t.field('required', { type: 'BoolFilter' })
+    t.field('items', { type: 'JsonNullableFilter' })
+    t.field('image', { type: 'JsonNullableFilter' })
+    t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('Form', { type: 'FormRelationFilter' })
   },
 })
@@ -222,12 +226,13 @@ export const FormItemOrderByWithAggregationInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('name', { type: 'SortOrder' })
-    t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
-    t.field('items', { type: 'SortOrderInput' })
-    t.field('image', { type: 'SortOrderInput' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
+    t.field('required', { type: 'SortOrder' })
+    t.field('items', { type: 'SortOrderInput' })
+    t.field('image', { type: 'SortOrderInput' })
+    t.field('type', { type: 'SortOrder' })
     t.field('_count', { type: 'FormItemCountOrderByAggregateInput' })
     t.field('_avg', { type: 'FormItemAvgOrderByAggregateInput' })
     t.field('_max', { type: 'FormItemMaxOrderByAggregateInput' })
@@ -247,12 +252,13 @@ export const FormItemScalarWhereWithAggregatesInput = inputObjectType({
     t.list.field('NOT', { type: 'FormItemScalarWhereWithAggregatesInput' })
     t.field('id', { type: 'StringWithAggregatesFilter' })
     t.field('name', { type: 'StringWithAggregatesFilter' })
-    t.field('type', { type: 'EnumFormTypeWithAggregatesFilter' })
     t.field('order', { type: 'IntWithAggregatesFilter' })
-    t.field('items', { type: 'JsonNullableWithAggregatesFilter' })
-    t.field('image', { type: 'JsonNullableWithAggregatesFilter' })
     t.field('section', { type: 'IntWithAggregatesFilter' })
     t.field('formId', { type: 'StringWithAggregatesFilter' })
+    t.field('required', { type: 'BoolWithAggregatesFilter' })
+    t.field('items', { type: 'JsonNullableWithAggregatesFilter' })
+    t.field('image', { type: 'JsonNullableWithAggregatesFilter' })
+    t.field('type', { type: 'EnumFormTypeWithAggregatesFilter' })
   },
 })
 
@@ -370,11 +376,12 @@ export const FormItemCreateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'String' })
     t.nonNull.field('name', { type: 'String' })
-    t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
+    t.field('section', { type: 'Int' })
+    t.field('required', { type: 'Boolean' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'Int' })
+    t.nonNull.field('type', { type: 'FormType' })
     t.nonNull.field('Form', { type: 'FormCreateNestedOneWithoutItemsInput' })
   },
 })
@@ -387,12 +394,13 @@ export const FormItemUncheckedCreateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'String' })
     t.nonNull.field('name', { type: 'String' })
-    t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
-    t.field('items', { type: 'Json' })
-    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
     t.nonNull.field('formId', { type: 'String' })
+    t.field('required', { type: 'Boolean' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.nonNull.field('type', { type: 'FormType' })
   },
 })
 
@@ -404,11 +412,12 @@ export const FormItemUpdateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('Form', { type: 'FormUpdateOneRequiredWithoutItemsNestedInput' })
   },
 })
@@ -421,12 +430,13 @@ export const FormItemUncheckedUpdateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
-    t.field('items', { type: 'Json' })
-    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
     t.field('formId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -438,12 +448,13 @@ export const FormItemCreateManyInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'String' })
     t.nonNull.field('name', { type: 'String' })
-    t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
-    t.field('items', { type: 'Json' })
-    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
     t.nonNull.field('formId', { type: 'String' })
+    t.field('required', { type: 'Boolean' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.nonNull.field('type', { type: 'FormType' })
   },
 })
 
@@ -455,11 +466,12 @@ export const FormItemUpdateManyMutationInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -471,12 +483,13 @@ export const FormItemUncheckedUpdateManyInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
-    t.field('items', { type: 'Json' })
-    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
     t.field('formId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -704,6 +717,17 @@ export const JsonNullableWithAggregatesFilter = inputObjectType({
   },
 })
 
+export const BoolFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'BoolFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolFilter' })
+  },
+})
+
 export const EnumFormTypeFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -736,12 +760,13 @@ export const FormItemCountOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('name', { type: 'SortOrder' })
-    t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
-    t.field('items', { type: 'SortOrder' })
-    t.field('image', { type: 'SortOrder' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
+    t.field('required', { type: 'SortOrder' })
+    t.field('items', { type: 'SortOrder' })
+    t.field('image', { type: 'SortOrder' })
+    t.field('type', { type: 'SortOrder' })
   },
 })
 
@@ -764,10 +789,11 @@ export const FormItemMaxOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('name', { type: 'SortOrder' })
-    t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
+    t.field('required', { type: 'SortOrder' })
+    t.field('type', { type: 'SortOrder' })
   },
 })
 
@@ -779,10 +805,11 @@ export const FormItemMinOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('name', { type: 'SortOrder' })
-    t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
+    t.field('required', { type: 'SortOrder' })
+    t.field('type', { type: 'SortOrder' })
   },
 })
 
@@ -794,6 +821,20 @@ export const FormItemSumOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('order', { type: 'SortOrder' })
     t.field('section', { type: 'SortOrder' })
+  },
+})
+
+export const BoolWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'BoolWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntFilter' })
+    t.field('_min', { type: 'NestedBoolFilter' })
+    t.field('_max', { type: 'NestedBoolFilter' })
   },
 })
 
@@ -934,6 +975,16 @@ export const FormCreateNestedOneWithoutItemsInput = inputObjectType({
     t.field('create', { type: 'FormCreateWithoutItemsInput' })
     t.field('connectOrCreate', { type: 'FormCreateOrConnectWithoutItemsInput' })
     t.field('connect', { type: 'FormWhereUniqueInput' })
+  },
+})
+
+export const BoolFieldUpdateOperationsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'BoolFieldUpdateOperationsInput',
+  definition(t) {
+    t.field('set', { type: 'Boolean' })
   },
 })
 
@@ -1099,6 +1150,17 @@ export const NestedJsonNullableFilter = inputObjectType({
   },
 })
 
+export const NestedBoolFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedBoolFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolFilter' })
+  },
+})
+
 export const NestedEnumFormTypeFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1109,6 +1171,20 @@ export const NestedEnumFormTypeFilter = inputObjectType({
     t.list.field('in', { type: 'FormType' })
     t.list.field('notIn', { type: 'FormType' })
     t.field('not', { type: 'NestedEnumFormTypeFilter' })
+  },
+})
+
+export const NestedBoolWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedBoolWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntFilter' })
+    t.field('_min', { type: 'NestedBoolFilter' })
+    t.field('_max', { type: 'NestedBoolFilter' })
   },
 })
 
@@ -1136,11 +1212,12 @@ export const FormItemCreateWithoutFormInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'String' })
     t.nonNull.field('name', { type: 'String' })
-    t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
+    t.field('section', { type: 'Int' })
+    t.field('required', { type: 'Boolean' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'Int' })
+    t.nonNull.field('type', { type: 'FormType' })
   },
 })
 
@@ -1152,11 +1229,12 @@ export const FormItemUncheckedCreateWithoutFormInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'String' })
     t.nonNull.field('name', { type: 'String' })
-    t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
+    t.field('section', { type: 'Int' })
+    t.field('required', { type: 'Boolean' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'Int' })
+    t.nonNull.field('type', { type: 'FormType' })
   },
 })
 
@@ -1227,12 +1305,13 @@ export const FormItemScalarWhereInput = inputObjectType({
     t.list.field('NOT', { type: 'FormItemScalarWhereInput' })
     t.field('id', { type: 'StringFilter' })
     t.field('name', { type: 'StringFilter' })
-    t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('order', { type: 'IntFilter' })
-    t.field('items', { type: 'JsonNullableFilter' })
-    t.field('image', { type: 'JsonNullableFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
+    t.field('required', { type: 'BoolFilter' })
+    t.field('items', { type: 'JsonNullableFilter' })
+    t.field('image', { type: 'JsonNullableFilter' })
+    t.field('type', { type: 'EnumFormTypeFilter' })
   },
 })
 
@@ -1334,11 +1413,12 @@ export const FormItemCreateManyFormInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'String' })
     t.nonNull.field('name', { type: 'String' })
-    t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
+    t.field('section', { type: 'Int' })
+    t.field('required', { type: 'Boolean' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'Int' })
+    t.nonNull.field('type', { type: 'FormType' })
   },
 })
 
@@ -1350,11 +1430,12 @@ export const FormItemUpdateWithoutFormInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -1366,11 +1447,12 @@ export const FormItemUncheckedUpdateWithoutFormInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -1382,11 +1464,12 @@ export const FormItemUncheckedUpdateManyWithoutFormInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
     t.field('name', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
-    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -1497,12 +1580,13 @@ export const FormItemCountAggregateOutputType = objectType({
   definition(t) {
     t.field('id', { type: 'Int' })
     t.field('name', { type: 'Int' })
-    t.field('type', { type: 'Int' })
     t.field('order', { type: 'Int' })
-    t.field('items', { type: 'Int' })
-    t.field('image', { type: 'Int' })
     t.field('section', { type: 'Int' })
     t.field('formId', { type: 'Int' })
+    t.field('required', { type: 'Int' })
+    t.field('items', { type: 'Int' })
+    t.field('image', { type: 'Int' })
+    t.field('type', { type: 'Int' })
     t.field('_all', { type: 'Int' })
   },
 })
@@ -1537,10 +1621,11 @@ export const FormItemMinAggregateOutputType = objectType({
   definition(t) {
     t.nullable.field('id', { type: 'String' })
     t.nullable.field('name', { type: 'String' })
-    t.nullable.field('type', { type: 'FormType' })
     t.nullable.field('order', { type: 'Int' })
     t.nullable.field('section', { type: 'Int' })
     t.nullable.field('formId', { type: 'String' })
+    t.nullable.field('required', { type: 'Boolean' })
+    t.nullable.field('type', { type: 'FormType' })
   },
 })
 
@@ -1552,9 +1637,10 @@ export const FormItemMaxAggregateOutputType = objectType({
   definition(t) {
     t.nullable.field('id', { type: 'String' })
     t.nullable.field('name', { type: 'String' })
-    t.nullable.field('type', { type: 'FormType' })
     t.nullable.field('order', { type: 'Int' })
     t.nullable.field('section', { type: 'Int' })
     t.nullable.field('formId', { type: 'String' })
+    t.nullable.field('required', { type: 'Boolean' })
+    t.nullable.field('type', { type: 'FormType' })
   },
 })

@@ -28,6 +28,23 @@ The `BigInt` scalar type represents non-fractional signed whole numeric values.
 """
 scalar BigInt
 
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input BoolWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedBoolFilter
+  _min: NestedBoolFilter
+  equals: Boolean
+  not: NestedBoolWithAggregatesFilter
+}
+
 """The `Byte` scalar type represents byte value as a Buffer"""
 scalar Bytes
 
@@ -143,6 +160,7 @@ type FormItem {
   items: Json
   name: String!
   order: Int!
+  required: Boolean!
   section: Int!
   type: FormType!
 }
@@ -165,6 +183,7 @@ type FormItemCountAggregateOutputType {
   items: Int!
   name: Int!
   order: Int!
+  required: Int!
   section: Int!
   type: Int!
 }
@@ -176,6 +195,7 @@ input FormItemCountOrderByAggregateInput {
   items: SortOrder
   name: SortOrder
   order: SortOrder
+  required: SortOrder
   section: SortOrder
   type: SortOrder
 }
@@ -187,6 +207,7 @@ input FormItemCreateInput {
   items: Json
   name: String!
   order: Int
+  required: Boolean
   section: Int
   type: FormType!
 }
@@ -197,6 +218,7 @@ input FormItemCreateManyFormInput {
   items: Json
   name: String!
   order: Int
+  required: Boolean
   section: Int
   type: FormType!
 }
@@ -213,6 +235,7 @@ input FormItemCreateManyInput {
   items: Json
   name: String!
   order: Int
+  required: Boolean
   section: Int
   type: FormType!
 }
@@ -235,6 +258,7 @@ input FormItemCreateWithoutFormInput {
   items: Json
   name: String!
   order: Int
+  required: Boolean
   section: Int
   type: FormType!
 }
@@ -250,6 +274,7 @@ type FormItemMaxAggregateOutputType {
   id: String
   name: String
   order: Int
+  required: Boolean
   section: Int
   type: FormType
 }
@@ -259,6 +284,7 @@ input FormItemMaxOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   order: SortOrder
+  required: SortOrder
   section: SortOrder
   type: SortOrder
 }
@@ -268,6 +294,7 @@ type FormItemMinAggregateOutputType {
   id: String
   name: String
   order: Int
+  required: Boolean
   section: Int
   type: FormType
 }
@@ -277,6 +304,7 @@ input FormItemMinOrderByAggregateInput {
   id: SortOrder
   name: SortOrder
   order: SortOrder
+  required: SortOrder
   section: SortOrder
   type: SortOrder
 }
@@ -297,6 +325,7 @@ input FormItemOrderByWithAggregationInput {
   items: SortOrderInput
   name: SortOrder
   order: SortOrder
+  required: SortOrder
   section: SortOrder
   type: SortOrder
 }
@@ -309,6 +338,7 @@ input FormItemOrderByWithRelationInput {
   items: SortOrderInput
   name: SortOrder
   order: SortOrder
+  required: SortOrder
   section: SortOrder
   type: SortOrder
 }
@@ -320,6 +350,7 @@ enum FormItemScalarFieldEnum {
   items
   name
   order
+  required
   section
   type
 }
@@ -334,6 +365,7 @@ input FormItemScalarWhereInput {
   items: JsonNullableFilter
   name: StringFilter
   order: IntFilter
+  required: BoolFilter
   section: IntFilter
   type: EnumFormTypeFilter
 }
@@ -348,6 +380,7 @@ input FormItemScalarWhereWithAggregatesInput {
   items: JsonNullableWithAggregatesFilter
   name: StringWithAggregatesFilter
   order: IntWithAggregatesFilter
+  required: BoolWithAggregatesFilter
   section: IntWithAggregatesFilter
   type: EnumFormTypeWithAggregatesFilter
 }
@@ -369,6 +402,7 @@ input FormItemUncheckedCreateInput {
   items: Json
   name: String!
   order: Int
+  required: Boolean
   section: Int
   type: FormType!
 }
@@ -386,6 +420,7 @@ input FormItemUncheckedCreateWithoutFormInput {
   items: Json
   name: String!
   order: Int
+  required: Boolean
   section: Int
   type: FormType!
 }
@@ -397,6 +432,7 @@ input FormItemUncheckedUpdateInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -408,6 +444,7 @@ input FormItemUncheckedUpdateManyInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -418,6 +455,7 @@ input FormItemUncheckedUpdateManyWithoutFormInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -442,6 +480,7 @@ input FormItemUncheckedUpdateWithoutFormInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -453,6 +492,7 @@ input FormItemUpdateInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -463,6 +503,7 @@ input FormItemUpdateManyMutationInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -497,6 +538,7 @@ input FormItemUpdateWithoutFormInput {
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
   section: IntFieldUpdateOperationsInput
   type: EnumFormTypeFieldUpdateOperationsInput
 }
@@ -518,6 +560,7 @@ input FormItemWhereInput {
   items: JsonNullableFilter
   name: StringFilter
   order: IntFilter
+  required: BoolFilter
   section: IntFilter
   type: EnumFormTypeFilter
 }
@@ -533,6 +576,7 @@ input FormItemWhereUniqueInput {
   items: JsonNullableFilter
   name: String
   order: IntFilter
+  required: BoolFilter
   section: IntFilter
   type: EnumFormTypeFilter
 }
@@ -827,6 +871,19 @@ type Mutation {
   deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
   updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
   updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedBoolFilter
+  _min: NestedBoolFilter
+  equals: Boolean
+  not: NestedBoolWithAggregatesFilter
 }
 
 input NestedEnumFormTypeFilter {

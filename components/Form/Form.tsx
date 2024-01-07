@@ -1,7 +1,5 @@
 import { useFormSelectors } from "@/store";
-import { FormHeader } from "./Items/FormHeader";
-import { HeaderImage } from "./Items/HeaderImage";
-import { Short } from "./Items/Short/Short";
+import { HeaderImage, FormHeader, Short, Long } from "./Items";
 import { FormType } from "@/lib/graphql";
 import { FormComponentProps } from "@/types";
 import { ScrollArea } from "../ui";
@@ -10,7 +8,7 @@ type ComponentMapper = ({ item, selected }: FormComponentProps) => JSX.Element;
 
 const componentMapper: Record<FormType, ComponentMapper> = {
   [FormType.Short]: Short,
-  [FormType.Long]: Short,
+  [FormType.Long]: Long,
   [FormType.SingleChoice]: Short,
   [FormType.MultipleChoice]: Short,
   [FormType.Slider]: Short,

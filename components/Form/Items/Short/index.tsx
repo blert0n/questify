@@ -13,7 +13,6 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
   const theme = useFormSelectors.use.theme();
   const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
-
   return (
     <div
       className={cn(
@@ -24,7 +23,7 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
       onClick={() => item.id && updateForm("selectedComponent", item.id)}
     >
       {item.image && (
-        <div className="flex justify-center max-h-[400px] object-contain">
+        <div className="flex justify-center max-h-[300px] object-contain">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={item.image?.dataUrl}

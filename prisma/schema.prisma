@@ -17,15 +17,16 @@ model Form {
 }
 
 model FormItem {
-  id      String   @id @default(uuid())
-  name    String   @unique
-  type    FormType
-  order   Int      @default(autoincrement())
-  items   Json?
-  image   Json?
-  section Int      @default(0)
-  formId  String
-  Form    Form     @relation(fields: [formId], references: [id])
+  id       String   @id @default(uuid())
+  name     String   @unique
+  order    Int      @default(autoincrement())
+  section  Int      @default(0)
+  formId   String
+  required Boolean  @default(false)
+  items    Json?
+  image    Json?
+  type     FormType
+  Form     Form     @relation(fields: [formId], references: [id])
 }
 
 enum FormType {

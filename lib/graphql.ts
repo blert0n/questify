@@ -50,6 +50,23 @@ export interface BatchPayload {
   count: Scalars['Int']['output'];
 }
 
+export interface BoolFieldUpdateOperationsInput {
+  set?: InputMaybe<Scalars['Boolean']['input']>;
+}
+
+export interface BoolFilter {
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  not?: InputMaybe<NestedBoolFilter>;
+}
+
+export interface BoolWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedBoolFilter>;
+  _min?: InputMaybe<NestedBoolFilter>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  not?: InputMaybe<NestedBoolWithAggregatesFilter>;
+}
+
 export interface EnumFormTypeFieldUpdateOperationsInput {
   set?: InputMaybe<FormType>;
 }
@@ -164,6 +181,7 @@ export interface FormItem {
   items?: Maybe<Scalars['Json']['output']>;
   name: Scalars['String']['output'];
   order: Scalars['Int']['output'];
+  required: Scalars['Boolean']['output'];
   section: Scalars['Int']['output'];
   type: FormType;
 }
@@ -186,6 +204,7 @@ export interface FormItemCountAggregateOutputType {
   items: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   order: Scalars['Int']['output'];
+  required: Scalars['Int']['output'];
   section: Scalars['Int']['output'];
   type: Scalars['Int']['output'];
 }
@@ -197,6 +216,7 @@ export interface FormItemCountOrderByAggregateInput {
   items?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
+  required?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 }
@@ -208,6 +228,7 @@ export interface FormItemCreateInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
   type: FormType;
 }
@@ -218,6 +239,7 @@ export interface FormItemCreateManyFormInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
   type: FormType;
 }
@@ -234,6 +256,7 @@ export interface FormItemCreateManyInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
   type: FormType;
 }
@@ -256,6 +279,7 @@ export interface FormItemCreateWithoutFormInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
   type: FormType;
 }
@@ -271,6 +295,7 @@ export interface FormItemMaxAggregateOutputType {
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
+  required?: Maybe<Scalars['Boolean']['output']>;
   section?: Maybe<Scalars['Int']['output']>;
   type?: Maybe<FormType>;
 }
@@ -280,6 +305,7 @@ export interface FormItemMaxOrderByAggregateInput {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
+  required?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 }
@@ -289,6 +315,7 @@ export interface FormItemMinAggregateOutputType {
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
+  required?: Maybe<Scalars['Boolean']['output']>;
   section?: Maybe<Scalars['Int']['output']>;
   type?: Maybe<FormType>;
 }
@@ -298,6 +325,7 @@ export interface FormItemMinOrderByAggregateInput {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
+  required?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 }
@@ -318,6 +346,7 @@ export interface FormItemOrderByWithAggregationInput {
   items?: InputMaybe<SortOrderInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
+  required?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 }
@@ -330,6 +359,7 @@ export interface FormItemOrderByWithRelationInput {
   items?: InputMaybe<SortOrderInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
+  required?: InputMaybe<SortOrder>;
   section?: InputMaybe<SortOrder>;
   type?: InputMaybe<SortOrder>;
 }
@@ -341,6 +371,7 @@ export enum FormItemScalarFieldEnum {
   Items = 'items',
   Name = 'name',
   Order = 'order',
+  Required = 'required',
   Section = 'section',
   Type = 'type'
 }
@@ -355,6 +386,7 @@ export interface FormItemScalarWhereInput {
   items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
+  required?: InputMaybe<BoolFilter>;
   section?: InputMaybe<IntFilter>;
   type?: InputMaybe<EnumFormTypeFilter>;
 }
@@ -369,6 +401,7 @@ export interface FormItemScalarWhereWithAggregatesInput {
   items?: InputMaybe<JsonNullableWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   order?: InputMaybe<IntWithAggregatesFilter>;
+  required?: InputMaybe<BoolWithAggregatesFilter>;
   section?: InputMaybe<IntWithAggregatesFilter>;
   type?: InputMaybe<EnumFormTypeWithAggregatesFilter>;
 }
@@ -390,6 +423,7 @@ export interface FormItemUncheckedCreateInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
   type: FormType;
 }
@@ -407,6 +441,7 @@ export interface FormItemUncheckedCreateWithoutFormInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
   type: FormType;
 }
@@ -418,6 +453,7 @@ export interface FormItemUncheckedUpdateInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -429,6 +465,7 @@ export interface FormItemUncheckedUpdateManyInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -439,6 +476,7 @@ export interface FormItemUncheckedUpdateManyWithoutFormInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -463,6 +501,7 @@ export interface FormItemUncheckedUpdateWithoutFormInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -474,6 +513,7 @@ export interface FormItemUpdateInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -484,6 +524,7 @@ export interface FormItemUpdateManyMutationInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -518,6 +559,7 @@ export interface FormItemUpdateWithoutFormInput {
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
   section?: InputMaybe<IntFieldUpdateOperationsInput>;
   type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
 }
@@ -539,6 +581,7 @@ export interface FormItemWhereInput {
   items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
+  required?: InputMaybe<BoolFilter>;
   section?: InputMaybe<IntFilter>;
   type?: InputMaybe<EnumFormTypeFilter>;
 }
@@ -554,6 +597,7 @@ export interface FormItemWhereUniqueInput {
   items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
   order?: InputMaybe<IntFilter>;
+  required?: InputMaybe<BoolFilter>;
   section?: InputMaybe<IntFilter>;
   type?: InputMaybe<EnumFormTypeFilter>;
 }
@@ -875,6 +919,19 @@ export interface MutationUpdateOneFormArgs {
 export interface MutationUpdateOneFormItemArgs {
   data: FormItemUpdateInput;
   where: FormItemWhereUniqueInput;
+}
+
+export interface NestedBoolFilter {
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  not?: InputMaybe<NestedBoolFilter>;
+}
+
+export interface NestedBoolWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedBoolFilter>;
+  _min?: InputMaybe<NestedBoolFilter>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
+  not?: InputMaybe<NestedBoolWithAggregatesFilter>;
 }
 
 export interface NestedEnumFormTypeFilter {
