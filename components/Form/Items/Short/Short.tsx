@@ -5,8 +5,8 @@ import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
 import { FormComponentProps } from "@/types";
-import { Image as ImageIcon } from "lucide-react";
 import { ItemActions } from "../ItemActions";
+import { Uploader } from "@/components/Image";
 
 export const Short = ({ item, selected, editMode }: FormComponentProps) => {
   const question = deserializeString(item.name);
@@ -23,6 +23,16 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
       )}
       onClick={() => item.id && updateForm("selectedComponent", item.id)}
     >
+      {item.image && (
+        <div className="flex justify-center max-h-[400px] object-contain">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.image?.dataUrl}
+            className="object-contain rounded-md"
+            alt="short component image"
+          />
+        </div>
+      )}
       <div className="flex justify-between items-start gap-6">
         <StyledInput
           initialValue={question}
@@ -37,10 +47,13 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
         />
         {editMode && selected && (
           <div className="flex w-1/6 justify-end">
-            <ImageIcon
-              size={20}
-              className=" text-slate-700 hover:scale-110 cursor-pointer"
-              strokeWidth={1.5}
+            <Uploader
+              key={item.id}
+              image={item.image}
+              noCrop
+              showIconsOnly
+              onSaveFn={(image) => updateItem(item.id, "image", image)}
+              onRemoveFn={() => updateItem(item.id, "image", undefined)}
             />
           </div>
         )}

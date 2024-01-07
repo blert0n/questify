@@ -129,6 +129,7 @@ export interface NexusGenInputs {
   FormItemCountOrderByAggregateInput: { // input type
     formId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
     items?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -138,6 +139,7 @@ export interface NexusGenInputs {
   FormItemCreateInput: { // input type
     Form: NexusGenInputs['FormCreateNestedOneWithoutItemsInput']; // FormCreateNestedOneWithoutItemsInput!
     id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order?: number | null; // Int
@@ -146,6 +148,7 @@ export interface NexusGenInputs {
   }
   FormItemCreateManyFormInput: { // input type
     id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order?: number | null; // Int
@@ -159,6 +162,7 @@ export interface NexusGenInputs {
   FormItemCreateManyInput: { // input type
     formId: string; // String!
     id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order?: number | null; // Int
@@ -177,6 +181,7 @@ export interface NexusGenInputs {
   }
   FormItemCreateWithoutFormInput: { // input type
     id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order?: number | null; // Int
@@ -215,6 +220,7 @@ export interface NexusGenInputs {
     _sum?: NexusGenInputs['FormItemSumOrderByAggregateInput'] | null; // FormItemSumOrderByAggregateInput
     formId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     items?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -225,6 +231,7 @@ export interface NexusGenInputs {
     Form?: NexusGenInputs['FormOrderByWithRelationInput'] | null; // FormOrderByWithRelationInput
     formId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     items?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -237,6 +244,7 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['FormItemScalarWhereInput'] | null> | null; // [FormItemScalarWhereInput]
     formId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    image?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     items?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     order?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -249,6 +257,7 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['FormItemScalarWhereWithAggregatesInput'] | null> | null; // [FormItemScalarWhereWithAggregatesInput]
     formId?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     id?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    image?: NexusGenInputs['JsonNullableWithAggregatesFilter'] | null; // JsonNullableWithAggregatesFilter
     items?: NexusGenInputs['JsonNullableWithAggregatesFilter'] | null; // JsonNullableWithAggregatesFilter
     name?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     order?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
@@ -262,6 +271,7 @@ export interface NexusGenInputs {
   FormItemUncheckedCreateInput: { // input type
     formId: string; // String!
     id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order?: number | null; // Int
@@ -276,6 +286,7 @@ export interface NexusGenInputs {
   }
   FormItemUncheckedCreateWithoutFormInput: { // input type
     id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order?: number | null; // Int
@@ -285,6 +296,7 @@ export interface NexusGenInputs {
   FormItemUncheckedUpdateInput: { // input type
     formId?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -294,6 +306,7 @@ export interface NexusGenInputs {
   FormItemUncheckedUpdateManyInput: { // input type
     formId?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -302,6 +315,7 @@ export interface NexusGenInputs {
   }
   FormItemUncheckedUpdateManyWithoutFormInput: { // input type
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -323,6 +337,7 @@ export interface NexusGenInputs {
   }
   FormItemUncheckedUpdateWithoutFormInput: { // input type
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -332,6 +347,7 @@ export interface NexusGenInputs {
   FormItemUpdateInput: { // input type
     Form?: NexusGenInputs['FormUpdateOneRequiredWithoutItemsNestedInput'] | null; // FormUpdateOneRequiredWithoutItemsNestedInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -340,6 +356,7 @@ export interface NexusGenInputs {
   }
   FormItemUpdateManyMutationInput: { // input type
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -369,6 +386,7 @@ export interface NexusGenInputs {
   }
   FormItemUpdateWithoutFormInput: { // input type
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -387,6 +405,7 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
     formId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    image?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     items?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     order?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -400,6 +419,7 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
     formId?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: string | null; // String
+    image?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     items?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     name?: string | null; // String
     order?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -762,7 +782,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  FormItemScalarFieldEnum: "formId" | "id" | "items" | "name" | "order" | "section" | "type"
+  FormItemScalarFieldEnum: "formId" | "id" | "image" | "items" | "name" | "order" | "section" | "type"
   FormScalarFieldEnum: "id" | "name" | "order" | "ownerId" | "style"
   FormType: "DATE" | "DROPDOWN" | "LONG" | "MULTIPLE_CHOICE" | "SHORT" | "SINGLE_CHOICE" | "SLIDER"
   JsonNullValueFilter: "AnyNull" | "DbNull" | "JsonNull"
@@ -828,6 +848,7 @@ export interface NexusGenObjects {
   FormItem: { // root type
     formId: string; // String!
     id: string; // String!
+    image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order: number; // Int!
@@ -842,6 +863,7 @@ export interface NexusGenObjects {
     _all: number; // Int!
     formId: number; // Int!
     id: number; // Int!
+    image: number; // Int!
     items: number; // Int!
     name: number; // Int!
     order: number; // Int!
@@ -942,6 +964,7 @@ export interface NexusGenFieldTypes {
     Form: NexusGenRootTypes['Form']; // Form!
     formId: string; // String!
     id: string; // String!
+    image: NexusGenScalars['Json'] | null; // Json
     items: NexusGenScalars['Json'] | null; // Json
     name: string; // String!
     order: number; // Int!
@@ -956,6 +979,7 @@ export interface NexusGenFieldTypes {
     _all: number; // Int!
     formId: number; // Int!
     id: number; // Int!
+    image: number; // Int!
     items: number; // Int!
     name: number; // Int!
     order: number; // Int!
@@ -1059,6 +1083,7 @@ export interface NexusGenFieldTypeNames {
     Form: 'Form'
     formId: 'String'
     id: 'String'
+    image: 'Json'
     items: 'Json'
     name: 'String'
     order: 'Int'
@@ -1073,6 +1098,7 @@ export interface NexusGenFieldTypeNames {
     _all: 'Int'
     formId: 'Int'
     id: 'Int'
+    image: 'Int'
     items: 'Int'
     name: 'Int'
     order: 'Int'

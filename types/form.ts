@@ -8,6 +8,7 @@ interface Image {
   type: string;
   initialDataUrl: string;
   dataUrl: string;
+  origin: "client" | "server";
 }
 
 export interface Theme {

@@ -139,6 +139,7 @@ type FormItem {
   Form: Form!
   formId: String!
   id: String!
+  image: Json
   items: Json
   name: String!
   order: Int!
@@ -160,6 +161,7 @@ type FormItemCountAggregateOutputType {
   _all: Int!
   formId: Int!
   id: Int!
+  image: Int!
   items: Int!
   name: Int!
   order: Int!
@@ -170,6 +172,7 @@ type FormItemCountAggregateOutputType {
 input FormItemCountOrderByAggregateInput {
   formId: SortOrder
   id: SortOrder
+  image: SortOrder
   items: SortOrder
   name: SortOrder
   order: SortOrder
@@ -180,6 +183,7 @@ input FormItemCountOrderByAggregateInput {
 input FormItemCreateInput {
   Form: FormCreateNestedOneWithoutItemsInput!
   id: String
+  image: Json
   items: Json
   name: String!
   order: Int
@@ -189,6 +193,7 @@ input FormItemCreateInput {
 
 input FormItemCreateManyFormInput {
   id: String
+  image: Json
   items: Json
   name: String!
   order: Int
@@ -204,6 +209,7 @@ input FormItemCreateManyFormInputEnvelope {
 input FormItemCreateManyInput {
   formId: String!
   id: String
+  image: Json
   items: Json
   name: String!
   order: Int
@@ -225,6 +231,7 @@ input FormItemCreateOrConnectWithoutFormInput {
 
 input FormItemCreateWithoutFormInput {
   id: String
+  image: Json
   items: Json
   name: String!
   order: Int
@@ -286,6 +293,7 @@ input FormItemOrderByWithAggregationInput {
   _sum: FormItemSumOrderByAggregateInput
   formId: SortOrder
   id: SortOrder
+  image: SortOrderInput
   items: SortOrderInput
   name: SortOrder
   order: SortOrder
@@ -297,6 +305,7 @@ input FormItemOrderByWithRelationInput {
   Form: FormOrderByWithRelationInput
   formId: SortOrder
   id: SortOrder
+  image: SortOrderInput
   items: SortOrderInput
   name: SortOrder
   order: SortOrder
@@ -307,6 +316,7 @@ input FormItemOrderByWithRelationInput {
 enum FormItemScalarFieldEnum {
   formId
   id
+  image
   items
   name
   order
@@ -320,6 +330,7 @@ input FormItemScalarWhereInput {
   OR: [FormItemScalarWhereInput]
   formId: StringFilter
   id: StringFilter
+  image: JsonNullableFilter
   items: JsonNullableFilter
   name: StringFilter
   order: IntFilter
@@ -333,6 +344,7 @@ input FormItemScalarWhereWithAggregatesInput {
   OR: [FormItemScalarWhereWithAggregatesInput]
   formId: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
+  image: JsonNullableWithAggregatesFilter
   items: JsonNullableWithAggregatesFilter
   name: StringWithAggregatesFilter
   order: IntWithAggregatesFilter
@@ -353,6 +365,7 @@ input FormItemSumOrderByAggregateInput {
 input FormItemUncheckedCreateInput {
   formId: String!
   id: String
+  image: Json
   items: Json
   name: String!
   order: Int
@@ -369,6 +382,7 @@ input FormItemUncheckedCreateNestedManyWithoutFormInput {
 
 input FormItemUncheckedCreateWithoutFormInput {
   id: String
+  image: Json
   items: Json
   name: String!
   order: Int
@@ -379,6 +393,7 @@ input FormItemUncheckedCreateWithoutFormInput {
 input FormItemUncheckedUpdateInput {
   formId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -389,6 +404,7 @@ input FormItemUncheckedUpdateInput {
 input FormItemUncheckedUpdateManyInput {
   formId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -398,6 +414,7 @@ input FormItemUncheckedUpdateManyInput {
 
 input FormItemUncheckedUpdateManyWithoutFormInput {
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -421,6 +438,7 @@ input FormItemUncheckedUpdateManyWithoutFormNestedInput {
 
 input FormItemUncheckedUpdateWithoutFormInput {
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -431,6 +449,7 @@ input FormItemUncheckedUpdateWithoutFormInput {
 input FormItemUpdateInput {
   Form: FormUpdateOneRequiredWithoutItemsNestedInput
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -440,6 +459,7 @@ input FormItemUpdateInput {
 
 input FormItemUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -473,6 +493,7 @@ input FormItemUpdateWithWhereUniqueWithoutFormInput {
 
 input FormItemUpdateWithoutFormInput {
   id: StringFieldUpdateOperationsInput
+  image: Json
   items: Json
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -493,6 +514,7 @@ input FormItemWhereInput {
   OR: [FormItemWhereInput]
   formId: StringFilter
   id: StringFilter
+  image: JsonNullableFilter
   items: JsonNullableFilter
   name: StringFilter
   order: IntFilter
@@ -507,6 +529,7 @@ input FormItemWhereUniqueInput {
   OR: [FormItemWhereInput]
   formId: StringFilter
   id: String
+  image: JsonNullableFilter
   items: JsonNullableFilter
   name: String
   order: IntFilter

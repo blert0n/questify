@@ -160,6 +160,7 @@ export interface FormItem {
   Form: Form;
   formId: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  image?: Maybe<Scalars['Json']['output']>;
   items?: Maybe<Scalars['Json']['output']>;
   name: Scalars['String']['output'];
   order: Scalars['Int']['output'];
@@ -181,6 +182,7 @@ export interface FormItemCountAggregateOutputType {
   _all: Scalars['Int']['output'];
   formId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
+  image: Scalars['Int']['output'];
   items: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   order: Scalars['Int']['output'];
@@ -191,6 +193,7 @@ export interface FormItemCountAggregateOutputType {
 export interface FormItemCountOrderByAggregateInput {
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  image?: InputMaybe<SortOrder>;
   items?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -201,6 +204,7 @@ export interface FormItemCountOrderByAggregateInput {
 export interface FormItemCreateInput {
   Form: FormCreateNestedOneWithoutItemsInput;
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -210,6 +214,7 @@ export interface FormItemCreateInput {
 
 export interface FormItemCreateManyFormInput {
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -225,6 +230,7 @@ export interface FormItemCreateManyFormInputEnvelope {
 export interface FormItemCreateManyInput {
   formId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -246,6 +252,7 @@ export interface FormItemCreateOrConnectWithoutFormInput {
 
 export interface FormItemCreateWithoutFormInput {
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -307,6 +314,7 @@ export interface FormItemOrderByWithAggregationInput {
   _sum?: InputMaybe<FormItemSumOrderByAggregateInput>;
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  image?: InputMaybe<SortOrderInput>;
   items?: InputMaybe<SortOrderInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -318,6 +326,7 @@ export interface FormItemOrderByWithRelationInput {
   Form?: InputMaybe<FormOrderByWithRelationInput>;
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
+  image?: InputMaybe<SortOrderInput>;
   items?: InputMaybe<SortOrderInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -328,6 +337,7 @@ export interface FormItemOrderByWithRelationInput {
 export enum FormItemScalarFieldEnum {
   FormId = 'formId',
   Id = 'id',
+  Image = 'image',
   Items = 'items',
   Name = 'name',
   Order = 'order',
@@ -341,6 +351,7 @@ export interface FormItemScalarWhereInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemScalarWhereInput>>>;
   formId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  image?: InputMaybe<JsonNullableFilter>;
   items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
@@ -354,6 +365,7 @@ export interface FormItemScalarWhereWithAggregatesInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemScalarWhereWithAggregatesInput>>>;
   formId?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
+  image?: InputMaybe<JsonNullableWithAggregatesFilter>;
   items?: InputMaybe<JsonNullableWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   order?: InputMaybe<IntWithAggregatesFilter>;
@@ -374,6 +386,7 @@ export interface FormItemSumOrderByAggregateInput {
 export interface FormItemUncheckedCreateInput {
   formId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -390,6 +403,7 @@ export interface FormItemUncheckedCreateNestedManyWithoutFormInput {
 
 export interface FormItemUncheckedCreateWithoutFormInput {
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -400,6 +414,7 @@ export interface FormItemUncheckedCreateWithoutFormInput {
 export interface FormItemUncheckedUpdateInput {
   formId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -410,6 +425,7 @@ export interface FormItemUncheckedUpdateInput {
 export interface FormItemUncheckedUpdateManyInput {
   formId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -419,6 +435,7 @@ export interface FormItemUncheckedUpdateManyInput {
 
 export interface FormItemUncheckedUpdateManyWithoutFormInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -442,6 +459,7 @@ export interface FormItemUncheckedUpdateManyWithoutFormNestedInput {
 
 export interface FormItemUncheckedUpdateWithoutFormInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -452,6 +470,7 @@ export interface FormItemUncheckedUpdateWithoutFormInput {
 export interface FormItemUpdateInput {
   Form?: InputMaybe<FormUpdateOneRequiredWithoutItemsNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -461,6 +480,7 @@ export interface FormItemUpdateInput {
 
 export interface FormItemUpdateManyMutationInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -494,6 +514,7 @@ export interface FormItemUpdateWithWhereUniqueWithoutFormInput {
 
 export interface FormItemUpdateWithoutFormInput {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -514,6 +535,7 @@ export interface FormItemWhereInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
   formId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  image?: InputMaybe<JsonNullableFilter>;
   items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
@@ -528,6 +550,7 @@ export interface FormItemWhereUniqueInput {
   OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
   formId?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<JsonNullableFilter>;
   items?: InputMaybe<JsonNullableFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
   order?: InputMaybe<IntFilter>;

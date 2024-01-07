@@ -5,20 +5,22 @@ import { Dropzone } from "./Dropzone";
 import ReactCrop, { Crop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { useBoolean } from "usehooks-ts";
-import { Trash } from "lucide-react";
+import { FileDisplay } from "./FileDisplay";
 
-const INITIAL_IMAGE_PROPERTIES = {
+export const INITIAL_IMAGE_PROPERTIES: Image = {
   name: "",
   type: "",
   initialDataUrl: "",
   dataUrl: "",
+  origin: "client",
 };
 
-interface Image {
+export interface Image {
   name: string;
   type: string;
   initialDataUrl: string;
   dataUrl: string;
+  origin: "client" | "server";
 }
 interface P {
   image?: Image;
@@ -27,6 +29,7 @@ interface P {
   noCrop?: boolean;
   onRemoveFn?: () => void;
   onSaveFn?: (image: Image) => void;
+  showIconsOnly?: boolean;
 }
 
 const ASPECT_RATIO = 4 / 1;
@@ -38,6 +41,7 @@ export const Uploader = ({
   noCrop = false,
   onRemoveFn,
   onSaveFn,
+  showIconsOnly = false,
 }: P) => {
   const [image, setImage] = useState<Image>(
     existingImage ?? INITIAL_IMAGE_PROPERTIES
@@ -52,6 +56,7 @@ export const Uploader = ({
         type: acceptedFiles[0].type,
         initialDataUrl: reader.result as string,
         dataUrl: reader.result as string,
+        origin: "client",
       });
     });
     reader.readAsDataURL(acceptedFiles[0]);
@@ -70,6 +75,11 @@ export const Uploader = ({
     toggle: toggleUploadModal,
     setFalse: closeUploadModal,
   } = useBoolean(false);
+
+  const handleSubmit = () => {
+    onSaveFn?.({ ...image, initialDataUrl: "" });
+    closeUploadModal();
+  };
 
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     if (!imageRef?.current) return;
@@ -134,31 +144,13 @@ export const Uploader = ({
 
   return (
     <>
-      <div className="flex flex-wrap gap-2 border-input border-[1px] rounded-md py-2 px-3 text-sm">
-        {!image.name.length ? (
-          <>
-            <div
-              className="font-medium cursor-pointer"
-              onClick={toggleUploadModal}
-            >
-              Choose File
-            </div>
-            <div>No file chosen</div>
-          </>
-        ) : (
-          <div className="flex justify-between w-full items-center">
-            <div className="truncate">{image.name}</div>
-            <Trash
-              className="flex-shrink-0 text-slate-700 hover:scale-110 cursor-pointer"
-              strokeWidth={1.5}
-              onClick={() => {
-                setImage(INITIAL_IMAGE_PROPERTIES);
-                onRemoveFn?.();
-              }}
-            />
-          </div>
-        )}
-      </div>
+      <FileDisplay
+        image={image}
+        toggleUploadModal={toggleUploadModal}
+        handleImageChange={(image) => setImage(image)}
+        onRemoveFn={onRemoveFn}
+        showIconsOnly={showIconsOnly}
+      />
       <Dialog open={uploadModal} modal>
         <DialogContent className="w-full xxs:w-[576px] flex flex-col">
           <div className="max-h-96 max-w-full">
@@ -181,7 +173,7 @@ export const Uploader = ({
                       objectFit: "contain",
                     }}
                     alt="uploadedImg"
-                    onLoad={onImageLoad}
+                    onLoad={noCrop ? handleSubmit : onImageLoad}
                     ref={imageRef}
                   />
                 </ReactCrop>
@@ -201,13 +193,7 @@ export const Uploader = ({
             >
               Close
             </Button>
-            <Button
-              size={"sm"}
-              onClick={() => {
-                onSaveFn?.(image);
-                closeUploadModal();
-              }}
-            >
+            <Button size={"sm"} onClick={handleSubmit}>
               Save
             </Button>
           </DialogFooter>

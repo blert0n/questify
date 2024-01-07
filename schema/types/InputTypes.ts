@@ -17,7 +17,16 @@ export const FormScalarFieldEnum = enumType({
 
 export const FormItemScalarFieldEnum = enumType({
   name: 'FormItemScalarFieldEnum',
-  members: ['id', 'name', 'type', 'order', 'items', 'section', 'formId'],
+  members: [
+    'id',
+    'name',
+    'type',
+    'order',
+    'items',
+    'image',
+    'section',
+    'formId',
+  ],
 })
 
 export const SortOrder = enumType({
@@ -159,6 +168,7 @@ export const FormItemWhereInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('items', { type: 'JsonNullableFilter' })
+    t.field('image', { type: 'JsonNullableFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
     t.field('Form', { type: 'FormRelationFilter' })
@@ -176,6 +186,7 @@ export const FormItemOrderByWithRelationInput = inputObjectType({
     t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('items', { type: 'SortOrderInput' })
+    t.field('image', { type: 'SortOrderInput' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
     t.field('Form', { type: 'FormOrderByWithRelationInput' })
@@ -196,6 +207,7 @@ export const FormItemWhereUniqueInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('items', { type: 'JsonNullableFilter' })
+    t.field('image', { type: 'JsonNullableFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
     t.field('Form', { type: 'FormRelationFilter' })
@@ -213,6 +225,7 @@ export const FormItemOrderByWithAggregationInput = inputObjectType({
     t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('items', { type: 'SortOrderInput' })
+    t.field('image', { type: 'SortOrderInput' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
     t.field('_count', { type: 'FormItemCountOrderByAggregateInput' })
@@ -237,6 +250,7 @@ export const FormItemScalarWhereWithAggregatesInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeWithAggregatesFilter' })
     t.field('order', { type: 'IntWithAggregatesFilter' })
     t.field('items', { type: 'JsonNullableWithAggregatesFilter' })
+    t.field('image', { type: 'JsonNullableWithAggregatesFilter' })
     t.field('section', { type: 'IntWithAggregatesFilter' })
     t.field('formId', { type: 'StringWithAggregatesFilter' })
   },
@@ -359,6 +373,7 @@ export const FormItemCreateInput = inputObjectType({
     t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
     t.nonNull.field('Form', { type: 'FormCreateNestedOneWithoutItemsInput' })
   },
@@ -375,6 +390,7 @@ export const FormItemUncheckedCreateInput = inputObjectType({
     t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
     t.nonNull.field('formId', { type: 'String' })
   },
@@ -391,6 +407,7 @@ export const FormItemUpdateInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
     t.field('Form', { type: 'FormUpdateOneRequiredWithoutItemsNestedInput' })
   },
@@ -407,6 +424,7 @@ export const FormItemUncheckedUpdateInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
     t.field('formId', { type: 'StringFieldUpdateOperationsInput' })
   },
@@ -423,6 +441,7 @@ export const FormItemCreateManyInput = inputObjectType({
     t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
     t.nonNull.field('formId', { type: 'String' })
   },
@@ -439,6 +458,7 @@ export const FormItemUpdateManyMutationInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
   },
 })
@@ -454,6 +474,7 @@ export const FormItemUncheckedUpdateManyInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
     t.field('formId', { type: 'StringFieldUpdateOperationsInput' })
   },
@@ -718,6 +739,7 @@ export const FormItemCountOrderByAggregateInput = inputObjectType({
     t.field('type', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('items', { type: 'SortOrder' })
+    t.field('image', { type: 'SortOrder' })
     t.field('section', { type: 'SortOrder' })
     t.field('formId', { type: 'SortOrder' })
   },
@@ -1117,6 +1139,7 @@ export const FormItemCreateWithoutFormInput = inputObjectType({
     t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
   },
 })
@@ -1132,6 +1155,7 @@ export const FormItemUncheckedCreateWithoutFormInput = inputObjectType({
     t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
   },
 })
@@ -1206,6 +1230,7 @@ export const FormItemScalarWhereInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('items', { type: 'JsonNullableFilter' })
+    t.field('image', { type: 'JsonNullableFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
   },
@@ -1312,6 +1337,7 @@ export const FormItemCreateManyFormInput = inputObjectType({
     t.nonNull.field('type', { type: 'FormType' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'Int' })
   },
 })
@@ -1327,6 +1353,7 @@ export const FormItemUpdateWithoutFormInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
   },
 })
@@ -1342,6 +1369,7 @@ export const FormItemUncheckedUpdateWithoutFormInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
   },
 })
@@ -1357,6 +1385,7 @@ export const FormItemUncheckedUpdateManyWithoutFormInput = inputObjectType({
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
     t.field('section', { type: 'IntFieldUpdateOperationsInput' })
   },
 })
@@ -1471,6 +1500,7 @@ export const FormItemCountAggregateOutputType = objectType({
     t.field('type', { type: 'Int' })
     t.field('order', { type: 'Int' })
     t.field('items', { type: 'Int' })
+    t.field('image', { type: 'Int' })
     t.field('section', { type: 'Int' })
     t.field('formId', { type: 'Int' })
     t.field('_all', { type: 'Int' })
