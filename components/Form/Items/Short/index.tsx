@@ -13,6 +13,8 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
   const theme = useFormSelectors.use.theme();
   const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
+  const duplicateItem = useFormSelectors.use.duplicateItem();
+  const deleteItem = useFormSelectors.use.deleteItem();
   return (
     <div
       className={cn(
@@ -20,7 +22,10 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
         editMode && !selected && "cursor-pointer",
         editMode && selected && "border-l-[5px]  border-l-sky-600"
       )}
-      onClick={() => item.id && updateForm("selectedComponent", item.id)}
+      onClick={() => {
+        if (selected) return;
+        updateForm("selectedComponent", item.id);
+      }}
     >
       {item.image && (
         <div className="flex justify-center max-h-[300px] object-contain">
@@ -68,7 +73,13 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
         placeholder="Short answer text"
         disabled={editMode}
       />
-      <ItemActions item={item} selected={selected} editMode={editMode} />
+      <ItemActions
+        item={item}
+        selected={selected}
+        editMode={editMode}
+        onDuplicate={() => duplicateItem(item.id)}
+        onDelete={() => deleteItem(item.id)}
+      />
     </div>
   );
 };

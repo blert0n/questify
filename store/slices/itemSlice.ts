@@ -41,11 +41,18 @@ export const createItemSlice: StateCreator<
         break;
     }
   },
-  deleteItem: (id: string) =>
-    set((state) => ({
-      ...state,
-      items: state.items.filter((item) => item.id !== id),
-    })),
+  deleteItem: (id: string) => {
+    set((state) => {
+      const predecessor = state.items.findIndex((item) => item.id === id);
+      const newSelectedId =
+        predecessor > 0 ? state.items.at(predecessor - 1)?.id : "formHeader";
+      return {
+        ...state,
+        selectedComponent: newSelectedId,
+        items: state.items.filter((item) => item.id !== id),
+      };
+    });
+  },
   duplicateItem: (id: string) => {
     const duplicatedItemId = uuidv4();
     set((state) => {
@@ -64,6 +71,7 @@ export const createItemSlice: StateCreator<
 
       return {
         ...state,
+        selectedComponent: duplicatedItem.id,
         items: [...state.items, duplicatedItem],
       };
     });

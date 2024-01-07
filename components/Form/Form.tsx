@@ -37,8 +37,8 @@ export const Form = ({ id }: P) => {
               const DynamicComponent = componentMapper[item.type];
               return (
                 <DynamicComponent
-                  item={item}
                   key={item.id}
+                  item={item}
                   selected={selectedComponent === item.id}
                   editMode={editMode}
                 />

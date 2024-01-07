@@ -7,30 +7,26 @@ interface P {
   item: FormItem;
   editMode?: boolean;
   selected?: boolean;
+  onDuplicate: () => void;
+  onDelete: () => void;
 }
 
 export const ItemActions = ({
   item,
   editMode = false,
   selected = false,
+  onDuplicate,
+  onDelete,
 }: P) => {
   const updateItem = useFormSelectors.use.updateItem();
-  const deleteItem = useFormSelectors.use.deleteItem();
-  const duplicateItem = useFormSelectors.use.duplicateItem();
   return (
     <>
       {editMode && selected && (
         <div className="mt-4 flex flex-col items-end gap-4">
           <Separator className="mt-6" />
           <div className="flex justify-end items-center gap-4 w-full">
-            <Copy
-              {...iconProps}
-              onClick={() => item.id && duplicateItem(item.id)}
-            />
-            <Trash
-              {...iconProps}
-              onClick={() => item.id && deleteItem(item.id)}
-            />
+            <Copy {...iconProps} onClick={onDuplicate} />
+            <Trash {...iconProps} onClick={onDelete} />
             <Separator orientation="vertical" />
             Required{" "}
             <Switch

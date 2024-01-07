@@ -13,6 +13,8 @@ export const Long = ({ item, selected, editMode }: FormComponentProps) => {
   const theme = useFormSelectors.use.theme();
   const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
+  const duplicateItem = useFormSelectors.use.duplicateItem();
+  const deleteItem = useFormSelectors.use.deleteItem();
 
   return (
     <div
@@ -69,7 +71,13 @@ export const Long = ({ item, selected, editMode }: FormComponentProps) => {
         placeholder="Short answer text"
         disabled={editMode}
       />
-      <ItemActions item={item} selected={selected} editMode={editMode} />
+      <ItemActions
+        item={item}
+        selected={selected}
+        editMode={editMode}
+        onDuplicate={() => duplicateItem(item.id)}
+        onDelete={() => deleteItem(item.id)}
+      />
     </div>
   );
 };
