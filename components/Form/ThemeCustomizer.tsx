@@ -40,7 +40,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
   };
 
   return (
-    <Sheet open={visible}>
+    <Sheet open={visible} onOpenChange={toggle}>
       <SheetContent
         className="sm:w-[300px] h-screen w-full p-0 flex flex-col gap-0 overflow-y-auto overflow-x-hidden"
         side={"right"}
