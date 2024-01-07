@@ -1,5 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from "tailwindcss/defaultTheme";
+const fontSizeClasses = Array(13)
+  .fill(Number)
+  .map((_, i) => `text-[${i + 12}px]`);
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -8,6 +12,7 @@ module.exports = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  safelist: [...fontSizeClasses],
   theme: {
     screens: {
       xxs: "480px",

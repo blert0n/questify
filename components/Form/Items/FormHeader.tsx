@@ -1,5 +1,5 @@
 import { cn } from "@/lib";
-import { fontMapper } from "@/lib/fonts";
+import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import StyledInput from "../../StyledInput";
 import { useFormSelectors } from "@/store";
 import { deserializeString } from "../../StyledInput/deserializer";
@@ -31,17 +31,23 @@ export const FormHeader = ({ selected = false }: P) => {
         )}
       >
         <StyledInput
-          className={cn("w-full", fontMapper[theme.Header.fontFamily])}
+          className={cn(
+            "w-full",
+            fontSizeMapper(theme.Header.fontSize),
+            fontMapper[theme.Header.fontFamily]
+          )}
           initialValue={formHeader}
-          style={{ fontSize: `${theme.Header.fontSize}px` }}
           onChange={(html) => updateThemeHeader("text", html)}
           noLineBreak
           showBottomBorder={selected}
         />
         <StyledInput
-          className={cn("w-full", fontMapper[theme.Text.fontFamily])}
+          className={cn(
+            "w-full",
+            fontSizeMapper(theme.Text.fontSize),
+            fontMapper[theme.Text.fontFamily]
+          )}
           initialValue={formDescription}
-          style={{ fontSize: `${theme.Text.fontSize}px` }}
           onChange={(html) => updateThemeText("text", html)}
           noLineBreak
           showBottomBorder={selected}

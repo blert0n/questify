@@ -101,7 +101,7 @@ export const fontMapper = {
   "Space Mono": "font-space-mono",
 };
 
-export const generateFontSizeClass = (size: string) => `${size}px`;
+export const fontSizeMapper = (size: string) => `text-[${size}px]`;
 
 export {
   alegreya,

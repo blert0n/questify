@@ -2,7 +2,7 @@ import { Input } from "@/components/ui";
 import StyledInput from "@/components/StyledInput";
 import { deserializeString } from "@/components/StyledInput/deserializer";
 import { cn } from "@/lib";
-import { fontMapper } from "@/lib/fonts";
+import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
 import { FormComponentProps } from "@/types";
 import { Image as ImageIcon } from "lucide-react";
@@ -26,8 +26,11 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
       <div className="flex justify-between items-start gap-6">
         <StyledInput
           initialValue={question}
-          className={cn("w-5/6", fontMapper[theme.Question.fontFamily])}
-          style={{ fontSize: `${theme.Question.fontSize}px` }}
+          className={cn(
+            "w-5/6",
+            fontSizeMapper(theme.Question.fontSize),
+            fontMapper[theme.Question.fontFamily]
+          )}
           onChange={(html) => {
             console.log(html, "html");
             item.id && updateItem(item.id, "name", html);
@@ -48,13 +51,13 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
       <Input
         className={cn(
           "w-full xxs:w-1/3 p-2 border-0 focus-visible:ring-0 rounded-none disabled:cursor-default",
+          fontSizeMapper(theme.Text.fontSize),
           fontMapper[theme.Text.fontFamily],
           !editMode && "border-b-[1px] border-slate-700",
           editMode && "border-b-[1px] border-slate-300 border-dashed"
         )}
         placeholder="Short answer text"
         disabled={editMode}
-        style={{ fontSize: `${theme.Text.fontSize}px` }}
       />
       <ItemActions item={item} selected={selected} editMode={editMode} />
     </div>
