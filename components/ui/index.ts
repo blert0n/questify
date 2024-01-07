@@ -6,3 +6,4 @@ export * from "./select";
 export * from "./popover";
 export * from "./separator";
 export * from "./switch";
+export * from "./scroll-area";

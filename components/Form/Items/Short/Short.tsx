@@ -31,10 +31,7 @@ export const Short = ({ item, selected, editMode }: FormComponentProps) => {
             fontSizeMapper(theme.Question.fontSize),
             fontMapper[theme.Question.fontFamily]
           )}
-          onChange={(html) => {
-            console.log(html, "html");
-            item.id && updateItem(item.id, "name", html);
-          }}
+          onChange={(html) => item.id && updateItem(item.id, "name", html)}
           noLineBreak
           showBottomBorder={selected}
         />

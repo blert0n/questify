@@ -12,9 +12,10 @@ interface P {
   title: string;
   description?: string;
   type: FormType;
+  toggle: () => void;
 }
 
-export const IconOption = ({ icon, title, description, type }: P) => {
+export const IconOption = ({ icon, title, description, type, toggle }: P) => {
   const addItem = useFormSelectors.use.addItem();
   return (
     <TooltipProvider>
@@ -22,7 +23,10 @@ export const IconOption = ({ icon, title, description, type }: P) => {
         <TooltipTrigger>
           <div
             className="flex gap-2 items-center p-2 cursor-pointer"
-            onClick={() => addItem(type)}
+            onClick={() => {
+              addItem(type);
+              toggle();
+            }}
           >
             {icon}
             <p>{title}</p>

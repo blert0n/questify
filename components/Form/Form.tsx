@@ -4,6 +4,7 @@ import { HeaderImage } from "./Items/HeaderImage";
 import { Short } from "./Items/Short/Short";
 import { FormType } from "@/lib/graphql";
 import { FormComponentProps } from "@/types";
+import { ScrollArea } from "../ui";
 
 type ComponentMapper = ({ item, selected }: FormComponentProps) => JSX.Element;
 
@@ -30,19 +31,23 @@ export const Form = ({ id }: P) => {
     <div className="flex flex-col gap-4 w-full md:max-w-3xl ">
       <HeaderImage />
       <FormHeader selected={selectedComponent === "formHeader"} />
-      {items
-        .sort((a, b) => a.order - b.order)
-        .map((item) => {
-          const DynamicComponent = componentMapper[item.type];
-          return (
-            <DynamicComponent
-              item={item}
-              key={item.id}
-              selected={selectedComponent === item.id}
-              editMode={editMode}
-            />
-          );
-        })}
+      <ScrollArea>
+        <div className="flex flex-col gap-4">
+          {items
+            .sort((a, b) => a.order - b.order)
+            .map((item) => {
+              const DynamicComponent = componentMapper[item.type];
+              return (
+                <DynamicComponent
+                  item={item}
+                  key={item.id}
+                  selected={selectedComponent === item.id}
+                  editMode={editMode}
+                />
+              );
+            })}
+        </div>
+      </ScrollArea>
     </div>
   );
 };

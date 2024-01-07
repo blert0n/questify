@@ -23,6 +23,8 @@ export const FullScreenModal = ({
 }: P) => {
   const { value: themeCustomizer, toggle: toggleThemeCustomizer } =
     useBoolean(false);
+  const { value: isAddPopoverOpen, toggle: toggleAddPopover } =
+    useBoolean(false);
 
   const resetTheme = useFormSelectors.use.resetTheme();
   const theme = useFormSelectors.use.theme();
@@ -44,10 +46,10 @@ export const FullScreenModal = ({
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
         <div
-          className="flex flex-col gap-8 items-center h-full w-full p-4"
+          className="flex flex-col gap-8 items-center h-full w-full p-4 overflow-y-auto"
           style={{ backgroundColor: theme.secondaryColor }}
         >
-          <AddItem />
+          <AddItem visible={isAddPopoverOpen} toggle={toggleAddPopover} />
           <Form />
         </div>
         <ThemeCustomizer

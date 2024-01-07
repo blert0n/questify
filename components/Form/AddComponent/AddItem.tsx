@@ -7,9 +7,14 @@ import {
 import { Plus } from "lucide-react";
 import { Options } from "./Options";
 
-export function AddItem() {
+interface P {
+  visible: boolean;
+  toggle: () => void;
+}
+
+export function AddItem({ visible, toggle }: P) {
   return (
-    <Popover>
+    <Popover open={visible} onOpenChange={toggle}>
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
@@ -20,7 +25,7 @@ export function AddItem() {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto">
-        <Options />
+        <Options toggle={toggle} />
       </PopoverContent>
     </Popover>
   );

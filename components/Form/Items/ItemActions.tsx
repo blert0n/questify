@@ -21,7 +21,7 @@ export const ItemActions = ({
     <>
       {editMode && selected && (
         <div className="mt-4 flex flex-col items-end gap-4">
-          <Separator className="mt-8" />
+          <Separator className="lg:mt-6 mt-4" />
           <div className="flex justify-end items-center gap-4 w-full">
             <Copy
               {...iconProps}
