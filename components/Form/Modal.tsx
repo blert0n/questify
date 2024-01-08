@@ -28,6 +28,7 @@ export const FullScreenModal = ({
 
   const resetTheme = useFormSelectors.use.resetTheme();
   const theme = useFormSelectors.use.theme();
+  const editMode = useFormSelectors.use.editMode();
 
   const handleModalClose = () => {
     closeFn();
@@ -49,7 +50,9 @@ export const FullScreenModal = ({
           className="flex flex-col gap-8 items-center h-full w-full p-4 overflow-y-auto"
           style={{ backgroundColor: theme.secondaryColor }}
         >
-          <AddItem visible={isAddPopoverOpen} toggle={toggleAddPopover} />
+          {editMode && (
+            <AddItem visible={isAddPopoverOpen} toggle={toggleAddPopover} />
+          )}
           <Form />
         </div>
         <ThemeCustomizer

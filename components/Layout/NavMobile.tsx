@@ -5,7 +5,7 @@ import { useBoolean } from "usehooks-ts";
 export default function NavMobile() {
   const { value, toggle } = useBoolean(false);
   return (
-    <Sheet open={value}>
+    <Sheet open={value} onOpenChange={toggle}>
       <Menu
         className="h-[32px] w-[32px] pl-2 hover:scale-110"
         onClick={() => toggle()}

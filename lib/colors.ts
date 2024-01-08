@@ -19,3 +19,13 @@ export const generateShades = (
     numberOfShades
   );
 };
+
+export const getColorBrightness = (hex: string) => {
+  const color = new Values(hex);
+  return color.getBrightness();
+};
+
+export const getColorShade = (hex: string, weight: number) => {
+  const color = new Values(hex);
+  return `#${color.shade(weight).hex}`;
+};

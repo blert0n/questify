@@ -47,33 +47,8 @@ const StyledInput = ({
   const renderElement = useCallback(renderElementFn, []);
   const renderLeaf = useCallback(renderLeafFn, []);
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const targetNode = event.target as Node;
-      if (
-        event.target &&
-        containerRef.current &&
-        !containerRef.current.contains(targetNode)
-      ) {
-        closeToolbar();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [containerRef, closeToolbar]);
-
   return (
-    <div
-      ref={containerRef}
-      className={cn("w-[240px]", className)}
-      style={style}
-    >
+    <div className={cn("w-[240px]", className)} style={style}>
       <Slate
         editor={editor}
         initialValue={initialValue ?? INITIAL_VALUE}
@@ -100,6 +75,7 @@ const StyledInput = ({
               }
             }
           }}
+          onBlur={() => closeToolbar()}
           placeholder={placeholder}
         />
         {useToolbar && toolbar && <Toolbar />}

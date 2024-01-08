@@ -27,12 +27,12 @@ export const ItemActions = ({
           <div className="flex justify-end items-center gap-4 w-full">
             <Copy {...iconProps} onClick={onDuplicate} />
             <Trash {...iconProps} onClick={onDelete} />
-            <Separator orientation="vertical" />
+            <Separator orientation="vertical" className="h-[24px]" decorative />
             Required{" "}
             <Switch
               checked={item.required}
               onCheckedChange={(checked) =>
-                item.id && updateItem(item.id, "required", checked)
+                updateItem(item.id, "required", checked)
               }
             />
           </div>

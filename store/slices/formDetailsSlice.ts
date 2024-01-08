@@ -12,10 +12,7 @@ export const createFormDetailsSlice: StateCreator<
   isFavorite: false,
   selectedComponent: "formHeader",
   editMode: true,
-  updateFormDetails: <K extends keyof FormDetailsSlice>(
-    prop: K,
-    value: FormDetailsSlice[K]
-  ) =>
+  updateFormDetails: (prop, value) =>
     set((state) => ({
       ...state,
       [prop]: value,

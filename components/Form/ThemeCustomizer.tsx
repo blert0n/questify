@@ -109,8 +109,8 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
               </div>
               <div className="w-1/4">
                 <FontSizePicker
-                  start={12}
-                  end={18}
+                  start={16}
+                  end={22}
                   placeholder={"Size"}
                   defaultValue={theme.Question.fontSize}
                   onChange={(size) =>
@@ -139,8 +139,8 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
               </div>
               <div className="w-1/4">
                 <FontSizePicker
-                  start={12}
-                  end={15}
+                  start={14}
+                  end={18}
                   placeholder={"Size"}
                   defaultValue={theme.Text.fontSize}
                   onChange={(size) =>

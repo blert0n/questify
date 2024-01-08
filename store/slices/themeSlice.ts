@@ -1,11 +1,6 @@
 import { StateCreator } from "zustand";
 import {
-  Theme,
   initialFormData,
-  HeaderThemeKeys,
-  QuestionThemeKeys,
-  TextThemeKeys,
-  ThemeKeys,
   ThemeSlice,
   ItemSlice,
   FormDetailsSlice,
@@ -18,10 +13,7 @@ export const createThemeSlice: StateCreator<
   ThemeSlice
 > = (set) => ({
   theme: initialFormData,
-  updateHeaderTheme: <K extends HeaderThemeKeys>(
-    prop: K,
-    value: Theme["Header"][K]
-  ) =>
+  updateHeaderTheme: (prop, value) =>
     set((state) => ({
       ...state,
       theme: {
@@ -32,10 +24,7 @@ export const createThemeSlice: StateCreator<
         },
       },
     })),
-  updateQuestionTheme: <K extends QuestionThemeKeys>(
-    prop: K,
-    value: Theme["Question"][K]
-  ) =>
+  updateQuestionTheme: (prop, value) =>
     set((state) => ({
       ...state,
       theme: {
@@ -46,10 +35,7 @@ export const createThemeSlice: StateCreator<
         },
       },
     })),
-  updateTextTheme: <K extends TextThemeKeys>(
-    prop: K,
-    value: Theme["Text"][K]
-  ) =>
+  updateTextTheme: (prop, value) =>
     set((state) => ({
       ...state,
       theme: {
@@ -60,7 +46,7 @@ export const createThemeSlice: StateCreator<
         },
       },
     })),
-  updateTheme: <K extends ThemeKeys>(prop: K, value: Theme[K]) =>
+  updateTheme: (prop, value) =>
     set((state) => ({
       ...state,
       theme: {

@@ -1,18 +1,31 @@
-import { FileText, Star, Palette, Eye } from "lucide-react";
+import {
+  FileText,
+  Star,
+  Palette,
+  Eye,
+  EyeOff,
+  LucideIcon,
+  LucideProps,
+} from "lucide-react";
 import { Input, Button } from "../ui";
 import { SheetHeader } from "../ui/sheet";
 import { useFormSelectors } from "@/store";
 import { cn } from "@/lib";
-
 interface P {
   closeFn: () => void;
   toggleThemeCustomizer: () => void;
 }
 
+const previewMapper: Record<number, LucideIcon> = {
+  0: EyeOff,
+  1: Eye,
+};
 export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
   const formName = useFormSelectors.use.name();
   const isFavorite = useFormSelectors.use.isFavorite();
+  const editMode = useFormSelectors.use.editMode();
   const updateForm = useFormSelectors.use.updateFormDetails();
+  const Preview = previewMapper[Number(editMode)];
 
   return (
     <SheetHeader className=" shadow-md">
@@ -45,9 +58,11 @@ export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
               strokeWidth={1.5}
               onClick={toggleThemeCustomizer}
             />
-            <Eye
+            {editMode}
+            <Preview
               className="text-slate-700 hover:scale-110 cursor-pointer"
               strokeWidth={1.5}
+              onClick={() => updateForm("editMode", !editMode)}
             />
           </div>
           <div className="flex gap-4">

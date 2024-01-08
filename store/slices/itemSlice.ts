@@ -2,7 +2,7 @@ import {
   ItemSlice,
   ThemeSlice,
   FormDetailsSlice,
-  shortComponentInitialData,
+  inputComponentInitialData,
   FormItem,
 } from "@/types";
 import { StateCreator } from "zustand";
@@ -16,11 +16,7 @@ export const createItemSlice: StateCreator<
   ItemSlice
 > = (set, get) => ({
   items: [],
-  updateItem: <K extends keyof FormItem>(
-    id: string,
-    prop: K,
-    value: FormItem[K]
-  ) =>
+  updateItem: (id, prop, value) =>
     set((state) => ({
       ...state,
       items: state.items.map((item) => {
@@ -34,14 +30,17 @@ export const createItemSlice: StateCreator<
   addItem: (type) => {
     switch (type) {
       case FormType.Short:
-        get().addShortComponent();
+        get().addInputComponent(type);
+        break;
+      case FormType.Long:
+        get().addInputComponent(type);
         break;
       default:
-        get().addShortComponent();
+        get().addInputComponent(type);
         break;
     }
   },
-  deleteItem: (id: string) => {
+  deleteItem: (id) => {
     set((state) => {
       const predecessor = state.items.findIndex((item) => item.id === id);
       const newSelectedId =
@@ -53,7 +52,7 @@ export const createItemSlice: StateCreator<
       };
     });
   },
-  duplicateItem: (id: string) => {
+  duplicateItem: (id) => {
     const duplicatedItemId = uuidv4();
     set((state) => {
       const selectedItem = state.items.find((item) => item.id === id);
@@ -76,10 +75,9 @@ export const createItemSlice: StateCreator<
       };
     });
   },
-
-  addShortComponent: () => {
+  addInputComponent: (type) => {
     const lastOrder = get().items.at(-1)?.order;
-    const newItem = shortComponentInitialData(lastOrder);
+    const newItem = inputComponentInitialData(type, lastOrder);
     set((state) => ({
       ...state,
       selectedComponent: newItem.id,
