@@ -1,0 +1,91 @@
+import { Button, Input } from "@/components/ui";
+import { cn } from "@/lib";
+import { fontMapper, fontSizeMapper } from "@/lib/fonts";
+import { TextStyling } from "@/types";
+import { GripVertical, Circle, X } from "lucide-react";
+import { useState } from "react";
+
+interface P {
+  id: string;
+  value: string;
+  addon?: boolean;
+  selected?: boolean;
+  styling: TextStyling;
+  onChange?: (value: string) => void;
+  onRemove?: () => void;
+  onClick?: () => void;
+}
+
+export const Option = ({
+  id,
+  value,
+  addon = false,
+  selected = false,
+  styling,
+  onChange,
+  onRemove,
+  onClick,
+}: P) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocusChange = (focus: boolean) => selected && setIsFocused(focus);
+  return (
+    <div
+      className="flex items-center w-full"
+      key={id}
+      onMouseOver={() => handleFocusChange(true)}
+      onFocus={() => handleFocusChange(true)}
+      onMouseLeave={() => handleFocusChange(false)}
+      onBlur={() => handleFocusChange(false)}
+    >
+      <GripVertical
+        className={cn(
+          "opacity-0 text-slate-700",
+          !addon && isFocused && "opacity-100"
+        )}
+        strokeWidth={1.5}
+      />
+      <div className="flex gap-1.5 items-center w-full pr-6">
+        <Circle size={20} className="text-slate-700" strokeWidth={1.5} />
+        {!addon ? (
+          <Input
+            className={cn(
+              "py-2 pl-0 pr-2 border-0 focus-visible:ring-0 rounded-none disabled:cursor-default transition-all duration-100 ease-in",
+              isFocused && "border-b-[1px] border-slate-400",
+              fontSizeMapper(styling.fontSize),
+              fontMapper[styling.fontFamily],
+              !selected && "cursor-default"
+            )}
+            value={value}
+            onChange={(e) => onChange?.(e.target.value)}
+          />
+        ) : (
+          <Button
+            className={cn(
+              "font-normal hover:bg-inherit py-2 pl-0 pr-2 border-0 focus-visible:ring-0 rounded-none disabled:cursor-default transition-all duration-100 ease-in",
+              isFocused && "border-b-[1px] border-slate-400",
+              fontSizeMapper(styling.fontSize),
+              fontMapper[styling.fontFamily],
+              !selected && "cursor-default"
+            )}
+            size={"xxs"}
+            variant={"ghost"}
+            onClick={() => {
+              selected && onClick?.();
+            }}
+          >
+            Add option
+          </Button>
+        )}
+        {!addon && (
+          <X
+            size={20}
+            className="text-slate-700 hover:scale-110"
+            strokeWidth={1.5}
+            onClick={() => onRemove?.()}
+          />
+        )}
+      </div>
+    </div>
+  );
+};

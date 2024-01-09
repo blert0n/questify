@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef, CSSProperties } from "react";
-import { Descendant, createEditor } from "slate";
+import { Descendant, Editor, Transforms, createEditor } from "slate";
 import { withReact, Slate, Editable } from "slate-react";
 import { MarkType } from "./Elements";
 import isHotkey from "is-hotkey";
@@ -48,7 +48,17 @@ const StyledInput = ({
   const renderLeaf = useCallback(renderLeafFn, []);
 
   return (
-    <div className={cn("w-[240px]", className)} style={style}>
+    <div
+      className={cn("w-[240px]", className)}
+      style={style}
+      onFocus={() => openToolbar()}
+      onBlur={(event) => {
+        const { relatedTarget } = event;
+        if (!relatedTarget || !event.currentTarget.contains(relatedTarget)) {
+          closeToolbar();
+        }
+      }}
+    >
       <Slate
         editor={editor}
         initialValue={initialValue ?? INITIAL_VALUE}
@@ -56,13 +66,13 @@ const StyledInput = ({
       >
         <Editable
           className={cn(
-            "p-2 transition-all duration-100 ease-in bg-white focus-visible:outline-none styledInput",
+            "p-2 pl-0 transition-all duration-100 ease-in bg-white focus-visible:outline-none styledInput",
             toolbar && "border-b-2 border-slate-700",
             showBottomBorder && !toolbar && "border-b-[0.5px] border-slate-300"
           )}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
-          onFocus={() => openToolbar()}
+          placeholder={placeholder}
           onKeyDown={(event) => {
             if (event.key === "Enter" && noLineBreak) event.preventDefault();
             for (const hotkey in HOTKEYS) {
@@ -75,8 +85,6 @@ const StyledInput = ({
               }
             }
           }}
-          onBlur={() => closeToolbar()}
-          placeholder={placeholder}
         />
         {useToolbar && toolbar && <Toolbar />}
       </Slate>

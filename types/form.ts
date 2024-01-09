@@ -53,7 +53,6 @@ export interface SubItem {
 export interface FormComponentProps {
   item: ItemSlice["items"][number];
   selected?: boolean;
-  editMode?: boolean;
 }
 
 export interface LiveHeaderProps {
@@ -72,6 +71,7 @@ export interface LiveComponentProps {
   id: string;
   question: string;
   image?: string;
+  options?: SubItem[];
   styling: {
     primary: string;
     secondary: string;
@@ -81,3 +81,28 @@ export interface LiveComponentProps {
     Tfont: Theme["Text"]["fontFamily"];
   };
 }
+
+export interface TextStyling {
+  fontSize: Theme["Text"]["fontSize"];
+  fontFamily: Theme["Text"]["fontFamily"];
+}
+export interface QuestionStyling {
+  fontSize: Theme["Question"]["fontSize"];
+  fontFamily: Theme["Question"]["fontFamily"];
+}
+export interface HeaderStyling {
+  fontSize: Theme["Header"]["fontSize"];
+  fontFamily: Theme["Header"]["fontFamily"];
+}
+
+export type ComponentMapper = ({
+  item,
+  selected,
+}: FormComponentProps) => JSX.Element;
+export type LiveComponentMapper = ({
+  id,
+  question,
+  styling,
+  image,
+  options,
+}: LiveComponentProps) => JSX.Element;

@@ -31,8 +31,8 @@ export const FullScreenModal = ({
   const editMode = useFormSelectors.use.editMode();
 
   const handleModalClose = () => {
-    closeFn();
     resetTheme();
+    closeFn();
   };
   return (
     <Sheet open={visible}>

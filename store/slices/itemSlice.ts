@@ -2,7 +2,7 @@ import {
   ItemSlice,
   ThemeSlice,
   FormDetailsSlice,
-  inputComponentInitialData,
+  newInputItem,
   FormItem,
 } from "@/types";
 import { StateCreator } from "zustand";
@@ -27,19 +27,6 @@ export const createItemSlice: StateCreator<
         };
       }),
     })),
-  addItem: (type) => {
-    switch (type) {
-      case FormType.Short:
-        get().addInputComponent(type);
-        break;
-      case FormType.Long:
-        get().addInputComponent(type);
-        break;
-      default:
-        get().addInputComponent(type);
-        break;
-    }
-  },
   deleteItem: (id) => {
     set((state) => {
       const predecessor = state.items.findIndex((item) => item.id === id);
@@ -75,9 +62,9 @@ export const createItemSlice: StateCreator<
       };
     });
   },
-  addInputComponent: (type) => {
+  addItem: (type) => {
     const lastOrder = get().items.at(-1)?.order;
-    const newItem = inputComponentInitialData(type, lastOrder);
+    const newItem = newInputItem(type, lastOrder);
     set((state) => ({
       ...state,
       selectedComponent: newItem.id,

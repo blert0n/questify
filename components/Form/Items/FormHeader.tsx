@@ -44,7 +44,7 @@ export const FormHeader = ({ selected = false }: P) => {
     >
       <div
         className={cn(
-          "h-full rounded-b-md p-4 bg-white",
+          "h-full rounded-b-md p-6 bg-white",
           !selected && "cursor-pointer",
           selected && "border-l-[5px]  border-l-sky-600"
         )}

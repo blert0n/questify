@@ -41,7 +41,11 @@ export type ItemSlice = {
   addItem: (type: FormType) => void;
   deleteItem: (id: string) => void;
   duplicateItem: (id: string) => void;
-  addInputComponent: (type: FormType) => void;
+};
+export type SubItemSlice = {
+  addOption: (itemId: string) => void;
+  updateOption: (itemId: string, subItemId: string, value: string) => void;
+  deleteOption: (itemId: string, subItemId: string) => void;
 };
 
 export type ThemeKeys = keyof Theme;
