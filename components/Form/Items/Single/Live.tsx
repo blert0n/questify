@@ -1,30 +1,27 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/";
 import { cn, getColorBrightness, getColorShade } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import { LiveComponentProps } from "@/types";
+import { FormComponent, initialFormData } from "@/types";
 import ReactHtmlParser from "react-html-parser";
 
 export const LiveOneChoice = ({
-  id,
-  question,
-  image,
-  styling,
-  options = [],
-}: LiveComponentProps) => {
+  item,
+  theme = initialFormData,
+}: FormComponent) => {
   const checkBoxColor =
-    getColorBrightness(styling.primary) >= 80
-      ? getColorShade(styling.primary, 50)
-      : styling.primary;
+    getColorBrightness(theme.primaryColor) >= 80
+      ? getColorShade(theme.primaryColor, 50)
+      : theme.primaryColor;
   return (
     <div
-      key={id}
+      key={item.id}
       className={"flex flex-col gap-3 w-full h-auto rounded-md bg-white p-6"}
     >
-      {image && (
+      {item.image?.dataUrl && (
         <div className="flex justify-center max-h-[300px] object-contain">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={image}
+            src={item.image?.dataUrl}
             className="object-contain rounded-md"
             alt="short component image"
           />
@@ -33,21 +30,21 @@ export const LiveOneChoice = ({
       <div className="flex flex-col justify-between items-start gap-3">
         <div
           className={cn(
-            fontMapper[styling.QFont],
-            fontSizeMapper(styling.Qsize)
+            fontMapper[theme.Question.fontFamily],
+            fontSizeMapper(theme.Question.fontSize)
           )}
         >
-          {ReactHtmlParser(question)}
+          {ReactHtmlParser(item.name)}
         </div>
         <div>
           <RadioGroup defaultValue="comfortable">
-            {options.map((option) => (
+            {item.options?.map((option) => (
               <div
                 key={option.id}
                 className={cn(
                   "flex items-center gap-2",
-                  fontMapper[styling.Tfont],
-                  fontSizeMapper(styling.Tsize)
+                  fontMapper[theme.Text.fontFamily],
+                  fontSizeMapper(theme.Text.fontSize)
                 )}
               >
                 <RadioGroupItem

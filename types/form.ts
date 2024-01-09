@@ -50,11 +50,11 @@ export interface SubItem {
   order: number;
 }
 
-export interface FormComponentProps {
+export interface FormComponent {
   item: ItemSlice["items"][number];
   selected?: boolean;
+  theme: Theme;
 }
-
 export interface LiveHeaderProps {
   header: string;
   description: string;
@@ -62,21 +62,6 @@ export interface LiveHeaderProps {
     primary: string;
     Hsize: Theme["Header"]["fontSize"];
     HFont: Theme["Header"]["fontFamily"];
-    Tsize: Theme["Text"]["fontSize"];
-    Tfont: Theme["Text"]["fontFamily"];
-  };
-}
-
-export interface LiveComponentProps {
-  id: string;
-  question: string;
-  image?: string;
-  options?: SubItem[];
-  styling: {
-    primary: string;
-    secondary: string;
-    Qsize: Theme["Question"]["fontSize"];
-    QFont: Theme["Question"]["fontFamily"];
     Tsize: Theme["Text"]["fontSize"];
     Tfont: Theme["Text"]["fontFamily"];
   };
@@ -94,15 +79,3 @@ export interface HeaderStyling {
   fontSize: Theme["Header"]["fontSize"];
   fontFamily: Theme["Header"]["fontFamily"];
 }
-
-export type ComponentMapper = ({
-  item,
-  selected,
-}: FormComponentProps) => JSX.Element;
-export type LiveComponentMapper = ({
-  id,
-  question,
-  styling,
-  image,
-  options,
-}: LiveComponentProps) => JSX.Element;

@@ -3,14 +3,13 @@ import { deserializeString } from "@/components/StyledInput/deserializer";
 import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
-import { FormComponentProps } from "@/types";
+import { FormComponent } from "@/types";
 import { ItemActions } from "../ItemActions";
 import { Uploader } from "@/components/Image";
 import { Option } from "./Option";
 
-export const Single = ({ item, selected }: FormComponentProps) => {
+export const Single = ({ item, selected, theme }: FormComponent) => {
   const question = deserializeString(item.name);
-  const theme = useFormSelectors.use.theme();
   const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
   const duplicateItem = useFormSelectors.use.duplicateItem();
