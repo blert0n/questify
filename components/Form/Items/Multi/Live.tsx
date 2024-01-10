@@ -45,7 +45,13 @@ export const LiveMultiChoice = ({
         >
           {ReactHtmlParser(item.name)}
         </div>
-        <div className="flex flex-col gap-2">
+        <div
+          className={cn(
+            "flex flex-col gap-2",
+            fontMapper[theme.Text.fontFamily],
+            fontSizeMapper(theme.Text.fontSize)
+          )}
+        >
           {item.options?.map((option) => (
             <div key={option.id} className="flex gap-2 items-center">
               <Checkbox

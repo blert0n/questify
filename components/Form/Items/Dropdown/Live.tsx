@@ -40,7 +40,16 @@ export const LiveDropdown = ({
           <AppSelect
             key={item.id}
             options={item.options?.map((option) => ({
-              placeholder: option.value,
+              placeholder: (
+                <div
+                  className={cn(
+                    fontMapper[theme.Text.fontFamily],
+                    fontSizeMapper(theme.Text.fontSize)
+                  )}
+                >
+                  {option.value}
+                </div>
+              ),
               value: option.value,
             }))}
             checkIconStyle={{
