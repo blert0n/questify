@@ -20,6 +20,7 @@ export type AppSelectProps = {
   }[];
   onChange?: (value: string) => void;
   size?: SelectVariant["size"];
+  checkIconStyle?: React.CSSProperties;
 };
 
 export function AppSelect({
@@ -30,6 +31,7 @@ export function AppSelect({
   onChange,
   disabled = false,
   size,
+  checkIconStyle,
 }: AppSelectProps) {
   return (
     <Select
@@ -44,7 +46,11 @@ export function AppSelect({
       <SelectContent>
         <SelectGroup>
           {(options ?? []).map((option, index) => (
-            <SelectItem key={index} value={option.value}>
+            <SelectItem
+              key={index}
+              value={option.value}
+              checkIconStyle={checkIconStyle}
+            >
               {option.placeholder}
             </SelectItem>
           ))}

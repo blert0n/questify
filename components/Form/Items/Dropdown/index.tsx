@@ -6,9 +6,9 @@ import { useFormSelectors } from "@/store";
 import { FormComponent } from "@/types";
 import { ItemActions } from "../ItemActions";
 import { Uploader } from "@/components/Image";
-import { Option } from "./Option";
+import { Option } from "../Single/Option";
 
-export const Single = ({ item, selected, theme }: FormComponent) => {
+export const Dropdown = ({ item, selected, theme }: FormComponent) => {
   const question = deserializeString(item.name);
   const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
@@ -78,7 +78,7 @@ export const Single = ({ item, selected, theme }: FormComponent) => {
             id={option.id}
             value={option.value}
             selected={selected}
-            type="single"
+            order={option.order}
             styling={{
               fontFamily: theme.Text.fontFamily,
               fontSize: theme.Text.fontSize,
@@ -92,7 +92,7 @@ export const Single = ({ item, selected, theme }: FormComponent) => {
           value="Add option"
           addon
           selected={selected}
-          type="single"
+          order={(item.options?.length ?? 0) + 1}
           styling={{
             fontFamily: "Open Sans",
             fontSize: "14",

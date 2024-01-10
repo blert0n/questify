@@ -2,14 +2,21 @@ import { Button, Input } from "@/components/ui";
 import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { TextStyling } from "@/types";
-import { GripVertical, Circle, X } from "lucide-react";
+import { GripVertical, Circle, Square, X } from "lucide-react";
 import { useState } from "react";
+
+const orderMapper: Record<string, JSX.Element> = {
+  single: <Circle className="text-slate-700" strokeWidth={1.5} />,
+  multi: <Square className="text-slate-700" strokeWidth={1.5} />,
+};
 
 interface P {
   id: string;
+  order?: number;
   value: string;
   addon?: boolean;
   selected?: boolean;
+  type?: string;
   styling: TextStyling;
   onChange?: (value: string) => void;
   onRemove?: () => void;
@@ -18,9 +25,11 @@ interface P {
 
 export const Option = ({
   id,
+  order,
   value,
   addon = false,
   selected = false,
+  type,
   styling,
   onChange,
   onRemove,
@@ -46,7 +55,7 @@ export const Option = ({
         strokeWidth={1.5}
       />
       <div className="flex gap-1.5 items-center w-full pr-6">
-        <Circle size={20} className="text-slate-700" strokeWidth={1.5} />
+        {type ? orderMapper[type] : `${order}.`}
         {!addon ? (
           <Input
             className={cn(
@@ -79,7 +88,6 @@ export const Option = ({
         )}
         {!addon && (
           <X
-            size={20}
             className="text-slate-700 hover:scale-110"
             strokeWidth={1.5}
             onClick={() => onRemove?.()}

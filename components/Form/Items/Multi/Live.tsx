@@ -1,13 +1,22 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/";
+import { Checkbox } from "@/components/ui";
 import { cn, getColorBrightness, getColorShade } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
+import { useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
-export const LiveOneChoice = ({
+export const LiveMultiChoice = ({
   item,
   theme = initialFormData,
 }: FormComponent) => {
+  const [checked, setChecked] = useState<string[]>([]);
+
+  const handleCheck = (value: string) => {
+    setChecked((state) => [...state, value]);
+  };
+  const handleUnchecked = (value: string) => {
+    setChecked((state) => state.filter((item) => item !== value));
+  };
   const checkBoxColor =
     getColorBrightness(theme.primaryColor) >= 80
       ? getColorShade(theme.primaryColor, 50)
@@ -36,29 +45,27 @@ export const LiveOneChoice = ({
         >
           {ReactHtmlParser(item.name)}
         </div>
-        <RadioGroup>
+        <div className="flex flex-col gap-2">
           {item.options?.map((option) => (
-            <div
-              key={option.id}
-              className={cn(
-                "flex items-center gap-2",
-                fontMapper[theme.Text.fontFamily],
-                fontSizeMapper(theme.Text.fontSize)
-              )}
-            >
-              <RadioGroupItem
-                value={option.value}
-                id={option.id}
+            <div key={option.id} className="flex gap-2 items-center">
+              <Checkbox
+                checked={checked.includes(option.value)}
+                onCheckedChange={(isChecked) => {
+                  isChecked
+                    ? handleCheck(option.value)
+                    : handleUnchecked(option.value);
+                }}
                 style={{
-                  color: checkBoxColor,
                   borderColor: checkBoxColor,
-                  border: "1px solid",
+                  backgroundColor: checked.includes(option.value)
+                    ? checkBoxColor
+                    : "initial",
                 }}
               />
               {option.value}
             </div>
           ))}
-        </RadioGroup>
+        </div>
       </div>
     </div>
   );

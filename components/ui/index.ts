@@ -9,3 +9,4 @@ export * from "./switch";
 export * from "./scroll-area";
 export * from "./textarea";
 export * from "./radio-group";
+export * from "./checkbox";

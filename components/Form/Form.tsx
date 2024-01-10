@@ -8,6 +8,10 @@ import {
   LiveLongComponent,
   LiveOneChoice,
   LiveShortComponent,
+  Multi,
+  LiveMultiChoice,
+  Dropdown,
+  LiveDropdown,
 } from "./Items";
 import { FormType } from "@/lib/graphql";
 import { ScrollArea } from "../ui";
@@ -17,10 +21,10 @@ const componentMapper = (editMode: boolean) => {
     [FormType.Short]: editMode ? Short : LiveShortComponent,
     [FormType.Long]: editMode ? Long : LiveLongComponent,
     [FormType.SingleChoice]: editMode ? Single : LiveOneChoice,
-    [FormType.MultipleChoice]: Short,
+    [FormType.MultipleChoice]: editMode ? Multi : LiveMultiChoice,
     [FormType.Slider]: Short,
     [FormType.Date]: Short,
-    [FormType.Dropdown]: Short,
+    [FormType.Dropdown]: editMode ? Dropdown : LiveDropdown,
   };
 };
 

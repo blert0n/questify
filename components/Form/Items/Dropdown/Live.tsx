@@ -1,14 +1,14 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/";
+import { AppSelect } from "@/components/controlled-inputs";
 import { cn, getColorBrightness, getColorShade } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
 import ReactHtmlParser from "react-html-parser";
 
-export const LiveOneChoice = ({
+export const LiveDropdown = ({
   item,
   theme = initialFormData,
 }: FormComponent) => {
-  const checkBoxColor =
+  const checkMarkColor =
     getColorBrightness(theme.primaryColor) >= 80
       ? getColorShade(theme.primaryColor, 50)
       : theme.primaryColor;
@@ -36,29 +36,18 @@ export const LiveOneChoice = ({
         >
           {ReactHtmlParser(item.name)}
         </div>
-        <RadioGroup>
-          {item.options?.map((option) => (
-            <div
-              key={option.id}
-              className={cn(
-                "flex items-center gap-2",
-                fontMapper[theme.Text.fontFamily],
-                fontSizeMapper(theme.Text.fontSize)
-              )}
-            >
-              <RadioGroupItem
-                value={option.value}
-                id={option.id}
-                style={{
-                  color: checkBoxColor,
-                  borderColor: checkBoxColor,
-                  border: "1px solid",
-                }}
-              />
-              {option.value}
-            </div>
-          ))}
-        </RadioGroup>
+        <div className="flex flex-col gap-2 xs:w-auto min-w-[200px] w-full">
+          <AppSelect
+            key={item.id}
+            options={item.options?.map((option) => ({
+              placeholder: option.value,
+              value: option.value,
+            }))}
+            checkIconStyle={{
+              color: checkMarkColor,
+            }}
+          />
+        </div>
       </div>
     </div>
   );
