@@ -38,6 +38,24 @@ export const newInputItem: (type: FormType, lastOrder?: number) => FormItem = (
   section: 0,
   type,
   required: false,
+  ...(type === FormType.LinearScale
+    ? {
+        options: [
+          {
+            id: "1",
+            value: "1",
+            order: 1,
+            label: "Label",
+          },
+          {
+            id: "2",
+            value: "10",
+            order: 2,
+            label: "Label",
+          },
+        ],
+      }
+    : {}),
 });
 export const newSubItem: (lastOrder?: number) => SubItem = (lastOrder = 0) => ({
   id: uuidv4(),

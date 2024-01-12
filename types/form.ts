@@ -48,6 +48,7 @@ export interface SubItem {
   id: string;
   value: string;
   order: number;
+  label?: string;
 }
 
 export interface FormComponent {

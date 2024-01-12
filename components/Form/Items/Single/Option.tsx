@@ -16,6 +16,7 @@ interface P {
   value: string;
   addon?: boolean;
   selected?: boolean;
+  locked?: boolean;
   type?: string;
   styling: TextStyling;
   onChange?: (value: string) => void;
@@ -29,6 +30,7 @@ export const Option = ({
   value,
   addon = false,
   selected = false,
+  locked = false,
   type,
   styling,
   onChange,
@@ -50,7 +52,7 @@ export const Option = ({
       <GripVertical
         className={cn(
           "opacity-0 text-slate-700",
-          !addon && isFocused && "opacity-100"
+          !addon && isFocused && !locked && "opacity-100"
         )}
         strokeWidth={1.5}
       />
@@ -86,9 +88,9 @@ export const Option = ({
             Add option
           </Button>
         )}
-        {!addon && (
+        {!addon && !locked && (
           <X
-            className="text-slate-700 hover:scale-110"
+            className="text-slate-700 hover:scale-110 cursor-pointer"
             strokeWidth={1.5}
             onClick={() => onRemove?.()}
           />

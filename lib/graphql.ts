@@ -687,11 +687,11 @@ export interface FormSumOrderByAggregateInput {
 export enum FormType {
   Date = 'DATE',
   Dropdown = 'DROPDOWN',
+  LinearScale = 'LINEAR_SCALE',
   Long = 'LONG',
   MultipleChoice = 'MULTIPLE_CHOICE',
   Short = 'SHORT',
-  SingleChoice = 'SINGLE_CHOICE',
-  Slider = 'SLIDER'
+  SingleChoice = 'SINGLE_CHOICE'
 }
 
 export interface FormUncheckedCreateInput {

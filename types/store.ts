@@ -45,6 +45,7 @@ export type ItemSlice = {
 export type SubItemSlice = {
   addOption: (itemId: string) => void;
   updateOption: (itemId: string, subItemId: string, value: string) => void;
+  updateOptionLabel: (itemId: string, subItemId: string, label: string) => void;
   deleteOption: (itemId: string, subItemId: string) => void;
 };
 

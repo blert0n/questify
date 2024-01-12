@@ -831,7 +831,7 @@ export interface NexusGenInputs {
 export interface NexusGenEnums {
   FormItemScalarFieldEnum: "formId" | "id" | "image" | "items" | "name" | "order" | "required" | "section" | "type"
   FormScalarFieldEnum: "id" | "name" | "order" | "ownerId" | "style"
-  FormType: "DATE" | "DROPDOWN" | "LONG" | "MULTIPLE_CHOICE" | "SHORT" | "SINGLE_CHOICE" | "SLIDER"
+  FormType: "DATE" | "DROPDOWN" | "LINEAR_SCALE" | "LONG" | "MULTIPLE_CHOICE" | "SHORT" | "SINGLE_CHOICE"
   JsonNullValueFilter: "AnyNull" | "DbNull" | "JsonNull"
   NullableJsonNullValueInput: "DbNull" | "JsonNull"
   NullsOrder: "first" | "last"

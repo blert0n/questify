@@ -666,11 +666,11 @@ input FormSumOrderByAggregateInput {
 enum FormType {
   DATE
   DROPDOWN
+  LINEAR_SCALE
   LONG
   MULTIPLE_CHOICE
   SHORT
   SINGLE_CHOICE
-  SLIDER
 }
 
 input FormUncheckedCreateInput {

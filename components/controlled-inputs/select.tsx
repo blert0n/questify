@@ -20,6 +20,7 @@ export type AppSelectProps = {
   }[];
   onChange?: (value: string) => void;
   size?: SelectVariant["size"];
+  className?: string;
   checkIconStyle?: React.CSSProperties;
 };
 
@@ -31,31 +32,34 @@ export function AppSelect({
   onChange,
   disabled = false,
   size,
+  className,
   checkIconStyle,
 }: AppSelectProps) {
   return (
-    <Select
-      value={value}
-      defaultValue={defaultValue}
-      onValueChange={(value) => onChange?.(value)}
-      disabled={disabled}
-    >
-      <SelectTrigger size={size}>
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          {(options ?? []).map((option, index) => (
-            <SelectItem
-              key={index}
-              value={option.value}
-              checkIconStyle={checkIconStyle}
-            >
-              {option.placeholder}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    <div className={className}>
+      <Select
+        value={value}
+        defaultValue={defaultValue}
+        onValueChange={(value) => onChange?.(value)}
+        disabled={disabled}
+      >
+        <SelectTrigger size={size}>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {(options ?? []).map((option, index) => (
+              <SelectItem
+                key={index}
+                value={option.value}
+                checkIconStyle={checkIconStyle}
+              >
+                {option.placeholder}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   );
 }

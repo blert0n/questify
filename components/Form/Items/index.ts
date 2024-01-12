@@ -11,3 +11,5 @@ export * from "./Multi";
 export * from "./Multi/Live";
 export * from "./Dropdown";
 export * from "./Dropdown/Live";
+export * from "./LinearScale";
+export * from "./LinearScale/Live";

@@ -6,7 +6,6 @@ import {
   FormItem,
 } from "@/types";
 import { StateCreator } from "zustand";
-import { FormType } from "@/lib/graphql";
 import { v4 as uuidv4 } from "uuid";
 
 export const createItemSlice: StateCreator<

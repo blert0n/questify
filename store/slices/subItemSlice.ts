@@ -53,6 +53,28 @@ export const createSubItemSlice: StateCreator<
       };
     });
   },
+  updateOptionLabel: (itemId, subItemId, label) => {
+    set((state) => {
+      const item = state.items.find((item) => item.id === itemId);
+      if (!item) return state;
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item.id !== itemId) return item;
+          return {
+            ...item,
+            options: (item.options ?? []).map((option) => {
+              if (option.id !== subItemId) return option;
+              return {
+                ...option,
+                label,
+              };
+            }),
+          };
+        }),
+      };
+    });
+  },
   deleteOption: (itemId, subItemId) => {
     set((state) => {
       const item = state.items.find((item) => item.id === itemId);

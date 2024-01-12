@@ -52,9 +52,9 @@ export const Options = ({ toggle }: { toggle: () => void }) => {
       />
       <IconOption
         icon={<SlidersHorizontal {...iconProps} />}
-        title="Slider"
+        title="Linear Scale"
         description="Select a value within a predefined range"
-        type={FormType.Slider}
+        type={FormType.LinearScale}
         toggle={toggle}
       />
       <IconOption
