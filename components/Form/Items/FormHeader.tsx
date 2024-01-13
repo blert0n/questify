@@ -38,7 +38,7 @@ export const FormHeader = ({ selected = false }: P) => {
     <div
       className="w-full border-t-[10px] rounded-md h-auto shadow-md"
       style={{
-        borderColor: theme.primaryColor,
+        borderColor: getPrimaryColor(theme.primaryColor),
       }}
       onClick={() => updateForm("selectedComponent", "formHeader")}
     >
