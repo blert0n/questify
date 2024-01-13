@@ -27,19 +27,10 @@ export const initialFormData: Theme = {
   secondaryColor: "#d9d9d9",
 };
 
-export const newInputItem: (type: FormType, lastOrder?: number) => FormItem = (
-  type,
-  lastOrder = 0
-) => ({
-  id: uuidv4(),
-  name: "Question",
-  order: lastOrder + 1,
-  origin: "client",
-  section: 0,
-  type,
-  required: false,
-  ...(type === FormType.LinearScale
-    ? {
+const generateOptions = (type: FormType) => {
+  switch (type) {
+    case FormType.LinearScale:
+      return {
         options: [
           {
             id: "1",
@@ -54,8 +45,43 @@ export const newInputItem: (type: FormType, lastOrder?: number) => FormItem = (
             label: "Label",
           },
         ],
-      }
-    : {}),
+      };
+    case FormType.SingleChoice:
+    case FormType.MultipleChoice:
+    case FormType.Dropdown:
+      return {
+        options: [
+          {
+            id: "1",
+            value: "Option 1",
+            order: 1,
+          },
+          {
+            id: "2",
+            value: "Option 2",
+            order: 2,
+          },
+        ],
+      };
+    default:
+      return {
+        options: [],
+      };
+  }
+};
+
+export const newInputItem: (type: FormType, lastOrder?: number) => FormItem = (
+  type,
+  lastOrder = 0
+) => ({
+  id: uuidv4(),
+  name: "Question",
+  order: lastOrder + 1,
+  origin: "client",
+  section: 0,
+  type,
+  required: false,
+  ...generateOptions(type),
 });
 export const newSubItem: (lastOrder?: number) => SubItem = (lastOrder = 0) => ({
   id: uuidv4(),

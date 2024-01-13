@@ -13,3 +13,5 @@ export * from "./Dropdown";
 export * from "./Dropdown/Live";
 export * from "./LinearScale";
 export * from "./LinearScale/Live";
+export * from "./Date";
+export * from "./Date/Live";

@@ -1,4 +1,4 @@
-import { cn } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import StyledInput from "../../StyledInput";
 import { useFormSelectors } from "@/store";
@@ -45,9 +45,13 @@ export const FormHeader = ({ selected = false }: P) => {
       <div
         className={cn(
           "h-full rounded-b-md p-6 bg-white",
-          !selected && "cursor-pointer",
-          selected && "border-l-[5px]  border-l-sky-600"
+          !selected && "cursor-pointer"
         )}
+        style={{
+          borderLeft: selected
+            ? `5px solid ${getPrimaryColor(theme.primaryColor)}`
+            : "none",
+        }}
       >
         <StyledInput
           className={cn(

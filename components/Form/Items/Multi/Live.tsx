@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui";
-import { cn, getColorBrightness, getColorShade } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
 import { useState } from "react";
@@ -17,10 +17,7 @@ export const LiveMultiChoice = ({
   const handleUnchecked = (value: string) => {
     setChecked((state) => state.filter((item) => item !== value));
   };
-  const checkBoxColor =
-    getColorBrightness(theme.primaryColor) >= 80
-      ? getColorShade(theme.primaryColor, 50)
-      : theme.primaryColor;
+  const checkBoxColor = getPrimaryColor(theme.primaryColor);
   return (
     <div
       key={item.id}

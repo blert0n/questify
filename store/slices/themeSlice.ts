@@ -5,6 +5,7 @@ import {
   ItemSlice,
   FormDetailsSlice,
 } from "@/types";
+import { htmlToText } from "@/lib";
 
 export const createThemeSlice: StateCreator<
   ThemeSlice & ItemSlice & FormDetailsSlice,
@@ -13,7 +14,7 @@ export const createThemeSlice: StateCreator<
   ThemeSlice
 > = (set) => ({
   theme: initialFormData,
-  updateHeaderTheme: (prop, value) =>
+  updateHeaderTheme: (prop, value) => {
     set((state) => ({
       ...state,
       theme: {
@@ -23,7 +24,11 @@ export const createThemeSlice: StateCreator<
           [prop]: value,
         },
       },
-    })),
+    }));
+    if (prop === "text") {
+      set((state) => ({ ...state, name: String(htmlToText(value as string)) }));
+    }
+  },
   updateQuestionTheme: (prop, value) =>
     set((state) => ({
       ...state,

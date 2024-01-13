@@ -29,3 +29,6 @@ export const getColorShade = (hex: string, weight: number) => {
   const color = new Values(hex);
   return `#${color.shade(weight).hex}`;
 };
+
+export const getPrimaryColor = (hex: string) =>
+  getColorBrightness(hex) >= 80 ? getColorShade(hex, 50) : hex;

@@ -2,7 +2,7 @@ import ReactHtmlParser from "react-html-parser";
 import { useState } from "react";
 import { FormComponent, initialFormData } from "@/types";
 import { Textarea } from "@/components/ui";
-import { getColorBrightness, getColorShade, cn } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 
 export const LiveLongComponent = ({
@@ -10,10 +10,7 @@ export const LiveLongComponent = ({
   theme = initialFormData,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
-  const focusedInputColor =
-    getColorBrightness(theme.primaryColor) >= 80
-      ? getColorShade(theme.primaryColor, 50)
-      : theme.primaryColor;
+  const focusedInputColor = getPrimaryColor(theme.primaryColor);
 
   return (
     <div

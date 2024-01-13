@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui";
-import { getColorBrightness, getColorShade, cn } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
 import { useState } from "react";
@@ -10,10 +10,7 @@ export const LiveShortComponent = ({
   theme = initialFormData,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
-  const focusedInputColor =
-    getColorBrightness(theme?.primaryColor) >= 80
-      ? getColorShade(theme?.primaryColor, 50)
-      : theme.primaryColor;
+  const focusedInputColor = getPrimaryColor(theme.primaryColor);
 
   return (
     <div

@@ -1,5 +1,5 @@
 import { AppSelect } from "@/components/controlled-inputs";
-import { cn, getColorBrightness, getColorShade } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
 import ReactHtmlParser from "react-html-parser";
@@ -8,10 +8,8 @@ export const LiveDropdown = ({
   item,
   theme = initialFormData,
 }: FormComponent) => {
-  const checkMarkColor =
-    getColorBrightness(theme.primaryColor) >= 80
-      ? getColorShade(theme.primaryColor, 50)
-      : theme.primaryColor;
+  const checkMarkColor = getPrimaryColor(theme.primaryColor);
+
   return (
     <div
       key={item.id}
@@ -52,8 +50,11 @@ export const LiveDropdown = ({
               ),
               value: option.value,
             }))}
-            checkIconStyle={{
-              color: checkMarkColor,
+            styles={{
+              triggerFontSize: `${theme.Text.fontSize}px`,
+              checkIconStyle: {
+                color: checkMarkColor,
+              },
             }}
           />
         </div>

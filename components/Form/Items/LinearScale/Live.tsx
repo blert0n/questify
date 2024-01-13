@@ -1,5 +1,5 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui";
-import { cn, getColorBrightness, getColorShade } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
 import ReactHtmlParser from "react-html-parser";
@@ -18,10 +18,7 @@ export const LiveLinearScale = ({
   item,
   theme = initialFormData,
 }: FormComponent) => {
-  const checkBoxColor =
-    getColorBrightness(theme.primaryColor) >= 80
-      ? getColorShade(theme.primaryColor, 50)
-      : theme.primaryColor;
+  const checkBoxColor = getPrimaryColor(theme.primaryColor);
   return (
     <div
       key={item.id}
@@ -59,7 +56,7 @@ export const LiveLinearScale = ({
             >
               {item.options?.[0].label}
             </div>
-            <RadioGroup className="flex flex-row gap-4">
+            <RadioGroup className="flex flex-row flex-wrap gap-4">
               {generateScaleOptions(
                 item.options?.[0].value,
                 item.options?.[1].value

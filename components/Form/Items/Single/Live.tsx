@@ -1,5 +1,5 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/";
-import { cn, getColorBrightness, getColorShade } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialFormData } from "@/types";
 import ReactHtmlParser from "react-html-parser";
@@ -8,10 +8,7 @@ export const LiveOneChoice = ({
   item,
   theme = initialFormData,
 }: FormComponent) => {
-  const checkBoxColor =
-    getColorBrightness(theme.primaryColor) >= 80
-      ? getColorShade(theme.primaryColor, 50)
-      : theme.primaryColor;
+  const checkBoxColor = getPrimaryColor(theme.primaryColor);
   return (
     <div
       key={item.id}

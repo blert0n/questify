@@ -6,9 +6,9 @@ export const createFormDetailsSlice: StateCreator<
   [],
   [],
   FormDetailsSlice
-> = (set, get) => ({
+> = (set) => ({
   id: 0,
-  name: "",
+  name: "Untitled Form",
   isFavorite: false,
   selectedComponent: "formHeader",
   editMode: true,

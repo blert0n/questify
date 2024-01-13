@@ -12,7 +12,7 @@ export const createSubItemSlice: StateCreator<
   [],
   [],
   SubItemSlice
-> = (set, get) => ({
+> = (set) => ({
   addOption: (itemId) => {
     set((state) => {
       const item = state.items.find((item) => item.id === itemId);

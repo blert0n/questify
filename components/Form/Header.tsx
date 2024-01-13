@@ -1,12 +1,4 @@
-import {
-  FileText,
-  Star,
-  Palette,
-  Eye,
-  EyeOff,
-  LucideIcon,
-  LucideProps,
-} from "lucide-react";
+import { FileText, Star, Palette, Eye, EyeOff, LucideIcon } from "lucide-react";
 import { Input, Button } from "../ui";
 import { SheetHeader } from "../ui/sheet";
 import { useFormSelectors } from "@/store";
@@ -37,10 +29,11 @@ export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
             strokeWidth={1.5}
           />
           <Input
-            className="w-[220px] border-0 border-b-2 rounded-none border-slate-20 focus-visible:ring-0"
+            className="w-[220px] border-0 border-b-2 rounded-none border-slate-20 focus-visible:ring-0 disabled:cursor-default disabled:opacity-100"
             placeholder="Form name"
             onChange={(e) => updateForm("name", e.target.value)}
             value={formName}
+            disabled
           />
           <Star
             className={cn(

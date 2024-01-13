@@ -1,6 +1,6 @@
 import StyledInput from "@/components/StyledInput";
 import { deserializeString } from "@/components/StyledInput/deserializer";
-import { cn } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
 import { FormComponent } from "@/types";
@@ -22,9 +22,13 @@ export const LinearScale = ({ item, selected, theme }: FormComponent) => {
     <div
       className={cn(
         "flex flex-col gap-2 w-full h-auto rounded-md bg-white",
-        !selected && "cursor-pointer",
-        selected && "border-l-[5px]  border-l-sky-600"
+        !selected && "cursor-pointer"
       )}
+      style={{
+        borderLeft: selected
+          ? `5px solid ${getPrimaryColor(theme.primaryColor)}`
+          : "none",
+      }}
       onClick={() => {
         if (selected) return;
         updateForm("selectedComponent", item.id);
@@ -65,13 +69,7 @@ export const LinearScale = ({ item, selected, theme }: FormComponent) => {
           </div>
         )}
       </div>
-      <div
-        className={cn(
-          "flex flex-col gap-2",
-          fontMapper[theme.Text.fontFamily],
-          fontSizeMapper(theme.Text.fontSize)
-        )}
-      >
+      <div className={cn("flex flex-col gap-2")}>
         <div className="flex gap-2 items-center p-1 px-6">
           <AppSelect
             className="w-12"

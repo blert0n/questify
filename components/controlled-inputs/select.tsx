@@ -21,7 +21,10 @@ export type AppSelectProps = {
   onChange?: (value: string) => void;
   size?: SelectVariant["size"];
   className?: string;
-  checkIconStyle?: React.CSSProperties;
+  styles?: {
+    checkIconStyle?: React.CSSProperties;
+    triggerFontSize?: string;
+  };
 };
 
 export function AppSelect({
@@ -33,7 +36,7 @@ export function AppSelect({
   disabled = false,
   size,
   className,
-  checkIconStyle,
+  styles,
 }: AppSelectProps) {
   return (
     <div className={className}>
@@ -43,7 +46,12 @@ export function AppSelect({
         onValueChange={(value) => onChange?.(value)}
         disabled={disabled}
       >
-        <SelectTrigger size={size}>
+        <SelectTrigger
+          size={size}
+          style={{
+            fontSize: styles?.triggerFontSize,
+          }}
+        >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
@@ -52,7 +60,7 @@ export function AppSelect({
               <SelectItem
                 key={index}
                 value={option.value}
-                checkIconStyle={checkIconStyle}
+                checkIconStyle={styles?.checkIconStyle}
               >
                 {option.placeholder}
               </SelectItem>
