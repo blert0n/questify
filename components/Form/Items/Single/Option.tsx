@@ -19,7 +19,6 @@ interface P {
   locked?: boolean;
   type?: string;
   styling: TextStyling;
-  // eslint-disable-next-line unused-imports/no-unused-vars
   onChange?: (value: string) => void;
   onRemove?: () => void;
   onClick?: () => void;

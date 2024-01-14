@@ -8,11 +8,9 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 
-let apolloClient: ApolloClient<NormalizedCacheObject>;
-
 const cache = new InMemoryCache({});
 
-let GRAPHQL_HTTP_ENDPOINT =
+const GRAPHQL_HTTP_ENDPOINT =
   process.env["NEXT_PUBLIC_GRAPHQL_ENDPOINT"] ||
   "http://localhost:3000/api/graphql";
 
@@ -45,7 +43,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     );
   }
 });
-apolloClient = new ApolloClient({
+const apolloClient: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink.concat(httpLink)]),
   cache,
 });

@@ -28,7 +28,7 @@ interface P {
   id?: number;
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Form = ({ id }: P) => {
   const theme = useFormSelectors.use.theme();
   const editMode = useFormSelectors.use.editMode();

@@ -231,7 +231,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                     "#4caf50",
                     "#607d8b",
                     "#9e9e9e",
-                    ...(Boolean(isCustomColor) ? [theme.primaryColor] : []),
+                    ...(isCustomColor ? [theme.primaryColor] : []),
                   ]}
                   onChange={(color) => {
                     handlePrimaryColorChange(color.hex);
