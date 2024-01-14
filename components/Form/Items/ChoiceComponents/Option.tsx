@@ -23,12 +23,18 @@ export const Option = ({
   styling,
   onChange,
   onRemove,
+  isDraggable = true,
 }: OptionProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocusChange = (focus: boolean) => selected && setIsFocused(focus);
   return (
-    <Draggable key={id} draggableId={id} index={index} isDragDisabled={addon}>
+    <Draggable
+      key={id}
+      draggableId={id}
+      index={index}
+      isDragDisabled={addon || !isDraggable}
+    >
       {(provided, snapshot) => (
         <div
           className={cn(
@@ -67,7 +73,7 @@ export const Option = ({
               value={value}
               onChange={(e) => onChange?.(e.target.value)}
             />
-            {selected && (
+            {selected && !locked && (
               <X
                 className="text-slate-700 hover:scale-110 cursor-pointer"
                 strokeWidth={1.5}

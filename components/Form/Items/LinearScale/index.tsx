@@ -105,6 +105,7 @@ export const LinearScale = ({
         </div>
         <Option
           id="1"
+          index={1}
           value={item?.options?.[0].label ?? "Label"}
           selected={selected}
           order={Number(item?.options?.[0].value) ?? 1}
@@ -114,9 +115,11 @@ export const LinearScale = ({
           }}
           onChange={(label) => updateOptionLabel(item.id, "1", label)}
           locked
+          isDraggable={false}
         />
         <Option
           id="2"
+          index={2}
           value={item?.options?.[1].label ?? "Label"}
           selected={selected}
           order={Number(item?.options?.[1].value) ?? 10}
@@ -126,6 +129,7 @@ export const LinearScale = ({
           }}
           onChange={(label) => updateOptionLabel(item.id, "2", label)}
           locked
+          isDraggable={false}
         />
       </div>
       <div className="pb-4 px-6 pt-0">

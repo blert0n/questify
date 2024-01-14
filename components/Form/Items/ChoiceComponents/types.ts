@@ -7,6 +7,7 @@ export interface Option {
   addon?: boolean;
   selected?: boolean;
   locked?: boolean;
+  isDraggable?: boolean;
   type?: string;
   styling: TextStyling;
   onChange?: (value: string) => void;
