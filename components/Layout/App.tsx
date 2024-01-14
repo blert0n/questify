@@ -13,7 +13,6 @@ interface P {
 export default function AppLayout({ children }: P) {
   const [smScreen] = useMediaScreen("sm");
   const { value: isNavOpen, toggle: toggleNav } = useBoolean(true);
-  const openModal = useModalStoreSelectors.use.openModal();
   const closeModal = useModalStoreSelectors.use.closeModal();
   const isModalVisible = useModalStoreSelectors.use.isModalVisible();
 
@@ -54,11 +53,7 @@ export default function AppLayout({ children }: P) {
         >
           <Header toggleNav={toggleNav} />
           <div className="h-[100%] bg-secondary p-4">
-            <FullScreenModal
-              visible={isModalVisible}
-              openFn={openModal}
-              closeFn={closeModal}
-            />
+            <FullScreenModal visible={isModalVisible} closeFn={closeModal} />
             {children}
           </div>
         </div>
