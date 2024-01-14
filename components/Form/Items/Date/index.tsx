@@ -1,38 +1,38 @@
 import StyledInput from "@/components/StyledInput";
 import { deserializeString } from "@/components/StyledInput/deserializer";
-import { cn, getPrimaryColor } from "@/lib";
+import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
 import { FormComponent } from "@/types";
 import { ItemActions } from "../ItemActions";
 import { Uploader } from "@/components/Image";
 import { Button } from "@/components/ui";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, GripHorizontal } from "lucide-react";
 
-export const Date = ({ item, selected, theme }: FormComponent) => {
+export const Date = ({
+  item,
+  selected,
+  theme,
+  hovered,
+  dragHandle,
+}: FormComponent) => {
   const question = deserializeString(item.name);
-  const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
   const duplicateItem = useFormSelectors.use.duplicateItem();
   const deleteItem = useFormSelectors.use.deleteItem();
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-2 w-full h-auto rounded-md bg-white",
-        !selected && "cursor-pointer",
-        selected && "border-l-[5px]  border-l-sky-600"
-      )}
-      style={{
-        borderLeft: selected
-          ? `5px solid ${getPrimaryColor(theme.primaryColor)}`
-          : "none",
-      }}
-      onClick={() => {
-        if (selected) return;
-        updateForm("selectedComponent", item.id);
-      }}
-    >
+    <>
+      <div className="flex justify-center" {...dragHandle}>
+        <GripHorizontal
+          className={cn(
+            "text-slate-700 hover:scale-110",
+            hovered && "opacity-100",
+            !hovered && "opacity-0"
+          )}
+          strokeWidth={1.5}
+        />
+      </div>
       {item.image && (
         <div className="flex justify-center max-h-[300px] object-contain p-4 px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -43,7 +43,7 @@ export const Date = ({ item, selected, theme }: FormComponent) => {
           />
         </div>
       )}
-      <div className="flex justify-between items-start gap-6 pb-1 pt-4 px-6">
+      <div className="flex justify-between items-start gap-6 pb-3 px-6">
         <StyledInput
           initialValue={question}
           className={cn(
@@ -93,6 +93,6 @@ export const Date = ({ item, selected, theme }: FormComponent) => {
           onDelete={() => deleteItem(item.id)}
         />
       </div>
-    </div>
+    </>
   );
 };

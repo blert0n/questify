@@ -70,4 +70,20 @@ export const createItemSlice: StateCreator<
       items: [...state.items, newItem],
     }));
   },
+  reorder: (startIndex, endIndex) => {
+    set((state) => {
+      const items = [...state.items];
+      const [draggedItem] = items.splice(startIndex, 1);
+      items.splice(endIndex, 0, draggedItem);
+
+      items.forEach((question, index) => {
+        question.order = index + 1;
+      });
+
+      return {
+        ...state,
+        items,
+      };
+    });
+  },
 });

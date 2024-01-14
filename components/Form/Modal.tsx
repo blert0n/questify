@@ -8,7 +8,6 @@ import { AddItem } from "./AddComponent/AddItem";
 
 interface P {
   visible: boolean;
-  openFn: () => void;
   closeFn: () => void;
   saveFn?: () => void;
   side?: "left" | "right" | "top" | "bottom";
@@ -16,8 +15,8 @@ interface P {
 
 export const FullScreenModal = ({
   visible,
-  openFn,
   closeFn,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   saveFn,
   side = "left",
 }: P) => {

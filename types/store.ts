@@ -41,6 +41,7 @@ export type ItemSlice = {
   addItem: (type: FormType) => void;
   deleteItem: (id: string) => void;
   duplicateItem: (id: string) => void;
+  reorder: (startIndex: number, endIndex: number) => void;
 };
 export type SubItemSlice = {
   addOption: (itemId: string) => void;

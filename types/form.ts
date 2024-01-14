@@ -1,6 +1,7 @@
 import { fontMapper } from "./../lib/fonts";
 import { FormType } from "@/lib/graphql";
 import { ItemSlice } from "./store";
+import { DraggableProvidedDragHandleProps } from "@hello-pangea/dnd";
 export type FontFamily = keyof typeof fontMapper;
 
 interface Image {
@@ -55,6 +56,9 @@ export interface FormComponent {
   item: ItemSlice["items"][number];
   selected?: boolean;
   theme: Theme;
+  index: number;
+  dragHandle?: DraggableProvidedDragHandleProps | null;
+  hovered?: boolean;
 }
 export interface LiveHeaderProps {
   header: string;

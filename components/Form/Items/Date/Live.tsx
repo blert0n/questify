@@ -44,7 +44,13 @@ export const LiveDate = ({ item, theme = initialFormData }: FormComponent) => {
         >
           {ReactHtmlParser(item.name)}
         </div>
-        <div className="flex flex-col gap-2 min-w-[200px] w-full">
+        <div
+          className={cn(
+            "flex flex-col gap-2 min-w-[200px] w-full",
+            fontMapper[theme.Text.fontFamily],
+            fontSizeMapper(theme.Text.fontSize)
+          )}
+        >
           <Popover>
             <PopoverTrigger asChild>
               <Button

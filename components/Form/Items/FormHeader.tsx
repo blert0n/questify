@@ -6,11 +6,7 @@ import { deserializeString } from "../../StyledInput/deserializer";
 import { LiveHeaderProps } from "@/types";
 import ReactHtmlParser from "react-html-parser";
 
-interface P {
-  selected?: boolean;
-}
-
-export const FormHeader = ({ selected = false }: P) => {
+export const FormHeader = () => {
   const theme = useFormSelectors.use.theme();
   const editMode = useFormSelectors.use.editMode();
   const updateThemeHeader = useFormSelectors.use.updateHeaderTheme();
@@ -18,6 +14,7 @@ export const FormHeader = ({ selected = false }: P) => {
   const updateForm = useFormSelectors.use.updateFormDetails();
   const formHeader = deserializeString(theme.Header.text);
   const formDescription = deserializeString(theme.Text.text);
+  const selected = useFormSelectors.use.selectedComponent() === "formHeader";
 
   if (!editMode) {
     return (

@@ -19,6 +19,7 @@ interface P {
   locked?: boolean;
   type?: string;
   styling: TextStyling;
+  // eslint-disable-next-line unused-imports/no-unused-vars
   onChange?: (value: string) => void;
   onRemove?: () => void;
   onClick?: () => void;
@@ -57,7 +58,9 @@ export const Option = ({
         strokeWidth={1.5}
       />
       <div className="flex gap-1.5 items-center w-full pr-6">
-        {type ? orderMapper[type] : `${order}.`}
+        {!selected && addon ? null : (
+          <>{type ? orderMapper[type] : `${order}.`}</>
+        )}
         {!addon ? (
           <Input
             className={cn(
@@ -71,24 +74,28 @@ export const Option = ({
             onChange={(e) => onChange?.(e.target.value)}
           />
         ) : (
-          <Button
-            className={cn(
-              "font-normal hover:bg-inherit py-2 pl-0 pr-2 border-0 focus-visible:ring-0 rounded-none disabled:cursor-default transition-all duration-100 ease-in",
-              isFocused && "border-b-[1px] border-slate-400",
-              fontSizeMapper(styling.fontSize),
-              fontMapper[styling.fontFamily],
-              !selected && "cursor-default"
+          <>
+            {selected && (
+              <Button
+                className={cn(
+                  "font-normal hover:bg-inherit py-2 pl-0 pr-2 border-0 focus-visible:ring-0 rounded-none disabled:cursor-default transition-all duration-100 ease-in",
+                  isFocused && "border-b-[1px] border-slate-400",
+                  fontSizeMapper(styling.fontSize),
+                  fontMapper[styling.fontFamily],
+                  !selected && "cursor-default"
+                )}
+                size={"xxs"}
+                variant={"ghost"}
+                onClick={() => {
+                  selected && onClick?.();
+                }}
+              >
+                Add option
+              </Button>
             )}
-            size={"xxs"}
-            variant={"ghost"}
-            onClick={() => {
-              selected && onClick?.();
-            }}
-          >
-            Add option
-          </Button>
+          </>
         )}
-        {!addon && !locked && (
+        {!addon && !locked && selected && (
           <X
             className="text-slate-700 hover:scale-110 cursor-pointer"
             strokeWidth={1.5}

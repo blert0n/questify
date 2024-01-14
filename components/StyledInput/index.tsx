@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect, useRef, CSSProperties } from "react";
-import { Descendant, Editor, Transforms, createEditor } from "slate";
+import { useState, useCallback, CSSProperties } from "react";
+import { Descendant, createEditor } from "slate";
 import { withReact, Slate, Editable } from "slate-react";
 import { MarkType } from "./Elements";
 import isHotkey from "is-hotkey";

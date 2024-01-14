@@ -1,36 +1,38 @@
 import { Input } from "@/components/ui";
 import StyledInput from "@/components/StyledInput";
 import { deserializeString } from "@/components/StyledInput/deserializer";
-import { cn, getPrimaryColor } from "@/lib";
+import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
 import { FormComponent } from "@/types";
 import { ItemActions } from "../ItemActions";
 import { Uploader } from "@/components/Image";
+import { GripHorizontal } from "lucide-react";
 
-export const Long = ({ item, selected, theme }: FormComponent) => {
+export const Long = ({
+  item,
+  selected,
+  theme,
+  hovered,
+  dragHandle,
+}: FormComponent) => {
   const question = deserializeString(item.name);
-  const updateForm = useFormSelectors.use.updateFormDetails();
   const updateItem = useFormSelectors.use.updateItem();
   const duplicateItem = useFormSelectors.use.duplicateItem();
   const deleteItem = useFormSelectors.use.deleteItem();
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-2 w-full h-auto rounded-md p-4 px-6 bg-white",
-        !selected && "cursor-pointer"
-      )}
-      style={{
-        borderLeft: selected
-          ? `5px solid ${getPrimaryColor(theme.primaryColor)}`
-          : "none",
-      }}
-      onClick={() => {
-        if (selected) return;
-        updateForm("selectedComponent", item.id);
-      }}
-    >
+    <div className="px-6 pb-4">
+      <div className="flex justify-center" {...dragHandle}>
+        <GripHorizontal
+          className={cn(
+            "text-slate-700 hover:scale-110",
+            hovered && "opacity-100",
+            !hovered && "opacity-0"
+          )}
+          strokeWidth={1.5}
+        />
+      </div>
       {item.image && (
         <div className="flex justify-center max-h-[300px] object-contain">
           {/* eslint-disable-next-line @next/next/no-img-element */}
