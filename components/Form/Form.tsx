@@ -34,11 +34,16 @@ export const Form = ({ id }: P) => {
   const editMode = useFormSelectors.use.editMode();
   const items = useFormSelectors.use.items();
   const reorder = useFormSelectors.use.reorder();
+  const reorderOptions = useFormSelectors.use.reorderOptions();
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     if (result.type === "formItems") {
       return reorder(result.source.index, result.destination.index);
+    }
+    if (result.type.includes("options-")) {
+      const itemId = result.type.split("options-")[1];
+      reorderOptions(itemId, result.source.index, result.destination.index);
     }
   };
 

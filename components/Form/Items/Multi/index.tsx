@@ -6,8 +6,10 @@ import { useFormSelectors } from "@/store";
 import { FormComponent } from "@/types";
 import { ItemActions } from "../ItemActions";
 import { Uploader } from "@/components/Image";
-import { Option } from "../Single/Option";
+import { Option } from "../ChoiceComponents/Option";
 import { GripHorizontal } from "lucide-react";
+import { Droppable } from "@hello-pangea/dnd";
+import { Addon } from "../ChoiceComponents/Addon";
 
 export const Multi = ({
   item,
@@ -78,34 +80,43 @@ export const Multi = ({
           fontSizeMapper(theme.Text.fontSize)
         )}
       >
-        {(item.options ?? []).map((option) => (
-          <Option
-            key={option.id}
-            id={option.id}
-            value={option.value}
-            selected={selected}
-            type="multi"
-            styling={{
-              fontFamily: theme.Text.fontFamily,
-              fontSize: theme.Text.fontSize,
-            }}
-            onChange={(value) => updateOption(item.id, option.id, value)}
-            onRemove={() => deleteOption(item.id, option.id)}
-          />
-        ))}
-        <Option
-          id="addon"
-          value="Add option"
-          addon
-          selected={selected}
-          type="multi"
-          styling={{
-            fontFamily: "Open Sans",
-            fontSize: "14",
-          }}
-          onClick={() => addOption(item.id)}
-        />
+        <Droppable droppableId={`multi-${item.id}`} type={`options-${item.id}`}>
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {(item.options ?? []).map((option, index) => (
+                <Option
+                  key={option.id}
+                  id={option.id}
+                  index={index}
+                  value={option.value}
+                  selected={selected}
+                  type="multi"
+                  styling={{
+                    fontFamily: theme.Text.fontFamily,
+                    fontSize: theme.Text.fontSize,
+                  }}
+                  onChange={(value) => updateOption(item.id, option.id, value)}
+                  onRemove={() => deleteOption(item.id, option.id)}
+                />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
       </div>
+      <Addon
+        id="addon"
+        index={item.options?.length ?? 0}
+        value="Add option"
+        addon
+        selected={selected}
+        type="multi"
+        styling={{
+          fontFamily: "Open Sans",
+          fontSize: "14",
+        }}
+        onClick={() => addOption(item.id)}
+      />
       <div className="pb-4 px-6 pt-0">
         <ItemActions
           item={item}

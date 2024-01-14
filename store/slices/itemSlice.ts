@@ -52,6 +52,10 @@ export const createItemSlice: StateCreator<
         id: duplicatedItemId,
         origin: "client",
         order: selectedItem.order + 1,
+        options: (selectedItem.options ?? []).map((option) => ({
+          ...option,
+          id: uuidv4(),
+        })),
       };
 
       return {

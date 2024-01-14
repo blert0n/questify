@@ -6,7 +6,7 @@ import { useFormSelectors } from "@/store";
 import { FormComponent } from "@/types";
 import { ItemActions } from "../ItemActions";
 import { Uploader } from "@/components/Image";
-import { Option } from "../Single/Option";
+import { Option } from "../ChoiceComponents/Option";
 import { AppSelect } from "@/components/controlled-inputs";
 import { GripHorizontal } from "lucide-react";
 

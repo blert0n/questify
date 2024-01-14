@@ -48,6 +48,11 @@ export type SubItemSlice = {
   updateOption: (itemId: string, subItemId: string, value: string) => void;
   updateOptionLabel: (itemId: string, subItemId: string, label: string) => void;
   deleteOption: (itemId: string, subItemId: string) => void;
+  reorderOptions: (
+    itemId: string,
+    startIndex: number,
+    endIndex: number
+  ) => void;
 };
 
 export type ThemeKeys = keyof Theme;

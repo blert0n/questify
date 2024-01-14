@@ -33,13 +33,13 @@ const generateOptions = (type: FormType) => {
       return {
         options: [
           {
-            id: "1",
+            id: uuidv4(),
             value: "1",
             order: 1,
             label: "Label",
           },
           {
-            id: "2",
+            id: uuidv4(),
             value: "10",
             order: 2,
             label: "Label",
@@ -52,12 +52,12 @@ const generateOptions = (type: FormType) => {
       return {
         options: [
           {
-            id: "1",
+            id: uuidv4(),
             value: "Option 1",
             order: 1,
           },
           {
-            id: "2",
+            id: uuidv4(),
             value: "Option 2",
             order: 2,
           },

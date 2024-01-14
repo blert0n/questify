@@ -27,7 +27,6 @@ const componentMapper = {
 const getItemStyle = (
   selected: boolean,
   color: string,
-  isDragging: boolean,
   draggableStyle?: DraggableStyle
 ) => ({
   borderLeft: selected ? `5px solid ${color}` : "none",
@@ -58,7 +57,6 @@ export const DragWrapper = ({ index, item, theme }: FormComponent) => {
           style={getItemStyle(
             selected,
             getPrimaryColor(theme.primaryColor),
-            snapshot.isDragging,
             provided.draggableProps.style
           )}
           onClick={() => {
@@ -67,6 +65,7 @@ export const DragWrapper = ({ index, item, theme }: FormComponent) => {
           }}
           onMouseOver={setHoverTrue}
           onMouseOut={setHoverFalse}
+          onBlur={setHoverFalse}
         >
           <DraggableComponent
             key={item.id}

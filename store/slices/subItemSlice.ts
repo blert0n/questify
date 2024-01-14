@@ -93,4 +93,26 @@ export const createSubItemSlice: StateCreator<
       };
     });
   },
+  reorderOptions: (itemId, startIndex, endIndex) => {
+    set((state) => {
+      const item = state.items.find((item) => item.id === itemId);
+      if (!item) return state;
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item.id !== itemId) return item;
+          const subItems = [...(item.options ?? [])];
+          const [draggedItem] = subItems.splice(startIndex, 1);
+          subItems.splice(endIndex, 0, draggedItem);
+          subItems.forEach((question, index) => {
+            question.order = index + 1;
+          });
+          return {
+            ...item,
+            options: subItems,
+          };
+        }),
+      };
+    });
+  },
 });
