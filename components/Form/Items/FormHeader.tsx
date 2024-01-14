@@ -80,7 +80,7 @@ export const FormHeader = () => {
 const LiveHeader = ({ header, description, styling }: LiveHeaderProps) => {
   return (
     <div
-      className="flex flex-col gap-4 w-full h-auto rounded-md p-6 bg-white"
+      className="flex flex-col gap-4 w-full h-auto rounded-md p-6 border-t-[10px] bg-white"
       style={{
         borderColor: getPrimaryColor(styling.primary),
       }}
