@@ -82,7 +82,7 @@ const LiveHeader = ({ header, description, styling }: LiveHeaderProps) => {
     <div
       className="flex flex-col gap-4 w-full h-auto rounded-md p-6 bg-white"
       style={{
-        borderTop: `10px solid ${styling.primary}`,
+        borderColor: getPrimaryColor(styling.primary),
       }}
     >
       <div
