@@ -4,7 +4,6 @@ import { permissions } from "@/schema/permissions";
 import { schema } from "@/schema/schema";
 import { ApolloServer } from "@apollo/server";
 import { applyMiddleware } from "graphql-middleware";
-import { getAuth } from "@clerk/nextjs/server";
 
 const server = new ApolloServer({
   schema: applyMiddleware(schema, permissions),
@@ -13,9 +12,5 @@ const server = new ApolloServer({
 });
 
 export default startServerAndCreateNextHandler(server, {
-  context: async (req, res) => {
-    const user = getAuth(req);
-
-    return createContext({ req, res, userId: user.userId });
-  },
+  context: async (req, res) => createContext({ req, res }),
 });
