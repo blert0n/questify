@@ -1,5 +1,5 @@
-query GetForm($id: String) {
-  findFirstForm(where: { id: { equals: $id } }) {
+mutation CreateForm($data: FormCreateInput!) {
+  createOneForm(data: $data) {
     id
   }
 }

@@ -12,6 +12,7 @@ export interface Context {
   prisma: PrismaClient;
   req: NextApiRequest;
   res: NextApiResponse;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   select: any;
   token?: string;
   userId: string | null;

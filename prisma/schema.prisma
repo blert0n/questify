@@ -9,16 +9,18 @@ datasource db {
 
 model Form {
   id      String     @id @default(uuid())
-  name    String     @unique
+  name    String
   ownerId String
   order   Int        @default(autoincrement())
   style   Json?
   items   FormItem[]
+  @@unique([ownerId, name])
+  @@index([ownerId,name])
 }
 
 model FormItem {
   id       String   @id @default(uuid())
-  name     String   @unique
+  name     String
   order    Int      @default(autoincrement())
   section  Int      @default(0)
   formId   String

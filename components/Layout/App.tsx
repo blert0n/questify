@@ -5,7 +5,7 @@ import Meta from "./Title";
 import { cn, useMediaScreen } from "@/lib";
 import { motion } from "framer-motion";
 import { FullScreenModal } from "../Form/Modal";
-import { useModalStoreSelectors } from "@/store";
+import { useFormSelectors, useModalStoreSelectors } from "@/store";
 
 interface P {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ export default function AppLayout({ children }: P) {
   const { value: isNavOpen, toggle: toggleNav } = useBoolean(true);
   const closeModal = useModalStoreSelectors.use.closeModal();
   const isModalVisible = useModalStoreSelectors.use.isModalVisible();
+  const saveForm = useFormSelectors.use.saveForm();
 
   return (
     <>
@@ -53,7 +54,11 @@ export default function AppLayout({ children }: P) {
         >
           <Header toggleNav={toggleNav} />
           <div className="h-[100%] bg-secondary p-4">
-            <FullScreenModal visible={isModalVisible} closeFn={closeModal} />
+            <FullScreenModal
+              visible={isModalVisible}
+              closeFn={closeModal}
+              saveFn={saveForm}
+            />
             {children}
           </div>
         </div>

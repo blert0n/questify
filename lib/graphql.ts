@@ -595,7 +595,7 @@ export interface FormItemWhereUniqueInput {
   id?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<JsonNullableFilter>;
   items?: InputMaybe<JsonNullableFilter>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
   required?: InputMaybe<BoolFilter>;
   section?: InputMaybe<IntFilter>;
@@ -650,6 +650,11 @@ export interface FormOrderByWithRelationInput {
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
   style?: InputMaybe<SortOrderInput>;
+}
+
+export interface FormOwnerIdNameCompoundUniqueInput {
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
 }
 
 export interface FormRelationFilter {
@@ -798,9 +803,10 @@ export interface FormWhereUniqueInput {
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemListRelationFilter>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
   ownerId?: InputMaybe<StringFilter>;
+  ownerId_name?: InputMaybe<FormOwnerIdNameCompoundUniqueInput>;
   style?: InputMaybe<JsonNullableFilter>;
 }
 
@@ -1174,51 +1180,43 @@ export enum TransactionIsolationLevel {
   Serializable = 'Serializable'
 }
 
-export type GetFormQueryVariables = Exact<{
-  id?: InputMaybe<Scalars['String']['input']>;
+export type CreateFormMutationVariables = Exact<{
+  data: FormCreateInput;
 }>;
 
 
-export type GetFormQuery = { findFirstForm?: { id: string } | undefined };
+export type CreateFormMutation = { createOneForm: { id: string } };
 
 
-export const GetFormDocument = /*#__PURE__*/ gql`
-    query GetForm($id: String) {
-  findFirstForm(where: {id: {equals: $id}}) {
+export const CreateFormDocument = /*#__PURE__*/ gql`
+    mutation CreateForm($data: FormCreateInput!) {
+  createOneForm(data: $data) {
     id
   }
 }
     `;
+export type CreateFormMutationFn = Apollo.MutationFunction<CreateFormMutation, CreateFormMutationVariables>;
 
 /**
- * __useGetFormQuery__
+ * __useCreateFormMutation__
  *
- * To run a query within a React component, call `useGetFormQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
+ * To run a mutation, you first call `useCreateFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
  *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const { data, loading, error } = useGetFormQuery({
+ * const [createFormMutation, { data, loading, error }] = useCreateFormMutation({
  *   variables: {
- *      id: // value for 'id'
+ *      data: // value for 'data'
  *   },
  * });
  */
-export function useGetFormQuery(baseOptions?: Apollo.QueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
+export function useCreateFormMutation(baseOptions?: Apollo.MutationHookOptions<CreateFormMutation, CreateFormMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
+        return Apollo.useMutation<CreateFormMutation, CreateFormMutationVariables>(CreateFormDocument, options);
       }
-export function useGetFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
-        }
-export function useGetFormSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
-        }
-export type GetFormQueryHookResult = ReturnType<typeof useGetFormQuery>;
-export type GetFormLazyQueryHookResult = ReturnType<typeof useGetFormLazyQuery>;
-export type GetFormSuspenseQueryHookResult = ReturnType<typeof useGetFormSuspenseQuery>;
-export type GetFormQueryResult = Apollo.QueryResult<GetFormQuery, GetFormQueryVariables>;
+export type CreateFormMutationHookResult = ReturnType<typeof useCreateFormMutation>;
+export type CreateFormMutationResult = Apollo.MutationResult<CreateFormMutation>;

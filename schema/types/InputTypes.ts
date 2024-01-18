@@ -108,10 +108,11 @@ export const FormWhereUniqueInput = inputObjectType({
   name: 'FormWhereUniqueInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('name', { type: 'String' })
+    t.field('ownerId_name', { type: 'FormOwnerIdNameCompoundUniqueInput' })
     t.list.field('AND', { type: 'FormWhereInput' })
     t.list.field('OR', { type: 'FormWhereInput' })
     t.list.field('NOT', { type: 'FormWhereInput' })
+    t.field('name', { type: 'StringFilter' })
     t.field('ownerId', { type: 'StringFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
@@ -203,10 +204,10 @@ export const FormItemWhereUniqueInput = inputObjectType({
   name: 'FormItemWhereUniqueInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('name', { type: 'String' })
     t.list.field('AND', { type: 'FormItemWhereInput' })
     t.list.field('OR', { type: 'FormItemWhereInput' })
     t.list.field('NOT', { type: 'FormItemWhereInput' })
+    t.field('name', { type: 'StringFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('section', { type: 'IntFilter' })
     t.field('formId', { type: 'StringFilter' })
@@ -583,6 +584,17 @@ export const FormItemOrderByRelationAggregateInput = inputObjectType({
   name: 'FormItemOrderByRelationAggregateInput',
   definition(t) {
     t.field('_count', { type: 'SortOrder' })
+  },
+})
+
+export const FormOwnerIdNameCompoundUniqueInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormOwnerIdNameCompoundUniqueInput',
+  definition(t) {
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
   },
 })
 

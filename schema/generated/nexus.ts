@@ -456,7 +456,7 @@ export interface NexusGenInputs {
     id?: string | null; // String
     image?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     items?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
-    name?: string | null; // String
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     order?: NexusGenInputs['IntFilter'] | null; // IntFilter
     required?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     section?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -493,6 +493,10 @@ export interface NexusGenInputs {
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
     ownerId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     style?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+  }
+  FormOwnerIdNameCompoundUniqueInput: { // input type
+    name: string; // String!
+    ownerId: string; // String!
   }
   FormRelationFilter: { // input type
     is?: NexusGenInputs['FormWhereInput'] | null; // FormWhereInput
@@ -603,9 +607,10 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['FormWhereInput'] | null> | null; // [FormWhereInput]
     id?: string | null; // String
     items?: NexusGenInputs['FormItemListRelationFilter'] | null; // FormItemListRelationFilter
-    name?: string | null; // String
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     order?: NexusGenInputs['IntFilter'] | null; // IntFilter
     ownerId?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    ownerId_name?: NexusGenInputs['FormOwnerIdNameCompoundUniqueInput'] | null; // FormOwnerIdNameCompoundUniqueInput
     style?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
   }
   IntFieldUpdateOperationsInput: { // input type
@@ -958,6 +963,10 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Query: {};
+  UploadResponse: { // root type
+    message?: string | null; // String
+    success?: boolean | null; // Boolean
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -1083,6 +1092,8 @@ export interface NexusGenFieldTypes {
     deleteOneFormItem: NexusGenRootTypes['FormItem'] | null; // FormItem
     updateOneForm: NexusGenRootTypes['Form']; // Form!
     updateOneFormItem: NexusGenRootTypes['FormItem']; // FormItem!
+    uploadItemImage: NexusGenRootTypes['UploadResponse'] | null; // UploadResponse
+    uploaderHeaderImage: NexusGenRootTypes['UploadResponse'] | null; // UploadResponse
   }
   Query: { // field return type
     findFirstForm: NexusGenRootTypes['Form'] | null; // Form
@@ -1090,6 +1101,10 @@ export interface NexusGenFieldTypes {
     findManyFormCount: number; // Int!
     findManyFormItem: NexusGenRootTypes['FormItem'][]; // [FormItem!]!
     findManyFormItemCount: number; // Int!
+  }
+  UploadResponse: { // field return type
+    message: string | null; // String
+    success: boolean | null; // Boolean
   }
 }
 
@@ -1206,6 +1221,8 @@ export interface NexusGenFieldTypeNames {
     deleteOneFormItem: 'FormItem'
     updateOneForm: 'Form'
     updateOneFormItem: 'FormItem'
+    uploadItemImage: 'UploadResponse'
+    uploaderHeaderImage: 'UploadResponse'
   }
   Query: { // field return type name
     findFirstForm: 'Form'
@@ -1213,6 +1230,10 @@ export interface NexusGenFieldTypeNames {
     findManyFormCount: 'Int'
     findManyFormItem: 'FormItem'
     findManyFormItemCount: 'Int'
+  }
+  UploadResponse: { // field return type name
+    message: 'String'
+    success: 'Boolean'
   }
 }
 
@@ -1247,6 +1268,19 @@ export interface NexusGenArgTypes {
     updateOneFormItem: { // args
       data: NexusGenInputs['FormItemUpdateInput']; // FormItemUpdateInput!
       where: NexusGenInputs['FormItemWhereUniqueInput']; // FormItemWhereUniqueInput!
+    }
+    uploadItemImage: { // args
+      base64: string; // String!
+      formId: string; // String!
+      itemId: string; // String!
+      name: string; // String!
+      type: string; // String!
+    }
+    uploaderHeaderImage: { // args
+      base64: string; // String!
+      formId: string; // String!
+      name: string; // String!
+      type: string; // String!
     }
   }
   Query: {

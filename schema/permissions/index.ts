@@ -1,10 +1,12 @@
-import { shield } from "graphql-shield";
+import { shield, and } from "graphql-shield";
 import { rules } from "./rules";
 
 export const permissions = shield(
   {
     Query: {},
-    Mutation: {},
+    Mutation: {
+      createOneForm: and(rules.isAuthenticatedUser, rules.injectUserOnData),
+    },
   },
   {
     debug: true,

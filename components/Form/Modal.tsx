@@ -9,14 +9,13 @@ import { AddItem } from "./AddComponent/AddItem";
 interface P {
   visible: boolean;
   closeFn: () => void;
-  saveFn?: () => void;
+  saveFn: () => void;
   side?: "left" | "right" | "top" | "bottom";
 }
 
 export const FullScreenModal = ({
   visible,
   closeFn,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   saveFn,
   side = "left",
 }: P) => {
@@ -43,6 +42,7 @@ export const FullScreenModal = ({
       >
         <Header
           closeFn={handleModalClose}
+          saveFn={saveFn}
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
         <div

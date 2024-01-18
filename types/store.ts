@@ -11,6 +11,7 @@ export type FormDetailsSlice = {
     prop: K,
     value: FormDetailsSlice[K]
   ) => void;
+  saveForm: () => void;
 };
 
 export type ThemeSlice = {

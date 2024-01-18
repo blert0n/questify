@@ -5,6 +5,7 @@ import { useFormSelectors } from "@/store";
 import { cn } from "@/lib";
 interface P {
   closeFn: () => void;
+  saveFn: () => void;
   toggleThemeCustomizer: () => void;
 }
 
@@ -12,7 +13,7 @@ const previewMapper: Record<number, LucideIcon> = {
   0: EyeOff,
   1: Eye,
 };
-export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
+export const Header = ({ closeFn, saveFn, toggleThemeCustomizer }: P) => {
   const formName = useFormSelectors.use.name();
   const isFavorite = useFormSelectors.use.isFavorite();
   const editMode = useFormSelectors.use.editMode();
@@ -62,7 +63,7 @@ export const Header = ({ closeFn, toggleThemeCustomizer }: P) => {
             <Button variant={"outline"} onClick={closeFn}>
               Discard
             </Button>
-            <Button>Save</Button>
+            <Button onClick={saveFn}>Save</Button>
           </div>
         </div>
       </div>

@@ -574,7 +574,7 @@ input FormItemWhereUniqueInput {
   id: String
   image: JsonNullableFilter
   items: JsonNullableFilter
-  name: String
+  name: StringFilter
   order: IntFilter
   required: BoolFilter
   section: IntFilter
@@ -629,6 +629,11 @@ input FormOrderByWithRelationInput {
   order: SortOrder
   ownerId: SortOrder
   style: SortOrderInput
+}
+
+input FormOwnerIdNameCompoundUniqueInput {
+  name: String!
+  ownerId: String!
 }
 
 input FormRelationFilter {
@@ -777,9 +782,10 @@ input FormWhereUniqueInput {
   OR: [FormWhereInput]
   id: String
   items: FormItemListRelationFilter
-  name: String
+  name: StringFilter
   order: IntFilter
   ownerId: StringFilter
+  ownerId_name: FormOwnerIdNameCompoundUniqueInput
   style: JsonNullableFilter
 }
 
@@ -871,6 +877,8 @@ type Mutation {
   deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
   updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
   updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
+  uploadItemImage(base64: String!, formId: String!, itemId: String!, name: String!, type: String!): UploadResponse
+  uploaderHeaderImage(base64: String!, formId: String!, name: String!, type: String!): UploadResponse
 }
 
 input NestedBoolFilter {
@@ -1074,4 +1082,12 @@ enum TransactionIsolationLevel {
   ReadUncommitted
   RepeatableRead
   Serializable
+}
+
+type UploadResponse {
+  """Error mesage, or uploaded file url"""
+  message: String
+
+  """Success flag"""
+  success: Boolean
 }
