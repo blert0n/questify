@@ -18,6 +18,7 @@ export const Header = ({ closeFn, saveFn, toggleThemeCustomizer }: P) => {
   const isFavorite = useFormSelectors.use.isFavorite();
   const editMode = useFormSelectors.use.editMode();
   const updateForm = useFormSelectors.use.updateFormDetails();
+  const loading = useFormSelectors.use.loading();
   const Preview = previewMapper[Number(editMode)];
 
   return (
@@ -63,7 +64,9 @@ export const Header = ({ closeFn, saveFn, toggleThemeCustomizer }: P) => {
             <Button variant={"outline"} onClick={closeFn}>
               Discard
             </Button>
-            <Button onClick={saveFn}>Save</Button>
+            <Button onClick={saveFn} loading={loading}>
+              Save
+            </Button>
           </div>
         </div>
       </div>

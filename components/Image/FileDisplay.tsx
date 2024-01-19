@@ -1,6 +1,6 @@
 import { Trash, Image as ImageIcon } from "lucide-react";
 import { Image, INITIAL_IMAGE_PROPERTIES } from "./Uploader";
-import RemoveImage from "@/assets/svg/RemoveImage";
+import { RemoveImage } from "@/assets/svg/";
 interface P {
   image: Image;
   showIconsOnly: boolean;

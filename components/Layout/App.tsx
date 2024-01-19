@@ -6,7 +6,8 @@ import { cn, useMediaScreen } from "@/lib";
 import { motion } from "framer-motion";
 import { FullScreenModal } from "../Form/Modal";
 import { useFormSelectors, useModalStoreSelectors } from "@/store";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface P {
   children: React.ReactNode;
 }
@@ -63,6 +64,19 @@ export default function AppLayout({ children }: P) {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        bodyStyle={{ fontSize: "14px" }}
+      />
     </>
   );
 }

@@ -1,13 +1,6 @@
 import { SVGProps } from "react";
-interface P {
-  size?: number;
-  fill?: string;
-  className?: string;
-  strokeWidth?: number;
-  onClick?: () => void;
-}
 
-export default function RemoveImage(props: SVGProps<SVGSVGElement>) {
+export const RemoveImage = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       <rect x="0" fill="none" width="24" height="24" />
@@ -16,4 +9,4 @@ export default function RemoveImage(props: SVGProps<SVGSVGElement>) {
       </g>
     </svg>
   );
-}
+};

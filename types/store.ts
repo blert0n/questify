@@ -7,6 +7,7 @@ export type FormDetailsSlice = {
   isFavorite: boolean;
   selectedComponent: string;
   editMode: boolean;
+  loading: boolean;
   updateFormDetails: <K extends keyof FormDetailsSlice>(
     prop: K,
     value: FormDetailsSlice[K]

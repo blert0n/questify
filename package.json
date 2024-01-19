@@ -60,6 +60,7 @@
     "react-dropzone": "^14.2.3",
     "react-html-parser": "^2.0.2",
     "react-image-crop": "^11.0.2",
+    "react-toastify": "^10.0.3",
     "simple-zustand-devtools": "^1.1.0",
     "slate": "^0.101.4",
     "slate-history": "^0.100.0",
