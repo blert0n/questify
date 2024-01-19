@@ -46,7 +46,7 @@ export const FullScreenModal = ({
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
         <div
-          className="flex flex-col gap-8 items-center h-full w-full p-4 overflow-y-auto"
+          className="flex flex-col self-start gap-8 items-center h-full w-full p-4 overflow-y-auto sticky top-0"
           style={{ backgroundColor: theme.secondaryColor }}
         >
           {editMode && (

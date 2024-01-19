@@ -56,7 +56,6 @@ export interface FormComponent {
   item: ItemSlice["items"][number];
   selected?: boolean;
   theme: Theme;
-  index: number;
   dragHandle?: DraggableProvidedDragHandleProps | null;
   hovered?: boolean;
 }

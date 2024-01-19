@@ -9,6 +9,7 @@ import { Uploader } from "@/components/Image";
 import { Option } from "../ChoiceComponents/Option";
 import { AppSelect } from "@/components/controlled-inputs";
 import { GripHorizontal } from "lucide-react";
+import { Droppable } from "@hello-pangea/dnd";
 
 export const LinearScale = ({
   item,
@@ -103,34 +104,43 @@ export const LinearScale = ({
             onChange={(value) => updateOption(item.id, "2", value)}
           />
         </div>
-        <Option
-          id="1"
-          index={1}
-          value={item?.options?.[0].label ?? "Label"}
-          selected={selected}
-          order={Number(item?.options?.[0].value) ?? 1}
-          styling={{
-            fontFamily: theme.Text.fontFamily,
-            fontSize: theme.Text.fontSize,
-          }}
-          onChange={(label) => updateOptionLabel(item.id, "1", label)}
-          locked
-          isDraggable={false}
-        />
-        <Option
-          id="2"
-          index={2}
-          value={item?.options?.[1].label ?? "Label"}
-          selected={selected}
-          order={Number(item?.options?.[1].value) ?? 10}
-          styling={{
-            fontFamily: theme.Text.fontFamily,
-            fontSize: theme.Text.fontSize,
-          }}
-          onChange={(label) => updateOptionLabel(item.id, "2", label)}
-          locked
-          isDraggable={false}
-        />
+        <Droppable
+          droppableId={`dropdown-${item.id}`}
+          type={`options-${item.id}`}
+        >
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              <Option
+                id="1"
+                index={1}
+                value={item?.options?.[0].label ?? "Label"}
+                selected={selected}
+                order={Number(item?.options?.[0].value) ?? 1}
+                styling={{
+                  fontFamily: theme.Text.fontFamily,
+                  fontSize: theme.Text.fontSize,
+                }}
+                onChange={(label) => updateOptionLabel(item.id, "1", label)}
+                locked
+                isDraggable={false}
+              />
+              <Option
+                id="2"
+                index={2}
+                value={item?.options?.[1].label ?? "Label"}
+                selected={selected}
+                order={Number(item?.options?.[1].value) ?? 10}
+                styling={{
+                  fontFamily: theme.Text.fontFamily,
+                  fontSize: theme.Text.fontSize,
+                }}
+                onChange={(label) => updateOptionLabel(item.id, "2", label)}
+                locked
+                isDraggable={false}
+              />
+            </div>
+          )}
+        </Droppable>
       </div>
       <div className="pb-4 px-6 pt-0">
         <ItemActions
