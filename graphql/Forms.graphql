@@ -3,3 +3,11 @@ mutation CreateForm($data: FormCreateInput!) {
     id
   }
 }
+
+query MyForms {
+  findManyForm(orderBy: { createdAt: desc }) {
+    id
+    name
+    createdAt
+  }
+}

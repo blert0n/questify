@@ -67,6 +67,35 @@ export interface BoolWithAggregatesFilter {
   not?: InputMaybe<NestedBoolWithAggregatesFilter>;
 }
 
+export interface DateTimeFieldUpdateOperationsInput {
+  set?: InputMaybe<Scalars['DateTime']['input']>;
+}
+
+export interface DateTimeFilter {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<NestedDateTimeFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+}
+
+export interface DateTimeWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedDateTimeFilter>;
+  _min?: InputMaybe<NestedDateTimeFilter>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+}
+
 export interface EnumFormTypeFieldUpdateOperationsInput {
   set?: InputMaybe<FormType>;
 }
@@ -90,12 +119,14 @@ export interface EnumFormTypeWithAggregatesFilter {
 
 export interface Form {
   _count: FormCountOutputType;
+  createdAt: Scalars['DateTime']['output'];
   id: Scalars['String']['output'];
   items: Array<FormItem>;
   name: Scalars['String']['output'];
   order: Scalars['Int']['output'];
   ownerId: Scalars['String']['output'];
   style?: Maybe<Scalars['Json']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
 }
 
 
@@ -118,19 +149,23 @@ export interface FormAvgOrderByAggregateInput {
 
 export interface FormCountAggregateOutputType {
   _all: Scalars['Int']['output'];
+  createdAt: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   order: Scalars['Int']['output'];
   ownerId: Scalars['Int']['output'];
   style: Scalars['Int']['output'];
+  updatedAt: Scalars['Int']['output'];
 }
 
 export interface FormCountOrderByAggregateInput {
+  createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
   style?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 }
 
 export interface FormCountOutputType {
@@ -138,20 +173,24 @@ export interface FormCountOutputType {
 }
 
 export interface FormCreateInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemCreateNestedManyWithoutFormInput>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   ownerId: Scalars['String']['input'];
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
 export interface FormCreateManyInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   ownerId: Scalars['String']['input'];
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
 export interface FormCreateNestedOneWithoutItemsInput {
@@ -166,11 +205,13 @@ export interface FormCreateOrConnectWithoutItemsInput {
 }
 
 export interface FormCreateWithoutItemsInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   ownerId: Scalars['String']['input'];
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
 export interface FormItem {
@@ -603,31 +644,39 @@ export interface FormItemWhereUniqueInput {
 }
 
 export interface FormMaxAggregateOutputType {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   ownerId?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 }
 
 export interface FormMaxOrderByAggregateInput {
+  createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 }
 
 export interface FormMinAggregateOutputType {
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   ownerId?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 }
 
 export interface FormMinOrderByAggregateInput {
+  createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 }
 
 export interface FormOrderByWithAggregationInput {
@@ -636,20 +685,24 @@ export interface FormOrderByWithAggregationInput {
   _max?: InputMaybe<FormMaxOrderByAggregateInput>;
   _min?: InputMaybe<FormMinOrderByAggregateInput>;
   _sum?: InputMaybe<FormSumOrderByAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
   style?: InputMaybe<SortOrderInput>;
+  updatedAt?: InputMaybe<SortOrder>;
 }
 
 export interface FormOrderByWithRelationInput {
+  createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   items?: InputMaybe<FormItemOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
   style?: InputMaybe<SortOrderInput>;
+  updatedAt?: InputMaybe<SortOrder>;
 }
 
 export interface FormOwnerIdNameCompoundUniqueInput {
@@ -663,22 +716,26 @@ export interface FormRelationFilter {
 }
 
 export enum FormScalarFieldEnum {
+  CreatedAt = 'createdAt',
   Id = 'id',
   Name = 'name',
   Order = 'order',
   OwnerId = 'ownerId',
-  Style = 'style'
+  Style = 'style',
+  UpdatedAt = 'updatedAt'
 }
 
 export interface FormScalarWhereWithAggregatesInput {
   AND?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   NOT?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   order?: InputMaybe<IntWithAggregatesFilter>;
   ownerId?: InputMaybe<StringWithAggregatesFilter>;
   style?: InputMaybe<JsonNullableWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 }
 
 export interface FormSumAggregateOutputType {
@@ -700,62 +757,76 @@ export enum FormType {
 }
 
 export interface FormUncheckedCreateInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemUncheckedCreateNestedManyWithoutFormInput>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   ownerId: Scalars['String']['input'];
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
 export interface FormUncheckedCreateWithoutItemsInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
   ownerId: Scalars['String']['input'];
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
 export interface FormUncheckedUpdateInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   items?: InputMaybe<FormItemUncheckedUpdateManyWithoutFormNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
 export interface FormUncheckedUpdateManyInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
 export interface FormUncheckedUpdateWithoutItemsInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
 export interface FormUpdateInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   items?: InputMaybe<FormItemUpdateManyWithoutFormNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
 export interface FormUpdateManyMutationInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
 export interface FormUpdateOneRequiredWithoutItemsNestedInput {
@@ -772,11 +843,13 @@ export interface FormUpdateToOneWithWhereWithoutItemsInput {
 }
 
 export interface FormUpdateWithoutItemsInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
   ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
   style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
 export interface FormUpsertWithoutItemsInput {
@@ -789,18 +862,21 @@ export interface FormWhereInput {
   AND?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   items?: InputMaybe<FormItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
   order?: InputMaybe<IntFilter>;
   ownerId?: InputMaybe<StringFilter>;
   style?: InputMaybe<JsonNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 }
 
 export interface FormWhereUniqueInput {
   AND?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
@@ -808,6 +884,7 @@ export interface FormWhereUniqueInput {
   ownerId?: InputMaybe<StringFilter>;
   ownerId_name?: InputMaybe<FormOwnerIdNameCompoundUniqueInput>;
   style?: InputMaybe<JsonNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 }
 
 export interface IntFieldUpdateOperationsInput {
@@ -893,6 +970,8 @@ export interface Mutation {
   deleteOneFormItem?: Maybe<FormItem>;
   updateOneForm: Form;
   updateOneFormItem: FormItem;
+  uploadItemImage?: Maybe<UploadResponse>;
+  uploaderHeaderImage?: Maybe<UploadResponse>;
 }
 
 
@@ -927,6 +1006,23 @@ export interface MutationUpdateOneFormItemArgs {
   where: FormItemWhereUniqueInput;
 }
 
+
+export interface MutationUploadItemImageArgs {
+  base64: Scalars['String']['input'];
+  formId: Scalars['String']['input'];
+  itemId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+}
+
+
+export interface MutationUploaderHeaderImageArgs {
+  base64: Scalars['String']['input'];
+  formId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+}
+
 export interface NestedBoolFilter {
   equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolFilter>;
@@ -938,6 +1034,31 @@ export interface NestedBoolWithAggregatesFilter {
   _min?: InputMaybe<NestedBoolFilter>;
   equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolWithAggregatesFilter>;
+}
+
+export interface NestedDateTimeFilter {
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<NestedDateTimeFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+}
+
+export interface NestedDateTimeWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedDateTimeFilter>;
+  _min?: InputMaybe<NestedDateTimeFilter>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
 }
 
 export interface NestedEnumFormTypeFilter {
@@ -1180,12 +1301,24 @@ export enum TransactionIsolationLevel {
   Serializable = 'Serializable'
 }
 
+export interface UploadResponse {
+  /** Error mesage, or uploaded file url */
+  message?: Maybe<Scalars['String']['output']>;
+  /** Success flag */
+  success?: Maybe<Scalars['Boolean']['output']>;
+}
+
 export type CreateFormMutationVariables = Exact<{
   data: FormCreateInput;
 }>;
 
 
 export type CreateFormMutation = { createOneForm: { id: string } };
+
+export type MyFormsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MyFormsQuery = { findManyForm: Array<{ id: string, name: string, createdAt: Date }> };
 
 
 export const CreateFormDocument = /*#__PURE__*/ gql`
@@ -1220,3 +1353,44 @@ export function useCreateFormMutation(baseOptions?: Apollo.MutationHookOptions<C
       }
 export type CreateFormMutationHookResult = ReturnType<typeof useCreateFormMutation>;
 export type CreateFormMutationResult = Apollo.MutationResult<CreateFormMutation>;
+export const MyFormsDocument = /*#__PURE__*/ gql`
+    query MyForms {
+  findManyForm(orderBy: {createdAt: desc}) {
+    id
+    name
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useMyFormsQuery__
+ *
+ * To run a query within a React component, call `useMyFormsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyFormsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyFormsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMyFormsQuery(baseOptions?: Apollo.QueryHookOptions<MyFormsQuery, MyFormsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyFormsQuery, MyFormsQueryVariables>(MyFormsDocument, options);
+      }
+export function useMyFormsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyFormsQuery, MyFormsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyFormsQuery, MyFormsQueryVariables>(MyFormsDocument, options);
+        }
+export function useMyFormsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MyFormsQuery, MyFormsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<MyFormsQuery, MyFormsQueryVariables>(MyFormsDocument, options);
+        }
+export type MyFormsQueryHookResult = ReturnType<typeof useMyFormsQuery>;
+export type MyFormsLazyQueryHookResult = ReturnType<typeof useMyFormsLazyQuery>;
+export type MyFormsSuspenseQueryHookResult = ReturnType<typeof useMyFormsSuspenseQuery>;
+export type MyFormsQueryResult = Apollo.QueryResult<MyFormsQuery, MyFormsQueryVariables>;

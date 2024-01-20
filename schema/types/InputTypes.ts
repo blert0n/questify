@@ -12,7 +12,15 @@ export const TransactionIsolationLevel = enumType({
 
 export const FormScalarFieldEnum = enumType({
   name: 'FormScalarFieldEnum',
-  members: ['id', 'name', 'ownerId', 'order', 'style'],
+  members: [
+    'id',
+    'name',
+    'ownerId',
+    'order',
+    'style',
+    'createdAt',
+    'updatedAt',
+  ],
 })
 
 export const FormItemScalarFieldEnum = enumType({
@@ -82,6 +90,8 @@ export const FormWhereInput = inputObjectType({
     t.field('ownerId', { type: 'StringFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
+    t.field('createdAt', { type: 'DateTimeFilter' })
+    t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
   },
 })
@@ -97,6 +107,8 @@ export const FormOrderByWithRelationInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrderInput' })
+    t.field('createdAt', { type: 'SortOrder' })
+    t.field('updatedAt', { type: 'SortOrder' })
     t.field('items', { type: 'FormItemOrderByRelationAggregateInput' })
   },
 })
@@ -116,6 +128,8 @@ export const FormWhereUniqueInput = inputObjectType({
     t.field('ownerId', { type: 'StringFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
+    t.field('createdAt', { type: 'DateTimeFilter' })
+    t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
   },
 })
@@ -131,6 +145,8 @@ export const FormOrderByWithAggregationInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrderInput' })
+    t.field('createdAt', { type: 'SortOrder' })
+    t.field('updatedAt', { type: 'SortOrder' })
     t.field('_count', { type: 'FormCountOrderByAggregateInput' })
     t.field('_avg', { type: 'FormAvgOrderByAggregateInput' })
     t.field('_max', { type: 'FormMaxOrderByAggregateInput' })
@@ -153,6 +169,8 @@ export const FormScalarWhereWithAggregatesInput = inputObjectType({
     t.field('ownerId', { type: 'StringWithAggregatesFilter' })
     t.field('order', { type: 'IntWithAggregatesFilter' })
     t.field('style', { type: 'JsonNullableWithAggregatesFilter' })
+    t.field('createdAt', { type: 'DateTimeWithAggregatesFilter' })
+    t.field('updatedAt', { type: 'DateTimeWithAggregatesFilter' })
   },
 })
 
@@ -274,6 +292,8 @@ export const FormCreateInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
     t.field('items', { type: 'FormItemCreateNestedManyWithoutFormInput' })
   },
 })
@@ -289,6 +309,8 @@ export const FormUncheckedCreateInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
     t.field('items', {
       type: 'FormItemUncheckedCreateNestedManyWithoutFormInput',
     })
@@ -306,6 +328,8 @@ export const FormUpdateInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', { type: 'FormItemUpdateManyWithoutFormNestedInput' })
   },
 })
@@ -321,6 +345,8 @@ export const FormUncheckedUpdateInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', {
       type: 'FormItemUncheckedUpdateManyWithoutFormNestedInput',
     })
@@ -338,6 +364,8 @@ export const FormCreateManyInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
   },
 })
 
@@ -352,6 +380,8 @@ export const FormUpdateManyMutationInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
 
@@ -366,6 +396,8 @@ export const FormUncheckedUpdateManyInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
 
@@ -554,6 +586,23 @@ export const JsonNullableFilter = inputObjectType({
   },
 })
 
+export const DateTimeFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'DateTimeFilter',
+  definition(t) {
+    t.field('equals', { type: 'DateTime' })
+    t.list.field('in', { type: 'DateTime' })
+    t.list.field('notIn', { type: 'DateTime' })
+    t.field('lt', { type: 'DateTime' })
+    t.field('lte', { type: 'DateTime' })
+    t.field('gt', { type: 'DateTime' })
+    t.field('gte', { type: 'DateTime' })
+    t.field('not', { type: 'NestedDateTimeFilter' })
+  },
+})
+
 export const FormItemListRelationFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -609,6 +658,8 @@ export const FormCountOrderByAggregateInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrder' })
+    t.field('createdAt', { type: 'SortOrder' })
+    t.field('updatedAt', { type: 'SortOrder' })
   },
 })
 
@@ -632,6 +683,8 @@ export const FormMaxOrderByAggregateInput = inputObjectType({
     t.field('name', { type: 'SortOrder' })
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
+    t.field('createdAt', { type: 'SortOrder' })
+    t.field('updatedAt', { type: 'SortOrder' })
   },
 })
 
@@ -645,6 +698,8 @@ export const FormMinOrderByAggregateInput = inputObjectType({
     t.field('name', { type: 'SortOrder' })
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
+    t.field('createdAt', { type: 'SortOrder' })
+    t.field('updatedAt', { type: 'SortOrder' })
   },
 })
 
@@ -726,6 +781,26 @@ export const JsonNullableWithAggregatesFilter = inputObjectType({
     t.field('_count', { type: 'NestedIntNullableFilter' })
     t.field('_min', { type: 'NestedJsonNullableFilter' })
     t.field('_max', { type: 'NestedJsonNullableFilter' })
+  },
+})
+
+export const DateTimeWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'DateTimeWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'DateTime' })
+    t.list.field('in', { type: 'DateTime' })
+    t.list.field('notIn', { type: 'DateTime' })
+    t.field('lt', { type: 'DateTime' })
+    t.field('lte', { type: 'DateTime' })
+    t.field('gt', { type: 'DateTime' })
+    t.field('gte', { type: 'DateTime' })
+    t.field('not', { type: 'NestedDateTimeWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntFilter' })
+    t.field('_min', { type: 'NestedDateTimeFilter' })
+    t.field('_max', { type: 'NestedDateTimeFilter' })
   },
 })
 
@@ -921,6 +996,16 @@ export const IntFieldUpdateOperationsInput = inputObjectType({
   },
 })
 
+export const DateTimeFieldUpdateOperationsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'DateTimeFieldUpdateOperationsInput',
+  definition(t) {
+    t.field('set', { type: 'DateTime' })
+  },
+})
+
 export const FormItemUpdateManyWithoutFormNestedInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1061,6 +1146,23 @@ export const NestedIntFilter = inputObjectType({
   },
 })
 
+export const NestedDateTimeFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedDateTimeFilter',
+  definition(t) {
+    t.field('equals', { type: 'DateTime' })
+    t.list.field('in', { type: 'DateTime' })
+    t.list.field('notIn', { type: 'DateTime' })
+    t.field('lt', { type: 'DateTime' })
+    t.field('lte', { type: 'DateTime' })
+    t.field('gt', { type: 'DateTime' })
+    t.field('gte', { type: 'DateTime' })
+    t.field('not', { type: 'NestedDateTimeFilter' })
+  },
+})
+
 export const NestedStringWithAggregatesFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1159,6 +1261,26 @@ export const NestedJsonNullableFilter = inputObjectType({
     t.field('gt', { type: 'Json' })
     t.field('gte', { type: 'Json' })
     t.field('not', { type: 'Json' })
+  },
+})
+
+export const NestedDateTimeWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedDateTimeWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'DateTime' })
+    t.list.field('in', { type: 'DateTime' })
+    t.list.field('notIn', { type: 'DateTime' })
+    t.field('lt', { type: 'DateTime' })
+    t.field('lte', { type: 'DateTime' })
+    t.field('gt', { type: 'DateTime' })
+    t.field('gte', { type: 'DateTime' })
+    t.field('not', { type: 'NestedDateTimeWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntFilter' })
+    t.field('_min', { type: 'NestedDateTimeFilter' })
+    t.field('_max', { type: 'NestedDateTimeFilter' })
   },
 })
 
@@ -1338,6 +1460,8 @@ export const FormCreateWithoutItemsInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
   },
 })
 
@@ -1352,6 +1476,8 @@ export const FormUncheckedCreateWithoutItemsInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
   },
 })
 
@@ -1400,6 +1526,8 @@ export const FormUpdateWithoutItemsInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
 
@@ -1414,6 +1542,8 @@ export const FormUncheckedUpdateWithoutItemsInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
 })
 
@@ -1534,6 +1664,8 @@ export const FormCountAggregateOutputType = objectType({
     t.field('ownerId', { type: 'Int' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Int' })
+    t.field('createdAt', { type: 'Int' })
+    t.field('updatedAt', { type: 'Int' })
     t.field('_all', { type: 'Int' })
   },
 })
@@ -1568,6 +1700,8 @@ export const FormMinAggregateOutputType = objectType({
     t.nullable.field('name', { type: 'String' })
     t.nullable.field('ownerId', { type: 'String' })
     t.nullable.field('order', { type: 'Int' })
+    t.nullable.field('createdAt', { type: 'DateTime' })
+    t.nullable.field('updatedAt', { type: 'DateTime' })
   },
 })
 
@@ -1581,6 +1715,8 @@ export const FormMaxAggregateOutputType = objectType({
     t.nullable.field('name', { type: 'String' })
     t.nullable.field('ownerId', { type: 'String' })
     t.nullable.field('order', { type: 'Int' })
+    t.nullable.field('createdAt', { type: 'DateTime' })
+    t.nullable.field('updatedAt', { type: 'DateTime' })
   },
 })
 

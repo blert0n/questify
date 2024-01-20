@@ -15,21 +15,21 @@ export const Toolbar = () => {
         size={"icon"}
         onClick={() => toggleMark(editor, "bold")}
       >
-        <BoldIcon />
+        <BoldIcon size={16} strokeWidth={1.5} />
       </Button>
       <Button
         variant={isItalicActive ? "default" : "secondary"}
         size={"icon"}
         onClick={() => toggleMark(editor, "italic")}
       >
-        <ItalicIcon />
+        <ItalicIcon size={16} strokeWidth={1.5} />
       </Button>
       <Button
         variant={isUnderlineActive ? "default" : "secondary"}
         size={"icon"}
         onClick={() => toggleMark(editor, "underline")}
       >
-        <UnderlineIcon />
+        <UnderlineIcon size={16} strokeWidth={1.5} />
       </Button>
     </div>
   );

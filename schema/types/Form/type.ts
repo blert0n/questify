@@ -12,6 +12,8 @@ export const Form = objectType({
     t.string('ownerId')
     t.int('order')
     t.nullable.json('style')
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
     t.list.field('items', {
       type: 'FormItem',
       args: {

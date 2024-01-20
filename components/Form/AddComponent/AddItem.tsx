@@ -21,7 +21,11 @@ export function AddItem({ visible, toggle }: P) {
           className="border-2 border-slate-700 rounded-full bg-white hover:scale-110"
           size={"icon"}
         >
-          <Plus className="text-slate-700 cursor-pointer" strokeWidth={1.5} />
+          <Plus
+            className="text-slate-700 cursor-pointer"
+            size={16}
+            strokeWidth={1.5}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto">

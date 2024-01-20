@@ -1,7 +1,12 @@
 import Link from "next/link";
 import NavItem from "./NavItem";
 import { useRouter } from "next/router";
-import { Folder, Plus, LayoutDashboardIcon, File } from "lucide-react";
+import {
+  Folder,
+  Plus,
+  //  LayoutDashboardIcon,
+  File,
+} from "lucide-react";
 import { useModalStoreSelectors } from "@/store";
 
 interface P {
@@ -29,12 +34,12 @@ export default function Nav({ closeNavMobile }: P) {
           active={router.pathname === "/"}
           navigateUrl="/"
         />
-        <NavItem
+        {/* <NavItem
           title="Templates"
           icon={<LayoutDashboardIcon size={18} />}
           active={router.pathname.startsWith("/templates")}
           navigateUrl="/templates"
-        />
+        /> */}
         <NavItem
           title="Folders"
           icon={<Folder size={18} />}
