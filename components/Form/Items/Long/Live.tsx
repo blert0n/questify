@@ -1,13 +1,13 @@
 import ReactHtmlParser from "react-html-parser";
 import { useState } from "react";
-import { FormComponent, initialFormData } from "@/types";
+import { FormComponent, initialTheme } from "@/types";
 import { Textarea } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 
 export const LiveLongComponent = ({
   item,
-  theme = initialFormData,
+  theme = initialTheme,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
   const focusedInputColor = getPrimaryColor(theme.primaryColor);

@@ -1,10 +1,8 @@
-import { apolloClient } from "@/lib";
-import { CreateFormDocument, CreateFormMutation } from "@/lib/graphql";
-import { prepareCreateItems } from "@/lib/prepareData";
-import { FormDetailsSlice, ItemSlice, ThemeSlice } from "@/types";
+import { initialFormData } from "./../../types/initialData";
+import { FormDetailsSlice, ItemSlice, ThemeSlice, initialTheme } from "@/types";
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";
-import { closeFormModal } from "../actions";
+import { saveForm } from "../actions";
 
 export const createFormDetailsSlice: StateCreator<
   ThemeSlice & ItemSlice & FormDetailsSlice,
@@ -23,32 +21,16 @@ export const createFormDetailsSlice: StateCreator<
       ...state,
       [prop]: value,
     })),
+  resetForm: () => {
+    set((state) => ({
+      ...state,
+      theme: initialTheme,
+      ...initialFormData,
+    }));
+  },
   saveForm: async () => {
     if (!get().items.length)
       return toast.info("At least one form item is required");
-
-    set((state) => ({ ...state, loading: true }));
-    try {
-      await apolloClient.mutate<CreateFormMutation>({
-        mutation: CreateFormDocument,
-        variables: {
-          data: {
-            name: get().name,
-            items: {
-              create: prepareCreateItems(get().items),
-            },
-            style: get().theme,
-            ownerId: "",
-          },
-        },
-      });
-      set((state) => ({ ...state, loading: false }));
-      toast.success("Form created successfully!");
-      closeFormModal();
-    } catch (error) {
-      set((state) => ({ ...state, loading: false }));
-      console.error("Error saving form:", error);
-      toast.error("Something went wrong! Please try again later.");
-    }
+    await saveForm();
   },
 });

@@ -1,13 +1,10 @@
 import { AppSelect } from "@/components/controlled-inputs";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import { FormComponent, initialFormData } from "@/types";
+import { FormComponent, initialTheme } from "@/types";
 import ReactHtmlParser from "react-html-parser";
 
-export const LiveDropdown = ({
-  item,
-  theme = initialFormData,
-}: FormComponent) => {
+export const LiveDropdown = ({ item, theme = initialTheme }: FormComponent) => {
   const checkMarkColor = getPrimaryColor(theme.primaryColor);
 
   return (

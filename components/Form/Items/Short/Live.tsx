@@ -1,13 +1,13 @@
 import { Input } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import { FormComponent, initialFormData } from "@/types";
+import { FormComponent, initialTheme } from "@/types";
 import { useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
 export const LiveShortComponent = ({
   item,
-  theme = initialFormData,
+  theme = initialTheme,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
   const focusedInputColor = getPrimaryColor(theme.primaryColor);

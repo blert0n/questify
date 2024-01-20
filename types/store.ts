@@ -13,6 +13,7 @@ export type FormDetailsSlice = {
     value: FormDetailsSlice[K]
   ) => void;
   saveForm: () => void;
+  resetForm: () => void;
 };
 
 export type ThemeSlice = {

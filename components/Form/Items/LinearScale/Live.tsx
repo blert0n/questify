@@ -1,7 +1,7 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import { FormComponent, initialFormData } from "@/types";
+import { FormComponent, initialTheme } from "@/types";
 import ReactHtmlParser from "react-html-parser";
 
 const generateScaleOptions = (start: string = "1", end: string = "10") => {
@@ -16,7 +16,7 @@ const generateScaleOptions = (start: string = "1", end: string = "10") => {
 
 export const LiveLinearScale = ({
   item,
-  theme = initialFormData,
+  theme = initialTheme,
 }: FormComponent) => {
   const checkBoxColor = getPrimaryColor(theme.primaryColor);
   return (

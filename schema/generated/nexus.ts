@@ -126,6 +126,7 @@ export interface NexusGenInputs {
   }
   FormCountOrderByAggregateInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    favorite?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -135,6 +136,7 @@ export interface NexusGenInputs {
   }
   FormCreateInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     items?: NexusGenInputs['FormItemCreateNestedManyWithoutFormInput'] | null; // FormItemCreateNestedManyWithoutFormInput
     name: string; // String!
@@ -145,6 +147,7 @@ export interface NexusGenInputs {
   }
   FormCreateManyInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     name: string; // String!
     order?: number | null; // Int
@@ -163,6 +166,7 @@ export interface NexusGenInputs {
   }
   FormCreateWithoutItemsInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     name: string; // String!
     order?: number | null; // Int
@@ -498,6 +502,7 @@ export interface NexusGenInputs {
   }
   FormMaxOrderByAggregateInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    favorite?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -506,6 +511,7 @@ export interface NexusGenInputs {
   }
   FormMinOrderByAggregateInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    favorite?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -519,6 +525,7 @@ export interface NexusGenInputs {
     _min?: NexusGenInputs['FormMinOrderByAggregateInput'] | null; // FormMinOrderByAggregateInput
     _sum?: NexusGenInputs['FormSumOrderByAggregateInput'] | null; // FormSumOrderByAggregateInput
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    favorite?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     order?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -528,6 +535,7 @@ export interface NexusGenInputs {
   }
   FormOrderByWithRelationInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    favorite?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     items?: NexusGenInputs['FormItemOrderByRelationAggregateInput'] | null; // FormItemOrderByRelationAggregateInput
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -549,6 +557,7 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['FormScalarWhereWithAggregatesInput'] | null> | null; // [FormScalarWhereWithAggregatesInput]
     OR?: Array<NexusGenInputs['FormScalarWhereWithAggregatesInput'] | null> | null; // [FormScalarWhereWithAggregatesInput]
     createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    favorite?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
     id?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     name?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     order?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
@@ -561,6 +570,7 @@ export interface NexusGenInputs {
   }
   FormUncheckedCreateInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     items?: NexusGenInputs['FormItemUncheckedCreateNestedManyWithoutFormInput'] | null; // FormItemUncheckedCreateNestedManyWithoutFormInput
     name: string; // String!
@@ -571,6 +581,7 @@ export interface NexusGenInputs {
   }
   FormUncheckedCreateWithoutItemsInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     name: string; // String!
     order?: number | null; // Int
@@ -580,6 +591,7 @@ export interface NexusGenInputs {
   }
   FormUncheckedUpdateInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    favorite?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     items?: NexusGenInputs['FormItemUncheckedUpdateManyWithoutFormNestedInput'] | null; // FormItemUncheckedUpdateManyWithoutFormNestedInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -590,6 +602,7 @@ export interface NexusGenInputs {
   }
   FormUncheckedUpdateManyInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    favorite?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -599,6 +612,7 @@ export interface NexusGenInputs {
   }
   FormUncheckedUpdateWithoutItemsInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    favorite?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -608,6 +622,7 @@ export interface NexusGenInputs {
   }
   FormUpdateInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    favorite?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     items?: NexusGenInputs['FormItemUpdateManyWithoutFormNestedInput'] | null; // FormItemUpdateManyWithoutFormNestedInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -618,6 +633,7 @@ export interface NexusGenInputs {
   }
   FormUpdateManyMutationInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    favorite?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -638,6 +654,7 @@ export interface NexusGenInputs {
   }
   FormUpdateWithoutItemsInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    favorite?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -655,6 +672,7 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['FormWhereInput'] | null> | null; // [FormWhereInput]
     OR?: Array<NexusGenInputs['FormWhereInput'] | null> | null; // [FormWhereInput]
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    favorite?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     items?: NexusGenInputs['FormItemListRelationFilter'] | null; // FormItemListRelationFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -668,6 +686,7 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['FormWhereInput'] | null> | null; // [FormWhereInput]
     OR?: Array<NexusGenInputs['FormWhereInput'] | null> | null; // [FormWhereInput]
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    favorite?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     id?: string | null; // String
     items?: NexusGenInputs['FormItemListRelationFilter'] | null; // FormItemListRelationFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -922,7 +941,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   FormItemScalarFieldEnum: "formId" | "id" | "image" | "items" | "name" | "order" | "required" | "section" | "type"
-  FormScalarFieldEnum: "createdAt" | "id" | "name" | "order" | "ownerId" | "style" | "updatedAt"
+  FormScalarFieldEnum: "createdAt" | "favorite" | "id" | "name" | "order" | "ownerId" | "style" | "updatedAt"
   FormType: "DATE" | "DROPDOWN" | "LINEAR_SCALE" | "LONG" | "MULTIPLE_CHOICE" | "SHORT" | "SINGLE_CHOICE"
   JsonNullValueFilter: "AnyNull" | "DbNull" | "JsonNull"
   NullableJsonNullValueInput: "DbNull" | "JsonNull"
@@ -965,6 +984,7 @@ export interface NexusGenObjects {
   }
   Form: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    favorite: boolean; // Boolean!
     id: string; // String!
     name: string; // String!
     order: number; // Int!
@@ -978,6 +998,7 @@ export interface NexusGenObjects {
   FormCountAggregateOutputType: { // root type
     _all: number; // Int!
     createdAt: number; // Int!
+    favorite: number; // Int!
     id: number; // Int!
     name: number; // Int!
     order: number; // Int!
@@ -1039,6 +1060,7 @@ export interface NexusGenObjects {
   }
   FormMaxAggregateOutputType: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     name?: string | null; // String
     order?: number | null; // Int
@@ -1047,6 +1069,7 @@ export interface NexusGenObjects {
   }
   FormMinAggregateOutputType: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite?: boolean | null; // Boolean
     id?: string | null; // String
     name?: string | null; // String
     order?: number | null; // Int
@@ -1095,6 +1118,7 @@ export interface NexusGenFieldTypes {
   Form: { // field return type
     _count: NexusGenRootTypes['FormCountOutputType']; // FormCountOutputType!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
+    favorite: boolean; // Boolean!
     id: string; // String!
     items: NexusGenRootTypes['FormItem'][]; // [FormItem!]!
     name: string; // String!
@@ -1109,6 +1133,7 @@ export interface NexusGenFieldTypes {
   FormCountAggregateOutputType: { // field return type
     _all: number; // Int!
     createdAt: number; // Int!
+    favorite: number; // Int!
     id: number; // Int!
     name: number; // Int!
     order: number; // Int!
@@ -1171,6 +1196,7 @@ export interface NexusGenFieldTypes {
   }
   FormMaxAggregateOutputType: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite: boolean | null; // Boolean
     id: string | null; // String
     name: string | null; // String
     order: number | null; // Int
@@ -1179,6 +1205,7 @@ export interface NexusGenFieldTypes {
   }
   FormMinAggregateOutputType: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    favorite: boolean | null; // Boolean
     id: string | null; // String
     name: string | null; // String
     order: number | null; // Int
@@ -1232,6 +1259,7 @@ export interface NexusGenFieldTypeNames {
   Form: { // field return type name
     _count: 'FormCountOutputType'
     createdAt: 'DateTime'
+    favorite: 'Boolean'
     id: 'String'
     items: 'FormItem'
     name: 'String'
@@ -1246,6 +1274,7 @@ export interface NexusGenFieldTypeNames {
   FormCountAggregateOutputType: { // field return type name
     _all: 'Int'
     createdAt: 'Int'
+    favorite: 'Int'
     id: 'Int'
     name: 'Int'
     order: 'Int'
@@ -1308,6 +1337,7 @@ export interface NexusGenFieldTypeNames {
   }
   FormMaxAggregateOutputType: { // field return type name
     createdAt: 'DateTime'
+    favorite: 'Boolean'
     id: 'String'
     name: 'String'
     order: 'Int'
@@ -1316,6 +1346,7 @@ export interface NexusGenFieldTypeNames {
   }
   FormMinAggregateOutputType: { // field return type name
     createdAt: 'DateTime'
+    favorite: 'Boolean'
     id: 'String'
     name: 'String'
     order: 'Int'
@@ -1384,14 +1415,10 @@ export interface NexusGenArgTypes {
       base64: string; // String!
       formId: string; // String!
       itemId: string; // String!
-      name: string; // String!
-      type: string; // String!
     }
     uploaderHeaderImage: { // args
       base64: string; // String!
       formId: string; // String!
-      name: string; // String!
-      type: string; // String!
     }
   }
   Query: {

@@ -4,6 +4,15 @@ import { ItemSlice } from "./store";
 import { DraggableProvidedDragHandleProps } from "@hello-pangea/dnd";
 export type FontFamily = keyof typeof fontMapper;
 
+export interface InitialFormData {
+  items: FormItem[];
+  name: string;
+  loading: boolean;
+  isFavorite: boolean;
+  editMode: boolean;
+  selectedComponent: string;
+}
+
 interface Image {
   name: string;
   type: string;

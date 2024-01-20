@@ -1,4 +1,4 @@
-import { Theme, FormItem, SubItem } from "./form";
+import { Theme, FormItem, SubItem, InitialFormData } from "./form";
 import { FormType } from "@/lib/graphql";
 import { v4 as uuidv4 } from "uuid";
 
@@ -8,7 +8,16 @@ export const iconProps = {
   strokeWidth: 1.5,
 };
 
-export const initialFormData: Theme = {
+export const initialFormData: InitialFormData = {
+  items: [],
+  name: "Untitled Form",
+  loading: false,
+  isFavorite: false,
+  editMode: true,
+  selectedComponent: "formHeader",
+};
+
+export const initialTheme: Theme = {
   Header: {
     fontSize: "24",
     fontFamily: "Open Sans",

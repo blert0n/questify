@@ -109,6 +109,7 @@ input EnumFormTypeWithAggregatesFilter {
 type Form {
   _count: FormCountOutputType!
   createdAt: DateTime!
+  favorite: Boolean!
   id: String!
   items(cursor: FormItemWhereUniqueInput, distinct: [FormItemScalarFieldEnum], orderBy: [FormItemOrderByWithRelationInput], skip: Int, take: Int, where: FormItemWhereInput): [FormItem!]!
   name: String!
@@ -129,6 +130,7 @@ input FormAvgOrderByAggregateInput {
 type FormCountAggregateOutputType {
   _all: Int!
   createdAt: Int!
+  favorite: Int!
   id: Int!
   name: Int!
   order: Int!
@@ -139,6 +141,7 @@ type FormCountAggregateOutputType {
 
 input FormCountOrderByAggregateInput {
   createdAt: SortOrder
+  favorite: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -153,6 +156,7 @@ type FormCountOutputType {
 
 input FormCreateInput {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   items: FormItemCreateNestedManyWithoutFormInput
   name: String!
@@ -164,6 +168,7 @@ input FormCreateInput {
 
 input FormCreateManyInput {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   name: String!
   order: Int
@@ -185,6 +190,7 @@ input FormCreateOrConnectWithoutItemsInput {
 
 input FormCreateWithoutItemsInput {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   name: String!
   order: Int
@@ -624,6 +630,7 @@ input FormItemWhereUniqueInput {
 
 type FormMaxAggregateOutputType {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   name: String
   order: Int
@@ -633,6 +640,7 @@ type FormMaxAggregateOutputType {
 
 input FormMaxOrderByAggregateInput {
   createdAt: SortOrder
+  favorite: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -642,6 +650,7 @@ input FormMaxOrderByAggregateInput {
 
 type FormMinAggregateOutputType {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   name: String
   order: Int
@@ -651,6 +660,7 @@ type FormMinAggregateOutputType {
 
 input FormMinOrderByAggregateInput {
   createdAt: SortOrder
+  favorite: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -665,6 +675,7 @@ input FormOrderByWithAggregationInput {
   _min: FormMinOrderByAggregateInput
   _sum: FormSumOrderByAggregateInput
   createdAt: SortOrder
+  favorite: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -675,6 +686,7 @@ input FormOrderByWithAggregationInput {
 
 input FormOrderByWithRelationInput {
   createdAt: SortOrder
+  favorite: SortOrder
   id: SortOrder
   items: FormItemOrderByRelationAggregateInput
   name: SortOrder
@@ -696,6 +708,7 @@ input FormRelationFilter {
 
 enum FormScalarFieldEnum {
   createdAt
+  favorite
   id
   name
   order
@@ -709,6 +722,7 @@ input FormScalarWhereWithAggregatesInput {
   NOT: [FormScalarWhereWithAggregatesInput]
   OR: [FormScalarWhereWithAggregatesInput]
   createdAt: DateTimeWithAggregatesFilter
+  favorite: BoolWithAggregatesFilter
   id: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
   order: IntWithAggregatesFilter
@@ -737,6 +751,7 @@ enum FormType {
 
 input FormUncheckedCreateInput {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   items: FormItemUncheckedCreateNestedManyWithoutFormInput
   name: String!
@@ -748,6 +763,7 @@ input FormUncheckedCreateInput {
 
 input FormUncheckedCreateWithoutItemsInput {
   createdAt: DateTime
+  favorite: Boolean
   id: String
   name: String!
   order: Int
@@ -758,6 +774,7 @@ input FormUncheckedCreateWithoutItemsInput {
 
 input FormUncheckedUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   items: FormItemUncheckedUpdateManyWithoutFormNestedInput
   name: StringFieldUpdateOperationsInput
@@ -769,6 +786,7 @@ input FormUncheckedUpdateInput {
 
 input FormUncheckedUpdateManyInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -779,6 +797,7 @@ input FormUncheckedUpdateManyInput {
 
 input FormUncheckedUpdateWithoutItemsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -789,6 +808,7 @@ input FormUncheckedUpdateWithoutItemsInput {
 
 input FormUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   items: FormItemUpdateManyWithoutFormNestedInput
   name: StringFieldUpdateOperationsInput
@@ -800,6 +820,7 @@ input FormUpdateInput {
 
 input FormUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -823,6 +844,7 @@ input FormUpdateToOneWithWhereWithoutItemsInput {
 
 input FormUpdateWithoutItemsInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -842,6 +864,7 @@ input FormWhereInput {
   NOT: [FormWhereInput]
   OR: [FormWhereInput]
   createdAt: DateTimeFilter
+  favorite: BoolFilter
   id: StringFilter
   items: FormItemListRelationFilter
   name: StringFilter
@@ -856,6 +879,7 @@ input FormWhereUniqueInput {
   NOT: [FormWhereInput]
   OR: [FormWhereInput]
   createdAt: DateTimeFilter
+  favorite: BoolFilter
   id: String
   items: FormItemListRelationFilter
   name: StringFilter
@@ -954,8 +978,8 @@ type Mutation {
   deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
   updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
   updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
-  uploadItemImage(base64: String!, formId: String!, itemId: String!, name: String!, type: String!): UploadResponse
-  uploaderHeaderImage(base64: String!, formId: String!, name: String!, type: String!): UploadResponse
+  uploadItemImage(base64: String!, formId: String!, itemId: String!): UploadResponse
+  uploaderHeaderImage(base64: String!, formId: String!): UploadResponse
 }
 
 input NestedBoolFilter {

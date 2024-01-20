@@ -120,6 +120,7 @@ export interface EnumFormTypeWithAggregatesFilter {
 export interface Form {
   _count: FormCountOutputType;
   createdAt: Scalars['DateTime']['output'];
+  favorite: Scalars['Boolean']['output'];
   id: Scalars['String']['output'];
   items: Array<FormItem>;
   name: Scalars['String']['output'];
@@ -150,6 +151,7 @@ export interface FormAvgOrderByAggregateInput {
 export interface FormCountAggregateOutputType {
   _all: Scalars['Int']['output'];
   createdAt: Scalars['Int']['output'];
+  favorite: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   order: Scalars['Int']['output'];
@@ -160,6 +162,7 @@ export interface FormCountAggregateOutputType {
 
 export interface FormCountOrderByAggregateInput {
   createdAt?: InputMaybe<SortOrder>;
+  favorite?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -174,6 +177,7 @@ export interface FormCountOutputType {
 
 export interface FormCreateInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemCreateNestedManyWithoutFormInput>;
   name: Scalars['String']['input'];
@@ -185,6 +189,7 @@ export interface FormCreateInput {
 
 export interface FormCreateManyInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -206,6 +211,7 @@ export interface FormCreateOrConnectWithoutItemsInput {
 
 export interface FormCreateWithoutItemsInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -645,6 +651,7 @@ export interface FormItemWhereUniqueInput {
 
 export interface FormMaxAggregateOutputType {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  favorite?: Maybe<Scalars['Boolean']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
@@ -654,6 +661,7 @@ export interface FormMaxAggregateOutputType {
 
 export interface FormMaxOrderByAggregateInput {
   createdAt?: InputMaybe<SortOrder>;
+  favorite?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -663,6 +671,7 @@ export interface FormMaxOrderByAggregateInput {
 
 export interface FormMinAggregateOutputType {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  favorite?: Maybe<Scalars['Boolean']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
@@ -672,6 +681,7 @@ export interface FormMinAggregateOutputType {
 
 export interface FormMinOrderByAggregateInput {
   createdAt?: InputMaybe<SortOrder>;
+  favorite?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -686,6 +696,7 @@ export interface FormOrderByWithAggregationInput {
   _min?: InputMaybe<FormMinOrderByAggregateInput>;
   _sum?: InputMaybe<FormSumOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
+  favorite?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -696,6 +707,7 @@ export interface FormOrderByWithAggregationInput {
 
 export interface FormOrderByWithRelationInput {
   createdAt?: InputMaybe<SortOrder>;
+  favorite?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   items?: InputMaybe<FormItemOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
@@ -717,6 +729,7 @@ export interface FormRelationFilter {
 
 export enum FormScalarFieldEnum {
   CreatedAt = 'createdAt',
+  Favorite = 'favorite',
   Id = 'id',
   Name = 'name',
   Order = 'order',
@@ -730,6 +743,7 @@ export interface FormScalarWhereWithAggregatesInput {
   NOT?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  favorite?: InputMaybe<BoolWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   order?: InputMaybe<IntWithAggregatesFilter>;
@@ -758,6 +772,7 @@ export enum FormType {
 
 export interface FormUncheckedCreateInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemUncheckedCreateNestedManyWithoutFormInput>;
   name: Scalars['String']['input'];
@@ -769,6 +784,7 @@ export interface FormUncheckedCreateInput {
 
 export interface FormUncheckedCreateWithoutItemsInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -779,6 +795,7 @@ export interface FormUncheckedCreateWithoutItemsInput {
 
 export interface FormUncheckedUpdateInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   items?: InputMaybe<FormItemUncheckedUpdateManyWithoutFormNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -790,6 +807,7 @@ export interface FormUncheckedUpdateInput {
 
 export interface FormUncheckedUpdateManyInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -800,6 +818,7 @@ export interface FormUncheckedUpdateManyInput {
 
 export interface FormUncheckedUpdateWithoutItemsInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -810,6 +829,7 @@ export interface FormUncheckedUpdateWithoutItemsInput {
 
 export interface FormUpdateInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   items?: InputMaybe<FormItemUpdateManyWithoutFormNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -821,6 +841,7 @@ export interface FormUpdateInput {
 
 export interface FormUpdateManyMutationInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -844,6 +865,7 @@ export interface FormUpdateToOneWithWhereWithoutItemsInput {
 
 export interface FormUpdateWithoutItemsInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -863,6 +885,7 @@ export interface FormWhereInput {
   NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  favorite?: InputMaybe<BoolFilter>;
   id?: InputMaybe<StringFilter>;
   items?: InputMaybe<FormItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
@@ -877,6 +900,7 @@ export interface FormWhereUniqueInput {
   NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  favorite?: InputMaybe<BoolFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
@@ -1011,16 +1035,12 @@ export interface MutationUploadItemImageArgs {
   base64: Scalars['String']['input'];
   formId: Scalars['String']['input'];
   itemId: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  type: Scalars['String']['input'];
 }
 
 
 export interface MutationUploaderHeaderImageArgs {
   base64: Scalars['String']['input'];
   formId: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  type: Scalars['String']['input'];
 }
 
 export interface NestedBoolFilter {
@@ -1320,6 +1340,23 @@ export type MyFormsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MyFormsQuery = { findManyForm: Array<{ id: string, name: string, createdAt: Date }> };
 
+export type UploadItemImageMutationVariables = Exact<{
+  formId: Scalars['String']['input'];
+  itemId: Scalars['String']['input'];
+  base64: Scalars['String']['input'];
+}>;
+
+
+export type UploadItemImageMutation = { uploadItemImage?: { success?: boolean | undefined } | undefined };
+
+export type UploadHeaderImageMutationVariables = Exact<{
+  formId: Scalars['String']['input'];
+  base64: Scalars['String']['input'];
+}>;
+
+
+export type UploadHeaderImageMutation = { uploaderHeaderImage?: { success?: boolean | undefined } | undefined };
+
 
 export const CreateFormDocument = /*#__PURE__*/ gql`
     mutation CreateForm($data: FormCreateInput!) {
@@ -1394,3 +1431,70 @@ export type MyFormsQueryHookResult = ReturnType<typeof useMyFormsQuery>;
 export type MyFormsLazyQueryHookResult = ReturnType<typeof useMyFormsLazyQuery>;
 export type MyFormsSuspenseQueryHookResult = ReturnType<typeof useMyFormsSuspenseQuery>;
 export type MyFormsQueryResult = Apollo.QueryResult<MyFormsQuery, MyFormsQueryVariables>;
+export const UploadItemImageDocument = /*#__PURE__*/ gql`
+    mutation UploadItemImage($formId: String!, $itemId: String!, $base64: String!) {
+  uploadItemImage(formId: $formId, itemId: $itemId, base64: $base64) {
+    success
+  }
+}
+    `;
+export type UploadItemImageMutationFn = Apollo.MutationFunction<UploadItemImageMutation, UploadItemImageMutationVariables>;
+
+/**
+ * __useUploadItemImageMutation__
+ *
+ * To run a mutation, you first call `useUploadItemImageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUploadItemImageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [uploadItemImageMutation, { data, loading, error }] = useUploadItemImageMutation({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *      itemId: // value for 'itemId'
+ *      base64: // value for 'base64'
+ *   },
+ * });
+ */
+export function useUploadItemImageMutation(baseOptions?: Apollo.MutationHookOptions<UploadItemImageMutation, UploadItemImageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UploadItemImageMutation, UploadItemImageMutationVariables>(UploadItemImageDocument, options);
+      }
+export type UploadItemImageMutationHookResult = ReturnType<typeof useUploadItemImageMutation>;
+export type UploadItemImageMutationResult = Apollo.MutationResult<UploadItemImageMutation>;
+export const UploadHeaderImageDocument = /*#__PURE__*/ gql`
+    mutation UploadHeaderImage($formId: String!, $base64: String!) {
+  uploaderHeaderImage(formId: $formId, base64: $base64) {
+    success
+  }
+}
+    `;
+export type UploadHeaderImageMutationFn = Apollo.MutationFunction<UploadHeaderImageMutation, UploadHeaderImageMutationVariables>;
+
+/**
+ * __useUploadHeaderImageMutation__
+ *
+ * To run a mutation, you first call `useUploadHeaderImageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUploadHeaderImageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [uploadHeaderImageMutation, { data, loading, error }] = useUploadHeaderImageMutation({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *      base64: // value for 'base64'
+ *   },
+ * });
+ */
+export function useUploadHeaderImageMutation(baseOptions?: Apollo.MutationHookOptions<UploadHeaderImageMutation, UploadHeaderImageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UploadHeaderImageMutation, UploadHeaderImageMutationVariables>(UploadHeaderImageDocument, options);
+      }
+export type UploadHeaderImageMutationHookResult = ReturnType<typeof useUploadHeaderImageMutation>;
+export type UploadHeaderImageMutationResult = Apollo.MutationResult<UploadHeaderImageMutation>;

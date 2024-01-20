@@ -1,10 +1,5 @@
 import { StateCreator } from "zustand";
-import {
-  initialFormData,
-  ThemeSlice,
-  ItemSlice,
-  FormDetailsSlice,
-} from "@/types";
+import { initialTheme, ThemeSlice, ItemSlice, FormDetailsSlice } from "@/types";
 import { htmlToText } from "@/lib";
 
 export const createThemeSlice: StateCreator<
@@ -13,7 +8,7 @@ export const createThemeSlice: StateCreator<
   [],
   ThemeSlice
 > = (set) => ({
-  theme: initialFormData,
+  theme: initialTheme,
   updateHeaderTheme: (prop, value) => {
     set((state) => ({
       ...state,
@@ -62,7 +57,7 @@ export const createThemeSlice: StateCreator<
   resetTheme: () =>
     set((state) => ({
       ...state,
-      theme: initialFormData,
+      theme: initialTheme,
       items: [],
       selectedComponent: "formHeader",
     })),

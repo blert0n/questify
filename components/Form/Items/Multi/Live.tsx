@@ -1,13 +1,13 @@
 import { Checkbox } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import { FormComponent, initialFormData } from "@/types";
+import { FormComponent, initialTheme } from "@/types";
 import { useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
 export const LiveMultiChoice = ({
   item,
-  theme = initialFormData,
+  theme = initialTheme,
 }: FormComponent) => {
   const [checked, setChecked] = useState<string[]>([]);
 

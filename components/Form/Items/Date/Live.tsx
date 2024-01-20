@@ -7,13 +7,13 @@ import {
 } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import { FormComponent, initialFormData } from "@/types";
+import { FormComponent, initialTheme } from "@/types";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
-export const LiveDate = ({ item, theme = initialFormData }: FormComponent) => {
+export const LiveDate = ({ item, theme = initialTheme }: FormComponent) => {
   const [date, setDate] = useState<Date | undefined>();
 
   const color = getPrimaryColor(theme.primaryColor);

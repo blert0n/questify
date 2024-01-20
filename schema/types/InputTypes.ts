@@ -18,6 +18,7 @@ export const FormScalarFieldEnum = enumType({
     'ownerId',
     'order',
     'style',
+    'favorite',
     'createdAt',
     'updatedAt',
   ],
@@ -90,6 +91,7 @@ export const FormWhereInput = inputObjectType({
     t.field('ownerId', { type: 'StringFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
+    t.field('favorite', { type: 'BoolFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
@@ -107,6 +109,7 @@ export const FormOrderByWithRelationInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrderInput' })
+    t.field('favorite', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
     t.field('items', { type: 'FormItemOrderByRelationAggregateInput' })
@@ -128,6 +131,7 @@ export const FormWhereUniqueInput = inputObjectType({
     t.field('ownerId', { type: 'StringFilter' })
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
+    t.field('favorite', { type: 'BoolFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
@@ -145,6 +149,7 @@ export const FormOrderByWithAggregationInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrderInput' })
+    t.field('favorite', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
     t.field('_count', { type: 'FormCountOrderByAggregateInput' })
@@ -169,6 +174,7 @@ export const FormScalarWhereWithAggregatesInput = inputObjectType({
     t.field('ownerId', { type: 'StringWithAggregatesFilter' })
     t.field('order', { type: 'IntWithAggregatesFilter' })
     t.field('style', { type: 'JsonNullableWithAggregatesFilter' })
+    t.field('favorite', { type: 'BoolWithAggregatesFilter' })
     t.field('createdAt', { type: 'DateTimeWithAggregatesFilter' })
     t.field('updatedAt', { type: 'DateTimeWithAggregatesFilter' })
   },
@@ -292,6 +298,7 @@ export const FormCreateInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', { type: 'FormItemCreateNestedManyWithoutFormInput' })
@@ -309,6 +316,7 @@ export const FormUncheckedCreateInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', {
@@ -328,6 +336,7 @@ export const FormUpdateInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', { type: 'FormItemUpdateManyWithoutFormNestedInput' })
@@ -345,6 +354,7 @@ export const FormUncheckedUpdateInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', {
@@ -364,6 +374,7 @@ export const FormCreateManyInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -380,6 +391,7 @@ export const FormUpdateManyMutationInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -396,6 +408,7 @@ export const FormUncheckedUpdateManyInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -586,6 +599,17 @@ export const JsonNullableFilter = inputObjectType({
   },
 })
 
+export const BoolFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'BoolFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolFilter' })
+  },
+})
+
 export const DateTimeFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -658,6 +682,7 @@ export const FormCountOrderByAggregateInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrder' })
+    t.field('favorite', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -683,6 +708,7 @@ export const FormMaxOrderByAggregateInput = inputObjectType({
     t.field('name', { type: 'SortOrder' })
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
+    t.field('favorite', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -698,6 +724,7 @@ export const FormMinOrderByAggregateInput = inputObjectType({
     t.field('name', { type: 'SortOrder' })
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
+    t.field('favorite', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -784,6 +811,20 @@ export const JsonNullableWithAggregatesFilter = inputObjectType({
   },
 })
 
+export const BoolWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'BoolWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntFilter' })
+    t.field('_min', { type: 'NestedBoolFilter' })
+    t.field('_max', { type: 'NestedBoolFilter' })
+  },
+})
+
 export const DateTimeWithAggregatesFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -801,17 +842,6 @@ export const DateTimeWithAggregatesFilter = inputObjectType({
     t.field('_count', { type: 'NestedIntFilter' })
     t.field('_min', { type: 'NestedDateTimeFilter' })
     t.field('_max', { type: 'NestedDateTimeFilter' })
-  },
-})
-
-export const BoolFilter = inputObjectType({
-  nonNullDefaults: {
-    input: false,
-  },
-  name: 'BoolFilter',
-  definition(t) {
-    t.field('equals', { type: 'Boolean' })
-    t.field('not', { type: 'NestedBoolFilter' })
   },
 })
 
@@ -911,20 +941,6 @@ export const FormItemSumOrderByAggregateInput = inputObjectType({
   },
 })
 
-export const BoolWithAggregatesFilter = inputObjectType({
-  nonNullDefaults: {
-    input: false,
-  },
-  name: 'BoolWithAggregatesFilter',
-  definition(t) {
-    t.field('equals', { type: 'Boolean' })
-    t.field('not', { type: 'NestedBoolWithAggregatesFilter' })
-    t.field('_count', { type: 'NestedIntFilter' })
-    t.field('_min', { type: 'NestedBoolFilter' })
-    t.field('_max', { type: 'NestedBoolFilter' })
-  },
-})
-
 export const EnumFormTypeWithAggregatesFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -993,6 +1009,16 @@ export const IntFieldUpdateOperationsInput = inputObjectType({
     t.field('decrement', { type: 'Int' })
     t.field('multiply', { type: 'Int' })
     t.field('divide', { type: 'Int' })
+  },
+})
+
+export const BoolFieldUpdateOperationsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'BoolFieldUpdateOperationsInput',
+  definition(t) {
+    t.field('set', { type: 'Boolean' })
   },
 })
 
@@ -1075,16 +1101,6 @@ export const FormCreateNestedOneWithoutItemsInput = inputObjectType({
   },
 })
 
-export const BoolFieldUpdateOperationsInput = inputObjectType({
-  nonNullDefaults: {
-    input: false,
-  },
-  name: 'BoolFieldUpdateOperationsInput',
-  definition(t) {
-    t.field('set', { type: 'Boolean' })
-  },
-})
-
 export const EnumFormTypeFieldUpdateOperationsInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1143,6 +1159,17 @@ export const NestedIntFilter = inputObjectType({
     t.field('gt', { type: 'Int' })
     t.field('gte', { type: 'Int' })
     t.field('not', { type: 'NestedIntFilter' })
+  },
+})
+
+export const NestedBoolFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedBoolFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolFilter' })
   },
 })
 
@@ -1264,6 +1291,20 @@ export const NestedJsonNullableFilter = inputObjectType({
   },
 })
 
+export const NestedBoolWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedBoolWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'Boolean' })
+    t.field('not', { type: 'NestedBoolWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntFilter' })
+    t.field('_min', { type: 'NestedBoolFilter' })
+    t.field('_max', { type: 'NestedBoolFilter' })
+  },
+})
+
 export const NestedDateTimeWithAggregatesFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1284,17 +1325,6 @@ export const NestedDateTimeWithAggregatesFilter = inputObjectType({
   },
 })
 
-export const NestedBoolFilter = inputObjectType({
-  nonNullDefaults: {
-    input: false,
-  },
-  name: 'NestedBoolFilter',
-  definition(t) {
-    t.field('equals', { type: 'Boolean' })
-    t.field('not', { type: 'NestedBoolFilter' })
-  },
-})
-
 export const NestedEnumFormTypeFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1305,20 +1335,6 @@ export const NestedEnumFormTypeFilter = inputObjectType({
     t.list.field('in', { type: 'FormType' })
     t.list.field('notIn', { type: 'FormType' })
     t.field('not', { type: 'NestedEnumFormTypeFilter' })
-  },
-})
-
-export const NestedBoolWithAggregatesFilter = inputObjectType({
-  nonNullDefaults: {
-    input: false,
-  },
-  name: 'NestedBoolWithAggregatesFilter',
-  definition(t) {
-    t.field('equals', { type: 'Boolean' })
-    t.field('not', { type: 'NestedBoolWithAggregatesFilter' })
-    t.field('_count', { type: 'NestedIntFilter' })
-    t.field('_min', { type: 'NestedBoolFilter' })
-    t.field('_max', { type: 'NestedBoolFilter' })
   },
 })
 
@@ -1460,6 +1476,7 @@ export const FormCreateWithoutItemsInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -1476,6 +1493,7 @@ export const FormUncheckedCreateWithoutItemsInput = inputObjectType({
     t.nonNull.field('ownerId', { type: 'String' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -1526,6 +1544,7 @@ export const FormUpdateWithoutItemsInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -1542,6 +1561,7 @@ export const FormUncheckedUpdateWithoutItemsInput = inputObjectType({
     t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -1664,6 +1684,7 @@ export const FormCountAggregateOutputType = objectType({
     t.field('ownerId', { type: 'Int' })
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Int' })
+    t.field('favorite', { type: 'Int' })
     t.field('createdAt', { type: 'Int' })
     t.field('updatedAt', { type: 'Int' })
     t.field('_all', { type: 'Int' })
@@ -1700,6 +1721,7 @@ export const FormMinAggregateOutputType = objectType({
     t.nullable.field('name', { type: 'String' })
     t.nullable.field('ownerId', { type: 'String' })
     t.nullable.field('order', { type: 'Int' })
+    t.nullable.field('favorite', { type: 'Boolean' })
     t.nullable.field('createdAt', { type: 'DateTime' })
     t.nullable.field('updatedAt', { type: 'DateTime' })
   },
@@ -1715,6 +1737,7 @@ export const FormMaxAggregateOutputType = objectType({
     t.nullable.field('name', { type: 'String' })
     t.nullable.field('ownerId', { type: 'String' })
     t.nullable.field('order', { type: 'Int' })
+    t.nullable.field('favorite', { type: 'Boolean' })
     t.nullable.field('createdAt', { type: 'DateTime' })
     t.nullable.field('updatedAt', { type: 'DateTime' })
   },

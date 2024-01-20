@@ -13,14 +13,8 @@ export const UploadItemImage = extendType({
         formId: nonNull(stringArg()),
         itemId: nonNull(stringArg()),
         base64: nonNull(stringArg()),
-        name: nonNull(stringArg()),
-        type: nonNull(stringArg()),
       },
-      resolve: async (
-        _,
-        { formId, itemId, base64, name, type },
-        context: Context
-      ) => {
+      resolve: async (_, { formId, itemId, base64 }, context: Context) => {
         cloudinary.config({
           cloud_name: process.env.CLOUDINARY_NAME,
           api_key: process.env.CLOUDINARY_API_KEY,
@@ -35,11 +29,11 @@ export const UploadItemImage = extendType({
             where: { id: itemId },
             data: {
               image: {
-                name,
+                name: `item-${itemId}`,
                 initialDataUrl: "",
                 dataUrl: result.url,
                 origin: "server",
-                type,
+                type: "",
               },
             },
           });
@@ -65,10 +59,8 @@ export const uploadHeaderImage = extendType({
       args: {
         formId: nonNull(stringArg()),
         base64: nonNull(stringArg()),
-        name: nonNull(stringArg()),
-        type: nonNull(stringArg()),
       },
-      resolve: async (_, { formId, base64, name, type }, context: Context) => {
+      resolve: async (_, { formId, base64 }, context: Context) => {
         cloudinary.config({
           cloud_name: process.env.CLOUDINARY_NAME,
           api_key: process.env.CLOUDINARY_API_KEY,
@@ -99,11 +91,11 @@ export const uploadHeaderImage = extendType({
             Header: {
               ...formTheme.Header,
               image: {
-                name,
+                name: `form-header-${formId}`,
                 initialDataUrl: "",
                 dataUrl: result.url,
                 origin: "server",
-                type,
+                type: "",
               },
             },
           };

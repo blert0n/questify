@@ -11,3 +11,14 @@ query MyForms {
     createdAt
   }
 }
+
+mutation UploadItemImage($formId: String!, $itemId: String!, $base64: String!) {
+  uploadItemImage(formId: $formId, itemId: $itemId, base64: $base64) {
+    success
+  }
+}
+mutation UploadHeaderImage($formId: String!, $base64: String!) {
+  uploaderHeaderImage(formId: $formId, base64: $base64) {
+    success
+  }
+}
