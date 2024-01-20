@@ -32,7 +32,7 @@ model FormItem {
   items    Json?
   image    Json?
   type     FormType
-  Form     Form     @relation(fields: [formId], references: [id])
+  Form     Form     @relation(fields: [formId], references: [id],onDelete: Cascade)
 }
 
 enum FormType {

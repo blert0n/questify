@@ -24,12 +24,12 @@ export const FullScreenModal = ({
   const { value: isAddPopoverOpen, toggle: toggleAddPopover } =
     useBoolean(false);
 
-  const resetTheme = useFormSelectors.use.resetTheme();
+  const resetForm = useFormSelectors.use.resetForm();
   const theme = useFormSelectors.use.theme();
   const editMode = useFormSelectors.use.editMode();
 
   const handleModalClose = () => {
-    resetTheme();
+    resetForm();
     closeFn();
   };
   return (

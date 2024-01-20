@@ -31,7 +31,6 @@ export type ThemeSlice = {
     value: Theme["Text"][K]
   ) => void;
   updateTheme: <K extends ThemeKeys>(prop: K, value: Theme[K]) => void;
-  resetTheme: () => void;
 };
 
 export type ItemSlice = {

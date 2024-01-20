@@ -8,6 +8,7 @@ export const permissions = shield(
     },
     Mutation: {
       createOneForm: and(rules.isAuthenticatedUser, rules.injectUserOnData),
+      deleteOneForm: and(rules.isAuthenticatedUser, rules.interceptOwnerId),
     },
   },
   {

@@ -1,6 +1,14 @@
 mutation CreateForm($data: FormCreateInput!) {
   createOneForm(data: $data) {
     id
+    name
+    createdAt
+  }
+}
+
+mutation DeleteForm($formId: String!) {
+  deleteOneForm(where: { id: $formId }) {
+    id
   }
 }
 

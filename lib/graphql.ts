@@ -1333,7 +1333,14 @@ export type CreateFormMutationVariables = Exact<{
 }>;
 
 
-export type CreateFormMutation = { createOneForm: { id: string } };
+export type CreateFormMutation = { createOneForm: { id: string, name: string, createdAt: Date } };
+
+export type DeleteFormMutationVariables = Exact<{
+  formId: Scalars['String']['input'];
+}>;
+
+
+export type DeleteFormMutation = { deleteOneForm?: { id: string } | undefined };
 
 export type MyFormsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1362,6 +1369,8 @@ export const CreateFormDocument = /*#__PURE__*/ gql`
     mutation CreateForm($data: FormCreateInput!) {
   createOneForm(data: $data) {
     id
+    name
+    createdAt
   }
 }
     `;
@@ -1390,6 +1399,38 @@ export function useCreateFormMutation(baseOptions?: Apollo.MutationHookOptions<C
       }
 export type CreateFormMutationHookResult = ReturnType<typeof useCreateFormMutation>;
 export type CreateFormMutationResult = Apollo.MutationResult<CreateFormMutation>;
+export const DeleteFormDocument = /*#__PURE__*/ gql`
+    mutation DeleteForm($formId: String!) {
+  deleteOneForm(where: {id: $formId}) {
+    id
+  }
+}
+    `;
+export type DeleteFormMutationFn = Apollo.MutationFunction<DeleteFormMutation, DeleteFormMutationVariables>;
+
+/**
+ * __useDeleteFormMutation__
+ *
+ * To run a mutation, you first call `useDeleteFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteFormMutation, { data, loading, error }] = useDeleteFormMutation({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *   },
+ * });
+ */
+export function useDeleteFormMutation(baseOptions?: Apollo.MutationHookOptions<DeleteFormMutation, DeleteFormMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteFormMutation, DeleteFormMutationVariables>(DeleteFormDocument, options);
+      }
+export type DeleteFormMutationHookResult = ReturnType<typeof useDeleteFormMutation>;
+export type DeleteFormMutationResult = Apollo.MutationResult<DeleteFormMutation>;
 export const MyFormsDocument = /*#__PURE__*/ gql`
     query MyForms {
   findManyForm(orderBy: {createdAt: desc}) {

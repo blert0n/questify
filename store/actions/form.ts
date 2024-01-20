@@ -5,10 +5,12 @@ import {
   UploadHeaderImageMutation,
   UploadItemImageDocument,
   UploadItemImageMutation,
-} from "../../lib/graphql";
-import { apolloClient } from "../../lib/apollo";
+  CreateFormDocument,
+  CreateFormMutation,
+  MyFormsDocument,
+} from "@/lib/graphql";
+import { apolloClient } from "@/lib/apollo";
 import { toast } from "react-toastify";
-import { CreateFormDocument, CreateFormMutation } from "@/lib/graphql";
 import {
   closeFormModal,
   resetForm,
@@ -18,7 +20,6 @@ import {
   getFormDetails,
 } from "./";
 import _ from "lodash";
-
 interface UploadImagesToCdnParams {
   formId?: string;
   headerImage?: string;
@@ -97,6 +98,11 @@ export const saveForm = async () => {
           favorite: formDetails.favorite,
         },
       },
+      refetchQueries: [
+        {
+          query: MyFormsDocument,
+        },
+      ],
     });
     toast.success("Form created successfully!");
     closeFormModal();

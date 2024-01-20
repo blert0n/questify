@@ -54,11 +54,4 @@ export const createThemeSlice: StateCreator<
         [prop]: value,
       },
     })),
-  resetTheme: () =>
-    set((state) => ({
-      ...state,
-      theme: initialTheme,
-      items: [],
-      selectedComponent: "formHeader",
-    })),
 });
