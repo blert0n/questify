@@ -1,6 +1,8 @@
 import { Theme, FormItem, SubItem, InitialFormData } from "./form";
 import { FormType } from "@/lib/graphql";
 import { v4 as uuidv4 } from "uuid";
+import { rsvp, contact, registration } from "@/lib/templates";
+import { FormState } from "./";
 
 export const iconProps = {
   size: 20,
@@ -97,3 +99,9 @@ export const newSubItem: (lastOrder?: number) => SubItem = (lastOrder = 0) => ({
   value: `Option ${lastOrder + 1}`,
   order: lastOrder + 1,
 });
+
+export const templateMapper: Record<string, FormState> = {
+  rsvp: rsvp,
+  contact: contact,
+  registration: registration,
+};

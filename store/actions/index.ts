@@ -3,6 +3,8 @@ import { useModalStore } from "../slices/modalStore";
 
 export const closeFormModal = () =>
   useModalStore.setState((state) => ({ ...state, isModalVisible: false }));
+export const openFormModal = () =>
+  useModalStore.setState((state) => ({ ...state, isModalVisible: true }));
 export const setLoading = (loading: boolean) =>
   useFormSelectors.setState((state) => ({ ...state, loading }));
 export const resetForm = () => useFormSelectors.getState().resetForm();

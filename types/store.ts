@@ -14,6 +14,7 @@ export type FormDetailsSlice = {
   ) => void;
   saveForm: () => void;
   resetForm: () => void;
+  loadTemplate: (template: string) => void;
 };
 
 export type ThemeSlice = {
@@ -61,3 +62,16 @@ export type ThemeKeys = keyof Theme;
 export type HeaderThemeKeys = keyof Theme["Header"];
 export type QuestionThemeKeys = keyof Theme["Question"];
 export type TextThemeKeys = keyof Theme["Text"];
+
+type NonFunctionKeyNames<T> = Exclude<
+  {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    [key in keyof T]: T[key] extends Function ? never : key;
+  }[keyof T],
+  undefined
+>;
+type RemoveFunctions<T> = Pick<T, NonFunctionKeyNames<T>>;
+
+export type FormState = RemoveFunctions<
+  ThemeSlice & ItemSlice & FormDetailsSlice
+>;
