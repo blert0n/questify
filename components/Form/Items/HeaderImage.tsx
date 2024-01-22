@@ -16,10 +16,7 @@ export const HeaderImage = () => {
       )}
       {/*  eslint-disable-next-line @next/next/no-img-element */}
       <img
-        onLoad={() => {
-          console.log("loaded");
-          setLoading(false);
-        }}
+        onLoad={() => setLoading(false)}
         onLoadedData={() => setLoading(false)}
         src={theme.Header.image.dataUrl}
         className="h-full w-full rounded-md"

@@ -25,12 +25,12 @@ export default function Templates() {
   const openModal = useModalStoreSelectors.use.openModal();
 
   return (
-    <div className="flex flex-col gap-2 text-gray-500 text-sm">
+    <div className="flex flex-col gap-2 text-gray-500 text-sm items-center justify-center">
       Start a new form
-      <div className="w-full flex flex-row flex-wrap gap-4">
+      <div className="w-full flex flex-row flex-wrap gap-4 justify-center items-center">
         <div className="flex flex-col gap-2">
           <div
-            className="flex flex-col items-center justify-center gap-2 w-[150px] h-[140px] shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white"
+            className="flex flex-col items-center justify-center gap-2 border-[1.5px] border-gray-200 w-[150px] h-[140px] shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white"
             onClick={openModal}
           >
             <Plus size={48} className="text-gray-500" strokeWidth={0.5} />

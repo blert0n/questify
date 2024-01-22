@@ -1342,10 +1342,27 @@ export type DeleteFormMutationVariables = Exact<{
 
 export type DeleteFormMutation = { deleteOneForm?: { id: string } | undefined };
 
-export type MyFormsQueryVariables = Exact<{ [key: string]: never; }>;
+export type StarFormMutationVariables = Exact<{
+  formId: Scalars['String']['input'];
+  favorite: Scalars['Boolean']['input'];
+}>;
 
 
-export type MyFormsQuery = { findManyForm: Array<{ id: string, name: string, createdAt: Date }> };
+export type StarFormMutation = { updateOneForm: { id: string, favorite: boolean } };
+
+export type MyFormsQueryVariables = Exact<{
+  orderBy?: InputMaybe<Array<InputMaybe<FormOrderByWithRelationInput>> | InputMaybe<FormOrderByWithRelationInput>>;
+}>;
+
+
+export type MyFormsQuery = { findManyForm: Array<{ id: string, name: string, favorite: boolean, createdAt: Date, updatedAt: Date }> };
+
+export type FormDataQueryVariables = Exact<{
+  formId: Scalars['String']['input'];
+}>;
+
+
+export type FormDataQuery = { findFirstForm?: { id: string, name: string, favorite: boolean, style?: any | undefined, items: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined, image?: any | undefined, type: FormType }> } | undefined };
 
 export type UploadItemImageMutationVariables = Exact<{
   formId: Scalars['String']['input'];
@@ -1431,12 +1448,48 @@ export function useDeleteFormMutation(baseOptions?: Apollo.MutationHookOptions<D
       }
 export type DeleteFormMutationHookResult = ReturnType<typeof useDeleteFormMutation>;
 export type DeleteFormMutationResult = Apollo.MutationResult<DeleteFormMutation>;
+export const StarFormDocument = /*#__PURE__*/ gql`
+    mutation StarForm($formId: String!, $favorite: Boolean!) {
+  updateOneForm(where: {id: $formId}, data: {favorite: {set: $favorite}}) {
+    id
+    favorite
+  }
+}
+    `;
+export type StarFormMutationFn = Apollo.MutationFunction<StarFormMutation, StarFormMutationVariables>;
+
+/**
+ * __useStarFormMutation__
+ *
+ * To run a mutation, you first call `useStarFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useStarFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [starFormMutation, { data, loading, error }] = useStarFormMutation({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *      favorite: // value for 'favorite'
+ *   },
+ * });
+ */
+export function useStarFormMutation(baseOptions?: Apollo.MutationHookOptions<StarFormMutation, StarFormMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<StarFormMutation, StarFormMutationVariables>(StarFormDocument, options);
+      }
+export type StarFormMutationHookResult = ReturnType<typeof useStarFormMutation>;
+export type StarFormMutationResult = Apollo.MutationResult<StarFormMutation>;
 export const MyFormsDocument = /*#__PURE__*/ gql`
-    query MyForms {
-  findManyForm(orderBy: {createdAt: desc}) {
+    query MyForms($orderBy: [FormOrderByWithRelationInput]) {
+  findManyForm(orderBy: $orderBy) {
     id
     name
+    favorite
     createdAt
+    updatedAt
   }
 }
     `;
@@ -1453,6 +1506,7 @@ export const MyFormsDocument = /*#__PURE__*/ gql`
  * @example
  * const { data, loading, error } = useMyFormsQuery({
  *   variables: {
+ *      orderBy: // value for 'orderBy'
  *   },
  * });
  */
@@ -1472,6 +1526,59 @@ export type MyFormsQueryHookResult = ReturnType<typeof useMyFormsQuery>;
 export type MyFormsLazyQueryHookResult = ReturnType<typeof useMyFormsLazyQuery>;
 export type MyFormsSuspenseQueryHookResult = ReturnType<typeof useMyFormsSuspenseQuery>;
 export type MyFormsQueryResult = Apollo.QueryResult<MyFormsQuery, MyFormsQueryVariables>;
+export const FormDataDocument = /*#__PURE__*/ gql`
+    query FormData($formId: String!) {
+  findFirstForm(where: {id: {equals: $formId}}) {
+    id
+    name
+    favorite
+    style
+    items {
+      id
+      formId
+      name
+      order
+      required
+      items
+      image
+      type
+    }
+  }
+}
+    `;
+
+/**
+ * __useFormDataQuery__
+ *
+ * To run a query within a React component, call `useFormDataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFormDataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFormDataQuery({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *   },
+ * });
+ */
+export function useFormDataQuery(baseOptions: Apollo.QueryHookOptions<FormDataQuery, FormDataQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FormDataQuery, FormDataQueryVariables>(FormDataDocument, options);
+      }
+export function useFormDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FormDataQuery, FormDataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FormDataQuery, FormDataQueryVariables>(FormDataDocument, options);
+        }
+export function useFormDataSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FormDataQuery, FormDataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FormDataQuery, FormDataQueryVariables>(FormDataDocument, options);
+        }
+export type FormDataQueryHookResult = ReturnType<typeof useFormDataQuery>;
+export type FormDataLazyQueryHookResult = ReturnType<typeof useFormDataLazyQuery>;
+export type FormDataSuspenseQueryHookResult = ReturnType<typeof useFormDataSuspenseQuery>;
+export type FormDataQueryResult = Apollo.QueryResult<FormDataQuery, FormDataQueryVariables>;
 export const UploadItemImageDocument = /*#__PURE__*/ gql`
     mutation UploadItemImage($formId: String!, $itemId: String!, $base64: String!) {
   uploadItemImage(formId: $formId, itemId: $itemId, base64: $base64) {

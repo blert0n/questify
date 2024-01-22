@@ -60,7 +60,7 @@ export function AppSelect({
               <SelectItem
                 key={index}
                 value={option.value}
-                checkIconStyle={styles?.checkIconStyle}
+                styles={styles?.checkIconStyle}
               >
                 {option.placeholder}
               </SelectItem>

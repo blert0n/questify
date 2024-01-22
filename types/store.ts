@@ -2,7 +2,7 @@ import { FormType } from "@/lib/graphql";
 import { Theme, FormItem } from "./form";
 
 export type FormDetailsSlice = {
-  id?: number;
+  id?: string;
   name: string;
   isFavorite: boolean;
   selectedComponent: string;
@@ -13,6 +13,7 @@ export type FormDetailsSlice = {
     value: FormDetailsSlice[K]
   ) => void;
   saveForm: () => void;
+  loadForm: (id: string) => void;
   resetForm: () => void;
   loadTemplate: (template: string) => void;
 };

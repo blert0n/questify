@@ -8,6 +8,8 @@ import {
   CreateFormDocument,
   CreateFormMutation,
   MyFormsDocument,
+  FormDataDocument,
+  FormDataQuery,
 } from "@/lib/graphql";
 import { apolloClient } from "@/lib/apollo";
 import { toast } from "react-toastify";
@@ -26,7 +28,6 @@ interface UploadImagesToCdnParams {
   items: FormItem[];
 }
 const uploadHeaderImage = async (formId: string, image: string) => {
-  console.log(formId, "headerImage");
   try {
     await apolloClient.mutate<UploadHeaderImageMutation>({
       mutation: UploadHeaderImageDocument,
@@ -117,5 +118,24 @@ export const saveForm = async () => {
     setLoading(false);
     console.error("Error saving form:", error);
     toast.error("Something went wrong! Please try again later.");
+  }
+};
+export const loadFormData = async (id: string) => {
+  setLoading(true);
+  try {
+    const { data: { findFirstForm } = {} } =
+      await apolloClient.query<FormDataQuery>({
+        query: FormDataDocument,
+        variables: {
+          formId: id,
+        },
+      });
+    console.log(findFirstForm, "findFirstForm");
+    setLoading(false);
+    return findFirstForm;
+  } catch (e) {
+    toast.error("Something went wrong! Please try again later!");
+    console.log(e);
+    setLoading(false);
   }
 };

@@ -22,7 +22,7 @@ export const IconOption = ({ icon, title, description, type, toggle }: P) => {
       <Tooltip>
         <TooltipTrigger>
           <div
-            className="flex gap-2 items-center p-2 cursor-pointer"
+            className="flex gap-2 items-center p-2 cursor-pointer hover:bg-slate-100 rounded-sm "
             onClick={() => {
               addItem(type);
               toggle();

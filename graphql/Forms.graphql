@@ -11,12 +11,41 @@ mutation DeleteForm($formId: String!) {
     id
   }
 }
+mutation StarForm($formId: String!, $favorite: Boolean!) {
+  updateOneForm(
+    where: { id: $formId }
+    data: { favorite: { set: $favorite } }
+  ) {
+    id
+    favorite
+  }
+}
 
-query MyForms {
-  findManyForm(orderBy: { createdAt: desc }) {
+query MyForms($orderBy: [FormOrderByWithRelationInput]) {
+  findManyForm(orderBy: $orderBy) {
     id
     name
+    favorite
     createdAt
+    updatedAt
+  }
+}
+query FormData($formId: String!) {
+  findFirstForm(where: { id: { equals: $formId } }) {
+    id
+    name
+    favorite
+    style
+    items {
+      id
+      formId
+      name
+      order
+      required
+      items
+      image
+      type
+    }
   }
 }
 

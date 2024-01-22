@@ -1,17 +1,38 @@
-import { useMyFormsQuery } from "@/lib/graphql";
+import {
+  FormOrderByWithRelationInput,
+  SortOrder,
+  useMyFormsQuery,
+} from "@/lib/graphql";
 import Form from "./Form";
 import { Loader } from "@/assets/svg";
 import { Button } from "../ui";
 import { useModalStoreSelectors } from "@/store";
 import { cn } from "@/lib";
 import Templates from "./Templates";
+import { useBoolean } from "usehooks-ts";
+import Filters from "./Filter";
+import { useState } from "react";
+
+const orderByMapper: Record<number, FormOrderByWithRelationInput> = {
+  1: { createdAt: SortOrder.Desc },
+  2: { updatedAt: SortOrder.Desc },
+  3: { favorite: SortOrder.Desc },
+};
 
 export default function Home() {
-  const { data: { findManyForm } = {}, loading } = useMyFormsQuery();
+  const { value: filterVisible, setValue: toggleFilter } = useBoolean(false);
+  const [orderBy, setOrderBy] = useState<FormOrderByWithRelationInput>({
+    createdAt: SortOrder.Desc,
+  });
+  const { data: { findManyForm } = {}, loading } = useMyFormsQuery({
+    variables: {
+      orderBy,
+    },
+  });
   const openModal = useModalStoreSelectors.use.openModal();
   return (
-    <div className="flex flex-col gap-4 items-start h-auto md:max-w-3xl ml-auto mr-auto">
-      <div className="flex items-center justify-center gap-4 py-4 border-b-[2px] border-zinc-300">
+    <div className="flex flex-col gap-4 items-start h-auto lg:max-w-full ml-auto mr-auto">
+      <div className="flex items-center justify-center gap-4 pb-4 w-full bg-white shadow-lg">
         <Templates />
       </div>
       {loading && (
@@ -21,15 +42,23 @@ export default function Home() {
         </div>
       )}
       {!loading && findManyForm && findManyForm.length > 0 && (
-        <div className="flex flex-col gap-2 text-gray-500 text-sm">
-          My forms
+        <div className="flex flex-col items-start justify-center gap-4 p-4 pt-0 w-full lg:max-w-4xl ml-auto mr-auto">
+          <div className="flex justify-between w-full">
+            <p>My forms</p>
+            <Filters
+              visible={filterVisible}
+              toggle={(state) => toggleFilter(state)}
+              onSelect={(filter) => setOrderBy(orderByMapper[filter])}
+              selected={orderBy}
+            />
+          </div>
           <div className={cn("flex flex-wrap gap-4")}>
             {findManyForm?.map((item) => <Form key={item.id} form={item} />)}
           </div>
         </div>
       )}
       {!loading && !findManyForm?.length && (
-        <div className="flex flex-col items-center gap-6 bg-white rounded-md p-6">
+        <div className="flex flex-col items-center gap-6 w-full rounded-md p-6">
           <p className="text-gray-500">You have not created any form yet!</p>
           <Button onClick={openModal}>Create</Button>
         </div>

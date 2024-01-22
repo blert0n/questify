@@ -5,19 +5,23 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ExternalLink, MoreVertical, Trash } from "lucide-react";
+import { ExternalLink, MoreVertical, Trash, Edit } from "lucide-react";
 
 interface P {
   visible: boolean;
+  editLoading: boolean;
   deleteLoading: boolean;
   toggle: () => void;
+  onEdit: () => void;
   onDelete: () => void;
 }
 
 export default function Actions({
   visible,
+  editLoading,
   deleteLoading,
   toggle,
+  onEdit,
   onDelete,
 }: P) {
   return (
@@ -35,6 +39,19 @@ export default function Actions({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="m-2 mt-0 w-auto xs:w-[200px] flex flex-col p-0">
+        <div
+          className="flex justify-between items-center text-sm cursor-pointer hover:bg-slate-100 p-2"
+          onClick={onEdit}
+        >
+          Edit
+          {editLoading ? (
+            <div className="ml-auto">
+              <Loader width={16} height={16} />
+            </div>
+          ) : (
+            <Edit className="text-slate-700" strokeWidth={1.5} size={16} />
+          )}
+        </div>
         <div
           className="flex justify-between items-center text-sm cursor-pointer hover:bg-slate-100 p-2"
           onClick={onDelete}
