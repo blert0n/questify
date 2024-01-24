@@ -104,9 +104,10 @@ export const createSubItemSlice: StateCreator<
           const subItems = [...(item.options ?? [])];
           const [draggedItem] = subItems.splice(startIndex, 1);
           subItems.splice(endIndex, 0, draggedItem);
-          subItems.forEach((question, index) => {
-            question.order = index + 1;
-          });
+          subItems.map((option, index) => ({
+            ...option,
+            order: index + 1,
+          }));
           return {
             ...item,
             options: subItems,

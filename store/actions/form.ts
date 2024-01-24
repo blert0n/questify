@@ -10,6 +10,9 @@ import {
   MyFormsDocument,
   FormDataDocument,
   FormDataQuery,
+  UpdateFormMutation,
+  UpdateFormDocument,
+  FormItemUpsertWithWhereUniqueWithoutFormInput,
 } from "@/lib/graphql";
 import { apolloClient } from "@/lib/apollo";
 import { toast } from "react-toastify";
@@ -24,7 +27,10 @@ import {
 import _ from "lodash";
 interface UploadImagesToCdnParams {
   formId?: string;
-  headerImage?: string;
+  header?: {
+    url?: string;
+    origin?: string;
+  };
   items: FormItem[];
 }
 const uploadHeaderImage = async (formId: string, image: string) => {
@@ -67,11 +73,40 @@ export const prepareCreateItems = (
     items: item.options,
     type: item.type,
   }));
+export const prepareUpsertItems = (
+  items: FormItem[]
+): FormItemUpsertWithWhereUniqueWithoutFormInput[] =>
+  items.map((item) => ({
+    where: {
+      id: item.id,
+    },
+    create: {
+      id: item.id,
+      name: item.name,
+      order: item.order,
+      required: item.required,
+      items: item.options,
+      type: item.type,
+    },
+    update: {
+      name: {
+        set: item.name,
+      },
+      order: {
+        set: item.order,
+      },
+      required: {
+        set: item.required,
+      },
+      ...(item.image?.origin !== "server" && { image: null }),
+      items: item.options,
+    },
+  }));
 
 export const uploadImagesToCdn = async (params: UploadImagesToCdnParams) => {
-  if (!params.formId && !params.headerImage && !params.items.length) return;
-  if (params.formId && params.headerImage)
-    await uploadHeaderImage(params.formId, params.headerImage);
+  if (!params.formId && !params.header?.url && !params.items.length) return;
+  if (params.formId && params.header?.url && params.header?.origin === "client")
+    await uploadHeaderImage(params.formId, params.header.url);
   if (params.formId && params.items.length > 0) {
     for (const item of params.items) {
       await uploadItemImage(params.formId, item);
@@ -102,6 +137,11 @@ export const saveForm = async () => {
       refetchQueries: [
         {
           query: MyFormsDocument,
+          variables: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
         },
       ],
     });
@@ -109,7 +149,10 @@ export const saveForm = async () => {
     closeFormModal();
     uploadImagesToCdn({
       formId: response.data?.createOneForm.id,
-      headerImage: theme.Header.image?.dataUrl,
+      header: {
+        url: theme.Header.image?.dataUrl,
+        origin: theme.Header.image?.origin,
+      },
       items: formItems,
     });
     resetForm();
@@ -117,7 +160,59 @@ export const saveForm = async () => {
   } catch (error) {
     setLoading(false);
     console.error("Error saving form:", error);
-    toast.error("Something went wrong! Please try again later.");
+    toast.error(
+      "Something went wrong! Make sure you're using an unique name and try again."
+    );
+  }
+};
+export const editForm = async (formId?: string) => {
+  if (!formId) return;
+  setLoading(true);
+  try {
+    const theme = getTheme();
+    const formDetails = getFormDetails();
+    const formItems = getItems();
+    await apolloClient.mutate<UpdateFormMutation>({
+      mutation: UpdateFormDocument,
+      variables: {
+        where: {
+          id: formId,
+        },
+        data: {
+          name: {
+            set: formDetails.name,
+          },
+          favorite: {
+            set: formDetails.favorite,
+          },
+          style:
+            theme.Header.image?.origin === "client"
+              ? _.omit(theme, "Header.image")
+              : theme,
+          items: {
+            upsert: prepareUpsertItems(formItems),
+          },
+        },
+      },
+    });
+    toast.success("Form updated successfully!");
+    closeFormModal();
+    uploadImagesToCdn({
+      formId,
+      header: {
+        url: theme.Header.image?.dataUrl,
+        origin: theme.Header.image?.origin,
+      },
+      items: formItems,
+    });
+    resetForm();
+    setLoading(false);
+  } catch (error) {
+    setLoading(false);
+    console.error("Error saving form:", error);
+    toast.error(
+      "Something went wrong! Make sure you're using an unique name and try again."
+    );
   }
 };
 export const loadFormData = async (id: string) => {
@@ -129,8 +224,8 @@ export const loadFormData = async (id: string) => {
         variables: {
           formId: id,
         },
+        fetchPolicy: "network-only",
       });
-    console.log(findFirstForm, "findFirstForm");
     setLoading(false);
     return findFirstForm;
   } catch (e) {

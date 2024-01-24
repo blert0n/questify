@@ -59,3 +59,9 @@ mutation UploadHeaderImage($formId: String!, $base64: String!) {
     success
   }
 }
+
+mutation UpdateForm($data: FormUpdateInput!, $where: FormWhereUniqueInput!) {
+  updateOneForm(data: $data, where: $where) {
+    id
+  }
+}

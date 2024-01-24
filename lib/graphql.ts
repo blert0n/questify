@@ -1381,6 +1381,14 @@ export type UploadHeaderImageMutationVariables = Exact<{
 
 export type UploadHeaderImageMutation = { uploaderHeaderImage?: { success?: boolean | undefined } | undefined };
 
+export type UpdateFormMutationVariables = Exact<{
+  data: FormUpdateInput;
+  where: FormWhereUniqueInput;
+}>;
+
+
+export type UpdateFormMutation = { updateOneForm: { id: string, name: string, favorite: boolean, style?: any | undefined, items: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined, image?: any | undefined, type: FormType }> } };
+
 
 export const CreateFormDocument = /*#__PURE__*/ gql`
     mutation CreateForm($data: FormCreateInput!) {
@@ -1646,3 +1654,49 @@ export function useUploadHeaderImageMutation(baseOptions?: Apollo.MutationHookOp
       }
 export type UploadHeaderImageMutationHookResult = ReturnType<typeof useUploadHeaderImageMutation>;
 export type UploadHeaderImageMutationResult = Apollo.MutationResult<UploadHeaderImageMutation>;
+export const UpdateFormDocument = /*#__PURE__*/ gql`
+    mutation UpdateForm($data: FormUpdateInput!, $where: FormWhereUniqueInput!) {
+  updateOneForm(data: $data, where: $where) {
+    id
+    name
+    favorite
+    style
+    items {
+      id
+      formId
+      name
+      order
+      required
+      items
+      image
+      type
+    }
+  }
+}
+    `;
+export type UpdateFormMutationFn = Apollo.MutationFunction<UpdateFormMutation, UpdateFormMutationVariables>;
+
+/**
+ * __useUpdateFormMutation__
+ *
+ * To run a mutation, you first call `useUpdateFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateFormMutation, { data, loading, error }] = useUpdateFormMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateFormMutation(baseOptions?: Apollo.MutationHookOptions<UpdateFormMutation, UpdateFormMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateFormMutation, UpdateFormMutationVariables>(UpdateFormDocument, options);
+      }
+export type UpdateFormMutationHookResult = ReturnType<typeof useUpdateFormMutation>;
+export type UpdateFormMutationResult = Apollo.MutationResult<UpdateFormMutation>;

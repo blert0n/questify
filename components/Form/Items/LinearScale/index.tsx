@@ -82,7 +82,9 @@ export const LinearScale = ({
               { placeholder: "1", value: "1" },
             ]}
             value={item?.options?.[0].value ?? "1"}
-            onChange={(value) => updateOption(item.id, "1", value)}
+            onChange={(value) =>
+              updateOption(item.id, item?.options?.[0].id ?? "1", value)
+            }
           />
           to
           <AppSelect
@@ -101,7 +103,9 @@ export const LinearScale = ({
               { placeholder: "10", value: "10" },
             ]}
             value={item?.options?.[1].value ?? "10"}
-            onChange={(value) => updateOption(item.id, "2", value)}
+            onChange={(value) =>
+              updateOption(item.id, item?.options?.[1].id ?? "2", value)
+            }
           />
         </div>
         <Droppable
@@ -111,7 +115,7 @@ export const LinearScale = ({
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               <Option
-                id="1"
+                id={item.options?.[0].id ?? "1"}
                 index={1}
                 value={item?.options?.[0].label ?? "Label"}
                 selected={selected}
@@ -120,12 +124,18 @@ export const LinearScale = ({
                   fontFamily: theme.Text.fontFamily,
                   fontSize: theme.Text.fontSize,
                 }}
-                onChange={(label) => updateOptionLabel(item.id, "1", label)}
+                onChange={(label) => {
+                  updateOptionLabel(
+                    item.id,
+                    item.options?.[0].id ?? "1",
+                    label
+                  );
+                }}
                 locked
                 isDraggable={false}
               />
               <Option
-                id="2"
+                id={item.options?.[1].id ?? "2"}
                 index={2}
                 value={item?.options?.[1].label ?? "Label"}
                 selected={selected}
@@ -134,7 +144,13 @@ export const LinearScale = ({
                   fontFamily: theme.Text.fontFamily,
                   fontSize: theme.Text.fontSize,
                 }}
-                onChange={(label) => updateOptionLabel(item.id, "2", label)}
+                onChange={(label) => {
+                  updateOptionLabel(
+                    item.id,
+                    item.options?.[1].id ?? "2",
+                    label
+                  );
+                }}
                 locked
                 isDraggable={false}
               />

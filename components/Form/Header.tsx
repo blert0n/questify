@@ -62,7 +62,7 @@ export const Header = ({ closeFn, saveFn, toggleThemeCustomizer }: P) => {
           </div>
           <div className="flex gap-4">
             <Button variant={"outline"} onClick={closeFn}>
-              Discard
+              Close
             </Button>
             <Button onClick={saveFn} loading={loading}>
               Save

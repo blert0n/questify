@@ -2,8 +2,7 @@ import { initialFormData, templateMapper } from "./../../types/initialData";
 import { FormDetailsSlice, ItemSlice, ThemeSlice, initialTheme } from "@/types";
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";
-import { loadFormData, openFormModal, saveForm } from "../actions";
-import _ from "lodash";
+import { editForm, loadFormData, openFormModal, saveForm } from "../actions";
 export const createFormDetailsSlice: StateCreator<
   ThemeSlice & ItemSlice & FormDetailsSlice,
   [],
@@ -31,7 +30,7 @@ export const createFormDetailsSlice: StateCreator<
   saveForm: async () => {
     if (!get().items.length)
       return toast.info("At least one form item is required");
-    await saveForm();
+    !get().id ? await saveForm() : await editForm(get().id);
   },
   loadForm: async (id) => {
     const form = await loadFormData(id);
@@ -43,10 +42,12 @@ export const createFormDetailsSlice: StateCreator<
       isFavorite: form.favorite,
       theme: form.style,
       items: form.items.map((item) => {
-        const itemWithoutItems = _.omit(item, "item.items");
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { formId, items, ...rest } = item;
+        const mutableItems = [...item.items];
         return {
-          ...itemWithoutItems,
-          options: item.items,
+          ...rest,
+          options: mutableItems,
           origin: "server",
         };
       }),

@@ -30,7 +30,7 @@ export const rules = {
     };
     return true;
   }),
-  interceptOwnerId: rule()((_parent, args, context: Context) => {
+  injectUserOnWhere: rule()((_parent, args, context: Context) => {
     if (!context.userId) return false;
     args.where = { ...args.where, ownerId: { equals: context.userId } };
     return true;
