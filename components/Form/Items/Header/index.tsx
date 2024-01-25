@@ -1,14 +1,11 @@
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import StyledInput from "../../StyledInput";
+import StyledInput from "../../../StyledInput";
 import { useFormSelectors } from "@/store";
-import { deserializeString } from "../../StyledInput/deserializer";
-import { LiveHeaderProps } from "@/types";
-import ReactHtmlParser from "react-html-parser";
+import { deserializeString } from "../../../StyledInput/deserializer";
 
 export const FormHeader = () => {
   const theme = useFormSelectors.use.theme();
-  const editMode = useFormSelectors.use.editMode();
   const updateThemeHeader = useFormSelectors.use.updateHeaderTheme();
   const updateThemeText = useFormSelectors.use.updateTextTheme();
   const updateForm = useFormSelectors.use.updateFormDetails();
@@ -16,21 +13,6 @@ export const FormHeader = () => {
   const formDescription = deserializeString(theme.Text.text);
   const selected = useFormSelectors.use.selectedComponent() === "formHeader";
 
-  if (!editMode) {
-    return (
-      <LiveHeader
-        header={theme.Header.text ?? "Untitled"}
-        description={theme.Text.text ?? "Description"}
-        styling={{
-          primary: theme.primaryColor,
-          HFont: theme.Header.fontFamily,
-          Hsize: theme.Header.fontSize,
-          Tfont: theme.Text.fontFamily,
-          Tsize: theme.Text.fontSize,
-        }}
-      />
-    );
-  }
   return (
     <div
       className="w-full border-t-[10px] rounded-md h-auto shadow-md"
@@ -72,28 +54,6 @@ export const FormHeader = () => {
           noLineBreak
           showBottomBorder={selected}
         />
-      </div>
-    </div>
-  );
-};
-
-const LiveHeader = ({ header, description, styling }: LiveHeaderProps) => {
-  return (
-    <div
-      className="flex flex-col gap-4 w-full h-auto rounded-md p-6 border-t-[10px] bg-white"
-      style={{
-        borderColor: getPrimaryColor(styling.primary),
-      }}
-    >
-      <div
-        className={cn(fontMapper[styling.HFont], fontSizeMapper(styling.Hsize))}
-      >
-        {ReactHtmlParser(header)}
-      </div>
-      <div
-        className={cn(fontMapper[styling.Tfont], fontSizeMapper(styling.Tsize))}
-      >
-        {ReactHtmlParser(description)}
       </div>
     </div>
   );

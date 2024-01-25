@@ -8,6 +8,8 @@ import {
   LiveLinearScale,
   LiveDate,
   LiveDropdown,
+  HeaderImage,
+  LiveHeader,
 } from "./Items";
 import { useFormSelectors } from "@/store";
 
@@ -29,6 +31,8 @@ export default function LiveForm({ items }: P) {
   const theme = useFormSelectors.use.theme();
   return (
     <>
+      <HeaderImage />
+      <LiveHeader theme={theme} />
       {items
         .sort((a, b) => a.order - b.order)
         .map((item) => {

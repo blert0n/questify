@@ -1,5 +1,4 @@
 import { useFormSelectors } from "@/store";
-import { HeaderImage, FormHeader } from "./Items";
 import LiveForm from "./LiveForm";
 import EditableForm from "./EditableForm";
 
@@ -14,8 +13,6 @@ export const Form = ({ id }: P) => {
 
   return (
     <div className="flex flex-col gap-4 w-full md:max-w-3xl ">
-      <HeaderImage />
-      <FormHeader />
       {editMode ? <EditableForm items={items} /> : <LiveForm items={items} />}
     </div>
   );

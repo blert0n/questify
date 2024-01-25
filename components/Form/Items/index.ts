@@ -1,4 +1,4 @@
-export * from "./FormHeader";
+export * from "./Header";
 export * from "./HeaderImage";
 export * from "./ItemActions";
 export * from "./Long";
@@ -15,3 +15,4 @@ export * from "./LinearScale";
 export * from "./LinearScale/Live";
 export * from "./Date";
 export * from "./Date/Live";
+export * from "./Header/Live";

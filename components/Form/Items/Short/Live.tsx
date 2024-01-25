@@ -31,11 +31,13 @@ export const LiveShortComponent = ({
       )}
       <div
         className={cn(
+          "flex gap-[2px]",
           fontMapper[theme.Question.fontFamily],
           fontSizeMapper(theme.Question.fontSize)
         )}
       >
         {ReactHtmlParser(item.name)}
+        {item.required && <span className="text-red-600">*</span>}
       </div>
       <Input
         name={item.id}

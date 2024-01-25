@@ -8,6 +8,8 @@ import {
   LinearScale,
   Date,
   Dropdown,
+  HeaderImage,
+  FormHeader,
 } from "./Items";
 import { useFormSelectors } from "@/store";
 import {
@@ -63,62 +65,70 @@ export default function LiveForm({ items }: P) {
     }
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable" type="formItems">
-        {(provided) => (
-          <div
-            key="items"
-            className="flex flex-col gap-4"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {items
-              .sort((a, b) => a.order - b.order)
-              .map((item, index) => {
-                const DynamicComponent = componentMapper[item.type];
-                const selected = selectedComponent === item.id;
-                const isHovered = hovered === item.id;
-                return (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        className={cn(
-                          "flex flex-col w-full h-auto rounded-md bg-white",
-                          !selected && "cursor-pointer",
-                          snapshot.isDragging && "opacity-50"
-                        )}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        style={getItemStyle(
-                          selected,
-                          getPrimaryColor(theme.primaryColor),
-                          provided.draggableProps.style
-                        )}
-                        onClick={() => {
-                          if (selected) return;
-                          updateForm("selectedComponent", item.id);
-                        }}
-                        onMouseOver={() => setHovered(item.id)}
-                        onMouseOut={() => setHovered("")}
-                        onBlur={() => setHovered("")}
-                      >
-                        <DynamicComponent
-                          key={item.id}
-                          item={item}
-                          theme={theme}
-                          selected={selected}
-                          hovered={isHovered}
-                          dragHandle={provided.dragHandleProps}
-                        />
-                      </div>
-                    )}
-                  </Draggable>
-                );
-              })}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <HeaderImage />
+      <FormHeader />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable" type="formItems">
+          {(provided) => (
+            <div
+              key="items"
+              className="flex flex-col gap-4"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {items
+                .sort((a, b) => a.order - b.order)
+                .map((item, index) => {
+                  const DynamicComponent = componentMapper[item.type];
+                  const selected = selectedComponent === item.id;
+                  const isHovered = hovered === item.id;
+                  return (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id}
+                      index={index}
+                    >
+                      {(provided, snapshot) => (
+                        <div
+                          className={cn(
+                            "flex flex-col w-full h-auto rounded-md bg-white",
+                            !selected && "cursor-pointer",
+                            snapshot.isDragging && "opacity-50"
+                          )}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          style={getItemStyle(
+                            selected,
+                            getPrimaryColor(theme.primaryColor),
+                            provided.draggableProps.style
+                          )}
+                          onClick={() => {
+                            if (selected) return;
+                            updateForm("selectedComponent", item.id);
+                          }}
+                          onMouseOver={() => setHovered(item.id)}
+                          onMouseOut={() => setHovered("")}
+                          onBlur={() => setHovered("")}
+                        >
+                          <DynamicComponent
+                            key={item.id}
+                            item={item}
+                            theme={theme}
+                            selected={selected}
+                            hovered={isHovered}
+                            dragHandle={provided.dragHandleProps}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  );
+                })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </>
   );
 }

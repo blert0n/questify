@@ -68,17 +68,6 @@ export interface FormComponent {
   dragHandle?: DraggableProvidedDragHandleProps | null;
   hovered?: boolean;
 }
-export interface LiveHeaderProps {
-  header: string;
-  description: string;
-  styling: {
-    primary: string;
-    Hsize: Theme["Header"]["fontSize"];
-    HFont: Theme["Header"]["fontFamily"];
-    Tsize: Theme["Text"]["fontSize"];
-    Tfont: Theme["Text"]["fontFamily"];
-  };
-}
 
 export interface TextStyling {
   fontSize: Theme["Text"]["fontSize"];

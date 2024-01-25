@@ -25,11 +25,13 @@ export const LiveDropdown = ({ item, theme = initialTheme }: FormComponent) => {
       <div className="flex flex-col justify-between items-start gap-3">
         <div
           className={cn(
+            "flex gap-[2px]",
             fontMapper[theme.Question.fontFamily],
             fontSizeMapper(theme.Question.fontSize)
           )}
         >
           {ReactHtmlParser(item.name)}
+          {item.required && <span className="text-red-600">*</span>}
         </div>
         <div className="flex flex-col gap-2 xs:w-auto min-w-[200px] w-full">
           <AppSelect

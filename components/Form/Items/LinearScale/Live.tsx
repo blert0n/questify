@@ -39,11 +39,13 @@ export const LiveLinearScale = ({
       <div className="flex flex-col justify-between items-start gap-6">
         <div
           className={cn(
+            "flex gap-[2px]",
             fontMapper[theme.Question.fontFamily],
             fontSizeMapper(theme.Question.fontSize)
           )}
         >
           {ReactHtmlParser(item.name)}
+          {item.required && <span className="text-red-600">*</span>}
         </div>
         <div className="flex flex-col gap-2 min-w-[200px] w-full px-1">
           <div className="flex items-center gap-3">
