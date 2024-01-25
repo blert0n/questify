@@ -19,6 +19,7 @@ export const FormScalarFieldEnum = enumType({
     'order',
     'style',
     'favorite',
+    'folderId',
     'createdAt',
     'updatedAt',
   ],
@@ -37,6 +38,11 @@ export const FormItemScalarFieldEnum = enumType({
     'image',
     'type',
   ],
+})
+
+export const FolderScalarFieldEnum = enumType({
+  name: 'FolderScalarFieldEnum',
+  members: ['id', 'name', 'ownerId'],
 })
 
 export const SortOrder = enumType({
@@ -92,9 +98,11 @@ export const FormWhereInput = inputObjectType({
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
     t.field('favorite', { type: 'BoolFilter' })
+    t.field('folderId', { type: 'StringNullableFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
+    t.field('Folder', { type: 'FolderNullableRelationFilter' })
   },
 })
 
@@ -110,9 +118,11 @@ export const FormOrderByWithRelationInput = inputObjectType({
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrderInput' })
     t.field('favorite', { type: 'SortOrder' })
+    t.field('folderId', { type: 'SortOrderInput' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
     t.field('items', { type: 'FormItemOrderByRelationAggregateInput' })
+    t.field('Folder', { type: 'FolderOrderByWithRelationInput' })
   },
 })
 
@@ -132,9 +142,11 @@ export const FormWhereUniqueInput = inputObjectType({
     t.field('order', { type: 'IntFilter' })
     t.field('style', { type: 'JsonNullableFilter' })
     t.field('favorite', { type: 'BoolFilter' })
+    t.field('folderId', { type: 'StringNullableFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
+    t.field('Folder', { type: 'FolderNullableRelationFilter' })
   },
 })
 
@@ -150,6 +162,7 @@ export const FormOrderByWithAggregationInput = inputObjectType({
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrderInput' })
     t.field('favorite', { type: 'SortOrder' })
+    t.field('folderId', { type: 'SortOrderInput' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
     t.field('_count', { type: 'FormCountOrderByAggregateInput' })
@@ -175,6 +188,7 @@ export const FormScalarWhereWithAggregatesInput = inputObjectType({
     t.field('order', { type: 'IntWithAggregatesFilter' })
     t.field('style', { type: 'JsonNullableWithAggregatesFilter' })
     t.field('favorite', { type: 'BoolWithAggregatesFilter' })
+    t.field('folderId', { type: 'StringNullableWithAggregatesFilter' })
     t.field('createdAt', { type: 'DateTimeWithAggregatesFilter' })
     t.field('updatedAt', { type: 'DateTimeWithAggregatesFilter' })
   },
@@ -287,6 +301,82 @@ export const FormItemScalarWhereWithAggregatesInput = inputObjectType({
   },
 })
 
+export const FolderWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'FolderWhereInput' })
+    t.list.field('OR', { type: 'FolderWhereInput' })
+    t.list.field('NOT', { type: 'FolderWhereInput' })
+    t.field('id', { type: 'StringFilter' })
+    t.field('name', { type: 'StringFilter' })
+    t.field('ownerId', { type: 'StringFilter' })
+    t.field('Forms', { type: 'FormListRelationFilter' })
+  },
+})
+
+export const FolderOrderByWithRelationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderOrderByWithRelationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('name', { type: 'SortOrder' })
+    t.field('ownerId', { type: 'SortOrder' })
+    t.field('Forms', { type: 'FormOrderByRelationAggregateInput' })
+  },
+})
+
+export const FolderWhereUniqueInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderWhereUniqueInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('ownerId_name', { type: 'FolderOwnerIdNameCompoundUniqueInput' })
+    t.list.field('AND', { type: 'FolderWhereInput' })
+    t.list.field('OR', { type: 'FolderWhereInput' })
+    t.list.field('NOT', { type: 'FolderWhereInput' })
+    t.field('name', { type: 'StringFilter' })
+    t.field('ownerId', { type: 'StringFilter' })
+    t.field('Forms', { type: 'FormListRelationFilter' })
+  },
+})
+
+export const FolderOrderByWithAggregationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderOrderByWithAggregationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('name', { type: 'SortOrder' })
+    t.field('ownerId', { type: 'SortOrder' })
+    t.field('_count', { type: 'FolderCountOrderByAggregateInput' })
+    t.field('_max', { type: 'FolderMaxOrderByAggregateInput' })
+    t.field('_min', { type: 'FolderMinOrderByAggregateInput' })
+  },
+})
+
+export const FolderScalarWhereWithAggregatesInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderScalarWhereWithAggregatesInput',
+  definition(t) {
+    t.list.field('AND', { type: 'FolderScalarWhereWithAggregatesInput' })
+    t.list.field('OR', { type: 'FolderScalarWhereWithAggregatesInput' })
+    t.list.field('NOT', { type: 'FolderScalarWhereWithAggregatesInput' })
+    t.field('id', { type: 'StringWithAggregatesFilter' })
+    t.field('name', { type: 'StringWithAggregatesFilter' })
+    t.field('ownerId', { type: 'StringWithAggregatesFilter' })
+  },
+})
+
 export const FormCreateInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -302,6 +392,7 @@ export const FormCreateInput = inputObjectType({
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', { type: 'FormItemCreateNestedManyWithoutFormInput' })
+    t.field('Folder', { type: 'FolderCreateNestedOneWithoutFormsInput' })
   },
 })
 
@@ -317,6 +408,7 @@ export const FormUncheckedCreateInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('folderId', { type: 'String' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', {
@@ -340,6 +432,7 @@ export const FormUpdateInput = inputObjectType({
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', { type: 'FormItemUpdateManyWithoutFormNestedInput' })
+    t.field('Folder', { type: 'FolderUpdateOneWithoutFormsNestedInput' })
   },
 })
 
@@ -355,6 +448,7 @@ export const FormUncheckedUpdateInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', {
@@ -375,6 +469,7 @@ export const FormCreateManyInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('folderId', { type: 'String' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -409,6 +504,7 @@ export const FormUncheckedUpdateManyInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -539,6 +635,98 @@ export const FormItemUncheckedUpdateManyInput = inputObjectType({
   },
 })
 
+export const FolderCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderCreateInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.field('Forms', { type: 'FormCreateNestedManyWithoutFolderInput' })
+  },
+})
+
+export const FolderUncheckedCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUncheckedCreateInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.field('Forms', {
+      type: 'FormUncheckedCreateNestedManyWithoutFolderInput',
+    })
+  },
+})
+
+export const FolderUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUpdateInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('Forms', { type: 'FormUpdateManyWithoutFolderNestedInput' })
+  },
+})
+
+export const FolderUncheckedUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUncheckedUpdateInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('Forms', {
+      type: 'FormUncheckedUpdateManyWithoutFolderNestedInput',
+    })
+  },
+})
+
+export const FolderCreateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderCreateManyInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+  },
+})
+
+export const FolderUpdateManyMutationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUpdateManyMutationInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+  },
+})
+
+export const FolderUncheckedUpdateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUncheckedUpdateManyInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+  },
+})
+
 export const StringFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -610,6 +798,27 @@ export const BoolFilter = inputObjectType({
   },
 })
 
+export const StringNullableFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'StringNullableFilter',
+  definition(t) {
+    t.field('equals', { type: 'String' })
+    t.list.field('in', { type: 'String' })
+    t.list.field('notIn', { type: 'String' })
+    t.field('lt', { type: 'String' })
+    t.field('lte', { type: 'String' })
+    t.field('gt', { type: 'String' })
+    t.field('gte', { type: 'String' })
+    t.field('contains', { type: 'String' })
+    t.field('startsWith', { type: 'String' })
+    t.field('endsWith', { type: 'String' })
+    t.field('mode', { type: 'QueryMode' })
+    t.field('not', { type: 'NestedStringNullableFilter' })
+  },
+})
+
 export const DateTimeFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -636,6 +845,17 @@ export const FormItemListRelationFilter = inputObjectType({
     t.field('every', { type: 'FormItemWhereInput' })
     t.field('some', { type: 'FormItemWhereInput' })
     t.field('none', { type: 'FormItemWhereInput' })
+  },
+})
+
+export const FolderNullableRelationFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderNullableRelationFilter',
+  definition(t) {
+    t.field('is', { type: 'FolderWhereInput' })
+    t.field('isNot', { type: 'FolderWhereInput' })
   },
 })
 
@@ -683,6 +903,7 @@ export const FormCountOrderByAggregateInput = inputObjectType({
     t.field('order', { type: 'SortOrder' })
     t.field('style', { type: 'SortOrder' })
     t.field('favorite', { type: 'SortOrder' })
+    t.field('folderId', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -709,6 +930,7 @@ export const FormMaxOrderByAggregateInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('favorite', { type: 'SortOrder' })
+    t.field('folderId', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -725,6 +947,7 @@ export const FormMinOrderByAggregateInput = inputObjectType({
     t.field('ownerId', { type: 'SortOrder' })
     t.field('order', { type: 'SortOrder' })
     t.field('favorite', { type: 'SortOrder' })
+    t.field('folderId', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -822,6 +1045,30 @@ export const BoolWithAggregatesFilter = inputObjectType({
     t.field('_count', { type: 'NestedIntFilter' })
     t.field('_min', { type: 'NestedBoolFilter' })
     t.field('_max', { type: 'NestedBoolFilter' })
+  },
+})
+
+export const StringNullableWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'StringNullableWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'String' })
+    t.list.field('in', { type: 'String' })
+    t.list.field('notIn', { type: 'String' })
+    t.field('lt', { type: 'String' })
+    t.field('lte', { type: 'String' })
+    t.field('gt', { type: 'String' })
+    t.field('gte', { type: 'String' })
+    t.field('contains', { type: 'String' })
+    t.field('startsWith', { type: 'String' })
+    t.field('endsWith', { type: 'String' })
+    t.field('mode', { type: 'QueryMode' })
+    t.field('not', { type: 'NestedStringNullableWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntNullableFilter' })
+    t.field('_min', { type: 'NestedStringNullableFilter' })
+    t.field('_max', { type: 'NestedStringNullableFilter' })
   },
 })
 
@@ -957,6 +1204,75 @@ export const EnumFormTypeWithAggregatesFilter = inputObjectType({
   },
 })
 
+export const FormListRelationFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormListRelationFilter',
+  definition(t) {
+    t.field('every', { type: 'FormWhereInput' })
+    t.field('some', { type: 'FormWhereInput' })
+    t.field('none', { type: 'FormWhereInput' })
+  },
+})
+
+export const FormOrderByRelationAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormOrderByRelationAggregateInput',
+  definition(t) {
+    t.field('_count', { type: 'SortOrder' })
+  },
+})
+
+export const FolderOwnerIdNameCompoundUniqueInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderOwnerIdNameCompoundUniqueInput',
+  definition(t) {
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+  },
+})
+
+export const FolderCountOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderCountOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('name', { type: 'SortOrder' })
+    t.field('ownerId', { type: 'SortOrder' })
+  },
+})
+
+export const FolderMaxOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderMaxOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('name', { type: 'SortOrder' })
+    t.field('ownerId', { type: 'SortOrder' })
+  },
+})
+
+export const FolderMinOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderMinOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('name', { type: 'SortOrder' })
+    t.field('ownerId', { type: 'SortOrder' })
+  },
+})
+
 export const FormItemCreateNestedManyWithoutFormInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -969,6 +1285,20 @@ export const FormItemCreateNestedManyWithoutFormInput = inputObjectType({
     })
     t.field('createMany', { type: 'FormItemCreateManyFormInputEnvelope' })
     t.list.field('connect', { type: 'FormItemWhereUniqueInput' })
+  },
+})
+
+export const FolderCreateNestedOneWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderCreateNestedOneWithoutFormsInput',
+  definition(t) {
+    t.field('create', { type: 'FolderCreateWithoutFormsInput' })
+    t.field('connectOrCreate', {
+      type: 'FolderCreateOrConnectWithoutFormsInput',
+    })
+    t.field('connect', { type: 'FolderWhereUniqueInput' })
   },
 })
 
@@ -1060,6 +1390,34 @@ export const FormItemUpdateManyWithoutFormNestedInput = inputObjectType({
   },
 })
 
+export const FolderUpdateOneWithoutFormsNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUpdateOneWithoutFormsNestedInput',
+  definition(t) {
+    t.field('create', { type: 'FolderCreateWithoutFormsInput' })
+    t.field('connectOrCreate', {
+      type: 'FolderCreateOrConnectWithoutFormsInput',
+    })
+    t.field('upsert', { type: 'FolderUpsertWithoutFormsInput' })
+    t.field('disconnect', { type: 'FolderWhereInput' })
+    t.field('delete', { type: 'FolderWhereInput' })
+    t.field('connect', { type: 'FolderWhereUniqueInput' })
+    t.field('update', { type: 'FolderUpdateToOneWithWhereWithoutFormsInput' })
+  },
+})
+
+export const NullableStringFieldUpdateOperationsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NullableStringFieldUpdateOperationsInput',
+  definition(t) {
+    t.field('set', { type: 'String' })
+  },
+})
+
 export const FormItemUncheckedUpdateManyWithoutFormNestedInput =
   inputObjectType({
     nonNullDefaults: {
@@ -1125,6 +1483,92 @@ export const FormUpdateOneRequiredWithoutItemsNestedInput = inputObjectType({
   },
 })
 
+export const FormCreateNestedManyWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormCreateNestedManyWithoutFolderInput',
+  definition(t) {
+    t.list.field('create', { type: 'FormCreateWithoutFolderInput' })
+    t.list.field('connectOrCreate', {
+      type: 'FormCreateOrConnectWithoutFolderInput',
+    })
+    t.field('createMany', { type: 'FormCreateManyFolderInputEnvelope' })
+    t.list.field('connect', { type: 'FormWhereUniqueInput' })
+  },
+})
+
+export const FormUncheckedCreateNestedManyWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUncheckedCreateNestedManyWithoutFolderInput',
+  definition(t) {
+    t.list.field('create', { type: 'FormCreateWithoutFolderInput' })
+    t.list.field('connectOrCreate', {
+      type: 'FormCreateOrConnectWithoutFolderInput',
+    })
+    t.field('createMany', { type: 'FormCreateManyFolderInputEnvelope' })
+    t.list.field('connect', { type: 'FormWhereUniqueInput' })
+  },
+})
+
+export const FormUpdateManyWithoutFolderNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUpdateManyWithoutFolderNestedInput',
+  definition(t) {
+    t.list.field('create', { type: 'FormCreateWithoutFolderInput' })
+    t.list.field('connectOrCreate', {
+      type: 'FormCreateOrConnectWithoutFolderInput',
+    })
+    t.list.field('upsert', {
+      type: 'FormUpsertWithWhereUniqueWithoutFolderInput',
+    })
+    t.field('createMany', { type: 'FormCreateManyFolderInputEnvelope' })
+    t.list.field('set', { type: 'FormWhereUniqueInput' })
+    t.list.field('disconnect', { type: 'FormWhereUniqueInput' })
+    t.list.field('delete', { type: 'FormWhereUniqueInput' })
+    t.list.field('connect', { type: 'FormWhereUniqueInput' })
+    t.list.field('update', {
+      type: 'FormUpdateWithWhereUniqueWithoutFolderInput',
+    })
+    t.list.field('updateMany', {
+      type: 'FormUpdateManyWithWhereWithoutFolderInput',
+    })
+    t.list.field('deleteMany', { type: 'FormScalarWhereInput' })
+  },
+})
+
+export const FormUncheckedUpdateManyWithoutFolderNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUncheckedUpdateManyWithoutFolderNestedInput',
+  definition(t) {
+    t.list.field('create', { type: 'FormCreateWithoutFolderInput' })
+    t.list.field('connectOrCreate', {
+      type: 'FormCreateOrConnectWithoutFolderInput',
+    })
+    t.list.field('upsert', {
+      type: 'FormUpsertWithWhereUniqueWithoutFolderInput',
+    })
+    t.field('createMany', { type: 'FormCreateManyFolderInputEnvelope' })
+    t.list.field('set', { type: 'FormWhereUniqueInput' })
+    t.list.field('disconnect', { type: 'FormWhereUniqueInput' })
+    t.list.field('delete', { type: 'FormWhereUniqueInput' })
+    t.list.field('connect', { type: 'FormWhereUniqueInput' })
+    t.list.field('update', {
+      type: 'FormUpdateWithWhereUniqueWithoutFolderInput',
+    })
+    t.list.field('updateMany', {
+      type: 'FormUpdateManyWithWhereWithoutFolderInput',
+    })
+    t.list.field('deleteMany', { type: 'FormScalarWhereInput' })
+  },
+})
+
 export const NestedStringFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1170,6 +1614,26 @@ export const NestedBoolFilter = inputObjectType({
   definition(t) {
     t.field('equals', { type: 'Boolean' })
     t.field('not', { type: 'NestedBoolFilter' })
+  },
+})
+
+export const NestedStringNullableFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedStringNullableFilter',
+  definition(t) {
+    t.field('equals', { type: 'String' })
+    t.list.field('in', { type: 'String' })
+    t.list.field('notIn', { type: 'String' })
+    t.field('lt', { type: 'String' })
+    t.field('lte', { type: 'String' })
+    t.field('gt', { type: 'String' })
+    t.field('gte', { type: 'String' })
+    t.field('contains', { type: 'String' })
+    t.field('startsWith', { type: 'String' })
+    t.field('endsWith', { type: 'String' })
+    t.field('not', { type: 'NestedStringNullableFilter' })
   },
 })
 
@@ -1305,6 +1769,29 @@ export const NestedBoolWithAggregatesFilter = inputObjectType({
   },
 })
 
+export const NestedStringNullableWithAggregatesFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'NestedStringNullableWithAggregatesFilter',
+  definition(t) {
+    t.field('equals', { type: 'String' })
+    t.list.field('in', { type: 'String' })
+    t.list.field('notIn', { type: 'String' })
+    t.field('lt', { type: 'String' })
+    t.field('lte', { type: 'String' })
+    t.field('gt', { type: 'String' })
+    t.field('gte', { type: 'String' })
+    t.field('contains', { type: 'String' })
+    t.field('startsWith', { type: 'String' })
+    t.field('endsWith', { type: 'String' })
+    t.field('not', { type: 'NestedStringNullableWithAggregatesFilter' })
+    t.field('_count', { type: 'NestedIntNullableFilter' })
+    t.field('_min', { type: 'NestedStringNullableFilter' })
+    t.field('_max', { type: 'NestedStringNullableFilter' })
+  },
+})
+
 export const NestedDateTimeWithAggregatesFilter = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1410,6 +1897,41 @@ export const FormItemCreateManyFormInputEnvelope = inputObjectType({
   },
 })
 
+export const FolderCreateWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderCreateWithoutFormsInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+  },
+})
+
+export const FolderUncheckedCreateWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUncheckedCreateWithoutFormsInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+  },
+})
+
+export const FolderCreateOrConnectWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderCreateOrConnectWithoutFormsInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'FolderWhereUniqueInput' })
+    t.nonNull.field('create', { type: 'FolderCreateWithoutFormsInput' })
+  },
+})
+
 export const FormItemUpsertWithWhereUniqueWithoutFormInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1465,6 +1987,53 @@ export const FormItemScalarWhereInput = inputObjectType({
   },
 })
 
+export const FolderUpsertWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUpsertWithoutFormsInput',
+  definition(t) {
+    t.nonNull.field('update', { type: 'FolderUpdateWithoutFormsInput' })
+    t.nonNull.field('create', { type: 'FolderCreateWithoutFormsInput' })
+    t.field('where', { type: 'FolderWhereInput' })
+  },
+})
+
+export const FolderUpdateToOneWithWhereWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUpdateToOneWithWhereWithoutFormsInput',
+  definition(t) {
+    t.field('where', { type: 'FolderWhereInput' })
+    t.nonNull.field('data', { type: 'FolderUpdateWithoutFormsInput' })
+  },
+})
+
+export const FolderUpdateWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUpdateWithoutFormsInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+  },
+})
+
+export const FolderUncheckedUpdateWithoutFormsInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FolderUncheckedUpdateWithoutFormsInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+  },
+})
+
 export const FormCreateWithoutItemsInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1479,6 +2048,7 @@ export const FormCreateWithoutItemsInput = inputObjectType({
     t.field('favorite', { type: 'Boolean' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
+    t.field('Folder', { type: 'FolderCreateNestedOneWithoutFormsInput' })
   },
 })
 
@@ -1494,6 +2064,7 @@ export const FormUncheckedCreateWithoutItemsInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('folderId', { type: 'String' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -1547,6 +2118,7 @@ export const FormUpdateWithoutItemsInput = inputObjectType({
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('Folder', { type: 'FolderUpdateOneWithoutFormsNestedInput' })
   },
 })
 
@@ -1562,8 +2134,124 @@ export const FormUncheckedUpdateWithoutItemsInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+  },
+})
+
+export const FormCreateWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormCreateWithoutFolderInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.field('order', { type: 'Int' })
+    t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
+    t.field('items', { type: 'FormItemCreateNestedManyWithoutFormInput' })
+  },
+})
+
+export const FormUncheckedCreateWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUncheckedCreateWithoutFolderInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.field('order', { type: 'Int' })
+    t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
+    t.field('items', {
+      type: 'FormItemUncheckedCreateNestedManyWithoutFormInput',
+    })
+  },
+})
+
+export const FormCreateOrConnectWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormCreateOrConnectWithoutFolderInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'FormWhereUniqueInput' })
+    t.nonNull.field('create', { type: 'FormCreateWithoutFolderInput' })
+  },
+})
+
+export const FormCreateManyFolderInputEnvelope = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormCreateManyFolderInputEnvelope',
+  definition(t) {
+    t.nonNull.field('data', { type: 'FormCreateManyFolderInput' })
+    t.field('skipDuplicates', { type: 'Boolean' })
+  },
+})
+
+export const FormUpsertWithWhereUniqueWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUpsertWithWhereUniqueWithoutFolderInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'FormWhereUniqueInput' })
+    t.nonNull.field('update', { type: 'FormUpdateWithoutFolderInput' })
+    t.nonNull.field('create', { type: 'FormCreateWithoutFolderInput' })
+  },
+})
+
+export const FormUpdateWithWhereUniqueWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUpdateWithWhereUniqueWithoutFolderInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'FormWhereUniqueInput' })
+    t.nonNull.field('data', { type: 'FormUpdateWithoutFolderInput' })
+  },
+})
+
+export const FormUpdateManyWithWhereWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUpdateManyWithWhereWithoutFolderInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'FormScalarWhereInput' })
+    t.nonNull.field('data', { type: 'FormUpdateManyMutationInput' })
+  },
+})
+
+export const FormScalarWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormScalarWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'FormScalarWhereInput' })
+    t.list.field('OR', { type: 'FormScalarWhereInput' })
+    t.list.field('NOT', { type: 'FormScalarWhereInput' })
+    t.field('id', { type: 'StringFilter' })
+    t.field('name', { type: 'StringFilter' })
+    t.field('ownerId', { type: 'StringFilter' })
+    t.field('order', { type: 'IntFilter' })
+    t.field('style', { type: 'JsonNullableFilter' })
+    t.field('favorite', { type: 'BoolFilter' })
+    t.field('folderId', { type: 'StringNullableFilter' })
+    t.field('createdAt', { type: 'DateTimeFilter' })
+    t.field('updatedAt', { type: 'DateTimeFilter' })
   },
 })
 
@@ -1635,6 +2323,78 @@ export const FormItemUncheckedUpdateManyWithoutFormInput = inputObjectType({
   },
 })
 
+export const FormCreateManyFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormCreateManyFolderInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.nonNull.field('ownerId', { type: 'String' })
+    t.field('order', { type: 'Int' })
+    t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'Boolean' })
+    t.field('createdAt', { type: 'DateTime' })
+    t.field('updatedAt', { type: 'DateTime' })
+  },
+})
+
+export const FormUpdateWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUpdateWithoutFolderInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('items', { type: 'FormItemUpdateManyWithoutFormNestedInput' })
+  },
+})
+
+export const FormUncheckedUpdateWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUncheckedUpdateWithoutFolderInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('items', {
+      type: 'FormItemUncheckedUpdateManyWithoutFormNestedInput',
+    })
+  },
+})
+
+export const FormUncheckedUpdateManyWithoutFolderInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormUncheckedUpdateManyWithoutFolderInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('ownerId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('style', { type: 'Json' })
+    t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+    t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+  },
+})
+
 export const AggregateForm = objectType({
   nonNullDefaults: {
     output: true,
@@ -1663,6 +2423,18 @@ export const AggregateFormItem = objectType({
   },
 })
 
+export const AggregateFolder = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AggregateFolder',
+  definition(t) {
+    t.nullable.field('_count', { type: 'FolderCountAggregateOutputType' })
+    t.nullable.field('_min', { type: 'FolderMinAggregateOutputType' })
+    t.nullable.field('_max', { type: 'FolderMaxAggregateOutputType' })
+  },
+})
+
 export const FormCountOutputType = objectType({
   nonNullDefaults: {
     output: true,
@@ -1685,6 +2457,7 @@ export const FormCountAggregateOutputType = objectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Int' })
     t.field('favorite', { type: 'Int' })
+    t.field('folderId', { type: 'Int' })
     t.field('createdAt', { type: 'Int' })
     t.field('updatedAt', { type: 'Int' })
     t.field('_all', { type: 'Int' })
@@ -1722,6 +2495,7 @@ export const FormMinAggregateOutputType = objectType({
     t.nullable.field('ownerId', { type: 'String' })
     t.nullable.field('order', { type: 'Int' })
     t.nullable.field('favorite', { type: 'Boolean' })
+    t.nullable.field('folderId', { type: 'String' })
     t.nullable.field('createdAt', { type: 'DateTime' })
     t.nullable.field('updatedAt', { type: 'DateTime' })
   },
@@ -1738,6 +2512,7 @@ export const FormMaxAggregateOutputType = objectType({
     t.nullable.field('ownerId', { type: 'String' })
     t.nullable.field('order', { type: 'Int' })
     t.nullable.field('favorite', { type: 'Boolean' })
+    t.nullable.field('folderId', { type: 'String' })
     t.nullable.field('createdAt', { type: 'DateTime' })
     t.nullable.field('updatedAt', { type: 'DateTime' })
   },
@@ -1813,5 +2588,52 @@ export const FormItemMaxAggregateOutputType = objectType({
     t.nullable.field('formId', { type: 'String' })
     t.nullable.field('required', { type: 'Boolean' })
     t.nullable.field('type', { type: 'FormType' })
+  },
+})
+
+export const FolderCountOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'FolderCountOutputType',
+  definition(t) {
+    t.field('Forms', { type: 'Int' })
+  },
+})
+
+export const FolderCountAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'FolderCountAggregateOutputType',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('name', { type: 'Int' })
+    t.field('ownerId', { type: 'Int' })
+    t.field('_all', { type: 'Int' })
+  },
+})
+
+export const FolderMinAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'FolderMinAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'String' })
+    t.nullable.field('name', { type: 'String' })
+    t.nullable.field('ownerId', { type: 'String' })
+  },
+})
+
+export const FolderMaxAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'FolderMaxAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'String' })
+    t.nullable.field('name', { type: 'String' })
+    t.nullable.field('ownerId', { type: 'String' })
   },
 })

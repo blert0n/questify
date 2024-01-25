@@ -30,6 +30,12 @@ export interface Scalars {
   Json: { input: any; output: any; }
 }
 
+export interface AggregateFolder {
+  _count?: Maybe<FolderCountAggregateOutputType>;
+  _max?: Maybe<FolderMaxAggregateOutputType>;
+  _min?: Maybe<FolderMinAggregateOutputType>;
+}
+
 export interface AggregateForm {
   _avg?: Maybe<FormAvgAggregateOutputType>;
   _count?: Maybe<FormCountAggregateOutputType>;
@@ -117,10 +123,235 @@ export interface EnumFormTypeWithAggregatesFilter {
   notIn?: InputMaybe<Array<InputMaybe<FormType>>>;
 }
 
+export interface Folder {
+  Forms: Array<Form>;
+  _count: FolderCountOutputType;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  ownerId: Scalars['String']['output'];
+}
+
+
+export interface FolderFormsArgs {
+  cursor?: InputMaybe<FormWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FormScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FormOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FormWhereInput>;
+}
+
+export interface FolderCountAggregateOutputType {
+  _all: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['Int']['output'];
+  ownerId: Scalars['Int']['output'];
+}
+
+export interface FolderCountOrderByAggregateInput {
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FolderCountOutputType {
+  Forms: Scalars['Int']['output'];
+}
+
+export interface FolderCreateInput {
+  Forms?: InputMaybe<FormCreateNestedManyWithoutFolderInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
+}
+
+export interface FolderCreateManyInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
+}
+
+export interface FolderCreateNestedOneWithoutFormsInput {
+  connect?: InputMaybe<FolderWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FolderCreateOrConnectWithoutFormsInput>;
+  create?: InputMaybe<FolderCreateWithoutFormsInput>;
+}
+
+export interface FolderCreateOrConnectWithoutFormsInput {
+  create: FolderCreateWithoutFormsInput;
+  where: FolderWhereUniqueInput;
+}
+
+export interface FolderCreateWithoutFormsInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
+}
+
+export interface FolderMaxAggregateOutputType {
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  ownerId?: Maybe<Scalars['String']['output']>;
+}
+
+export interface FolderMaxOrderByAggregateInput {
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FolderMinAggregateOutputType {
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  ownerId?: Maybe<Scalars['String']['output']>;
+}
+
+export interface FolderMinOrderByAggregateInput {
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FolderNullableRelationFilter {
+  is?: InputMaybe<FolderWhereInput>;
+  isNot?: InputMaybe<FolderWhereInput>;
+}
+
+export interface FolderOrderByWithAggregationInput {
+  _count?: InputMaybe<FolderCountOrderByAggregateInput>;
+  _max?: InputMaybe<FolderMaxOrderByAggregateInput>;
+  _min?: InputMaybe<FolderMinOrderByAggregateInput>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FolderOrderByWithRelationInput {
+  Forms?: InputMaybe<FormOrderByRelationAggregateInput>;
+  id?: InputMaybe<SortOrder>;
+  name?: InputMaybe<SortOrder>;
+  ownerId?: InputMaybe<SortOrder>;
+}
+
+export interface FolderOwnerIdNameCompoundUniqueInput {
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
+}
+
+export enum FolderScalarFieldEnum {
+  Id = 'id',
+  Name = 'name',
+  OwnerId = 'ownerId'
+}
+
+export interface FolderScalarWhereWithAggregatesInput {
+  AND?: InputMaybe<Array<InputMaybe<FolderScalarWhereWithAggregatesInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FolderScalarWhereWithAggregatesInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FolderScalarWhereWithAggregatesInput>>>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
+  ownerId?: InputMaybe<StringWithAggregatesFilter>;
+}
+
+export interface FolderUncheckedCreateInput {
+  Forms?: InputMaybe<FormUncheckedCreateNestedManyWithoutFolderInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
+}
+
+export interface FolderUncheckedCreateWithoutFormsInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  ownerId: Scalars['String']['input'];
+}
+
+export interface FolderUncheckedUpdateInput {
+  Forms?: InputMaybe<FormUncheckedUpdateManyWithoutFolderNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+}
+
+export interface FolderUncheckedUpdateManyInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+}
+
+export interface FolderUncheckedUpdateWithoutFormsInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+}
+
+export interface FolderUpdateInput {
+  Forms?: InputMaybe<FormUpdateManyWithoutFolderNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+}
+
+export interface FolderUpdateManyMutationInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+}
+
+export interface FolderUpdateOneWithoutFormsNestedInput {
+  connect?: InputMaybe<FolderWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FolderCreateOrConnectWithoutFormsInput>;
+  create?: InputMaybe<FolderCreateWithoutFormsInput>;
+  delete?: InputMaybe<FolderWhereInput>;
+  disconnect?: InputMaybe<FolderWhereInput>;
+  update?: InputMaybe<FolderUpdateToOneWithWhereWithoutFormsInput>;
+  upsert?: InputMaybe<FolderUpsertWithoutFormsInput>;
+}
+
+export interface FolderUpdateToOneWithWhereWithoutFormsInput {
+  data: FolderUpdateWithoutFormsInput;
+  where?: InputMaybe<FolderWhereInput>;
+}
+
+export interface FolderUpdateWithoutFormsInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+}
+
+export interface FolderUpsertWithoutFormsInput {
+  create: FolderCreateWithoutFormsInput;
+  update: FolderUpdateWithoutFormsInput;
+  where?: InputMaybe<FolderWhereInput>;
+}
+
+export interface FolderWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<FolderWhereInput>>>;
+  Forms?: InputMaybe<FormListRelationFilter>;
+  NOT?: InputMaybe<Array<InputMaybe<FolderWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FolderWhereInput>>>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  ownerId?: InputMaybe<StringFilter>;
+}
+
+export interface FolderWhereUniqueInput {
+  AND?: InputMaybe<Array<InputMaybe<FolderWhereInput>>>;
+  Forms?: InputMaybe<FormListRelationFilter>;
+  NOT?: InputMaybe<Array<InputMaybe<FolderWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FolderWhereInput>>>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<StringFilter>;
+  ownerId?: InputMaybe<StringFilter>;
+  ownerId_name?: InputMaybe<FolderOwnerIdNameCompoundUniqueInput>;
+}
+
 export interface Form {
+  Folder?: Maybe<Folder>;
   _count: FormCountOutputType;
   createdAt: Scalars['DateTime']['output'];
   favorite: Scalars['Boolean']['output'];
+  folderId?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   items: Array<FormItem>;
   name: Scalars['String']['output'];
@@ -128,6 +359,11 @@ export interface Form {
   ownerId: Scalars['String']['output'];
   style?: Maybe<Scalars['Json']['output']>;
   updatedAt: Scalars['DateTime']['output'];
+}
+
+
+export interface FormFolderArgs {
+  where?: InputMaybe<FolderWhereInput>;
 }
 
 
@@ -152,6 +388,7 @@ export interface FormCountAggregateOutputType {
   _all: Scalars['Int']['output'];
   createdAt: Scalars['Int']['output'];
   favorite: Scalars['Int']['output'];
+  folderId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['Int']['output'];
   order: Scalars['Int']['output'];
@@ -163,6 +400,7 @@ export interface FormCountAggregateOutputType {
 export interface FormCountOrderByAggregateInput {
   createdAt?: InputMaybe<SortOrder>;
   favorite?: InputMaybe<SortOrder>;
+  folderId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -176,6 +414,7 @@ export interface FormCountOutputType {
 }
 
 export interface FormCreateInput {
+  Folder?: InputMaybe<FolderCreateNestedOneWithoutFormsInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -187,7 +426,7 @@ export interface FormCreateInput {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
-export interface FormCreateManyInput {
+export interface FormCreateManyFolderInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -198,10 +437,39 @@ export interface FormCreateManyInput {
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 }
 
+export interface FormCreateManyFolderInputEnvelope {
+  data: FormCreateManyFolderInput;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+}
+
+export interface FormCreateManyInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
+  folderId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+}
+
+export interface FormCreateNestedManyWithoutFolderInput {
+  connect?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormCreateOrConnectWithoutFolderInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormCreateWithoutFolderInput>>>;
+  createMany?: InputMaybe<FormCreateManyFolderInputEnvelope>;
+}
+
 export interface FormCreateNestedOneWithoutItemsInput {
   connect?: InputMaybe<FormWhereUniqueInput>;
   connectOrCreate?: InputMaybe<FormCreateOrConnectWithoutItemsInput>;
   create?: InputMaybe<FormCreateWithoutItemsInput>;
+}
+
+export interface FormCreateOrConnectWithoutFolderInput {
+  create: FormCreateWithoutFolderInput;
+  where: FormWhereUniqueInput;
 }
 
 export interface FormCreateOrConnectWithoutItemsInput {
@@ -209,7 +477,20 @@ export interface FormCreateOrConnectWithoutItemsInput {
   where: FormWhereUniqueInput;
 }
 
+export interface FormCreateWithoutFolderInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<FormItemCreateNestedManyWithoutFormInput>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+}
+
 export interface FormCreateWithoutItemsInput {
+  Folder?: InputMaybe<FolderCreateNestedOneWithoutFormsInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -649,9 +930,16 @@ export interface FormItemWhereUniqueInput {
   type?: InputMaybe<EnumFormTypeFilter>;
 }
 
+export interface FormListRelationFilter {
+  every?: InputMaybe<FormWhereInput>;
+  none?: InputMaybe<FormWhereInput>;
+  some?: InputMaybe<FormWhereInput>;
+}
+
 export interface FormMaxAggregateOutputType {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   favorite?: Maybe<Scalars['Boolean']['output']>;
+  folderId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
@@ -662,6 +950,7 @@ export interface FormMaxAggregateOutputType {
 export interface FormMaxOrderByAggregateInput {
   createdAt?: InputMaybe<SortOrder>;
   favorite?: InputMaybe<SortOrder>;
+  folderId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -672,6 +961,7 @@ export interface FormMaxOrderByAggregateInput {
 export interface FormMinAggregateOutputType {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   favorite?: Maybe<Scalars['Boolean']['output']>;
+  folderId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
@@ -682,11 +972,16 @@ export interface FormMinAggregateOutputType {
 export interface FormMinOrderByAggregateInput {
   createdAt?: InputMaybe<SortOrder>;
   favorite?: InputMaybe<SortOrder>;
+  folderId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
   ownerId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
+}
+
+export interface FormOrderByRelationAggregateInput {
+  _count?: InputMaybe<SortOrder>;
 }
 
 export interface FormOrderByWithAggregationInput {
@@ -697,6 +992,7 @@ export interface FormOrderByWithAggregationInput {
   _sum?: InputMaybe<FormSumOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
   favorite?: InputMaybe<SortOrder>;
+  folderId?: InputMaybe<SortOrderInput>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   order?: InputMaybe<SortOrder>;
@@ -706,8 +1002,10 @@ export interface FormOrderByWithAggregationInput {
 }
 
 export interface FormOrderByWithRelationInput {
+  Folder?: InputMaybe<FolderOrderByWithRelationInput>;
   createdAt?: InputMaybe<SortOrder>;
   favorite?: InputMaybe<SortOrder>;
+  folderId?: InputMaybe<SortOrderInput>;
   id?: InputMaybe<SortOrder>;
   items?: InputMaybe<FormItemOrderByRelationAggregateInput>;
   name?: InputMaybe<SortOrder>;
@@ -730,6 +1028,7 @@ export interface FormRelationFilter {
 export enum FormScalarFieldEnum {
   CreatedAt = 'createdAt',
   Favorite = 'favorite',
+  FolderId = 'folderId',
   Id = 'id',
   Name = 'name',
   Order = 'order',
@@ -738,12 +1037,28 @@ export enum FormScalarFieldEnum {
   UpdatedAt = 'updatedAt'
 }
 
+export interface FormScalarWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<FormScalarWhereInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<FormScalarWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<FormScalarWhereInput>>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  favorite?: InputMaybe<BoolFilter>;
+  folderId?: InputMaybe<StringNullableFilter>;
+  id?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  order?: InputMaybe<IntFilter>;
+  ownerId?: InputMaybe<StringFilter>;
+  style?: InputMaybe<JsonNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+}
+
 export interface FormScalarWhereWithAggregatesInput {
   AND?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   NOT?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormScalarWhereWithAggregatesInput>>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   favorite?: InputMaybe<BoolWithAggregatesFilter>;
+  folderId?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   order?: InputMaybe<IntWithAggregatesFilter>;
@@ -773,6 +1088,26 @@ export enum FormType {
 export interface FormUncheckedCreateInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   favorite?: InputMaybe<Scalars['Boolean']['input']>;
+  folderId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<FormItemUncheckedCreateNestedManyWithoutFormInput>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  ownerId: Scalars['String']['input'];
+  style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+}
+
+export interface FormUncheckedCreateNestedManyWithoutFolderInput {
+  connect?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormCreateOrConnectWithoutFolderInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormCreateWithoutFolderInput>>>;
+  createMany?: InputMaybe<FormCreateManyFolderInputEnvelope>;
+}
+
+export interface FormUncheckedCreateWithoutFolderInput {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  favorite?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemUncheckedCreateNestedManyWithoutFormInput>;
   name: Scalars['String']['input'];
@@ -785,6 +1120,7 @@ export interface FormUncheckedCreateInput {
 export interface FormUncheckedCreateWithoutItemsInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   favorite?: InputMaybe<Scalars['Boolean']['input']>;
+  folderId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -796,6 +1132,7 @@ export interface FormUncheckedCreateWithoutItemsInput {
 export interface FormUncheckedUpdateInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  folderId?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   items?: InputMaybe<FormItemUncheckedUpdateManyWithoutFormNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -808,6 +1145,7 @@ export interface FormUncheckedUpdateInput {
 export interface FormUncheckedUpdateManyInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  folderId?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   order?: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -816,7 +1154,7 @@ export interface FormUncheckedUpdateManyInput {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
-export interface FormUncheckedUpdateWithoutItemsInput {
+export interface FormUncheckedUpdateManyWithoutFolderInput {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -827,7 +1165,46 @@ export interface FormUncheckedUpdateWithoutItemsInput {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
+export interface FormUncheckedUpdateManyWithoutFolderNestedInput {
+  connect?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormCreateOrConnectWithoutFolderInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormCreateWithoutFolderInput>>>;
+  createMany?: InputMaybe<FormCreateManyFolderInputEnvelope>;
+  delete?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  deleteMany?: InputMaybe<Array<InputMaybe<FormScalarWhereInput>>>;
+  disconnect?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  set?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  update?: InputMaybe<Array<InputMaybe<FormUpdateWithWhereUniqueWithoutFolderInput>>>;
+  updateMany?: InputMaybe<Array<InputMaybe<FormUpdateManyWithWhereWithoutFolderInput>>>;
+  upsert?: InputMaybe<Array<InputMaybe<FormUpsertWithWhereUniqueWithoutFolderInput>>>;
+}
+
+export interface FormUncheckedUpdateWithoutFolderInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<FormItemUncheckedUpdateManyWithoutFormNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+}
+
+export interface FormUncheckedUpdateWithoutItemsInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  folderId?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+}
+
 export interface FormUpdateInput {
+  Folder?: InputMaybe<FolderUpdateOneWithoutFormsNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -850,6 +1227,25 @@ export interface FormUpdateManyMutationInput {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
+export interface FormUpdateManyWithWhereWithoutFolderInput {
+  data: FormUpdateManyMutationInput;
+  where: FormScalarWhereInput;
+}
+
+export interface FormUpdateManyWithoutFolderNestedInput {
+  connect?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<FormCreateOrConnectWithoutFolderInput>>>;
+  create?: InputMaybe<Array<InputMaybe<FormCreateWithoutFolderInput>>>;
+  createMany?: InputMaybe<FormCreateManyFolderInputEnvelope>;
+  delete?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  deleteMany?: InputMaybe<Array<InputMaybe<FormScalarWhereInput>>>;
+  disconnect?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  set?: InputMaybe<Array<InputMaybe<FormWhereUniqueInput>>>;
+  update?: InputMaybe<Array<InputMaybe<FormUpdateWithWhereUniqueWithoutFolderInput>>>;
+  updateMany?: InputMaybe<Array<InputMaybe<FormUpdateManyWithWhereWithoutFolderInput>>>;
+  upsert?: InputMaybe<Array<InputMaybe<FormUpsertWithWhereUniqueWithoutFolderInput>>>;
+}
+
 export interface FormUpdateOneRequiredWithoutItemsNestedInput {
   connect?: InputMaybe<FormWhereUniqueInput>;
   connectOrCreate?: InputMaybe<FormCreateOrConnectWithoutItemsInput>;
@@ -863,7 +1259,25 @@ export interface FormUpdateToOneWithWhereWithoutItemsInput {
   where?: InputMaybe<FormWhereInput>;
 }
 
+export interface FormUpdateWithWhereUniqueWithoutFolderInput {
+  data: FormUpdateWithoutFolderInput;
+  where: FormWhereUniqueInput;
+}
+
+export interface FormUpdateWithoutFolderInput {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  items?: InputMaybe<FormItemUpdateManyWithoutFormNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  ownerId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  style?: InputMaybe<Scalars['Json']['input']>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+}
+
 export interface FormUpdateWithoutItemsInput {
+  Folder?: InputMaybe<FolderUpdateOneWithoutFormsNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   favorite?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -874,6 +1288,12 @@ export interface FormUpdateWithoutItemsInput {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 }
 
+export interface FormUpsertWithWhereUniqueWithoutFolderInput {
+  create: FormCreateWithoutFolderInput;
+  update: FormUpdateWithoutFolderInput;
+  where: FormWhereUniqueInput;
+}
+
 export interface FormUpsertWithoutItemsInput {
   create: FormCreateWithoutItemsInput;
   update: FormUpdateWithoutItemsInput;
@@ -882,10 +1302,12 @@ export interface FormUpsertWithoutItemsInput {
 
 export interface FormWhereInput {
   AND?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  Folder?: InputMaybe<FolderNullableRelationFilter>;
   NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   favorite?: InputMaybe<BoolFilter>;
+  folderId?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<StringFilter>;
   items?: InputMaybe<FormItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
@@ -897,10 +1319,12 @@ export interface FormWhereInput {
 
 export interface FormWhereUniqueInput {
   AND?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
+  Folder?: InputMaybe<FolderNullableRelationFilter>;
   NOT?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormWhereInput>>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   favorite?: InputMaybe<BoolFilter>;
+  folderId?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   items?: InputMaybe<FormItemListRelationFilter>;
   name?: InputMaybe<StringFilter>;
@@ -990,12 +1414,14 @@ export interface JsonNullableWithAggregatesFilter {
 export interface Mutation {
   createOneForm: Form;
   createOneFormItem: FormItem;
+  deleteOneFolder?: Maybe<Folder>;
   deleteOneForm?: Maybe<Form>;
   deleteOneFormItem?: Maybe<FormItem>;
   updateOneForm: Form;
   updateOneFormItem: FormItem;
   uploadItemImage?: Maybe<UploadResponse>;
   uploaderHeaderImage?: Maybe<UploadResponse>;
+  upsertOneFolder: Folder;
 }
 
 
@@ -1006,6 +1432,11 @@ export interface MutationCreateOneFormArgs {
 
 export interface MutationCreateOneFormItemArgs {
   data: FormItemCreateInput;
+}
+
+
+export interface MutationDeleteOneFolderArgs {
+  where: FolderWhereUniqueInput;
 }
 
 
@@ -1041,6 +1472,13 @@ export interface MutationUploadItemImageArgs {
 export interface MutationUploaderHeaderImageArgs {
   base64: Scalars['String']['input'];
   formId: Scalars['String']['input'];
+}
+
+
+export interface MutationUpsertOneFolderArgs {
+  create: FolderCreateInput;
+  update: FolderUpdateInput;
+  where: FolderWhereUniqueInput;
 }
 
 export interface NestedBoolFilter {
@@ -1177,6 +1615,37 @@ export interface NestedStringFilter {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 }
 
+export interface NestedStringNullableFilter {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  not?: InputMaybe<NestedStringNullableFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface NestedStringNullableWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedStringNullableFilter>;
+  _min?: InputMaybe<NestedStringNullableFilter>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+}
+
 export interface NestedStringWithAggregatesFilter {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedStringFilter>;
@@ -1199,6 +1668,10 @@ export enum NullableJsonNullValueInput {
   JsonNull = 'JsonNull'
 }
 
+export interface NullableStringFieldUpdateOperationsInput {
+  set?: InputMaybe<Scalars['String']['input']>;
+}
+
 export enum NullsOrder {
   First = 'first',
   Last = 'last'
@@ -1206,6 +1679,7 @@ export enum NullsOrder {
 
 export interface Query {
   findFirstForm?: Maybe<Form>;
+  findManyFolder: Array<Folder>;
   findManyForm: Array<Form>;
   findManyFormCount: Scalars['Int']['output'];
   findManyFormItem: Array<FormItem>;
@@ -1220,6 +1694,16 @@ export interface QueryFindFirstFormArgs {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<FormWhereInput>;
+}
+
+
+export interface QueryFindManyFolderArgs {
+  cursor?: InputMaybe<FolderWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<FolderScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<FolderOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<FolderWhereInput>;
 }
 
 
@@ -1296,6 +1780,39 @@ export interface StringFilter {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 }
 
+export interface StringNullableFilter {
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<NestedStringNullableFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface StringNullableWithAggregatesFilter {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedStringNullableFilter>;
+  _min?: InputMaybe<NestedStringNullableFilter>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  mode?: InputMaybe<QueryMode>;
+  not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+}
+
 export interface StringWithAggregatesFilter {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedStringFilter>;
@@ -1327,6 +1844,26 @@ export interface UploadResponse {
   /** Success flag */
   success?: Maybe<Scalars['Boolean']['output']>;
 }
+
+export type MyFoldersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MyFoldersQuery = { findManyFolder: Array<{ id: string, name: string }> };
+
+export type UpsertFolderMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+}>;
+
+
+export type UpsertFolderMutation = { upsertOneFolder: { id: string, name: string } };
+
+export type DeleteFolderMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type DeleteFolderMutation = { deleteOneFolder?: { id: string, name: string } | undefined };
 
 export type CreateFormMutationVariables = Exact<{
   data: FormCreateInput;
@@ -1387,9 +1924,120 @@ export type UpdateFormMutationVariables = Exact<{
 }>;
 
 
-export type UpdateFormMutation = { updateOneForm: { id: string, name: string, favorite: boolean, style?: any | undefined, items: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined, image?: any | undefined, type: FormType }> } };
+export type UpdateFormMutation = { updateOneForm: { id: string } };
 
 
+export const MyFoldersDocument = /*#__PURE__*/ gql`
+    query MyFolders {
+  findManyFolder {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useMyFoldersQuery__
+ *
+ * To run a query within a React component, call `useMyFoldersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyFoldersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyFoldersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMyFoldersQuery(baseOptions?: Apollo.QueryHookOptions<MyFoldersQuery, MyFoldersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyFoldersQuery, MyFoldersQueryVariables>(MyFoldersDocument, options);
+      }
+export function useMyFoldersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyFoldersQuery, MyFoldersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyFoldersQuery, MyFoldersQueryVariables>(MyFoldersDocument, options);
+        }
+export function useMyFoldersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MyFoldersQuery, MyFoldersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<MyFoldersQuery, MyFoldersQueryVariables>(MyFoldersDocument, options);
+        }
+export type MyFoldersQueryHookResult = ReturnType<typeof useMyFoldersQuery>;
+export type MyFoldersLazyQueryHookResult = ReturnType<typeof useMyFoldersLazyQuery>;
+export type MyFoldersSuspenseQueryHookResult = ReturnType<typeof useMyFoldersSuspenseQuery>;
+export type MyFoldersQueryResult = Apollo.QueryResult<MyFoldersQuery, MyFoldersQueryVariables>;
+export const UpsertFolderDocument = /*#__PURE__*/ gql`
+    mutation UpsertFolder($id: String!, $name: String!) {
+  upsertOneFolder(
+    where: {id: $id}
+    create: {name: $name, ownerId: ""}
+    update: {name: {set: $name}}
+  ) {
+    id
+    name
+  }
+}
+    `;
+export type UpsertFolderMutationFn = Apollo.MutationFunction<UpsertFolderMutation, UpsertFolderMutationVariables>;
+
+/**
+ * __useUpsertFolderMutation__
+ *
+ * To run a mutation, you first call `useUpsertFolderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpsertFolderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upsertFolderMutation, { data, loading, error }] = useUpsertFolderMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUpsertFolderMutation(baseOptions?: Apollo.MutationHookOptions<UpsertFolderMutation, UpsertFolderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpsertFolderMutation, UpsertFolderMutationVariables>(UpsertFolderDocument, options);
+      }
+export type UpsertFolderMutationHookResult = ReturnType<typeof useUpsertFolderMutation>;
+export type UpsertFolderMutationResult = Apollo.MutationResult<UpsertFolderMutation>;
+export const DeleteFolderDocument = /*#__PURE__*/ gql`
+    mutation DeleteFolder($id: String!) {
+  deleteOneFolder(where: {id: $id}) {
+    id
+    name
+  }
+}
+    `;
+export type DeleteFolderMutationFn = Apollo.MutationFunction<DeleteFolderMutation, DeleteFolderMutationVariables>;
+
+/**
+ * __useDeleteFolderMutation__
+ *
+ * To run a mutation, you first call `useDeleteFolderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteFolderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteFolderMutation, { data, loading, error }] = useDeleteFolderMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteFolderMutation(baseOptions?: Apollo.MutationHookOptions<DeleteFolderMutation, DeleteFolderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteFolderMutation, DeleteFolderMutationVariables>(DeleteFolderDocument, options);
+      }
+export type DeleteFolderMutationHookResult = ReturnType<typeof useDeleteFolderMutation>;
+export type DeleteFolderMutationResult = Apollo.MutationResult<DeleteFolderMutation>;
 export const CreateFormDocument = /*#__PURE__*/ gql`
     mutation CreateForm($data: FormCreateInput!) {
   createOneForm(data: $data) {
@@ -1658,19 +2306,6 @@ export const UpdateFormDocument = /*#__PURE__*/ gql`
     mutation UpdateForm($data: FormUpdateInput!, $where: FormWhereUniqueInput!) {
   updateOneForm(data: $data, where: $where) {
     id
-    name
-    favorite
-    style
-    items {
-      id
-      formId
-      name
-      order
-      required
-      items
-      image
-      type
-    }
   }
 }
     `;

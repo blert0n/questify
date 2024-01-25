@@ -19,6 +19,16 @@ const common = {
       "updateMany",
       "deleteMany",
     ],
+    Folder: [
+      "findUnique",
+      "findFirst",
+      "findCount",
+      "aggregate",
+      "createOne",
+      "updateOne",
+      "updateMany",
+      "deleteMany",
+    ],
   },
   excludeModels: [
     // { name: 'model', queries: true, mutations: true },

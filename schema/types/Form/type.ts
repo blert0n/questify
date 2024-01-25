@@ -13,6 +13,7 @@ export const Form = objectType({
     t.int('order')
     t.nullable.json('style')
     t.boolean('favorite')
+    t.nullable.string('folderId')
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.list.field('items', {
@@ -27,6 +28,15 @@ export const Form = objectType({
       },
       resolve(root: any) {
         return root.items
+      },
+    })
+    t.nullable.field('Folder', {
+      type: 'Folder',
+      args: {
+        where: 'FolderWhereInput',
+      },
+      resolve(root: any) {
+        return root.Folder
       },
     })
     t.field('_count', {

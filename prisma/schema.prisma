@@ -14,9 +14,11 @@ model Form {
   order     Int        @default(autoincrement())
   style     Json?
   favorite  Boolean    @default(false)
+  folderId  String?    @default("Default")
   createdAt DateTime   @default(now())
   updatedAt DateTime   @default(now()) @updatedAt
   items     FormItem[]
+  Folder    Folder?    @relation(fields: [folderId], references: [id], onDelete: SetDefault)
 
   @@unique([ownerId, name])
   @@index([ownerId, name])
@@ -32,7 +34,17 @@ model FormItem {
   items    Json?
   image    Json?
   type     FormType
-  Form     Form     @relation(fields: [formId], references: [id],onDelete: Cascade)
+  Form     Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
+}
+
+model Folder {
+  id      String @id @default(uuid())
+  name    String
+  ownerId String
+  Forms   Form[]
+
+  @@unique([ownerId, name])
+  @@index([ownerId, name])
 }
 
 enum FormType {

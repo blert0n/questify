@@ -1,0 +1,23 @@
+query MyFolders {
+  findManyFolder {
+    id
+    name
+  }
+}
+
+mutation UpsertFolder($id: String!, $name: String!) {
+  upsertOneFolder(
+    where: { id: $id }
+    create: { name: $name, ownerId: "" }
+    update: { name: { set: $name } }
+  ) {
+    id
+    name
+  }
+}
+mutation DeleteFolder($id: String!) {
+  deleteOneFolder(where: { id: $id }) {
+    id
+    name
+  }
+}

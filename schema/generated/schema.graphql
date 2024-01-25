@@ -2,6 +2,12 @@
 ### Do not make changes to this file directly
 
 
+type AggregateFolder {
+  _count: FolderCountAggregateOutputType
+  _max: FolderMaxAggregateOutputType
+  _min: FolderMinAggregateOutputType
+}
+
 type AggregateForm {
   _avg: FormAvgAggregateOutputType
   _count: FormCountAggregateOutputType
@@ -106,10 +112,225 @@ input EnumFormTypeWithAggregatesFilter {
   notIn: [FormType]
 }
 
+type Folder {
+  Forms(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): [Form!]!
+  _count: FolderCountOutputType!
+  id: String!
+  name: String!
+  ownerId: String!
+}
+
+type FolderCountAggregateOutputType {
+  _all: Int!
+  id: Int!
+  name: Int!
+  ownerId: Int!
+}
+
+input FolderCountOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+  ownerId: SortOrder
+}
+
+type FolderCountOutputType {
+  Forms: Int!
+}
+
+input FolderCreateInput {
+  Forms: FormCreateNestedManyWithoutFolderInput
+  id: String
+  name: String!
+  ownerId: String!
+}
+
+input FolderCreateManyInput {
+  id: String
+  name: String!
+  ownerId: String!
+}
+
+input FolderCreateNestedOneWithoutFormsInput {
+  connect: FolderWhereUniqueInput
+  connectOrCreate: FolderCreateOrConnectWithoutFormsInput
+  create: FolderCreateWithoutFormsInput
+}
+
+input FolderCreateOrConnectWithoutFormsInput {
+  create: FolderCreateWithoutFormsInput!
+  where: FolderWhereUniqueInput!
+}
+
+input FolderCreateWithoutFormsInput {
+  id: String
+  name: String!
+  ownerId: String!
+}
+
+type FolderMaxAggregateOutputType {
+  id: String
+  name: String
+  ownerId: String
+}
+
+input FolderMaxOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+  ownerId: SortOrder
+}
+
+type FolderMinAggregateOutputType {
+  id: String
+  name: String
+  ownerId: String
+}
+
+input FolderMinOrderByAggregateInput {
+  id: SortOrder
+  name: SortOrder
+  ownerId: SortOrder
+}
+
+input FolderNullableRelationFilter {
+  is: FolderWhereInput
+  isNot: FolderWhereInput
+}
+
+input FolderOrderByWithAggregationInput {
+  _count: FolderCountOrderByAggregateInput
+  _max: FolderMaxOrderByAggregateInput
+  _min: FolderMinOrderByAggregateInput
+  id: SortOrder
+  name: SortOrder
+  ownerId: SortOrder
+}
+
+input FolderOrderByWithRelationInput {
+  Forms: FormOrderByRelationAggregateInput
+  id: SortOrder
+  name: SortOrder
+  ownerId: SortOrder
+}
+
+input FolderOwnerIdNameCompoundUniqueInput {
+  name: String!
+  ownerId: String!
+}
+
+enum FolderScalarFieldEnum {
+  id
+  name
+  ownerId
+}
+
+input FolderScalarWhereWithAggregatesInput {
+  AND: [FolderScalarWhereWithAggregatesInput]
+  NOT: [FolderScalarWhereWithAggregatesInput]
+  OR: [FolderScalarWhereWithAggregatesInput]
+  id: StringWithAggregatesFilter
+  name: StringWithAggregatesFilter
+  ownerId: StringWithAggregatesFilter
+}
+
+input FolderUncheckedCreateInput {
+  Forms: FormUncheckedCreateNestedManyWithoutFolderInput
+  id: String
+  name: String!
+  ownerId: String!
+}
+
+input FolderUncheckedCreateWithoutFormsInput {
+  id: String
+  name: String!
+  ownerId: String!
+}
+
+input FolderUncheckedUpdateInput {
+  Forms: FormUncheckedUpdateManyWithoutFolderNestedInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+}
+
+input FolderUncheckedUpdateManyInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+}
+
+input FolderUncheckedUpdateWithoutFormsInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+}
+
+input FolderUpdateInput {
+  Forms: FormUpdateManyWithoutFolderNestedInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+}
+
+input FolderUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+}
+
+input FolderUpdateOneWithoutFormsNestedInput {
+  connect: FolderWhereUniqueInput
+  connectOrCreate: FolderCreateOrConnectWithoutFormsInput
+  create: FolderCreateWithoutFormsInput
+  delete: FolderWhereInput
+  disconnect: FolderWhereInput
+  update: FolderUpdateToOneWithWhereWithoutFormsInput
+  upsert: FolderUpsertWithoutFormsInput
+}
+
+input FolderUpdateToOneWithWhereWithoutFormsInput {
+  data: FolderUpdateWithoutFormsInput!
+  where: FolderWhereInput
+}
+
+input FolderUpdateWithoutFormsInput {
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+}
+
+input FolderUpsertWithoutFormsInput {
+  create: FolderCreateWithoutFormsInput!
+  update: FolderUpdateWithoutFormsInput!
+  where: FolderWhereInput
+}
+
+input FolderWhereInput {
+  AND: [FolderWhereInput]
+  Forms: FormListRelationFilter
+  NOT: [FolderWhereInput]
+  OR: [FolderWhereInput]
+  id: StringFilter
+  name: StringFilter
+  ownerId: StringFilter
+}
+
+input FolderWhereUniqueInput {
+  AND: [FolderWhereInput]
+  Forms: FormListRelationFilter
+  NOT: [FolderWhereInput]
+  OR: [FolderWhereInput]
+  id: String
+  name: StringFilter
+  ownerId: StringFilter
+  ownerId_name: FolderOwnerIdNameCompoundUniqueInput
+}
+
 type Form {
+  Folder(where: FolderWhereInput): Folder
   _count: FormCountOutputType!
   createdAt: DateTime!
   favorite: Boolean!
+  folderId: String
   id: String!
   items(cursor: FormItemWhereUniqueInput, distinct: [FormItemScalarFieldEnum], orderBy: [FormItemOrderByWithRelationInput], skip: Int, take: Int, where: FormItemWhereInput): [FormItem!]!
   name: String!
@@ -131,6 +352,7 @@ type FormCountAggregateOutputType {
   _all: Int!
   createdAt: Int!
   favorite: Int!
+  folderId: Int!
   id: Int!
   name: Int!
   order: Int!
@@ -142,6 +364,7 @@ type FormCountAggregateOutputType {
 input FormCountOrderByAggregateInput {
   createdAt: SortOrder
   favorite: SortOrder
+  folderId: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -155,6 +378,7 @@ type FormCountOutputType {
 }
 
 input FormCreateInput {
+  Folder: FolderCreateNestedOneWithoutFormsInput
   createdAt: DateTime
   favorite: Boolean
   id: String
@@ -166,7 +390,7 @@ input FormCreateInput {
   updatedAt: DateTime
 }
 
-input FormCreateManyInput {
+input FormCreateManyFolderInput {
   createdAt: DateTime
   favorite: Boolean
   id: String
@@ -177,10 +401,39 @@ input FormCreateManyInput {
   updatedAt: DateTime
 }
 
+input FormCreateManyFolderInputEnvelope {
+  data: FormCreateManyFolderInput!
+  skipDuplicates: Boolean
+}
+
+input FormCreateManyInput {
+  createdAt: DateTime
+  favorite: Boolean
+  folderId: String
+  id: String
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+  updatedAt: DateTime
+}
+
+input FormCreateNestedManyWithoutFolderInput {
+  connect: [FormWhereUniqueInput]
+  connectOrCreate: [FormCreateOrConnectWithoutFolderInput]
+  create: [FormCreateWithoutFolderInput]
+  createMany: FormCreateManyFolderInputEnvelope
+}
+
 input FormCreateNestedOneWithoutItemsInput {
   connect: FormWhereUniqueInput
   connectOrCreate: FormCreateOrConnectWithoutItemsInput
   create: FormCreateWithoutItemsInput
+}
+
+input FormCreateOrConnectWithoutFolderInput {
+  create: FormCreateWithoutFolderInput!
+  where: FormWhereUniqueInput!
 }
 
 input FormCreateOrConnectWithoutItemsInput {
@@ -188,7 +441,20 @@ input FormCreateOrConnectWithoutItemsInput {
   where: FormWhereUniqueInput!
 }
 
+input FormCreateWithoutFolderInput {
+  createdAt: DateTime
+  favorite: Boolean
+  id: String
+  items: FormItemCreateNestedManyWithoutFormInput
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+  updatedAt: DateTime
+}
+
 input FormCreateWithoutItemsInput {
+  Folder: FolderCreateNestedOneWithoutFormsInput
   createdAt: DateTime
   favorite: Boolean
   id: String
@@ -628,9 +894,16 @@ input FormItemWhereUniqueInput {
   type: EnumFormTypeFilter
 }
 
+input FormListRelationFilter {
+  every: FormWhereInput
+  none: FormWhereInput
+  some: FormWhereInput
+}
+
 type FormMaxAggregateOutputType {
   createdAt: DateTime
   favorite: Boolean
+  folderId: String
   id: String
   name: String
   order: Int
@@ -641,6 +914,7 @@ type FormMaxAggregateOutputType {
 input FormMaxOrderByAggregateInput {
   createdAt: SortOrder
   favorite: SortOrder
+  folderId: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -651,6 +925,7 @@ input FormMaxOrderByAggregateInput {
 type FormMinAggregateOutputType {
   createdAt: DateTime
   favorite: Boolean
+  folderId: String
   id: String
   name: String
   order: Int
@@ -661,11 +936,16 @@ type FormMinAggregateOutputType {
 input FormMinOrderByAggregateInput {
   createdAt: SortOrder
   favorite: SortOrder
+  folderId: SortOrder
   id: SortOrder
   name: SortOrder
   order: SortOrder
   ownerId: SortOrder
   updatedAt: SortOrder
+}
+
+input FormOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input FormOrderByWithAggregationInput {
@@ -676,6 +956,7 @@ input FormOrderByWithAggregationInput {
   _sum: FormSumOrderByAggregateInput
   createdAt: SortOrder
   favorite: SortOrder
+  folderId: SortOrderInput
   id: SortOrder
   name: SortOrder
   order: SortOrder
@@ -685,8 +966,10 @@ input FormOrderByWithAggregationInput {
 }
 
 input FormOrderByWithRelationInput {
+  Folder: FolderOrderByWithRelationInput
   createdAt: SortOrder
   favorite: SortOrder
+  folderId: SortOrderInput
   id: SortOrder
   items: FormItemOrderByRelationAggregateInput
   name: SortOrder
@@ -709,6 +992,7 @@ input FormRelationFilter {
 enum FormScalarFieldEnum {
   createdAt
   favorite
+  folderId
   id
   name
   order
@@ -717,12 +1001,28 @@ enum FormScalarFieldEnum {
   updatedAt
 }
 
+input FormScalarWhereInput {
+  AND: [FormScalarWhereInput]
+  NOT: [FormScalarWhereInput]
+  OR: [FormScalarWhereInput]
+  createdAt: DateTimeFilter
+  favorite: BoolFilter
+  folderId: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  order: IntFilter
+  ownerId: StringFilter
+  style: JsonNullableFilter
+  updatedAt: DateTimeFilter
+}
+
 input FormScalarWhereWithAggregatesInput {
   AND: [FormScalarWhereWithAggregatesInput]
   NOT: [FormScalarWhereWithAggregatesInput]
   OR: [FormScalarWhereWithAggregatesInput]
   createdAt: DateTimeWithAggregatesFilter
   favorite: BoolWithAggregatesFilter
+  folderId: StringNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
   order: IntWithAggregatesFilter
@@ -752,6 +1052,26 @@ enum FormType {
 input FormUncheckedCreateInput {
   createdAt: DateTime
   favorite: Boolean
+  folderId: String
+  id: String
+  items: FormItemUncheckedCreateNestedManyWithoutFormInput
+  name: String!
+  order: Int
+  ownerId: String!
+  style: Json
+  updatedAt: DateTime
+}
+
+input FormUncheckedCreateNestedManyWithoutFolderInput {
+  connect: [FormWhereUniqueInput]
+  connectOrCreate: [FormCreateOrConnectWithoutFolderInput]
+  create: [FormCreateWithoutFolderInput]
+  createMany: FormCreateManyFolderInputEnvelope
+}
+
+input FormUncheckedCreateWithoutFolderInput {
+  createdAt: DateTime
+  favorite: Boolean
   id: String
   items: FormItemUncheckedCreateNestedManyWithoutFormInput
   name: String!
@@ -764,6 +1084,7 @@ input FormUncheckedCreateInput {
 input FormUncheckedCreateWithoutItemsInput {
   createdAt: DateTime
   favorite: Boolean
+  folderId: String
   id: String
   name: String!
   order: Int
@@ -775,6 +1096,7 @@ input FormUncheckedCreateWithoutItemsInput {
 input FormUncheckedUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   favorite: BoolFieldUpdateOperationsInput
+  folderId: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   items: FormItemUncheckedUpdateManyWithoutFormNestedInput
   name: StringFieldUpdateOperationsInput
@@ -787,6 +1109,7 @@ input FormUncheckedUpdateInput {
 input FormUncheckedUpdateManyInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   favorite: BoolFieldUpdateOperationsInput
+  folderId: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
@@ -795,7 +1118,7 @@ input FormUncheckedUpdateManyInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input FormUncheckedUpdateWithoutItemsInput {
+input FormUncheckedUpdateManyWithoutFolderInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -806,7 +1129,46 @@ input FormUncheckedUpdateWithoutItemsInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
+input FormUncheckedUpdateManyWithoutFolderNestedInput {
+  connect: [FormWhereUniqueInput]
+  connectOrCreate: [FormCreateOrConnectWithoutFolderInput]
+  create: [FormCreateWithoutFolderInput]
+  createMany: FormCreateManyFolderInputEnvelope
+  delete: [FormWhereUniqueInput]
+  deleteMany: [FormScalarWhereInput]
+  disconnect: [FormWhereUniqueInput]
+  set: [FormWhereUniqueInput]
+  update: [FormUpdateWithWhereUniqueWithoutFolderInput]
+  updateMany: [FormUpdateManyWithWhereWithoutFolderInput]
+  upsert: [FormUpsertWithWhereUniqueWithoutFolderInput]
+}
+
+input FormUncheckedUpdateWithoutFolderInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  items: FormItemUncheckedUpdateManyWithoutFormNestedInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input FormUncheckedUpdateWithoutItemsInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
+  folderId: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
 input FormUpdateInput {
+  Folder: FolderUpdateOneWithoutFormsNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -829,6 +1191,25 @@ input FormUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
+input FormUpdateManyWithWhereWithoutFolderInput {
+  data: FormUpdateManyMutationInput!
+  where: FormScalarWhereInput!
+}
+
+input FormUpdateManyWithoutFolderNestedInput {
+  connect: [FormWhereUniqueInput]
+  connectOrCreate: [FormCreateOrConnectWithoutFolderInput]
+  create: [FormCreateWithoutFolderInput]
+  createMany: FormCreateManyFolderInputEnvelope
+  delete: [FormWhereUniqueInput]
+  deleteMany: [FormScalarWhereInput]
+  disconnect: [FormWhereUniqueInput]
+  set: [FormWhereUniqueInput]
+  update: [FormUpdateWithWhereUniqueWithoutFolderInput]
+  updateMany: [FormUpdateManyWithWhereWithoutFolderInput]
+  upsert: [FormUpsertWithWhereUniqueWithoutFolderInput]
+}
+
 input FormUpdateOneRequiredWithoutItemsNestedInput {
   connect: FormWhereUniqueInput
   connectOrCreate: FormCreateOrConnectWithoutItemsInput
@@ -842,7 +1223,25 @@ input FormUpdateToOneWithWhereWithoutItemsInput {
   where: FormWhereInput
 }
 
+input FormUpdateWithWhereUniqueWithoutFolderInput {
+  data: FormUpdateWithoutFolderInput!
+  where: FormWhereUniqueInput!
+}
+
+input FormUpdateWithoutFolderInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  favorite: BoolFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  items: FormItemUpdateManyWithoutFormNestedInput
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  ownerId: StringFieldUpdateOperationsInput
+  style: Json
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
 input FormUpdateWithoutItemsInput {
+  Folder: FolderUpdateOneWithoutFormsNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   favorite: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
@@ -853,6 +1252,12 @@ input FormUpdateWithoutItemsInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
+input FormUpsertWithWhereUniqueWithoutFolderInput {
+  create: FormCreateWithoutFolderInput!
+  update: FormUpdateWithoutFolderInput!
+  where: FormWhereUniqueInput!
+}
+
 input FormUpsertWithoutItemsInput {
   create: FormCreateWithoutItemsInput!
   update: FormUpdateWithoutItemsInput!
@@ -861,10 +1266,12 @@ input FormUpsertWithoutItemsInput {
 
 input FormWhereInput {
   AND: [FormWhereInput]
+  Folder: FolderNullableRelationFilter
   NOT: [FormWhereInput]
   OR: [FormWhereInput]
   createdAt: DateTimeFilter
   favorite: BoolFilter
+  folderId: StringNullableFilter
   id: StringFilter
   items: FormItemListRelationFilter
   name: StringFilter
@@ -876,10 +1283,12 @@ input FormWhereInput {
 
 input FormWhereUniqueInput {
   AND: [FormWhereInput]
+  Folder: FolderNullableRelationFilter
   NOT: [FormWhereInput]
   OR: [FormWhereInput]
   createdAt: DateTimeFilter
   favorite: BoolFilter
+  folderId: StringNullableFilter
   id: String
   items: FormItemListRelationFilter
   name: StringFilter
@@ -974,12 +1383,14 @@ input JsonNullableWithAggregatesFilter {
 type Mutation {
   createOneForm(data: FormCreateInput!): Form!
   createOneFormItem(data: FormItemCreateInput!): FormItem!
+  deleteOneFolder(where: FolderWhereUniqueInput!): Folder
   deleteOneForm(where: FormWhereUniqueInput!): Form
   deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
   updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
   updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
   uploadItemImage(base64: String!, formId: String!, itemId: String!): UploadResponse
   uploaderHeaderImage(base64: String!, formId: String!): UploadResponse
+  upsertOneFolder(create: FolderCreateInput!, update: FolderUpdateInput!, where: FolderWhereUniqueInput!): Folder!
 }
 
 input NestedBoolFilter {
@@ -1116,6 +1527,37 @@ input NestedStringFilter {
   startsWith: String
 }
 
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String]
+  startsWith: String
+}
+
+input NestedStringNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedStringNullableFilter
+  _min: NestedStringNullableFilter
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  not: NestedStringNullableWithAggregatesFilter
+  notIn: [String]
+  startsWith: String
+}
+
 input NestedStringWithAggregatesFilter {
   _count: NestedIntFilter
   _max: NestedStringFilter
@@ -1138,6 +1580,10 @@ enum NullableJsonNullValueInput {
   JsonNull
 }
 
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
 enum NullsOrder {
   first
   last
@@ -1145,6 +1591,7 @@ enum NullsOrder {
 
 type Query {
   findFirstForm(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): Form
+  findManyFolder(cursor: FolderWhereUniqueInput, distinct: [FolderScalarFieldEnum], orderBy: [FolderOrderByWithRelationInput], skip: Int, take: Int, where: FolderWhereInput): [Folder!]!
   findManyForm(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): [Form!]!
   findManyFormCount(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): Int!
   findManyFormItem(cursor: FormItemWhereUniqueInput, distinct: [FormItemScalarFieldEnum], orderBy: [FormItemOrderByWithRelationInput], skip: Int, take: Int, where: FormItemWhereInput): [FormItem!]!
@@ -1181,6 +1628,39 @@ input StringFilter {
   lte: String
   mode: QueryMode
   not: NestedStringFilter
+  notIn: [String]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+  notIn: [String]
+  startsWith: String
+}
+
+input StringNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedStringNullableFilter
+  _min: NestedStringNullableFilter
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableWithAggregatesFilter
   notIn: [String]
   startsWith: String
 }
