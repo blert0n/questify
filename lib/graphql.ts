@@ -1865,6 +1865,14 @@ export type DeleteFolderMutationVariables = Exact<{
 
 export type DeleteFolderMutation = { deleteOneFolder?: { id: string, name: string } | undefined };
 
+export type UpdateFormFolderMutationVariables = Exact<{
+  folder: FolderUpdateOneWithoutFormsNestedInput;
+  formId: Scalars['String']['input'];
+}>;
+
+
+export type UpdateFormFolderMutation = { updateOneForm: { id: string } };
+
 export type CreateFormMutationVariables = Exact<{
   data: FormCreateInput;
 }>;
@@ -1893,6 +1901,18 @@ export type MyFormsQueryVariables = Exact<{
 
 
 export type MyFormsQuery = { findManyForm: Array<{ id: string, name: string, favorite: boolean, createdAt: Date, updatedAt: Date }> };
+
+export type FolderFormsQueryVariables = Exact<{
+  folderId: Scalars['String']['input'];
+}>;
+
+
+export type FolderFormsQuery = { findManyForm: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined, createdAt: Date, updatedAt: Date }> };
+
+export type DefaultFolderFormsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DefaultFolderFormsQuery = { findManyForm: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined, createdAt: Date, updatedAt: Date }> };
 
 export type FormDataQueryVariables = Exact<{
   formId: Scalars['String']['input'];
@@ -2038,6 +2058,39 @@ export function useDeleteFolderMutation(baseOptions?: Apollo.MutationHookOptions
       }
 export type DeleteFolderMutationHookResult = ReturnType<typeof useDeleteFolderMutation>;
 export type DeleteFolderMutationResult = Apollo.MutationResult<DeleteFolderMutation>;
+export const UpdateFormFolderDocument = /*#__PURE__*/ gql`
+    mutation UpdateFormFolder($folder: FolderUpdateOneWithoutFormsNestedInput!, $formId: String!) {
+  updateOneForm(where: {id: $formId}, data: {Folder: $folder}) {
+    id
+  }
+}
+    `;
+export type UpdateFormFolderMutationFn = Apollo.MutationFunction<UpdateFormFolderMutation, UpdateFormFolderMutationVariables>;
+
+/**
+ * __useUpdateFormFolderMutation__
+ *
+ * To run a mutation, you first call `useUpdateFormFolderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateFormFolderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateFormFolderMutation, { data, loading, error }] = useUpdateFormFolderMutation({
+ *   variables: {
+ *      folder: // value for 'folder'
+ *      formId: // value for 'formId'
+ *   },
+ * });
+ */
+export function useUpdateFormFolderMutation(baseOptions?: Apollo.MutationHookOptions<UpdateFormFolderMutation, UpdateFormFolderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateFormFolderMutation, UpdateFormFolderMutationVariables>(UpdateFormFolderDocument, options);
+      }
+export type UpdateFormFolderMutationHookResult = ReturnType<typeof useUpdateFormFolderMutation>;
+export type UpdateFormFolderMutationResult = Apollo.MutationResult<UpdateFormFolderMutation>;
 export const CreateFormDocument = /*#__PURE__*/ gql`
     mutation CreateForm($data: FormCreateInput!) {
   createOneForm(data: $data) {
@@ -2182,6 +2235,95 @@ export type MyFormsQueryHookResult = ReturnType<typeof useMyFormsQuery>;
 export type MyFormsLazyQueryHookResult = ReturnType<typeof useMyFormsLazyQuery>;
 export type MyFormsSuspenseQueryHookResult = ReturnType<typeof useMyFormsSuspenseQuery>;
 export type MyFormsQueryResult = Apollo.QueryResult<MyFormsQuery, MyFormsQueryVariables>;
+export const FolderFormsDocument = /*#__PURE__*/ gql`
+    query FolderForms($folderId: String!) {
+  findManyForm(where: {folderId: {equals: $folderId}}) {
+    id
+    name
+    favorite
+    folderId
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useFolderFormsQuery__
+ *
+ * To run a query within a React component, call `useFolderFormsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFolderFormsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFolderFormsQuery({
+ *   variables: {
+ *      folderId: // value for 'folderId'
+ *   },
+ * });
+ */
+export function useFolderFormsQuery(baseOptions: Apollo.QueryHookOptions<FolderFormsQuery, FolderFormsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FolderFormsQuery, FolderFormsQueryVariables>(FolderFormsDocument, options);
+      }
+export function useFolderFormsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FolderFormsQuery, FolderFormsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FolderFormsQuery, FolderFormsQueryVariables>(FolderFormsDocument, options);
+        }
+export function useFolderFormsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FolderFormsQuery, FolderFormsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FolderFormsQuery, FolderFormsQueryVariables>(FolderFormsDocument, options);
+        }
+export type FolderFormsQueryHookResult = ReturnType<typeof useFolderFormsQuery>;
+export type FolderFormsLazyQueryHookResult = ReturnType<typeof useFolderFormsLazyQuery>;
+export type FolderFormsSuspenseQueryHookResult = ReturnType<typeof useFolderFormsSuspenseQuery>;
+export type FolderFormsQueryResult = Apollo.QueryResult<FolderFormsQuery, FolderFormsQueryVariables>;
+export const DefaultFolderFormsDocument = /*#__PURE__*/ gql`
+    query DefaultFolderForms {
+  findManyForm(where: {folderId: null}) {
+    id
+    name
+    favorite
+    folderId
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useDefaultFolderFormsQuery__
+ *
+ * To run a query within a React component, call `useDefaultFolderFormsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDefaultFolderFormsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDefaultFolderFormsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDefaultFolderFormsQuery(baseOptions?: Apollo.QueryHookOptions<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>(DefaultFolderFormsDocument, options);
+      }
+export function useDefaultFolderFormsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>(DefaultFolderFormsDocument, options);
+        }
+export function useDefaultFolderFormsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>(DefaultFolderFormsDocument, options);
+        }
+export type DefaultFolderFormsQueryHookResult = ReturnType<typeof useDefaultFolderFormsQuery>;
+export type DefaultFolderFormsLazyQueryHookResult = ReturnType<typeof useDefaultFolderFormsLazyQuery>;
+export type DefaultFolderFormsSuspenseQueryHookResult = ReturnType<typeof useDefaultFolderFormsSuspenseQuery>;
+export type DefaultFolderFormsQueryResult = Apollo.QueryResult<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>;
 export const FormDataDocument = /*#__PURE__*/ gql`
     query FormData($formId: String!) {
   findFirstForm(where: {id: {equals: $formId}}) {

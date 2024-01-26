@@ -21,3 +21,11 @@ mutation DeleteFolder($id: String!) {
     name
   }
 }
+mutation UpdateFormFolder(
+  $folder: FolderUpdateOneWithoutFormsNestedInput!
+  $formId: String!
+) {
+  updateOneForm(where: { id: $formId }, data: { Folder: $folder }) {
+    id
+  }
+}

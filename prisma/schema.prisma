@@ -14,11 +14,11 @@ model Form {
   order     Int        @default(autoincrement())
   style     Json?
   favorite  Boolean    @default(false)
-  folderId  String?    @default("Default")
+  folderId  String?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @default(now()) @updatedAt
   items     FormItem[]
-  Folder    Folder?    @relation(fields: [folderId], references: [id], onDelete: SetDefault)
+  Folder    Folder?    @relation(fields: [folderId], references: [id], onDelete: SetNull)
 
   @@unique([ownerId, name])
   @@index([ownerId, name])

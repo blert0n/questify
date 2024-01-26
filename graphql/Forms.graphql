@@ -30,6 +30,26 @@ query MyForms($orderBy: [FormOrderByWithRelationInput]) {
     updatedAt
   }
 }
+query FolderForms($folderId: String!) {
+  findManyForm(where: { folderId: { equals: $folderId } }) {
+    id
+    name
+    favorite
+    folderId
+    createdAt
+    updatedAt
+  }
+}
+query DefaultFolderForms {
+  findManyForm(where: { folderId: null }) {
+    id
+    name
+    favorite
+    folderId
+    createdAt
+    updatedAt
+  }
+}
 query FormData($formId: String!) {
   findFirstForm(where: { id: { equals: $formId } }) {
     id
