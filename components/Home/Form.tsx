@@ -87,6 +87,7 @@ export default function Form({ form, folder = false }: P) {
               <div>Created {dayjs(form.createdAt).format("MMM DD, YYYY")}</div>
               {!folder ? (
                 <Actions
+                  id={form.id}
                   visible={isPopoverOpen}
                   toggle={togglePopover}
                   editLoading={formLoading}

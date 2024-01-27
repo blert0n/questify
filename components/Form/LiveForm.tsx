@@ -1,5 +1,5 @@
 import { FormType } from "@/lib/graphql";
-import { FormItem } from "@/types";
+import { FormItem, Theme } from "@/types";
 import {
   LiveShortComponent,
   LiveLongComponent,
@@ -11,7 +11,6 @@ import {
   HeaderImage,
   LiveHeader,
 } from "./Items";
-import { useFormSelectors } from "@/store";
 
 const componentMapper = {
   [FormType.Short]: LiveShortComponent,
@@ -24,14 +23,14 @@ const componentMapper = {
 };
 
 interface P {
+  theme: Theme;
   items: FormItem[];
 }
 
-export default function LiveForm({ items }: P) {
-  const theme = useFormSelectors.use.theme();
+export default function LiveForm({ theme, items }: P) {
   return (
     <>
-      <HeaderImage />
+      <HeaderImage theme={theme} />
       <LiveHeader theme={theme} />
       {items
         .sort((a, b) => a.order - b.order)

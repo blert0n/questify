@@ -5,6 +5,7 @@ import { DraggableProvidedDragHandleProps } from "@hello-pangea/dnd";
 export type FontFamily = keyof typeof fontMapper;
 
 export interface InitialFormData {
+  id: "";
   items: FormItem[];
   name: string;
   loading: boolean;

@@ -16,11 +16,16 @@ export default function App({ Component, pageProps, router }: AppProps) {
   if (
     noLayout.includes(router.pathname) ||
     router?.pathname.startsWith("/login") ||
-    router?.pathname.startsWith("/sign-up")
+    router?.pathname.startsWith("/sign-up") ||
+    router?.pathname === "/form/[id]"
   ) {
     return (
       <ClerkProvider publishableKey={clerkPubKey}>
-        <Component {...pageProps} />
+        <ApolloProvider client={apolloClient}>
+          <FontProvider>
+            <Component {...pageProps} />
+          </FontProvider>
+        </ApolloProvider>
       </ClerkProvider>
     );
   }

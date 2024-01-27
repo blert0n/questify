@@ -6,8 +6,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ExternalLink, MoreVertical, Trash, Edit } from "lucide-react";
+import Link from "next/link";
 
 interface P {
+  id?: string;
   visible: boolean;
   editLoading: boolean;
   deleteLoading: boolean;
@@ -17,6 +19,7 @@ interface P {
 }
 
 export default function Actions({
+  id = "",
   visible,
   editLoading,
   deleteLoading,
@@ -69,14 +72,18 @@ export default function Actions({
             />
           )}
         </div>
-        <div className="flex justify-between items-center text-sm cursor-pointer hover:bg-slate-100 p-2">
+        <Link
+          href={`/form/${id}`}
+          target="_blank"
+          className="flex justify-between items-center text-sm cursor-pointer hover:bg-slate-100 p-2"
+        >
           Open in new tab
           <ExternalLink
             className="text-slate-700"
             strokeWidth={1.5}
             size={16}
           />
-        </div>
+        </Link>
       </PopoverContent>
     </Popover>
   );

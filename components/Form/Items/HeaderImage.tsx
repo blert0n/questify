@@ -1,9 +1,12 @@
 import { Loader } from "@/assets/svg";
-import { useFormSelectors } from "@/store";
+import { Theme } from "@/types";
 import { useState } from "react";
 
-export const HeaderImage = () => {
-  const theme = useFormSelectors.use.theme();
+interface P {
+  theme: Theme;
+}
+
+export const HeaderImage = ({ theme }: P) => {
   const [loading, setLoading] = useState(true);
   if (!theme.Header.image) return null;
 

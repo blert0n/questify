@@ -44,7 +44,11 @@ export default function Templates() {
               onClick={() => loadTemplate(template.mapKey)}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={template.image} alt="template" className="h-full" />
+              <img
+                src={template.image}
+                alt="template"
+                className="h-full rounded-md"
+              />
             </div>
             {template.name}
           </div>

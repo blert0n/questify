@@ -11,6 +11,7 @@ export const iconProps = {
 };
 
 export const initialFormData: InitialFormData = {
+  id: "",
   items: [],
   name: "Untitled Form",
   loading: false,

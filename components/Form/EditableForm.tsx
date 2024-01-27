@@ -66,7 +66,7 @@ export default function LiveForm({ items }: P) {
   };
   return (
     <>
-      <HeaderImage />
+      <HeaderImage theme={theme} />
       <FormHeader />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" type="formItems">
