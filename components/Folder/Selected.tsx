@@ -31,7 +31,7 @@ export default function Selected({ id, onBack }: P) {
     <>
       <ArrowLeft
         size={36}
-        className="text-slate-700 hover:scale-110 m-4"
+        className="text-slate-700 hover:cursor-pointer hover:scale-110 m-4"
         strokeWidth={1.5}
         onClick={onBack}
       />

@@ -18,7 +18,7 @@ export const rsvp: FormState = {
         initialDataUrl: "",
         dataUrl:
           "https://res.cloudinary.com/dfcbsf8um/image/upload/v1705866735/rsvp.jpg",
-        origin: "server",
+        origin: "client",
       },
     },
     Question: {
@@ -125,7 +125,7 @@ export const contact: FormState = {
         initialDataUrl: "",
         dataUrl:
           "https://res.cloudinary.com/dfcbsf8um/image/upload/v1705871843/contact.jpg",
-        origin: "server",
+        origin: "client",
       },
     },
     Question: {
@@ -210,7 +210,7 @@ export const registration: FormState = {
         initialDataUrl: "",
         dataUrl:
           "https://res.cloudinary.com/dfcbsf8um/image/upload/v1705872636/registration.jpg",
-        origin: "server",
+        origin: "client",
       },
     },
     Question: {

@@ -2,6 +2,8 @@ import { Checkbox } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialTheme } from "@/types";
+import { useFormikContext } from "formik";
+import { ShieldAlert } from "lucide-react";
 import { useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
@@ -9,19 +11,37 @@ export const LiveMultiChoice = ({
   item,
   theme = initialTheme,
 }: FormComponent) => {
+  const formState = useFormikContext<Record<string, string>>();
   const [checked, setChecked] = useState<string[]>([]);
 
   const handleCheck = (value: string) => {
-    setChecked((state) => [...state, value]);
+    formState?.setTouched({ ...formState?.touched, [item.id]: true });
+    setChecked((state) => {
+      formState?.setFieldValue(item.id, [...state, value].join(","));
+      return [...state, value];
+    });
   };
   const handleUnchecked = (value: string) => {
-    setChecked((state) => state.filter((item) => item !== value));
+    setChecked((state) => {
+      const unCheckedState = state.filter((item) => item !== value);
+      formState?.setFieldValue(
+        item.id,
+        unCheckedState.length ? unCheckedState.join(",") : ""
+      );
+      return unCheckedState;
+    });
   };
   const checkBoxColor = getPrimaryColor(theme.primaryColor);
+
   return (
     <div
       key={item.id}
-      className={"flex flex-col gap-3 w-full h-auto rounded-md bg-white p-6"}
+      className={cn(
+        "flex flex-col gap-3 w-full h-auto rounded-md bg-white p-6",
+        formState?.touched[item.id] &&
+          formState?.errors[item.id] &&
+          "border-[1px] border-red-600"
+      )}
     >
       {item.image?.dataUrl && (
         <div className="flex justify-center max-h-[300px] object-contain">
@@ -71,6 +91,16 @@ export const LiveMultiChoice = ({
             </div>
           ))}
         </div>
+        {formState?.touched[item.id] && formState?.errors[item.id] && (
+          <div className="flex gap-2 items-center text-sm text-red-600">
+            <ShieldAlert
+              className="text-slate-700 stroke-red-600"
+              size={20}
+              strokeWidth={1.5}
+            />
+            {formState?.errors[item.id]}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui";
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialTheme } from "@/types";
+import { useFormikContext } from "formik";
+import { ShieldAlert } from "lucide-react";
 import ReactHtmlParser from "react-html-parser";
 
 const generateScaleOptions = (start: string = "1", end: string = "10") => {
@@ -19,12 +21,17 @@ export const LiveLinearScale = ({
   theme = initialTheme,
 }: FormComponent) => {
   const checkBoxColor = getPrimaryColor(theme.primaryColor);
+  const formState = useFormikContext<Record<string, string>>();
+
   return (
     <div
       key={item.id}
-      className={
-        "flex flex-col gap-3 w-full min-h-[120px] rounded-md bg-white p-6 overflow-hidden"
-      }
+      className={cn(
+        "flex flex-col gap-3 w-full min-h-[120px] rounded-md bg-white p-6 overflow-hidden",
+        formState?.touched[item.id] &&
+          formState?.errors[item.id] &&
+          "border-[1px] border-red-600"
+      )}
     >
       {item.image?.dataUrl && (
         <div className="flex justify-center max-h-[300px] object-contain">
@@ -58,7 +65,12 @@ export const LiveLinearScale = ({
             >
               {item.options?.[0].label}
             </div>
-            <RadioGroup className="flex flex-row flex-wrap gap-4">
+            <RadioGroup
+              className="flex flex-row flex-wrap gap-4"
+              onValueChange={(value) =>
+                formState?.setFieldValue(item.id, value)
+              }
+            >
               {generateScaleOptions(
                 item.options?.[0].value,
                 item.options?.[1].value
@@ -89,6 +101,16 @@ export const LiveLinearScale = ({
               {item.options?.[1].label}
             </div>
           </div>
+          {formState?.touched[item.id] && formState?.errors[item.id] && (
+            <div className="flex gap-2 items-center text-sm text-red-600">
+              <ShieldAlert
+                className="text-slate-700 stroke-red-600"
+                size={20}
+                strokeWidth={1.5}
+              />
+              {formState?.errors[item.id]}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ export const Header = ({ toggleNav }: P) => {
           <Search className="md:px-2 px-1" />
           <div className="flex justify-center items-center h-[32px] w-[32px]">
             <Bell
-              className="h-[24px] w-[24px] hover:scale-110 text-slate-700"
+              className="h-[24px] w-[24px] hover:cursor-pointer hover:scale-110 text-slate-700"
               strokeWidth={1.5}
             />
           </div>

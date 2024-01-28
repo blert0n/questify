@@ -1,10 +1,13 @@
 import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
 import { useFormDataQuery } from "@/lib/graphql";
-import { initialTheme } from "@/types";
+import { FormItem, initialTheme } from "@/types";
 import { useRouter } from "next/router";
 import Error from "next/error";
 import Meta from "@/components/Layout/Title";
+import { Formik, Form } from "formik";
+import { getPrimaryColor, prepareFormik } from "@/lib";
+import { Button } from "@/components/ui";
 
 export default function Index() {
   const router = useRouter();
@@ -18,6 +21,21 @@ export default function Index() {
 
   if (!findFirstForm && !loading) return <Error statusCode={404} />;
 
+  const formItems: FormItem[] = findFirstForm
+    ? (findFirstForm?.items ?? []).map((item) => {
+        const { items, ...rest } = item;
+        return {
+          ...rest,
+          origin: "server",
+          options: items,
+        };
+      })
+    : [];
+
+  const { initialValues, validationSchema } = prepareFormik(formItems);
+
+  const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
+
   return (
     <>
       <Meta title={findFirstForm?.name ?? "Form"} />
@@ -28,17 +46,38 @@ export default function Index() {
         {loading && <Loader />}
         {!loading && findFirstForm && (
           <div className="flex flex-col gap-4 w-full md:max-w-3xl">
-            <LiveForm
-              theme={findFirstForm.style || initialTheme}
-              items={(findFirstForm?.items ?? []).map((item) => {
-                const { items, ...rest } = item;
-                return {
-                  ...rest,
-                  origin: "server",
-                  options: items,
-                };
-              })}
-            />
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              validateOnChange
+              onSubmit={(values) => {
+                console.log(values);
+              }}
+            >
+              {({ handleSubmit, isSubmitting }) => (
+                <Form className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-4">
+                    <LiveForm
+                      theme={findFirstForm.style || initialTheme}
+                      items={formItems}
+                    />
+                  </div>
+                  <div className="flex justify-end items-center gap-2">
+                    <Button
+                      type="submit"
+                      size={"sm"}
+                      style={{
+                        backgroundColor: primaryColor,
+                      }}
+                      loading={isSubmitting}
+                      onClick={() => handleSubmit()}
+                    >
+                      Submit
+                    </Button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
         )}
       </div>
