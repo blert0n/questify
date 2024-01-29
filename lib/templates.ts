@@ -1,5 +1,6 @@
 import { FormState } from "@/types";
 import { FormType } from "./graphql";
+import { v4 } from "uuid";
 
 export const rsvp: FormState = {
   name: "Event RSVP",
@@ -35,7 +36,7 @@ export const rsvp: FormState = {
   },
   items: [
     {
-      id: "f6bb86fd-65fd-4bf9-8170-13e66677bf25",
+      id: v4(),
       name: "<p>Can you attend?</p>",
       order: 1,
       origin: "client",
@@ -44,19 +45,19 @@ export const rsvp: FormState = {
       required: true,
       options: [
         {
-          id: "89596248-2dc3-4568-ba1a-9367d62968d2",
+          id: v4(),
           value: "Yes, I'll be there",
           order: 1,
         },
         {
-          id: "b656485f-124a-48d3-ae7f-246cbd005f87",
+          id: v4(),
           value: "Sorry, can't make it",
           order: 2,
         },
       ],
     },
     {
-      id: "156c56b5-d98a-4ca9-be89-af624586f829",
+      id: v4(),
       name: "<p>What are the names of people attending?</p>",
       order: 2,
       origin: "client",
@@ -66,7 +67,7 @@ export const rsvp: FormState = {
       options: [],
     },
     {
-      id: "295ed127-8416-40fb-91c7-b70938362cb1",
+      id: v4(),
       name: "<p>How did you hear about this event?</p>",
       order: 2,
       origin: "client",
@@ -75,29 +76,29 @@ export const rsvp: FormState = {
       required: true,
       options: [
         {
-          id: "12fae418-8256-42f3-9b78-702c6ac232bf",
+          id: v4(),
           value: "Friend",
           order: 1,
         },
         {
-          id: "d35b5187-8f71-48e1-9dc8-c75cb4dcff29",
+          id: v4(),
           value: "Advertisement",
           order: 2,
         },
         {
-          id: "9769feff-a6a1-4cb6-a9b9-13a9eb6f847b",
+          id: v4(),
           value: "Newsletter",
           order: 3,
         },
         {
-          id: "a9513871-cb07-4830-ae90-4d06c9ca7c7c",
+          id: v4(),
           value: "Online",
           order: 4,
         },
       ],
     },
     {
-      id: "2bd06808-158c-462a-ae9e-a5c5ab01ed51",
+      id: v4(),
       name: "<p>Comments/questions</p>",
       order: 3,
       origin: "client",
@@ -142,7 +143,7 @@ export const contact: FormState = {
   },
   items: [
     {
-      id: "b71ac904-940f-4deb-9e20-6c036568311b",
+      id: v4(),
       name: "<p>Name</p>",
       order: 1,
       origin: "client",
@@ -152,7 +153,7 @@ export const contact: FormState = {
       options: [],
     },
     {
-      id: "dceca35d-74bc-4372-a84f-0018c3ccd560",
+      id: v4(),
       name: "<p>Email</p>",
       order: 2,
       origin: "client",
@@ -162,7 +163,7 @@ export const contact: FormState = {
       options: [],
     },
     {
-      id: "b8bc6e60-655e-4d77-b8e8-eae2c4b3afd1",
+      id: v4(),
       name: "<p>Address</p>",
       order: 3,
       origin: "client",
@@ -172,7 +173,7 @@ export const contact: FormState = {
       options: [],
     },
     {
-      id: "2dda9c5b-768e-44a0-a09d-2e50e5f2aec1",
+      id: v4(),
       name: "<p>Phone number</p>",
       order: 4,
       origin: "client",
@@ -182,7 +183,7 @@ export const contact: FormState = {
       options: [],
     },
     {
-      id: "994291e7-d4c0-4de2-9879-5f88b9ebe9d2",
+      id: v4(),
       name: "<p>Comments</p>",
       order: 5,
       origin: "client",
@@ -227,7 +228,7 @@ export const registration: FormState = {
   },
   items: [
     {
-      id: "e623e01a-2ba6-4a45-b527-710cb97542c5",
+      id: v4(),
       name: "<p>Name</p>",
       order: 1,
       origin: "client",
@@ -237,7 +238,7 @@ export const registration: FormState = {
       options: [],
     },
     {
-      id: "0128cbb9-951c-4c67-b850-1fca49910fde",
+      id: v4(),
       name: "<p>Email</p>",
       order: 2,
       origin: "client",
@@ -247,7 +248,7 @@ export const registration: FormState = {
       options: [],
     },
     {
-      id: "67895ba5-7b7f-4a4c-9465-1e42150354dc",
+      id: v4(),
       name: "<p>Organization</p>",
       order: 3,
       origin: "client",
@@ -257,7 +258,7 @@ export const registration: FormState = {
       options: [],
     },
     {
-      id: "747f7c31-4b7f-48d9-b18a-d8c0caa30d81",
+      id: v4(),
       name: "<p>What days will you attend?</p>",
       order: 4,
       origin: "client",
@@ -266,24 +267,24 @@ export const registration: FormState = {
       required: false,
       options: [
         {
-          id: "82f18af8-41d0-4847-818d-d3b28dffd10c",
+          id: v4(),
           value: "Day 1",
           order: 1,
         },
         {
-          id: "78864d1b-5a7c-4c87-b93a-11f3e0abe0b6",
+          id: v4(),
           value: "Day 2",
           order: 2,
         },
         {
-          id: "b49590c6-20f9-4834-95ed-fefbad6633bb",
+          id: v4(),
           value: "Day 3",
           order: 3,
         },
       ],
     },
     {
-      id: "04e1e0b9-bc0a-45ba-8615-e4b48e98a510",
+      id: v4(),
       name: "<p>Dietary restrictions</p>",
       order: 5,
       origin: "client",
@@ -292,27 +293,27 @@ export const registration: FormState = {
       required: false,
       options: [
         {
-          id: "cec16eb6-8b32-4790-a7ea-8f942723be3d",
+          id: v4(),
           value: "None",
           order: 1,
         },
         {
-          id: "398c8b6c-3b79-4fb4-aa19-15d5efbf5c9f",
+          id: v4(),
           value: "Vegetarian",
           order: 2,
         },
         {
-          id: "d2686249-9fce-4e89-8c81-b056a889b9f4",
+          id: v4(),
           value: "Vegan",
           order: 3,
         },
         {
-          id: "c034a175-fb5f-4947-8bac-478dcea06ace",
+          id: v4(),
           value: "Kosher",
           order: 4,
         },
         {
-          id: "3adf0541-e4e6-4a46-a6a0-8a558539c725",
+          id: v4(),
           value: "Gluten-free",
           order: 5,
         },
