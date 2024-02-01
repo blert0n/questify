@@ -1,4 +1,4 @@
-import { objectType } from 'nexus'
+import { objectType, list } from 'nexus'
 
 export const FormItem = objectType({
   nonNullDefaults: {
@@ -20,6 +20,26 @@ export const FormItem = objectType({
       type: 'Form',
       resolve(root: any) {
         return root.Form
+      },
+    })
+    t.list.field('Answers', {
+      type: 'Answer',
+      args: {
+        where: 'AnswerWhereInput',
+        orderBy: list('AnswerOrderByWithRelationInput'),
+        cursor: 'AnswerWhereUniqueInput',
+        take: 'Int',
+        skip: 'Int',
+        distinct: list('AnswerScalarFieldEnum'),
+      },
+      resolve(root: any) {
+        return root.Answers
+      },
+    })
+    t.field('_count', {
+      type: 'FormItemCountOutputType',
+      resolve(root: any) {
+        return root._count
       },
     })
   },

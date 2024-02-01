@@ -29,6 +29,17 @@ const common = {
       "updateMany",
       "deleteMany",
     ],
+    Answer: [
+      "findUnique",
+      "findFirst",
+      "findCount",
+      "aggregate",
+      "updateOne",
+      "upsertOne",
+      "deleteOne",
+      "updateMany",
+      "deleteMany",
+    ],
   },
   excludeModels: [
     // { name: 'model', queries: true, mutations: true },

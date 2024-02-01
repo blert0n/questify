@@ -35,6 +35,14 @@ model FormItem {
   image    Json?
   type     FormType
   Form     Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
+  Answers  Answer[]
+}
+
+model Answer {
+  id         String    @id @default(uuid())
+  value      String?
+  formItemId String?
+  FormItem   FormItem? @relation(fields: [formItemId], references: [id])
 }
 
 model Folder {

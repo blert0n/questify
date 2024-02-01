@@ -30,6 +30,12 @@ export interface Scalars {
   Json: { input: any; output: any; }
 }
 
+export interface AggregateAnswer {
+  _count?: Maybe<AnswerCountAggregateOutputType>;
+  _max?: Maybe<AnswerMaxAggregateOutputType>;
+  _min?: Maybe<AnswerMinAggregateOutputType>;
+}
+
 export interface AggregateFolder {
   _count?: Maybe<FolderCountAggregateOutputType>;
   _max?: Maybe<FolderMaxAggregateOutputType>;
@@ -50,6 +56,269 @@ export interface AggregateFormItem {
   _max?: Maybe<FormItemMaxAggregateOutputType>;
   _min?: Maybe<FormItemMinAggregateOutputType>;
   _sum?: Maybe<FormItemSumAggregateOutputType>;
+}
+
+export interface Answer {
+  FormItem?: Maybe<FormItem>;
+  formItemId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  value?: Maybe<Scalars['String']['output']>;
+}
+
+
+export interface AnswerFormItemArgs {
+  where?: InputMaybe<FormItemWhereInput>;
+}
+
+export interface AnswerCountAggregateOutputType {
+  _all: Scalars['Int']['output'];
+  formItemId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  value: Scalars['Int']['output'];
+}
+
+export interface AnswerCountOrderByAggregateInput {
+  formItemId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  value?: InputMaybe<SortOrder>;
+}
+
+export interface AnswerCreateInput {
+  FormItem?: InputMaybe<FormItemCreateNestedOneWithoutAnswersInput>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface AnswerCreateManyFormItemInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface AnswerCreateManyFormItemInputEnvelope {
+  data: AnswerCreateManyFormItemInput;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
+}
+
+export interface AnswerCreateManyInput {
+  formItemId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface AnswerCreateNestedManyWithoutFormItemInput {
+  connect?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<AnswerCreateOrConnectWithoutFormItemInput>>>;
+  create?: InputMaybe<Array<InputMaybe<AnswerCreateWithoutFormItemInput>>>;
+  createMany?: InputMaybe<AnswerCreateManyFormItemInputEnvelope>;
+}
+
+export interface AnswerCreateOrConnectWithoutFormItemInput {
+  create: AnswerCreateWithoutFormItemInput;
+  where: AnswerWhereUniqueInput;
+}
+
+export interface AnswerCreateWithoutFormItemInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface AnswerInput {
+  formItemId: Scalars['String']['input'];
+  value: Scalars['String']['input'];
+}
+
+export interface AnswerListRelationFilter {
+  every?: InputMaybe<AnswerWhereInput>;
+  none?: InputMaybe<AnswerWhereInput>;
+  some?: InputMaybe<AnswerWhereInput>;
+}
+
+export interface AnswerMaxAggregateOutputType {
+  formItemId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+}
+
+export interface AnswerMaxOrderByAggregateInput {
+  formItemId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  value?: InputMaybe<SortOrder>;
+}
+
+export interface AnswerMinAggregateOutputType {
+  formItemId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+}
+
+export interface AnswerMinOrderByAggregateInput {
+  formItemId?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  value?: InputMaybe<SortOrder>;
+}
+
+export interface AnswerOrderByRelationAggregateInput {
+  _count?: InputMaybe<SortOrder>;
+}
+
+export interface AnswerOrderByWithAggregationInput {
+  _count?: InputMaybe<AnswerCountOrderByAggregateInput>;
+  _max?: InputMaybe<AnswerMaxOrderByAggregateInput>;
+  _min?: InputMaybe<AnswerMinOrderByAggregateInput>;
+  formItemId?: InputMaybe<SortOrderInput>;
+  id?: InputMaybe<SortOrder>;
+  value?: InputMaybe<SortOrderInput>;
+}
+
+export interface AnswerOrderByWithRelationInput {
+  FormItem?: InputMaybe<FormItemOrderByWithRelationInput>;
+  formItemId?: InputMaybe<SortOrderInput>;
+  id?: InputMaybe<SortOrder>;
+  value?: InputMaybe<SortOrderInput>;
+}
+
+export enum AnswerScalarFieldEnum {
+  FormItemId = 'formItemId',
+  Id = 'id',
+  Value = 'value'
+}
+
+export interface AnswerScalarWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<AnswerScalarWhereInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<AnswerScalarWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<AnswerScalarWhereInput>>>;
+  formItemId?: InputMaybe<StringNullableFilter>;
+  id?: InputMaybe<StringFilter>;
+  value?: InputMaybe<StringNullableFilter>;
+}
+
+export interface AnswerScalarWhereWithAggregatesInput {
+  AND?: InputMaybe<Array<InputMaybe<AnswerScalarWhereWithAggregatesInput>>>;
+  NOT?: InputMaybe<Array<InputMaybe<AnswerScalarWhereWithAggregatesInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<AnswerScalarWhereWithAggregatesInput>>>;
+  formItemId?: InputMaybe<StringNullableWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  value?: InputMaybe<StringNullableWithAggregatesFilter>;
+}
+
+export interface AnswerUncheckedCreateInput {
+  formItemId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface AnswerUncheckedCreateNestedManyWithoutFormItemInput {
+  connect?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<AnswerCreateOrConnectWithoutFormItemInput>>>;
+  create?: InputMaybe<Array<InputMaybe<AnswerCreateWithoutFormItemInput>>>;
+  createMany?: InputMaybe<AnswerCreateManyFormItemInputEnvelope>;
+}
+
+export interface AnswerUncheckedCreateWithoutFormItemInput {
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+export interface AnswerUncheckedUpdateInput {
+  formItemId?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUncheckedUpdateManyInput {
+  formItemId?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUncheckedUpdateManyWithoutFormItemInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUncheckedUpdateManyWithoutFormItemNestedInput {
+  connect?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<AnswerCreateOrConnectWithoutFormItemInput>>>;
+  create?: InputMaybe<Array<InputMaybe<AnswerCreateWithoutFormItemInput>>>;
+  createMany?: InputMaybe<AnswerCreateManyFormItemInputEnvelope>;
+  delete?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  deleteMany?: InputMaybe<Array<InputMaybe<AnswerScalarWhereInput>>>;
+  disconnect?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  set?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  update?: InputMaybe<Array<InputMaybe<AnswerUpdateWithWhereUniqueWithoutFormItemInput>>>;
+  updateMany?: InputMaybe<Array<InputMaybe<AnswerUpdateManyWithWhereWithoutFormItemInput>>>;
+  upsert?: InputMaybe<Array<InputMaybe<AnswerUpsertWithWhereUniqueWithoutFormItemInput>>>;
+}
+
+export interface AnswerUncheckedUpdateWithoutFormItemInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUpdateInput {
+  FormItem?: InputMaybe<FormItemUpdateOneWithoutAnswersNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUpdateManyMutationInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUpdateManyWithWhereWithoutFormItemInput {
+  data: AnswerUpdateManyMutationInput;
+  where: AnswerScalarWhereInput;
+}
+
+export interface AnswerUpdateManyWithoutFormItemNestedInput {
+  connect?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: InputMaybe<Array<InputMaybe<AnswerCreateOrConnectWithoutFormItemInput>>>;
+  create?: InputMaybe<Array<InputMaybe<AnswerCreateWithoutFormItemInput>>>;
+  createMany?: InputMaybe<AnswerCreateManyFormItemInputEnvelope>;
+  delete?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  deleteMany?: InputMaybe<Array<InputMaybe<AnswerScalarWhereInput>>>;
+  disconnect?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  set?: InputMaybe<Array<InputMaybe<AnswerWhereUniqueInput>>>;
+  update?: InputMaybe<Array<InputMaybe<AnswerUpdateWithWhereUniqueWithoutFormItemInput>>>;
+  updateMany?: InputMaybe<Array<InputMaybe<AnswerUpdateManyWithWhereWithoutFormItemInput>>>;
+  upsert?: InputMaybe<Array<InputMaybe<AnswerUpsertWithWhereUniqueWithoutFormItemInput>>>;
+}
+
+export interface AnswerUpdateWithWhereUniqueWithoutFormItemInput {
+  data: AnswerUpdateWithoutFormItemInput;
+  where: AnswerWhereUniqueInput;
+}
+
+export interface AnswerUpdateWithoutFormItemInput {
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  value?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+}
+
+export interface AnswerUpsertWithWhereUniqueWithoutFormItemInput {
+  create: AnswerCreateWithoutFormItemInput;
+  update: AnswerUpdateWithoutFormItemInput;
+  where: AnswerWhereUniqueInput;
+}
+
+export interface AnswerWhereInput {
+  AND?: InputMaybe<Array<InputMaybe<AnswerWhereInput>>>;
+  FormItem?: InputMaybe<FormItemNullableRelationFilter>;
+  NOT?: InputMaybe<Array<InputMaybe<AnswerWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<AnswerWhereInput>>>;
+  formItemId?: InputMaybe<StringNullableFilter>;
+  id?: InputMaybe<StringFilter>;
+  value?: InputMaybe<StringNullableFilter>;
+}
+
+export interface AnswerWhereUniqueInput {
+  AND?: InputMaybe<Array<InputMaybe<AnswerWhereInput>>>;
+  FormItem?: InputMaybe<FormItemNullableRelationFilter>;
+  NOT?: InputMaybe<Array<InputMaybe<AnswerWhereInput>>>;
+  OR?: InputMaybe<Array<InputMaybe<AnswerWhereInput>>>;
+  formItemId?: InputMaybe<StringNullableFilter>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<StringNullableFilter>;
 }
 
 export interface BatchPayload {
@@ -502,7 +771,9 @@ export interface FormCreateWithoutItemsInput {
 }
 
 export interface FormItem {
+  Answers: Array<Answer>;
   Form: Form;
+  _count: FormItemCountOutputType;
   formId: Scalars['String']['output'];
   id: Scalars['String']['output'];
   image?: Maybe<Scalars['Json']['output']>;
@@ -512,6 +783,16 @@ export interface FormItem {
   required: Scalars['Boolean']['output'];
   section: Scalars['Int']['output'];
   type: FormType;
+}
+
+
+export interface FormItemAnswersArgs {
+  cursor?: InputMaybe<AnswerWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<AnswerScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<AnswerOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AnswerWhereInput>;
 }
 
 export interface FormItemAvgAggregateOutputType {
@@ -549,7 +830,12 @@ export interface FormItemCountOrderByAggregateInput {
   type?: InputMaybe<SortOrder>;
 }
 
+export interface FormItemCountOutputType {
+  Answers: Scalars['Int']['output'];
+}
+
 export interface FormItemCreateInput {
+  Answers?: InputMaybe<AnswerCreateNestedManyWithoutFormItemInput>;
   Form: FormCreateNestedOneWithoutItemsInput;
   id?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['Json']['input']>;
@@ -596,12 +882,36 @@ export interface FormItemCreateNestedManyWithoutFormInput {
   createMany?: InputMaybe<FormItemCreateManyFormInputEnvelope>;
 }
 
+export interface FormItemCreateNestedOneWithoutAnswersInput {
+  connect?: InputMaybe<FormItemWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FormItemCreateOrConnectWithoutAnswersInput>;
+  create?: InputMaybe<FormItemCreateWithoutAnswersInput>;
+}
+
+export interface FormItemCreateOrConnectWithoutAnswersInput {
+  create: FormItemCreateWithoutAnswersInput;
+  where: FormItemWhereUniqueInput;
+}
+
 export interface FormItemCreateOrConnectWithoutFormInput {
   create: FormItemCreateWithoutFormInput;
   where: FormItemWhereUniqueInput;
 }
 
+export interface FormItemCreateWithoutAnswersInput {
+  Form: FormCreateNestedOneWithoutItemsInput;
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  type: FormType;
+}
+
 export interface FormItemCreateWithoutFormInput {
+  Answers?: InputMaybe<AnswerCreateNestedManyWithoutFormItemInput>;
   id?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
@@ -658,6 +968,11 @@ export interface FormItemMinOrderByAggregateInput {
   type?: InputMaybe<SortOrder>;
 }
 
+export interface FormItemNullableRelationFilter {
+  is?: InputMaybe<FormItemWhereInput>;
+  isNot?: InputMaybe<FormItemWhereInput>;
+}
+
 export interface FormItemOrderByRelationAggregateInput {
   _count?: InputMaybe<SortOrder>;
 }
@@ -680,6 +995,7 @@ export interface FormItemOrderByWithAggregationInput {
 }
 
 export interface FormItemOrderByWithRelationInput {
+  Answers?: InputMaybe<AnswerOrderByRelationAggregateInput>;
   Form?: InputMaybe<FormOrderByWithRelationInput>;
   formId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -745,6 +1061,7 @@ export interface FormItemSumOrderByAggregateInput {
 }
 
 export interface FormItemUncheckedCreateInput {
+  Answers?: InputMaybe<AnswerUncheckedCreateNestedManyWithoutFormItemInput>;
   formId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['Json']['input']>;
@@ -763,7 +1080,20 @@ export interface FormItemUncheckedCreateNestedManyWithoutFormInput {
   createMany?: InputMaybe<FormItemCreateManyFormInputEnvelope>;
 }
 
+export interface FormItemUncheckedCreateWithoutAnswersInput {
+  formId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Json']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
+  name: Scalars['String']['input'];
+  order?: InputMaybe<Scalars['Int']['input']>;
+  required?: InputMaybe<Scalars['Boolean']['input']>;
+  section?: InputMaybe<Scalars['Int']['input']>;
+  type: FormType;
+}
+
 export interface FormItemUncheckedCreateWithoutFormInput {
+  Answers?: InputMaybe<AnswerUncheckedCreateNestedManyWithoutFormItemInput>;
   id?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
@@ -775,6 +1105,7 @@ export interface FormItemUncheckedCreateWithoutFormInput {
 }
 
 export interface FormItemUncheckedUpdateInput {
+  Answers?: InputMaybe<AnswerUncheckedUpdateManyWithoutFormItemNestedInput>;
   formId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   image?: InputMaybe<Scalars['Json']['input']>;
@@ -823,7 +1154,20 @@ export interface FormItemUncheckedUpdateManyWithoutFormNestedInput {
   upsert?: InputMaybe<Array<InputMaybe<FormItemUpsertWithWhereUniqueWithoutFormInput>>>;
 }
 
+export interface FormItemUncheckedUpdateWithoutAnswersInput {
+  formId?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
 export interface FormItemUncheckedUpdateWithoutFormInput {
+  Answers?: InputMaybe<AnswerUncheckedUpdateManyWithoutFormItemNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
@@ -835,6 +1179,7 @@ export interface FormItemUncheckedUpdateWithoutFormInput {
 }
 
 export interface FormItemUpdateInput {
+  Answers?: InputMaybe<AnswerUpdateManyWithoutFormItemNestedInput>;
   Form?: InputMaybe<FormUpdateOneRequiredWithoutItemsNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   image?: InputMaybe<Scalars['Json']['input']>;
@@ -876,12 +1221,40 @@ export interface FormItemUpdateManyWithoutFormNestedInput {
   upsert?: InputMaybe<Array<InputMaybe<FormItemUpsertWithWhereUniqueWithoutFormInput>>>;
 }
 
+export interface FormItemUpdateOneWithoutAnswersNestedInput {
+  connect?: InputMaybe<FormItemWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FormItemCreateOrConnectWithoutAnswersInput>;
+  create?: InputMaybe<FormItemCreateWithoutAnswersInput>;
+  delete?: InputMaybe<FormItemWhereInput>;
+  disconnect?: InputMaybe<FormItemWhereInput>;
+  update?: InputMaybe<FormItemUpdateToOneWithWhereWithoutAnswersInput>;
+  upsert?: InputMaybe<FormItemUpsertWithoutAnswersInput>;
+}
+
+export interface FormItemUpdateToOneWithWhereWithoutAnswersInput {
+  data: FormItemUpdateWithoutAnswersInput;
+  where?: InputMaybe<FormItemWhereInput>;
+}
+
 export interface FormItemUpdateWithWhereUniqueWithoutFormInput {
   data: FormItemUpdateWithoutFormInput;
   where: FormItemWhereUniqueInput;
 }
 
+export interface FormItemUpdateWithoutAnswersInput {
+  Form?: InputMaybe<FormUpdateOneRequiredWithoutItemsNestedInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  image?: InputMaybe<Scalars['Json']['input']>;
+  items?: InputMaybe<Scalars['Json']['input']>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  order?: InputMaybe<IntFieldUpdateOperationsInput>;
+  required?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  section?: InputMaybe<IntFieldUpdateOperationsInput>;
+  type?: InputMaybe<EnumFormTypeFieldUpdateOperationsInput>;
+}
+
 export interface FormItemUpdateWithoutFormInput {
+  Answers?: InputMaybe<AnswerUpdateManyWithoutFormItemNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   image?: InputMaybe<Scalars['Json']['input']>;
   items?: InputMaybe<Scalars['Json']['input']>;
@@ -898,8 +1271,15 @@ export interface FormItemUpsertWithWhereUniqueWithoutFormInput {
   where: FormItemWhereUniqueInput;
 }
 
+export interface FormItemUpsertWithoutAnswersInput {
+  create: FormItemCreateWithoutAnswersInput;
+  update: FormItemUpdateWithoutAnswersInput;
+  where?: InputMaybe<FormItemWhereInput>;
+}
+
 export interface FormItemWhereInput {
   AND?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  Answers?: InputMaybe<AnswerListRelationFilter>;
   Form?: InputMaybe<FormRelationFilter>;
   NOT?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
@@ -916,6 +1296,7 @@ export interface FormItemWhereInput {
 
 export interface FormItemWhereUniqueInput {
   AND?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
+  Answers?: InputMaybe<AnswerListRelationFilter>;
   Form?: InputMaybe<FormRelationFilter>;
   NOT?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
   OR?: InputMaybe<Array<InputMaybe<FormItemWhereInput>>>;
@@ -1412,16 +1793,23 @@ export interface JsonNullableWithAggregatesFilter {
 }
 
 export interface Mutation {
+  createOneAnswer: Answer;
   createOneForm: Form;
   createOneFormItem: FormItem;
   deleteOneFolder?: Maybe<Folder>;
   deleteOneForm?: Maybe<Form>;
   deleteOneFormItem?: Maybe<FormItem>;
+  submitForm?: Maybe<Array<Maybe<Answer>>>;
   updateOneForm: Form;
   updateOneFormItem: FormItem;
   uploadItemImage?: Maybe<UploadResponse>;
   uploaderHeaderImage?: Maybe<UploadResponse>;
   upsertOneFolder: Folder;
+}
+
+
+export interface MutationCreateOneAnswerArgs {
+  data?: InputMaybe<AnswerCreateInput>;
 }
 
 
@@ -1447,6 +1835,11 @@ export interface MutationDeleteOneFormArgs {
 
 export interface MutationDeleteOneFormItemArgs {
   where: FormItemWhereUniqueInput;
+}
+
+
+export interface MutationSubmitFormArgs {
+  answers: Array<AnswerInput>;
 }
 
 
@@ -1679,6 +2072,7 @@ export enum NullsOrder {
 
 export interface Query {
   findFirstForm?: Maybe<Form>;
+  findManyAnswer: Array<Answer>;
   findManyFolder: Array<Folder>;
   findManyForm: Array<Form>;
   findManyFormCount: Scalars['Int']['output'];
@@ -1694,6 +2088,16 @@ export interface QueryFindFirstFormArgs {
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<FormWhereInput>;
+}
+
+
+export interface QueryFindManyAnswerArgs {
+  cursor?: InputMaybe<AnswerWhereUniqueInput>;
+  distinct?: InputMaybe<Array<InputMaybe<AnswerScalarFieldEnum>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<AnswerOrderByWithRelationInput>>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AnswerWhereInput>;
 }
 
 
@@ -1945,6 +2349,13 @@ export type UpdateFormMutationVariables = Exact<{
 
 
 export type UpdateFormMutation = { updateOneForm: { id: string } };
+
+export type SubmitFormMutationVariables = Exact<{
+  answers: Array<AnswerInput> | AnswerInput;
+}>;
+
+
+export type SubmitFormMutation = { submitForm?: Array<{ id: string, value?: string | undefined } | undefined> | undefined };
 
 
 export const MyFoldersDocument = /*#__PURE__*/ gql`
@@ -2477,3 +2888,36 @@ export function useUpdateFormMutation(baseOptions?: Apollo.MutationHookOptions<U
       }
 export type UpdateFormMutationHookResult = ReturnType<typeof useUpdateFormMutation>;
 export type UpdateFormMutationResult = Apollo.MutationResult<UpdateFormMutation>;
+export const SubmitFormDocument = /*#__PURE__*/ gql`
+    mutation SubmitForm($answers: [AnswerInput!]!) {
+  submitForm(answers: $answers) {
+    id
+    value
+  }
+}
+    `;
+export type SubmitFormMutationFn = Apollo.MutationFunction<SubmitFormMutation, SubmitFormMutationVariables>;
+
+/**
+ * __useSubmitFormMutation__
+ *
+ * To run a mutation, you first call `useSubmitFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSubmitFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [submitFormMutation, { data, loading, error }] = useSubmitFormMutation({
+ *   variables: {
+ *      answers: // value for 'answers'
+ *   },
+ * });
+ */
+export function useSubmitFormMutation(baseOptions?: Apollo.MutationHookOptions<SubmitFormMutation, SubmitFormMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SubmitFormMutation, SubmitFormMutationVariables>(SubmitFormDocument, options);
+      }
+export type SubmitFormMutationHookResult = ReturnType<typeof useSubmitFormMutation>;
+export type SubmitFormMutationResult = Apollo.MutationResult<SubmitFormMutation>;

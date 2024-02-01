@@ -40,6 +40,11 @@ export const FormItemScalarFieldEnum = enumType({
   ],
 })
 
+export const AnswerScalarFieldEnum = enumType({
+  name: 'AnswerScalarFieldEnum',
+  members: ['id', 'value', 'formItemId'],
+})
+
 export const FolderScalarFieldEnum = enumType({
   name: 'FolderScalarFieldEnum',
   members: ['id', 'name', 'ownerId'],
@@ -213,6 +218,7 @@ export const FormItemWhereInput = inputObjectType({
     t.field('image', { type: 'JsonNullableFilter' })
     t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('Form', { type: 'FormRelationFilter' })
+    t.field('Answers', { type: 'AnswerListRelationFilter' })
   },
 })
 
@@ -232,6 +238,7 @@ export const FormItemOrderByWithRelationInput = inputObjectType({
     t.field('image', { type: 'SortOrderInput' })
     t.field('type', { type: 'SortOrder' })
     t.field('Form', { type: 'FormOrderByWithRelationInput' })
+    t.field('Answers', { type: 'AnswerOrderByRelationAggregateInput' })
   },
 })
 
@@ -254,6 +261,7 @@ export const FormItemWhereUniqueInput = inputObjectType({
     t.field('image', { type: 'JsonNullableFilter' })
     t.field('type', { type: 'EnumFormTypeFilter' })
     t.field('Form', { type: 'FormRelationFilter' })
+    t.field('Answers', { type: 'AnswerListRelationFilter' })
   },
 })
 
@@ -298,6 +306,81 @@ export const FormItemScalarWhereWithAggregatesInput = inputObjectType({
     t.field('items', { type: 'JsonNullableWithAggregatesFilter' })
     t.field('image', { type: 'JsonNullableWithAggregatesFilter' })
     t.field('type', { type: 'EnumFormTypeWithAggregatesFilter' })
+  },
+})
+
+export const AnswerWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'AnswerWhereInput' })
+    t.list.field('OR', { type: 'AnswerWhereInput' })
+    t.list.field('NOT', { type: 'AnswerWhereInput' })
+    t.field('id', { type: 'StringFilter' })
+    t.field('value', { type: 'StringNullableFilter' })
+    t.field('formItemId', { type: 'StringNullableFilter' })
+    t.field('FormItem', { type: 'FormItemNullableRelationFilter' })
+  },
+})
+
+export const AnswerOrderByWithRelationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerOrderByWithRelationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('value', { type: 'SortOrderInput' })
+    t.field('formItemId', { type: 'SortOrderInput' })
+    t.field('FormItem', { type: 'FormItemOrderByWithRelationInput' })
+  },
+})
+
+export const AnswerWhereUniqueInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerWhereUniqueInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.list.field('AND', { type: 'AnswerWhereInput' })
+    t.list.field('OR', { type: 'AnswerWhereInput' })
+    t.list.field('NOT', { type: 'AnswerWhereInput' })
+    t.field('value', { type: 'StringNullableFilter' })
+    t.field('formItemId', { type: 'StringNullableFilter' })
+    t.field('FormItem', { type: 'FormItemNullableRelationFilter' })
+  },
+})
+
+export const AnswerOrderByWithAggregationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerOrderByWithAggregationInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('value', { type: 'SortOrderInput' })
+    t.field('formItemId', { type: 'SortOrderInput' })
+    t.field('_count', { type: 'AnswerCountOrderByAggregateInput' })
+    t.field('_max', { type: 'AnswerMaxOrderByAggregateInput' })
+    t.field('_min', { type: 'AnswerMinOrderByAggregateInput' })
+  },
+})
+
+export const AnswerScalarWhereWithAggregatesInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerScalarWhereWithAggregatesInput',
+  definition(t) {
+    t.list.field('AND', { type: 'AnswerScalarWhereWithAggregatesInput' })
+    t.list.field('OR', { type: 'AnswerScalarWhereWithAggregatesInput' })
+    t.list.field('NOT', { type: 'AnswerScalarWhereWithAggregatesInput' })
+    t.field('id', { type: 'StringWithAggregatesFilter' })
+    t.field('value', { type: 'StringNullableWithAggregatesFilter' })
+    t.field('formItemId', { type: 'StringNullableWithAggregatesFilter' })
   },
 })
 
@@ -525,6 +608,7 @@ export const FormItemCreateInput = inputObjectType({
     t.field('image', { type: 'Json' })
     t.nonNull.field('type', { type: 'FormType' })
     t.nonNull.field('Form', { type: 'FormCreateNestedOneWithoutItemsInput' })
+    t.field('Answers', { type: 'AnswerCreateNestedManyWithoutFormItemInput' })
   },
 })
 
@@ -543,6 +627,9 @@ export const FormItemUncheckedCreateInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.nonNull.field('type', { type: 'FormType' })
+    t.field('Answers', {
+      type: 'AnswerUncheckedCreateNestedManyWithoutFormItemInput',
+    })
   },
 })
 
@@ -561,6 +648,7 @@ export const FormItemUpdateInput = inputObjectType({
     t.field('image', { type: 'Json' })
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
     t.field('Form', { type: 'FormUpdateOneRequiredWithoutItemsNestedInput' })
+    t.field('Answers', { type: 'AnswerUpdateManyWithoutFormItemNestedInput' })
   },
 })
 
@@ -579,6 +667,9 @@ export const FormItemUncheckedUpdateInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
+    t.field('Answers', {
+      type: 'AnswerUncheckedUpdateManyWithoutFormItemNestedInput',
+    })
   },
 })
 
@@ -632,6 +723,89 @@ export const FormItemUncheckedUpdateManyInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('value', { type: 'String' })
+    t.field('FormItem', { type: 'FormItemCreateNestedOneWithoutAnswersInput' })
+  },
+})
+
+export const AnswerUncheckedCreateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUncheckedCreateInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('value', { type: 'String' })
+    t.field('formItemId', { type: 'String' })
+  },
+})
+
+export const AnswerUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpdateInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('FormItem', { type: 'FormItemUpdateOneWithoutAnswersNestedInput' })
+  },
+})
+
+export const AnswerUncheckedUpdateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUncheckedUpdateInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('formItemId', { type: 'NullableStringFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerCreateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateManyInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('value', { type: 'String' })
+    t.field('formItemId', { type: 'String' })
+  },
+})
+
+export const AnswerUpdateManyMutationInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpdateManyMutationInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerUncheckedUpdateManyInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUncheckedUpdateManyInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('formItemId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
 
@@ -1116,6 +1290,28 @@ export const FormRelationFilter = inputObjectType({
   },
 })
 
+export const AnswerListRelationFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerListRelationFilter',
+  definition(t) {
+    t.field('every', { type: 'AnswerWhereInput' })
+    t.field('some', { type: 'AnswerWhereInput' })
+    t.field('none', { type: 'AnswerWhereInput' })
+  },
+})
+
+export const AnswerOrderByRelationAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerOrderByRelationAggregateInput',
+  definition(t) {
+    t.field('_count', { type: 'SortOrder' })
+  },
+})
+
 export const FormItemCountOrderByAggregateInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1201,6 +1397,53 @@ export const EnumFormTypeWithAggregatesFilter = inputObjectType({
     t.field('_count', { type: 'NestedIntFilter' })
     t.field('_min', { type: 'NestedEnumFormTypeFilter' })
     t.field('_max', { type: 'NestedEnumFormTypeFilter' })
+  },
+})
+
+export const FormItemNullableRelationFilter = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemNullableRelationFilter',
+  definition(t) {
+    t.field('is', { type: 'FormItemWhereInput' })
+    t.field('isNot', { type: 'FormItemWhereInput' })
+  },
+})
+
+export const AnswerCountOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCountOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('value', { type: 'SortOrder' })
+    t.field('formItemId', { type: 'SortOrder' })
+  },
+})
+
+export const AnswerMaxOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerMaxOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('value', { type: 'SortOrder' })
+    t.field('formItemId', { type: 'SortOrder' })
+  },
+})
+
+export const AnswerMinOrderByAggregateInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerMinOrderByAggregateInput',
+  definition(t) {
+    t.field('id', { type: 'SortOrder' })
+    t.field('value', { type: 'SortOrder' })
+    t.field('formItemId', { type: 'SortOrder' })
   },
 })
 
@@ -1459,6 +1702,37 @@ export const FormCreateNestedOneWithoutItemsInput = inputObjectType({
   },
 })
 
+export const AnswerCreateNestedManyWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateNestedManyWithoutFormItemInput',
+  definition(t) {
+    t.list.field('create', { type: 'AnswerCreateWithoutFormItemInput' })
+    t.list.field('connectOrCreate', {
+      type: 'AnswerCreateOrConnectWithoutFormItemInput',
+    })
+    t.field('createMany', { type: 'AnswerCreateManyFormItemInputEnvelope' })
+    t.list.field('connect', { type: 'AnswerWhereUniqueInput' })
+  },
+})
+
+export const AnswerUncheckedCreateNestedManyWithoutFormItemInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'AnswerUncheckedCreateNestedManyWithoutFormItemInput',
+    definition(t) {
+      t.list.field('create', { type: 'AnswerCreateWithoutFormItemInput' })
+      t.list.field('connectOrCreate', {
+        type: 'AnswerCreateOrConnectWithoutFormItemInput',
+      })
+      t.field('createMany', { type: 'AnswerCreateManyFormItemInputEnvelope' })
+      t.list.field('connect', { type: 'AnswerWhereUniqueInput' })
+    },
+  })
+
 export const EnumFormTypeFieldUpdateOperationsInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -1480,6 +1754,97 @@ export const FormUpdateOneRequiredWithoutItemsNestedInput = inputObjectType({
     t.field('upsert', { type: 'FormUpsertWithoutItemsInput' })
     t.field('connect', { type: 'FormWhereUniqueInput' })
     t.field('update', { type: 'FormUpdateToOneWithWhereWithoutItemsInput' })
+  },
+})
+
+export const AnswerUpdateManyWithoutFormItemNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpdateManyWithoutFormItemNestedInput',
+  definition(t) {
+    t.list.field('create', { type: 'AnswerCreateWithoutFormItemInput' })
+    t.list.field('connectOrCreate', {
+      type: 'AnswerCreateOrConnectWithoutFormItemInput',
+    })
+    t.list.field('upsert', {
+      type: 'AnswerUpsertWithWhereUniqueWithoutFormItemInput',
+    })
+    t.field('createMany', { type: 'AnswerCreateManyFormItemInputEnvelope' })
+    t.list.field('set', { type: 'AnswerWhereUniqueInput' })
+    t.list.field('disconnect', { type: 'AnswerWhereUniqueInput' })
+    t.list.field('delete', { type: 'AnswerWhereUniqueInput' })
+    t.list.field('connect', { type: 'AnswerWhereUniqueInput' })
+    t.list.field('update', {
+      type: 'AnswerUpdateWithWhereUniqueWithoutFormItemInput',
+    })
+    t.list.field('updateMany', {
+      type: 'AnswerUpdateManyWithWhereWithoutFormItemInput',
+    })
+    t.list.field('deleteMany', { type: 'AnswerScalarWhereInput' })
+  },
+})
+
+export const AnswerUncheckedUpdateManyWithoutFormItemNestedInput =
+  inputObjectType({
+    nonNullDefaults: {
+      input: false,
+    },
+    name: 'AnswerUncheckedUpdateManyWithoutFormItemNestedInput',
+    definition(t) {
+      t.list.field('create', { type: 'AnswerCreateWithoutFormItemInput' })
+      t.list.field('connectOrCreate', {
+        type: 'AnswerCreateOrConnectWithoutFormItemInput',
+      })
+      t.list.field('upsert', {
+        type: 'AnswerUpsertWithWhereUniqueWithoutFormItemInput',
+      })
+      t.field('createMany', { type: 'AnswerCreateManyFormItemInputEnvelope' })
+      t.list.field('set', { type: 'AnswerWhereUniqueInput' })
+      t.list.field('disconnect', { type: 'AnswerWhereUniqueInput' })
+      t.list.field('delete', { type: 'AnswerWhereUniqueInput' })
+      t.list.field('connect', { type: 'AnswerWhereUniqueInput' })
+      t.list.field('update', {
+        type: 'AnswerUpdateWithWhereUniqueWithoutFormItemInput',
+      })
+      t.list.field('updateMany', {
+        type: 'AnswerUpdateManyWithWhereWithoutFormItemInput',
+      })
+      t.list.field('deleteMany', { type: 'AnswerScalarWhereInput' })
+    },
+  })
+
+export const FormItemCreateNestedOneWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemCreateNestedOneWithoutAnswersInput',
+  definition(t) {
+    t.field('create', { type: 'FormItemCreateWithoutAnswersInput' })
+    t.field('connectOrCreate', {
+      type: 'FormItemCreateOrConnectWithoutAnswersInput',
+    })
+    t.field('connect', { type: 'FormItemWhereUniqueInput' })
+  },
+})
+
+export const FormItemUpdateOneWithoutAnswersNestedInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemUpdateOneWithoutAnswersNestedInput',
+  definition(t) {
+    t.field('create', { type: 'FormItemCreateWithoutAnswersInput' })
+    t.field('connectOrCreate', {
+      type: 'FormItemCreateOrConnectWithoutAnswersInput',
+    })
+    t.field('upsert', { type: 'FormItemUpsertWithoutAnswersInput' })
+    t.field('disconnect', { type: 'FormItemWhereInput' })
+    t.field('delete', { type: 'FormItemWhereInput' })
+    t.field('connect', { type: 'FormItemWhereUniqueInput' })
+    t.field('update', {
+      type: 'FormItemUpdateToOneWithWhereWithoutAnswersInput',
+    })
   },
 })
 
@@ -1855,6 +2220,7 @@ export const FormItemCreateWithoutFormInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.nonNull.field('type', { type: 'FormType' })
+    t.field('Answers', { type: 'AnswerCreateNestedManyWithoutFormItemInput' })
   },
 })
 
@@ -1872,6 +2238,9 @@ export const FormItemUncheckedCreateWithoutFormInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.nonNull.field('type', { type: 'FormType' })
+    t.field('Answers', {
+      type: 'AnswerUncheckedCreateNestedManyWithoutFormItemInput',
+    })
   },
 })
 
@@ -2081,6 +2450,50 @@ export const FormCreateOrConnectWithoutItemsInput = inputObjectType({
   },
 })
 
+export const AnswerCreateWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateWithoutFormItemInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('value', { type: 'String' })
+  },
+})
+
+export const AnswerUncheckedCreateWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUncheckedCreateWithoutFormItemInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('value', { type: 'String' })
+  },
+})
+
+export const AnswerCreateOrConnectWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateOrConnectWithoutFormItemInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'AnswerWhereUniqueInput' })
+    t.nonNull.field('create', { type: 'AnswerCreateWithoutFormItemInput' })
+  },
+})
+
+export const AnswerCreateManyFormItemInputEnvelope = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateManyFormItemInputEnvelope',
+  definition(t) {
+    t.nonNull.field('data', { type: 'AnswerCreateManyFormItemInput' })
+    t.field('skipDuplicates', { type: 'Boolean' })
+  },
+})
+
 export const FormUpsertWithoutItemsInput = inputObjectType({
   nonNullDefaults: {
     input: false,
@@ -2137,6 +2550,161 @@ export const FormUncheckedUpdateWithoutItemsInput = inputObjectType({
     t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerUpsertWithWhereUniqueWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpsertWithWhereUniqueWithoutFormItemInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'AnswerWhereUniqueInput' })
+    t.nonNull.field('update', { type: 'AnswerUpdateWithoutFormItemInput' })
+    t.nonNull.field('create', { type: 'AnswerCreateWithoutFormItemInput' })
+  },
+})
+
+export const AnswerUpdateWithWhereUniqueWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpdateWithWhereUniqueWithoutFormItemInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'AnswerWhereUniqueInput' })
+    t.nonNull.field('data', { type: 'AnswerUpdateWithoutFormItemInput' })
+  },
+})
+
+export const AnswerUpdateManyWithWhereWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpdateManyWithWhereWithoutFormItemInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'AnswerScalarWhereInput' })
+    t.nonNull.field('data', { type: 'AnswerUpdateManyMutationInput' })
+  },
+})
+
+export const AnswerScalarWhereInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerScalarWhereInput',
+  definition(t) {
+    t.list.field('AND', { type: 'AnswerScalarWhereInput' })
+    t.list.field('OR', { type: 'AnswerScalarWhereInput' })
+    t.list.field('NOT', { type: 'AnswerScalarWhereInput' })
+    t.field('id', { type: 'StringFilter' })
+    t.field('value', { type: 'StringNullableFilter' })
+    t.field('formItemId', { type: 'StringNullableFilter' })
+  },
+})
+
+export const FormItemCreateWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemCreateWithoutAnswersInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.field('order', { type: 'Int' })
+    t.field('section', { type: 'Int' })
+    t.field('required', { type: 'Boolean' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.nonNull.field('type', { type: 'FormType' })
+    t.nonNull.field('Form', { type: 'FormCreateNestedOneWithoutItemsInput' })
+  },
+})
+
+export const FormItemUncheckedCreateWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemUncheckedCreateWithoutAnswersInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.nonNull.field('name', { type: 'String' })
+    t.field('order', { type: 'Int' })
+    t.field('section', { type: 'Int' })
+    t.nonNull.field('formId', { type: 'String' })
+    t.field('required', { type: 'Boolean' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.nonNull.field('type', { type: 'FormType' })
+  },
+})
+
+export const FormItemCreateOrConnectWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemCreateOrConnectWithoutAnswersInput',
+  definition(t) {
+    t.nonNull.field('where', { type: 'FormItemWhereUniqueInput' })
+    t.nonNull.field('create', { type: 'FormItemCreateWithoutAnswersInput' })
+  },
+})
+
+export const FormItemUpsertWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemUpsertWithoutAnswersInput',
+  definition(t) {
+    t.nonNull.field('update', { type: 'FormItemUpdateWithoutAnswersInput' })
+    t.nonNull.field('create', { type: 'FormItemCreateWithoutAnswersInput' })
+    t.field('where', { type: 'FormItemWhereInput' })
+  },
+})
+
+export const FormItemUpdateToOneWithWhereWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemUpdateToOneWithWhereWithoutAnswersInput',
+  definition(t) {
+    t.field('where', { type: 'FormItemWhereInput' })
+    t.nonNull.field('data', { type: 'FormItemUpdateWithoutAnswersInput' })
+  },
+})
+
+export const FormItemUpdateWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemUpdateWithoutAnswersInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
+    t.field('Form', { type: 'FormUpdateOneRequiredWithoutItemsNestedInput' })
+  },
+})
+
+export const FormItemUncheckedUpdateWithoutAnswersInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'FormItemUncheckedUpdateWithoutAnswersInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('name', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('order', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('section', { type: 'IntFieldUpdateOperationsInput' })
+    t.field('formId', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('required', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('items', { type: 'Json' })
+    t.field('image', { type: 'Json' })
+    t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
   },
 })
 
@@ -2286,6 +2854,7 @@ export const FormItemUpdateWithoutFormInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
+    t.field('Answers', { type: 'AnswerUpdateManyWithoutFormItemNestedInput' })
   },
 })
 
@@ -2303,6 +2872,9 @@ export const FormItemUncheckedUpdateWithoutFormInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
+    t.field('Answers', {
+      type: 'AnswerUncheckedUpdateManyWithoutFormItemNestedInput',
+    })
   },
 })
 
@@ -2320,6 +2892,50 @@ export const FormItemUncheckedUpdateManyWithoutFormInput = inputObjectType({
     t.field('items', { type: 'Json' })
     t.field('image', { type: 'Json' })
     t.field('type', { type: 'EnumFormTypeFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerCreateManyFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerCreateManyFormItemInput',
+  definition(t) {
+    t.field('id', { type: 'String' })
+    t.field('value', { type: 'String' })
+  },
+})
+
+export const AnswerUpdateWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUpdateWithoutFormItemInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerUncheckedUpdateWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUncheckedUpdateWithoutFormItemInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+  },
+})
+
+export const AnswerUncheckedUpdateManyWithoutFormItemInput = inputObjectType({
+  nonNullDefaults: {
+    input: false,
+  },
+  name: 'AnswerUncheckedUpdateManyWithoutFormItemInput',
+  definition(t) {
+    t.field('id', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
 
@@ -2423,6 +3039,18 @@ export const AggregateFormItem = objectType({
   },
 })
 
+export const AggregateAnswer = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AggregateAnswer',
+  definition(t) {
+    t.nullable.field('_count', { type: 'AnswerCountAggregateOutputType' })
+    t.nullable.field('_min', { type: 'AnswerMinAggregateOutputType' })
+    t.nullable.field('_max', { type: 'AnswerMaxAggregateOutputType' })
+  },
+})
+
 export const AggregateFolder = objectType({
   nonNullDefaults: {
     output: true,
@@ -2518,6 +3146,16 @@ export const FormMaxAggregateOutputType = objectType({
   },
 })
 
+export const FormItemCountOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'FormItemCountOutputType',
+  definition(t) {
+    t.field('Answers', { type: 'Int' })
+  },
+})
+
 export const FormItemCountAggregateOutputType = objectType({
   nonNullDefaults: {
     output: true,
@@ -2588,6 +3226,43 @@ export const FormItemMaxAggregateOutputType = objectType({
     t.nullable.field('formId', { type: 'String' })
     t.nullable.field('required', { type: 'Boolean' })
     t.nullable.field('type', { type: 'FormType' })
+  },
+})
+
+export const AnswerCountAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AnswerCountAggregateOutputType',
+  definition(t) {
+    t.field('id', { type: 'Int' })
+    t.field('value', { type: 'Int' })
+    t.field('formItemId', { type: 'Int' })
+    t.field('_all', { type: 'Int' })
+  },
+})
+
+export const AnswerMinAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AnswerMinAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'String' })
+    t.nullable.field('value', { type: 'String' })
+    t.nullable.field('formItemId', { type: 'String' })
+  },
+})
+
+export const AnswerMaxAggregateOutputType = objectType({
+  nonNullDefaults: {
+    output: true,
+  },
+  name: 'AnswerMaxAggregateOutputType',
+  definition(t) {
+    t.nullable.field('id', { type: 'String' })
+    t.nullable.field('value', { type: 'String' })
+    t.nullable.field('formItemId', { type: 'String' })
   },
 })
 

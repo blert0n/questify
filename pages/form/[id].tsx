@@ -1,6 +1,6 @@
 import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
-import { useFormDataQuery } from "@/lib/graphql";
+import { useFormDataQuery, useSubmitFormMutation } from "@/lib/graphql";
 import { FormItem, initialTheme } from "@/types";
 import { useRouter } from "next/router";
 import Error from "next/error";
@@ -8,9 +8,15 @@ import Meta from "@/components/Layout/Title";
 import { Formik, Form } from "formik";
 import { getPrimaryColor, prepareFormik } from "@/lib";
 import { Button } from "@/components/ui";
+import { toast } from "react-toastify";
+
+interface Value {
+  [key: string]: string;
+}
 
 export default function Index() {
   const router = useRouter();
+  const [submitForm] = useSubmitFormMutation();
 
   const { data: { findFirstForm } = {}, loading } = useFormDataQuery({
     variables: {
@@ -36,6 +42,29 @@ export default function Index() {
 
   const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
 
+  const handleSubmit = async (values: Value) => {
+    await submitForm({
+      variables: {
+        answers: Object.entries(values).map(([key, value]) => ({
+          formItemId: key,
+          value,
+        })),
+      },
+      onCompleted() {
+        router.push(
+          {
+            pathname: `${router.asPath}/success`,
+            query: { backgroundColor: findFirstForm?.style?.secondaryColor },
+          },
+          `${router.asPath}/success`
+        );
+      },
+      onError() {
+        toast.error("Something went wrong! Please try again later!");
+      },
+    });
+  };
+
   return (
     <>
       <Meta title={findFirstForm?.name ?? "Form"} />
@@ -50,9 +79,7 @@ export default function Index() {
               initialValues={initialValues}
               validationSchema={validationSchema}
               validateOnChange
-              onSubmit={(values) => {
-                console.log(values);
-              }}
+              onSubmit={(values) => handleSubmit(values)}
             >
               {({ handleSubmit, isSubmitting }) => (
                 <Form className="flex flex-col gap-2">

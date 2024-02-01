@@ -2,6 +2,12 @@
 ### Do not make changes to this file directly
 
 
+type AggregateAnswer {
+  _count: AnswerCountAggregateOutputType
+  _max: AnswerMaxAggregateOutputType
+  _min: AnswerMinAggregateOutputType
+}
+
 type AggregateFolder {
   _count: FolderCountAggregateOutputType
   _max: FolderMaxAggregateOutputType
@@ -22,6 +28,264 @@ type AggregateFormItem {
   _max: FormItemMaxAggregateOutputType
   _min: FormItemMinAggregateOutputType
   _sum: FormItemSumAggregateOutputType
+}
+
+type Answer {
+  FormItem(where: FormItemWhereInput): FormItem
+  formItemId: String
+  id: String!
+  value: String
+}
+
+type AnswerCountAggregateOutputType {
+  _all: Int!
+  formItemId: Int!
+  id: Int!
+  value: Int!
+}
+
+input AnswerCountOrderByAggregateInput {
+  formItemId: SortOrder
+  id: SortOrder
+  value: SortOrder
+}
+
+input AnswerCreateInput {
+  FormItem: FormItemCreateNestedOneWithoutAnswersInput
+  id: String
+  value: String
+}
+
+input AnswerCreateManyFormItemInput {
+  id: String
+  value: String
+}
+
+input AnswerCreateManyFormItemInputEnvelope {
+  data: AnswerCreateManyFormItemInput!
+  skipDuplicates: Boolean
+}
+
+input AnswerCreateManyInput {
+  formItemId: String
+  id: String
+  value: String
+}
+
+input AnswerCreateNestedManyWithoutFormItemInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutFormItemInput]
+  create: [AnswerCreateWithoutFormItemInput]
+  createMany: AnswerCreateManyFormItemInputEnvelope
+}
+
+input AnswerCreateOrConnectWithoutFormItemInput {
+  create: AnswerCreateWithoutFormItemInput!
+  where: AnswerWhereUniqueInput!
+}
+
+input AnswerCreateWithoutFormItemInput {
+  id: String
+  value: String
+}
+
+input AnswerInput {
+  formItemId: String!
+  value: String!
+}
+
+input AnswerListRelationFilter {
+  every: AnswerWhereInput
+  none: AnswerWhereInput
+  some: AnswerWhereInput
+}
+
+type AnswerMaxAggregateOutputType {
+  formItemId: String
+  id: String
+  value: String
+}
+
+input AnswerMaxOrderByAggregateInput {
+  formItemId: SortOrder
+  id: SortOrder
+  value: SortOrder
+}
+
+type AnswerMinAggregateOutputType {
+  formItemId: String
+  id: String
+  value: String
+}
+
+input AnswerMinOrderByAggregateInput {
+  formItemId: SortOrder
+  id: SortOrder
+  value: SortOrder
+}
+
+input AnswerOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AnswerOrderByWithAggregationInput {
+  _count: AnswerCountOrderByAggregateInput
+  _max: AnswerMaxOrderByAggregateInput
+  _min: AnswerMinOrderByAggregateInput
+  formItemId: SortOrderInput
+  id: SortOrder
+  value: SortOrderInput
+}
+
+input AnswerOrderByWithRelationInput {
+  FormItem: FormItemOrderByWithRelationInput
+  formItemId: SortOrderInput
+  id: SortOrder
+  value: SortOrderInput
+}
+
+enum AnswerScalarFieldEnum {
+  formItemId
+  id
+  value
+}
+
+input AnswerScalarWhereInput {
+  AND: [AnswerScalarWhereInput]
+  NOT: [AnswerScalarWhereInput]
+  OR: [AnswerScalarWhereInput]
+  formItemId: StringNullableFilter
+  id: StringFilter
+  value: StringNullableFilter
+}
+
+input AnswerScalarWhereWithAggregatesInput {
+  AND: [AnswerScalarWhereWithAggregatesInput]
+  NOT: [AnswerScalarWhereWithAggregatesInput]
+  OR: [AnswerScalarWhereWithAggregatesInput]
+  formItemId: StringNullableWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  value: StringNullableWithAggregatesFilter
+}
+
+input AnswerUncheckedCreateInput {
+  formItemId: String
+  id: String
+  value: String
+}
+
+input AnswerUncheckedCreateNestedManyWithoutFormItemInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutFormItemInput]
+  create: [AnswerCreateWithoutFormItemInput]
+  createMany: AnswerCreateManyFormItemInputEnvelope
+}
+
+input AnswerUncheckedCreateWithoutFormItemInput {
+  id: String
+  value: String
+}
+
+input AnswerUncheckedUpdateInput {
+  formItemId: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUncheckedUpdateManyInput {
+  formItemId: NullableStringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUncheckedUpdateManyWithoutFormItemInput {
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUncheckedUpdateManyWithoutFormItemNestedInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutFormItemInput]
+  create: [AnswerCreateWithoutFormItemInput]
+  createMany: AnswerCreateManyFormItemInputEnvelope
+  delete: [AnswerWhereUniqueInput]
+  deleteMany: [AnswerScalarWhereInput]
+  disconnect: [AnswerWhereUniqueInput]
+  set: [AnswerWhereUniqueInput]
+  update: [AnswerUpdateWithWhereUniqueWithoutFormItemInput]
+  updateMany: [AnswerUpdateManyWithWhereWithoutFormItemInput]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutFormItemInput]
+}
+
+input AnswerUncheckedUpdateWithoutFormItemInput {
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUpdateInput {
+  FormItem: FormItemUpdateOneWithoutAnswersNestedInput
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUpdateManyWithWhereWithoutFormItemInput {
+  data: AnswerUpdateManyMutationInput!
+  where: AnswerScalarWhereInput!
+}
+
+input AnswerUpdateManyWithoutFormItemNestedInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutFormItemInput]
+  create: [AnswerCreateWithoutFormItemInput]
+  createMany: AnswerCreateManyFormItemInputEnvelope
+  delete: [AnswerWhereUniqueInput]
+  deleteMany: [AnswerScalarWhereInput]
+  disconnect: [AnswerWhereUniqueInput]
+  set: [AnswerWhereUniqueInput]
+  update: [AnswerUpdateWithWhereUniqueWithoutFormItemInput]
+  updateMany: [AnswerUpdateManyWithWhereWithoutFormItemInput]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutFormItemInput]
+}
+
+input AnswerUpdateWithWhereUniqueWithoutFormItemInput {
+  data: AnswerUpdateWithoutFormItemInput!
+  where: AnswerWhereUniqueInput!
+}
+
+input AnswerUpdateWithoutFormItemInput {
+  id: StringFieldUpdateOperationsInput
+  value: NullableStringFieldUpdateOperationsInput
+}
+
+input AnswerUpsertWithWhereUniqueWithoutFormItemInput {
+  create: AnswerCreateWithoutFormItemInput!
+  update: AnswerUpdateWithoutFormItemInput!
+  where: AnswerWhereUniqueInput!
+}
+
+input AnswerWhereInput {
+  AND: [AnswerWhereInput]
+  FormItem: FormItemNullableRelationFilter
+  NOT: [AnswerWhereInput]
+  OR: [AnswerWhereInput]
+  formItemId: StringNullableFilter
+  id: StringFilter
+  value: StringNullableFilter
+}
+
+input AnswerWhereUniqueInput {
+  AND: [AnswerWhereInput]
+  FormItem: FormItemNullableRelationFilter
+  NOT: [AnswerWhereInput]
+  OR: [AnswerWhereInput]
+  formItemId: StringNullableFilter
+  id: String
+  value: StringNullableFilter
 }
 
 type BatchPayload {
@@ -466,7 +730,9 @@ input FormCreateWithoutItemsInput {
 }
 
 type FormItem {
+  Answers(cursor: AnswerWhereUniqueInput, distinct: [AnswerScalarFieldEnum], orderBy: [AnswerOrderByWithRelationInput], skip: Int, take: Int, where: AnswerWhereInput): [Answer!]!
   Form: Form!
+  _count: FormItemCountOutputType!
   formId: String!
   id: String!
   image: Json
@@ -513,7 +779,12 @@ input FormItemCountOrderByAggregateInput {
   type: SortOrder
 }
 
+type FormItemCountOutputType {
+  Answers: Int!
+}
+
 input FormItemCreateInput {
+  Answers: AnswerCreateNestedManyWithoutFormItemInput
   Form: FormCreateNestedOneWithoutItemsInput!
   id: String
   image: Json
@@ -560,12 +831,36 @@ input FormItemCreateNestedManyWithoutFormInput {
   createMany: FormItemCreateManyFormInputEnvelope
 }
 
+input FormItemCreateNestedOneWithoutAnswersInput {
+  connect: FormItemWhereUniqueInput
+  connectOrCreate: FormItemCreateOrConnectWithoutAnswersInput
+  create: FormItemCreateWithoutAnswersInput
+}
+
+input FormItemCreateOrConnectWithoutAnswersInput {
+  create: FormItemCreateWithoutAnswersInput!
+  where: FormItemWhereUniqueInput!
+}
+
 input FormItemCreateOrConnectWithoutFormInput {
   create: FormItemCreateWithoutFormInput!
   where: FormItemWhereUniqueInput!
 }
 
+input FormItemCreateWithoutAnswersInput {
+  Form: FormCreateNestedOneWithoutItemsInput!
+  id: String
+  image: Json
+  items: Json
+  name: String!
+  order: Int
+  required: Boolean
+  section: Int
+  type: FormType!
+}
+
 input FormItemCreateWithoutFormInput {
+  Answers: AnswerCreateNestedManyWithoutFormItemInput
   id: String
   image: Json
   items: Json
@@ -622,6 +917,11 @@ input FormItemMinOrderByAggregateInput {
   type: SortOrder
 }
 
+input FormItemNullableRelationFilter {
+  is: FormItemWhereInput
+  isNot: FormItemWhereInput
+}
+
 input FormItemOrderByRelationAggregateInput {
   _count: SortOrder
 }
@@ -644,6 +944,7 @@ input FormItemOrderByWithAggregationInput {
 }
 
 input FormItemOrderByWithRelationInput {
+  Answers: AnswerOrderByRelationAggregateInput
   Form: FormOrderByWithRelationInput
   formId: SortOrder
   id: SortOrder
@@ -709,6 +1010,7 @@ input FormItemSumOrderByAggregateInput {
 }
 
 input FormItemUncheckedCreateInput {
+  Answers: AnswerUncheckedCreateNestedManyWithoutFormItemInput
   formId: String!
   id: String
   image: Json
@@ -727,7 +1029,20 @@ input FormItemUncheckedCreateNestedManyWithoutFormInput {
   createMany: FormItemCreateManyFormInputEnvelope
 }
 
+input FormItemUncheckedCreateWithoutAnswersInput {
+  formId: String!
+  id: String
+  image: Json
+  items: Json
+  name: String!
+  order: Int
+  required: Boolean
+  section: Int
+  type: FormType!
+}
+
 input FormItemUncheckedCreateWithoutFormInput {
+  Answers: AnswerUncheckedCreateNestedManyWithoutFormItemInput
   id: String
   image: Json
   items: Json
@@ -739,6 +1054,7 @@ input FormItemUncheckedCreateWithoutFormInput {
 }
 
 input FormItemUncheckedUpdateInput {
+  Answers: AnswerUncheckedUpdateManyWithoutFormItemNestedInput
   formId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   image: Json
@@ -787,7 +1103,20 @@ input FormItemUncheckedUpdateManyWithoutFormNestedInput {
   upsert: [FormItemUpsertWithWhereUniqueWithoutFormInput]
 }
 
+input FormItemUncheckedUpdateWithoutAnswersInput {
+  formId: StringFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  image: Json
+  items: Json
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
 input FormItemUncheckedUpdateWithoutFormInput {
+  Answers: AnswerUncheckedUpdateManyWithoutFormItemNestedInput
   id: StringFieldUpdateOperationsInput
   image: Json
   items: Json
@@ -799,6 +1128,7 @@ input FormItemUncheckedUpdateWithoutFormInput {
 }
 
 input FormItemUpdateInput {
+  Answers: AnswerUpdateManyWithoutFormItemNestedInput
   Form: FormUpdateOneRequiredWithoutItemsNestedInput
   id: StringFieldUpdateOperationsInput
   image: Json
@@ -840,12 +1170,40 @@ input FormItemUpdateManyWithoutFormNestedInput {
   upsert: [FormItemUpsertWithWhereUniqueWithoutFormInput]
 }
 
+input FormItemUpdateOneWithoutAnswersNestedInput {
+  connect: FormItemWhereUniqueInput
+  connectOrCreate: FormItemCreateOrConnectWithoutAnswersInput
+  create: FormItemCreateWithoutAnswersInput
+  delete: FormItemWhereInput
+  disconnect: FormItemWhereInput
+  update: FormItemUpdateToOneWithWhereWithoutAnswersInput
+  upsert: FormItemUpsertWithoutAnswersInput
+}
+
+input FormItemUpdateToOneWithWhereWithoutAnswersInput {
+  data: FormItemUpdateWithoutAnswersInput!
+  where: FormItemWhereInput
+}
+
 input FormItemUpdateWithWhereUniqueWithoutFormInput {
   data: FormItemUpdateWithoutFormInput!
   where: FormItemWhereUniqueInput!
 }
 
+input FormItemUpdateWithoutAnswersInput {
+  Form: FormUpdateOneRequiredWithoutItemsNestedInput
+  id: StringFieldUpdateOperationsInput
+  image: Json
+  items: Json
+  name: StringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  required: BoolFieldUpdateOperationsInput
+  section: IntFieldUpdateOperationsInput
+  type: EnumFormTypeFieldUpdateOperationsInput
+}
+
 input FormItemUpdateWithoutFormInput {
+  Answers: AnswerUpdateManyWithoutFormItemNestedInput
   id: StringFieldUpdateOperationsInput
   image: Json
   items: Json
@@ -862,8 +1220,15 @@ input FormItemUpsertWithWhereUniqueWithoutFormInput {
   where: FormItemWhereUniqueInput!
 }
 
+input FormItemUpsertWithoutAnswersInput {
+  create: FormItemCreateWithoutAnswersInput!
+  update: FormItemUpdateWithoutAnswersInput!
+  where: FormItemWhereInput
+}
+
 input FormItemWhereInput {
   AND: [FormItemWhereInput]
+  Answers: AnswerListRelationFilter
   Form: FormRelationFilter
   NOT: [FormItemWhereInput]
   OR: [FormItemWhereInput]
@@ -880,6 +1245,7 @@ input FormItemWhereInput {
 
 input FormItemWhereUniqueInput {
   AND: [FormItemWhereInput]
+  Answers: AnswerListRelationFilter
   Form: FormRelationFilter
   NOT: [FormItemWhereInput]
   OR: [FormItemWhereInput]
@@ -1381,11 +1747,13 @@ input JsonNullableWithAggregatesFilter {
 }
 
 type Mutation {
+  createOneAnswer(data: AnswerCreateInput): Answer!
   createOneForm(data: FormCreateInput!): Form!
   createOneFormItem(data: FormItemCreateInput!): FormItem!
   deleteOneFolder(where: FolderWhereUniqueInput!): Folder
   deleteOneForm(where: FormWhereUniqueInput!): Form
   deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
+  submitForm(answers: [AnswerInput!]!): [Answer]
   updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
   updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
   uploadItemImage(base64: String!, formId: String!, itemId: String!): UploadResponse
@@ -1591,6 +1959,7 @@ enum NullsOrder {
 
 type Query {
   findFirstForm(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): Form
+  findManyAnswer(cursor: AnswerWhereUniqueInput, distinct: [AnswerScalarFieldEnum], orderBy: [AnswerOrderByWithRelationInput], skip: Int, take: Int, where: AnswerWhereInput): [Answer!]!
   findManyFolder(cursor: FolderWhereUniqueInput, distinct: [FolderScalarFieldEnum], orderBy: [FolderOrderByWithRelationInput], skip: Int, take: Int, where: FolderWhereInput): [Folder!]!
   findManyForm(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): [Form!]!
   findManyFormCount(cursor: FormWhereUniqueInput, distinct: [FormScalarFieldEnum], orderBy: [FormOrderByWithRelationInput], skip: Int, take: Int, where: FormWhereInput): Int!

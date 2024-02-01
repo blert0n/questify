@@ -63,6 +63,198 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AnswerCountOrderByAggregateInput: { // input type
+    formItemId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    value?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  AnswerCreateInput: { // input type
+    FormItem?: NexusGenInputs['FormItemCreateNestedOneWithoutAnswersInput'] | null; // FormItemCreateNestedOneWithoutAnswersInput
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerCreateManyFormItemInput: { // input type
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerCreateManyFormItemInputEnvelope: { // input type
+    data: NexusGenInputs['AnswerCreateManyFormItemInput']; // AnswerCreateManyFormItemInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  AnswerCreateManyInput: { // input type
+    formItemId?: string | null; // String
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerCreateNestedManyWithoutFormItemInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutFormItemInput'] | null> | null; // [AnswerCreateOrConnectWithoutFormItemInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutFormItemInput'] | null> | null; // [AnswerCreateWithoutFormItemInput]
+    createMany?: NexusGenInputs['AnswerCreateManyFormItemInputEnvelope'] | null; // AnswerCreateManyFormItemInputEnvelope
+  }
+  AnswerCreateOrConnectWithoutFormItemInput: { // input type
+    create: NexusGenInputs['AnswerCreateWithoutFormItemInput']; // AnswerCreateWithoutFormItemInput!
+    where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+  }
+  AnswerCreateWithoutFormItemInput: { // input type
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerInput: { // input type
+    formItemId: string; // String!
+    value: string; // String!
+  }
+  AnswerListRelationFilter: { // input type
+    every?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    none?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    some?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+  }
+  AnswerMaxOrderByAggregateInput: { // input type
+    formItemId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    value?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  AnswerMinOrderByAggregateInput: { // input type
+    formItemId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    value?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  AnswerOrderByRelationAggregateInput: { // input type
+    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  AnswerOrderByWithAggregationInput: { // input type
+    _count?: NexusGenInputs['AnswerCountOrderByAggregateInput'] | null; // AnswerCountOrderByAggregateInput
+    _max?: NexusGenInputs['AnswerMaxOrderByAggregateInput'] | null; // AnswerMaxOrderByAggregateInput
+    _min?: NexusGenInputs['AnswerMinOrderByAggregateInput'] | null; // AnswerMinOrderByAggregateInput
+    formItemId?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    value?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+  }
+  AnswerOrderByWithRelationInput: { // input type
+    FormItem?: NexusGenInputs['FormItemOrderByWithRelationInput'] | null; // FormItemOrderByWithRelationInput
+    formItemId?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    value?: NexusGenInputs['SortOrderInput'] | null; // SortOrderInput
+  }
+  AnswerScalarWhereInput: { // input type
+    AND?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    NOT?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    OR?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    formItemId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    value?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  AnswerScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['AnswerScalarWhereWithAggregatesInput'] | null> | null; // [AnswerScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['AnswerScalarWhereWithAggregatesInput'] | null> | null; // [AnswerScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['AnswerScalarWhereWithAggregatesInput'] | null> | null; // [AnswerScalarWhereWithAggregatesInput]
+    formItemId?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
+    id?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    value?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
+  }
+  AnswerUncheckedCreateInput: { // input type
+    formItemId?: string | null; // String
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerUncheckedCreateNestedManyWithoutFormItemInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutFormItemInput'] | null> | null; // [AnswerCreateOrConnectWithoutFormItemInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutFormItemInput'] | null> | null; // [AnswerCreateWithoutFormItemInput]
+    createMany?: NexusGenInputs['AnswerCreateManyFormItemInputEnvelope'] | null; // AnswerCreateManyFormItemInputEnvelope
+  }
+  AnswerUncheckedCreateWithoutFormItemInput: { // input type
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerUncheckedUpdateInput: { // input type
+    formItemId?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUncheckedUpdateManyInput: { // input type
+    formItemId?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUncheckedUpdateManyWithoutFormItemInput: { // input type
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUncheckedUpdateManyWithoutFormItemNestedInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutFormItemInput'] | null> | null; // [AnswerCreateOrConnectWithoutFormItemInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutFormItemInput'] | null> | null; // [AnswerCreateWithoutFormItemInput]
+    createMany?: NexusGenInputs['AnswerCreateManyFormItemInputEnvelope'] | null; // AnswerCreateManyFormItemInputEnvelope
+    delete?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    set?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutFormItemInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutFormItemInput]
+    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutFormItemInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutFormItemInput]
+    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutFormItemInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutFormItemInput]
+  }
+  AnswerUncheckedUpdateWithoutFormItemInput: { // input type
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUpdateInput: { // input type
+    FormItem?: NexusGenInputs['FormItemUpdateOneWithoutAnswersNestedInput'] | null; // FormItemUpdateOneWithoutAnswersNestedInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUpdateManyMutationInput: { // input type
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUpdateManyWithWhereWithoutFormItemInput: { // input type
+    data: NexusGenInputs['AnswerUpdateManyMutationInput']; // AnswerUpdateManyMutationInput!
+    where: NexusGenInputs['AnswerScalarWhereInput']; // AnswerScalarWhereInput!
+  }
+  AnswerUpdateManyWithoutFormItemNestedInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutFormItemInput'] | null> | null; // [AnswerCreateOrConnectWithoutFormItemInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutFormItemInput'] | null> | null; // [AnswerCreateWithoutFormItemInput]
+    createMany?: NexusGenInputs['AnswerCreateManyFormItemInputEnvelope'] | null; // AnswerCreateManyFormItemInputEnvelope
+    delete?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    set?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutFormItemInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutFormItemInput]
+    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutFormItemInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutFormItemInput]
+    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutFormItemInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutFormItemInput]
+  }
+  AnswerUpdateWithWhereUniqueWithoutFormItemInput: { // input type
+    data: NexusGenInputs['AnswerUpdateWithoutFormItemInput']; // AnswerUpdateWithoutFormItemInput!
+    where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+  }
+  AnswerUpdateWithoutFormItemInput: { // input type
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    value?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+  }
+  AnswerUpsertWithWhereUniqueWithoutFormItemInput: { // input type
+    create: NexusGenInputs['AnswerCreateWithoutFormItemInput']; // AnswerCreateWithoutFormItemInput!
+    update: NexusGenInputs['AnswerUpdateWithoutFormItemInput']; // AnswerUpdateWithoutFormItemInput!
+    where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+  }
+  AnswerWhereInput: { // input type
+    AND?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
+    FormItem?: NexusGenInputs['FormItemNullableRelationFilter'] | null; // FormItemNullableRelationFilter
+    NOT?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
+    OR?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
+    formItemId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    value?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
+  AnswerWhereUniqueInput: { // input type
+    AND?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
+    FormItem?: NexusGenInputs['FormItemNullableRelationFilter'] | null; // FormItemNullableRelationFilter
+    NOT?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
+    OR?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
+    formItemId?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    id?: string | null; // String
+    value?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+  }
   BoolFieldUpdateOperationsInput: { // input type
     set?: boolean | null; // Boolean
   }
@@ -379,6 +571,7 @@ export interface NexusGenInputs {
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   FormItemCreateInput: { // input type
+    Answers?: NexusGenInputs['AnswerCreateNestedManyWithoutFormItemInput'] | null; // AnswerCreateNestedManyWithoutFormItemInput
     Form: NexusGenInputs['FormCreateNestedOneWithoutItemsInput']; // FormCreateNestedOneWithoutItemsInput!
     id?: string | null; // String
     image?: NexusGenScalars['Json'] | null; // Json
@@ -420,11 +613,32 @@ export interface NexusGenInputs {
     create?: Array<NexusGenInputs['FormItemCreateWithoutFormInput'] | null> | null; // [FormItemCreateWithoutFormInput]
     createMany?: NexusGenInputs['FormItemCreateManyFormInputEnvelope'] | null; // FormItemCreateManyFormInputEnvelope
   }
+  FormItemCreateNestedOneWithoutAnswersInput: { // input type
+    connect?: NexusGenInputs['FormItemWhereUniqueInput'] | null; // FormItemWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['FormItemCreateOrConnectWithoutAnswersInput'] | null; // FormItemCreateOrConnectWithoutAnswersInput
+    create?: NexusGenInputs['FormItemCreateWithoutAnswersInput'] | null; // FormItemCreateWithoutAnswersInput
+  }
+  FormItemCreateOrConnectWithoutAnswersInput: { // input type
+    create: NexusGenInputs['FormItemCreateWithoutAnswersInput']; // FormItemCreateWithoutAnswersInput!
+    where: NexusGenInputs['FormItemWhereUniqueInput']; // FormItemWhereUniqueInput!
+  }
   FormItemCreateOrConnectWithoutFormInput: { // input type
     create: NexusGenInputs['FormItemCreateWithoutFormInput']; // FormItemCreateWithoutFormInput!
     where: NexusGenInputs['FormItemWhereUniqueInput']; // FormItemWhereUniqueInput!
   }
+  FormItemCreateWithoutAnswersInput: { // input type
+    Form: NexusGenInputs['FormCreateNestedOneWithoutItemsInput']; // FormCreateNestedOneWithoutItemsInput!
+    id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
+    items?: NexusGenScalars['Json'] | null; // Json
+    name: string; // String!
+    order?: number | null; // Int
+    required?: boolean | null; // Boolean
+    section?: number | null; // Int
+    type: NexusGenEnums['FormType']; // FormType!
+  }
   FormItemCreateWithoutFormInput: { // input type
+    Answers?: NexusGenInputs['AnswerCreateNestedManyWithoutFormItemInput'] | null; // AnswerCreateNestedManyWithoutFormItemInput
     id?: string | null; // String
     image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
@@ -457,6 +671,10 @@ export interface NexusGenInputs {
     section?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
+  FormItemNullableRelationFilter: { // input type
+    is?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+    isNot?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+  }
   FormItemOrderByRelationAggregateInput: { // input type
     _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
@@ -477,6 +695,7 @@ export interface NexusGenInputs {
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   FormItemOrderByWithRelationInput: { // input type
+    Answers?: NexusGenInputs['AnswerOrderByRelationAggregateInput'] | null; // AnswerOrderByRelationAggregateInput
     Form?: NexusGenInputs['FormOrderByWithRelationInput'] | null; // FormOrderByWithRelationInput
     formId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -521,6 +740,7 @@ export interface NexusGenInputs {
     section?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   FormItemUncheckedCreateInput: { // input type
+    Answers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutFormItemInput'] | null; // AnswerUncheckedCreateNestedManyWithoutFormItemInput
     formId: string; // String!
     id?: string | null; // String
     image?: NexusGenScalars['Json'] | null; // Json
@@ -537,7 +757,19 @@ export interface NexusGenInputs {
     create?: Array<NexusGenInputs['FormItemCreateWithoutFormInput'] | null> | null; // [FormItemCreateWithoutFormInput]
     createMany?: NexusGenInputs['FormItemCreateManyFormInputEnvelope'] | null; // FormItemCreateManyFormInputEnvelope
   }
+  FormItemUncheckedCreateWithoutAnswersInput: { // input type
+    formId: string; // String!
+    id?: string | null; // String
+    image?: NexusGenScalars['Json'] | null; // Json
+    items?: NexusGenScalars['Json'] | null; // Json
+    name: string; // String!
+    order?: number | null; // Int
+    required?: boolean | null; // Boolean
+    section?: number | null; // Int
+    type: NexusGenEnums['FormType']; // FormType!
+  }
   FormItemUncheckedCreateWithoutFormInput: { // input type
+    Answers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutFormItemInput'] | null; // AnswerUncheckedCreateNestedManyWithoutFormItemInput
     id?: string | null; // String
     image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
@@ -548,6 +780,7 @@ export interface NexusGenInputs {
     type: NexusGenEnums['FormType']; // FormType!
   }
   FormItemUncheckedUpdateInput: { // input type
+    Answers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutFormItemNestedInput'] | null; // AnswerUncheckedUpdateManyWithoutFormItemNestedInput
     formId?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     image?: NexusGenScalars['Json'] | null; // Json
@@ -592,7 +825,19 @@ export interface NexusGenInputs {
     updateMany?: Array<NexusGenInputs['FormItemUpdateManyWithWhereWithoutFormInput'] | null> | null; // [FormItemUpdateManyWithWhereWithoutFormInput]
     upsert?: Array<NexusGenInputs['FormItemUpsertWithWhereUniqueWithoutFormInput'] | null> | null; // [FormItemUpsertWithWhereUniqueWithoutFormInput]
   }
+  FormItemUncheckedUpdateWithoutAnswersInput: { // input type
+    formId?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
+    items?: NexusGenScalars['Json'] | null; // Json
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    required?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    section?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    type?: NexusGenInputs['EnumFormTypeFieldUpdateOperationsInput'] | null; // EnumFormTypeFieldUpdateOperationsInput
+  }
   FormItemUncheckedUpdateWithoutFormInput: { // input type
+    Answers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutFormItemNestedInput'] | null; // AnswerUncheckedUpdateManyWithoutFormItemNestedInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
@@ -603,6 +848,7 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['EnumFormTypeFieldUpdateOperationsInput'] | null; // EnumFormTypeFieldUpdateOperationsInput
   }
   FormItemUpdateInput: { // input type
+    Answers?: NexusGenInputs['AnswerUpdateManyWithoutFormItemNestedInput'] | null; // AnswerUpdateManyWithoutFormItemNestedInput
     Form?: NexusGenInputs['FormUpdateOneRequiredWithoutItemsNestedInput'] | null; // FormUpdateOneRequiredWithoutItemsNestedInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     image?: NexusGenScalars['Json'] | null; // Json
@@ -640,11 +886,36 @@ export interface NexusGenInputs {
     updateMany?: Array<NexusGenInputs['FormItemUpdateManyWithWhereWithoutFormInput'] | null> | null; // [FormItemUpdateManyWithWhereWithoutFormInput]
     upsert?: Array<NexusGenInputs['FormItemUpsertWithWhereUniqueWithoutFormInput'] | null> | null; // [FormItemUpsertWithWhereUniqueWithoutFormInput]
   }
+  FormItemUpdateOneWithoutAnswersNestedInput: { // input type
+    connect?: NexusGenInputs['FormItemWhereUniqueInput'] | null; // FormItemWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['FormItemCreateOrConnectWithoutAnswersInput'] | null; // FormItemCreateOrConnectWithoutAnswersInput
+    create?: NexusGenInputs['FormItemCreateWithoutAnswersInput'] | null; // FormItemCreateWithoutAnswersInput
+    delete?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+    disconnect?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+    update?: NexusGenInputs['FormItemUpdateToOneWithWhereWithoutAnswersInput'] | null; // FormItemUpdateToOneWithWhereWithoutAnswersInput
+    upsert?: NexusGenInputs['FormItemUpsertWithoutAnswersInput'] | null; // FormItemUpsertWithoutAnswersInput
+  }
+  FormItemUpdateToOneWithWhereWithoutAnswersInput: { // input type
+    data: NexusGenInputs['FormItemUpdateWithoutAnswersInput']; // FormItemUpdateWithoutAnswersInput!
+    where?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+  }
   FormItemUpdateWithWhereUniqueWithoutFormInput: { // input type
     data: NexusGenInputs['FormItemUpdateWithoutFormInput']; // FormItemUpdateWithoutFormInput!
     where: NexusGenInputs['FormItemWhereUniqueInput']; // FormItemWhereUniqueInput!
   }
+  FormItemUpdateWithoutAnswersInput: { // input type
+    Form?: NexusGenInputs['FormUpdateOneRequiredWithoutItemsNestedInput'] | null; // FormUpdateOneRequiredWithoutItemsNestedInput
+    id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    image?: NexusGenScalars['Json'] | null; // Json
+    items?: NexusGenScalars['Json'] | null; // Json
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    order?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    required?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    section?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    type?: NexusGenInputs['EnumFormTypeFieldUpdateOperationsInput'] | null; // EnumFormTypeFieldUpdateOperationsInput
+  }
   FormItemUpdateWithoutFormInput: { // input type
+    Answers?: NexusGenInputs['AnswerUpdateManyWithoutFormItemNestedInput'] | null; // AnswerUpdateManyWithoutFormItemNestedInput
     id?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     image?: NexusGenScalars['Json'] | null; // Json
     items?: NexusGenScalars['Json'] | null; // Json
@@ -659,8 +930,14 @@ export interface NexusGenInputs {
     update: NexusGenInputs['FormItemUpdateWithoutFormInput']; // FormItemUpdateWithoutFormInput!
     where: NexusGenInputs['FormItemWhereUniqueInput']; // FormItemWhereUniqueInput!
   }
+  FormItemUpsertWithoutAnswersInput: { // input type
+    create: NexusGenInputs['FormItemCreateWithoutAnswersInput']; // FormItemCreateWithoutAnswersInput!
+    update: NexusGenInputs['FormItemUpdateWithoutAnswersInput']; // FormItemUpdateWithoutAnswersInput!
+    where?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+  }
   FormItemWhereInput: { // input type
     AND?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
+    Answers?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
     Form?: NexusGenInputs['FormRelationFilter'] | null; // FormRelationFilter
     NOT?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
     OR?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
@@ -676,6 +953,7 @@ export interface NexusGenInputs {
   }
   FormItemWhereUniqueInput: { // input type
     AND?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
+    Answers?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
     Form?: NexusGenInputs['FormRelationFilter'] | null; // FormRelationFilter
     NOT?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
     OR?: Array<NexusGenInputs['FormItemWhereInput'] | null> | null; // [FormItemWhereInput]
@@ -1319,6 +1597,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  AnswerScalarFieldEnum: "formItemId" | "id" | "value"
   FolderScalarFieldEnum: "id" | "name" | "ownerId"
   FormItemScalarFieldEnum: "formId" | "id" | "image" | "items" | "name" | "order" | "required" | "section" | "type"
   FormScalarFieldEnum: "createdAt" | "favorite" | "folderId" | "id" | "name" | "order" | "ownerId" | "style" | "updatedAt"
@@ -1345,6 +1624,11 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  AggregateAnswer: { // root type
+    _count?: NexusGenRootTypes['AnswerCountAggregateOutputType'] | null; // AnswerCountAggregateOutputType
+    _max?: NexusGenRootTypes['AnswerMaxAggregateOutputType'] | null; // AnswerMaxAggregateOutputType
+    _min?: NexusGenRootTypes['AnswerMinAggregateOutputType'] | null; // AnswerMinAggregateOutputType
+  }
   AggregateFolder: { // root type
     _count?: NexusGenRootTypes['FolderCountAggregateOutputType'] | null; // FolderCountAggregateOutputType
     _max?: NexusGenRootTypes['FolderMaxAggregateOutputType'] | null; // FolderMaxAggregateOutputType
@@ -1363,6 +1647,27 @@ export interface NexusGenObjects {
     _max?: NexusGenRootTypes['FormItemMaxAggregateOutputType'] | null; // FormItemMaxAggregateOutputType
     _min?: NexusGenRootTypes['FormItemMinAggregateOutputType'] | null; // FormItemMinAggregateOutputType
     _sum?: NexusGenRootTypes['FormItemSumAggregateOutputType'] | null; // FormItemSumAggregateOutputType
+  }
+  Answer: { // root type
+    formItemId?: string | null; // String
+    id: string; // String!
+    value?: string | null; // String
+  }
+  AnswerCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    formItemId: number; // Int!
+    id: number; // Int!
+    value: number; // Int!
+  }
+  AnswerMaxAggregateOutputType: { // root type
+    formItemId?: string | null; // String
+    id?: string | null; // String
+    value?: string | null; // String
+  }
+  AnswerMinAggregateOutputType: { // root type
+    formItemId?: string | null; // String
+    id?: string | null; // String
+    value?: string | null; // String
   }
   BatchPayload: { // root type
     count: number; // Int!
@@ -1447,6 +1752,9 @@ export interface NexusGenObjects {
     section: number; // Int!
     type: number; // Int!
   }
+  FormItemCountOutputType: { // root type
+    Answers: number; // Int!
+  }
   FormItemMaxAggregateOutputType: { // root type
     formId?: string | null; // String
     id?: string | null; // String
@@ -1511,6 +1819,11 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
 
 export interface NexusGenFieldTypes {
+  AggregateAnswer: { // field return type
+    _count: NexusGenRootTypes['AnswerCountAggregateOutputType'] | null; // AnswerCountAggregateOutputType
+    _max: NexusGenRootTypes['AnswerMaxAggregateOutputType'] | null; // AnswerMaxAggregateOutputType
+    _min: NexusGenRootTypes['AnswerMinAggregateOutputType'] | null; // AnswerMinAggregateOutputType
+  }
   AggregateFolder: { // field return type
     _count: NexusGenRootTypes['FolderCountAggregateOutputType'] | null; // FolderCountAggregateOutputType
     _max: NexusGenRootTypes['FolderMaxAggregateOutputType'] | null; // FolderMaxAggregateOutputType
@@ -1529,6 +1842,28 @@ export interface NexusGenFieldTypes {
     _max: NexusGenRootTypes['FormItemMaxAggregateOutputType'] | null; // FormItemMaxAggregateOutputType
     _min: NexusGenRootTypes['FormItemMinAggregateOutputType'] | null; // FormItemMinAggregateOutputType
     _sum: NexusGenRootTypes['FormItemSumAggregateOutputType'] | null; // FormItemSumAggregateOutputType
+  }
+  Answer: { // field return type
+    FormItem: NexusGenRootTypes['FormItem'] | null; // FormItem
+    formItemId: string | null; // String
+    id: string; // String!
+    value: string | null; // String
+  }
+  AnswerCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    formItemId: number; // Int!
+    id: number; // Int!
+    value: number; // Int!
+  }
+  AnswerMaxAggregateOutputType: { // field return type
+    formItemId: string | null; // String
+    id: string | null; // String
+    value: string | null; // String
+  }
+  AnswerMinAggregateOutputType: { // field return type
+    formItemId: string | null; // String
+    id: string | null; // String
+    value: string | null; // String
   }
   BatchPayload: { // field return type
     count: number; // Int!
@@ -1592,7 +1927,9 @@ export interface NexusGenFieldTypes {
     items: number; // Int!
   }
   FormItem: { // field return type
+    Answers: NexusGenRootTypes['Answer'][]; // [Answer!]!
     Form: NexusGenRootTypes['Form']; // Form!
+    _count: NexusGenRootTypes['FormItemCountOutputType']; // FormItemCountOutputType!
     formId: string; // String!
     id: string; // String!
     image: NexusGenScalars['Json'] | null; // Json
@@ -1618,6 +1955,9 @@ export interface NexusGenFieldTypes {
     required: number; // Int!
     section: number; // Int!
     type: number; // Int!
+  }
+  FormItemCountOutputType: { // field return type
+    Answers: number; // Int!
   }
   FormItemMaxAggregateOutputType: { // field return type
     formId: string | null; // String
@@ -1665,11 +2005,13 @@ export interface NexusGenFieldTypes {
     order: number | null; // Int
   }
   Mutation: { // field return type
+    createOneAnswer: NexusGenRootTypes['Answer']; // Answer!
     createOneForm: NexusGenRootTypes['Form']; // Form!
     createOneFormItem: NexusGenRootTypes['FormItem']; // FormItem!
     deleteOneFolder: NexusGenRootTypes['Folder'] | null; // Folder
     deleteOneForm: NexusGenRootTypes['Form'] | null; // Form
     deleteOneFormItem: NexusGenRootTypes['FormItem'] | null; // FormItem
+    submitForm: Array<NexusGenRootTypes['Answer'] | null> | null; // [Answer]
     updateOneForm: NexusGenRootTypes['Form']; // Form!
     updateOneFormItem: NexusGenRootTypes['FormItem']; // FormItem!
     uploadItemImage: NexusGenRootTypes['UploadResponse'] | null; // UploadResponse
@@ -1678,6 +2020,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     findFirstForm: NexusGenRootTypes['Form'] | null; // Form
+    findManyAnswer: NexusGenRootTypes['Answer'][]; // [Answer!]!
     findManyFolder: NexusGenRootTypes['Folder'][]; // [Folder!]!
     findManyForm: NexusGenRootTypes['Form'][]; // [Form!]!
     findManyFormCount: number; // Int!
@@ -1691,6 +2034,11 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  AggregateAnswer: { // field return type name
+    _count: 'AnswerCountAggregateOutputType'
+    _max: 'AnswerMaxAggregateOutputType'
+    _min: 'AnswerMinAggregateOutputType'
+  }
   AggregateFolder: { // field return type name
     _count: 'FolderCountAggregateOutputType'
     _max: 'FolderMaxAggregateOutputType'
@@ -1709,6 +2057,28 @@ export interface NexusGenFieldTypeNames {
     _max: 'FormItemMaxAggregateOutputType'
     _min: 'FormItemMinAggregateOutputType'
     _sum: 'FormItemSumAggregateOutputType'
+  }
+  Answer: { // field return type name
+    FormItem: 'FormItem'
+    formItemId: 'String'
+    id: 'String'
+    value: 'String'
+  }
+  AnswerCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    formItemId: 'Int'
+    id: 'Int'
+    value: 'Int'
+  }
+  AnswerMaxAggregateOutputType: { // field return type name
+    formItemId: 'String'
+    id: 'String'
+    value: 'String'
+  }
+  AnswerMinAggregateOutputType: { // field return type name
+    formItemId: 'String'
+    id: 'String'
+    value: 'String'
   }
   BatchPayload: { // field return type name
     count: 'Int'
@@ -1772,7 +2142,9 @@ export interface NexusGenFieldTypeNames {
     items: 'Int'
   }
   FormItem: { // field return type name
+    Answers: 'Answer'
     Form: 'Form'
+    _count: 'FormItemCountOutputType'
     formId: 'String'
     id: 'String'
     image: 'Json'
@@ -1798,6 +2170,9 @@ export interface NexusGenFieldTypeNames {
     required: 'Int'
     section: 'Int'
     type: 'Int'
+  }
+  FormItemCountOutputType: { // field return type name
+    Answers: 'Int'
   }
   FormItemMaxAggregateOutputType: { // field return type name
     formId: 'String'
@@ -1845,11 +2220,13 @@ export interface NexusGenFieldTypeNames {
     order: 'Int'
   }
   Mutation: { // field return type name
+    createOneAnswer: 'Answer'
     createOneForm: 'Form'
     createOneFormItem: 'FormItem'
     deleteOneFolder: 'Folder'
     deleteOneForm: 'Form'
     deleteOneFormItem: 'FormItem'
+    submitForm: 'Answer'
     updateOneForm: 'Form'
     updateOneFormItem: 'FormItem'
     uploadItemImage: 'UploadResponse'
@@ -1858,6 +2235,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     findFirstForm: 'Form'
+    findManyAnswer: 'Answer'
     findManyFolder: 'Folder'
     findManyForm: 'Form'
     findManyFormCount: 'Int'
@@ -1871,6 +2249,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Answer: {
+    FormItem: { // args
+      where?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
+    }
+  }
   Folder: {
     Forms: { // args
       cursor?: NexusGenInputs['FormWhereUniqueInput'] | null; // FormWhereUniqueInput
@@ -1894,7 +2277,20 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['FormItemWhereInput'] | null; // FormItemWhereInput
     }
   }
+  FormItem: {
+    Answers: { // args
+      cursor?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
+      distinct?: Array<NexusGenEnums['AnswerScalarFieldEnum'] | null> | null; // [AnswerScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['AnswerOrderByWithRelationInput'] | null> | null; // [AnswerOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    }
+  }
   Mutation: {
+    createOneAnswer: { // args
+      data?: NexusGenInputs['AnswerCreateInput'] | null; // AnswerCreateInput
+    }
     createOneForm: { // args
       data: NexusGenInputs['FormCreateInput']; // FormCreateInput!
     }
@@ -1909,6 +2305,9 @@ export interface NexusGenArgTypes {
     }
     deleteOneFormItem: { // args
       where: NexusGenInputs['FormItemWhereUniqueInput']; // FormItemWhereUniqueInput!
+    }
+    submitForm: { // args
+      answers: NexusGenInputs['AnswerInput'][]; // [AnswerInput!]!
     }
     updateOneForm: { // args
       data: NexusGenInputs['FormUpdateInput']; // FormUpdateInput!
@@ -1941,6 +2340,14 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['FormWhereInput'] | null; // FormWhereInput
+    }
+    findManyAnswer: { // args
+      cursor?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
+      distinct?: Array<NexusGenEnums['AnswerScalarFieldEnum'] | null> | null; // [AnswerScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['AnswerOrderByWithRelationInput'] | null> | null; // [AnswerOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
     }
     findManyFolder: { // args
       cursor?: NexusGenInputs['FolderWhereUniqueInput'] | null; // FolderWhereUniqueInput
