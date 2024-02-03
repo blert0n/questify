@@ -172,7 +172,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                 onClick={() => {
                   toggleColorPicker();
                   !isCustomColor && toggleCustomColor();
-                  handlePrimaryColorChange(chromeColor);
+                  handlePrimaryColorChange(chromeColor || theme.primaryColor);
                 }}
               />
             ) : (
@@ -196,7 +196,7 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
                 className="flex justify-center"
               >
                 <Chrome
-                  color={chromeColor}
+                  color={chromeColor || theme.primaryColor}
                   style={{ float: "left" }}
                   placement={GithubPlacement.Right}
                   onChange={(color) => {

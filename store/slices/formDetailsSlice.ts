@@ -55,7 +55,7 @@ export const createFormDetailsSlice: StateCreator<
     openFormModal();
   },
   loadTemplate: (template) => {
-    if (!["rsvp", "contact", "registration"].includes(template)) return;
+    if (!["rsvp", "orderRequest", "jobApplication"].includes(template)) return;
     const templateData = templateMapper[template];
     set((state) => ({
       ...state,

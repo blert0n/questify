@@ -1,5 +1,3 @@
-// import Image from "next/image";
-
 import { useFormSelectors, useModalStoreSelectors } from "@/store";
 import { Plus } from "lucide-react";
 
@@ -10,14 +8,14 @@ const templates = [
     mapKey: "rsvp",
   },
   {
-    name: "Contact information",
-    image: "images/contact.png",
-    mapKey: "contact",
+    name: "Order request",
+    image: "images/orderRequest.png",
+    mapKey: "orderRequest",
   },
   {
-    name: "Event registration",
-    image: "images/registration.png",
-    mapKey: "registration",
+    name: "Job application",
+    image: "images/jobApplication.png",
+    mapKey: "jobApplication",
   },
 ];
 export default function Templates() {
