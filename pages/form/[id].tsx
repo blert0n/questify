@@ -45,10 +45,12 @@ export default function Index() {
   const handleSubmit = async (values: Value) => {
     await submitForm({
       variables: {
-        answers: Object.entries(values).map(([key, value]) => ({
-          formItemId: key,
-          value,
-        })),
+        answers: Object.entries(values)
+          .map(([key, value]) => ({
+            formItemId: key,
+            value,
+          }))
+          .filter((item) => item.value.length > 0),
       },
       onCompleted() {
         router.push(

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn generate:prisma && yarn prisma db push --accept-data-loss && next build",
+    "build": "yarn generate:prisma && yarn prisma db push --accept-data-loss && yarn prisma db seed && next build",
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf dist",
@@ -12,6 +12,9 @@
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json schema/schema",
     "db-dev": "prisma migrate dev"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",
