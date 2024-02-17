@@ -20,6 +20,7 @@ export const FormScalarFieldEnum = enumType({
     'style',
     'favorite',
     'folderId',
+    'responses',
     'createdAt',
     'updatedAt',
   ],
@@ -42,7 +43,7 @@ export const FormItemScalarFieldEnum = enumType({
 
 export const AnswerScalarFieldEnum = enumType({
   name: 'AnswerScalarFieldEnum',
-  members: ['id', 'value', 'formItemId'],
+  members: ['id', 'value', 'responseId', 'formItemId'],
 })
 
 export const FolderScalarFieldEnum = enumType({
@@ -104,6 +105,7 @@ export const FormWhereInput = inputObjectType({
     t.field('style', { type: 'JsonNullableFilter' })
     t.field('favorite', { type: 'BoolFilter' })
     t.field('folderId', { type: 'StringNullableFilter' })
+    t.field('responses', { type: 'IntFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
@@ -124,6 +126,7 @@ export const FormOrderByWithRelationInput = inputObjectType({
     t.field('style', { type: 'SortOrderInput' })
     t.field('favorite', { type: 'SortOrder' })
     t.field('folderId', { type: 'SortOrderInput' })
+    t.field('responses', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
     t.field('items', { type: 'FormItemOrderByRelationAggregateInput' })
@@ -148,6 +151,7 @@ export const FormWhereUniqueInput = inputObjectType({
     t.field('style', { type: 'JsonNullableFilter' })
     t.field('favorite', { type: 'BoolFilter' })
     t.field('folderId', { type: 'StringNullableFilter' })
+    t.field('responses', { type: 'IntFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
     t.field('items', { type: 'FormItemListRelationFilter' })
@@ -168,6 +172,7 @@ export const FormOrderByWithAggregationInput = inputObjectType({
     t.field('style', { type: 'SortOrderInput' })
     t.field('favorite', { type: 'SortOrder' })
     t.field('folderId', { type: 'SortOrderInput' })
+    t.field('responses', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
     t.field('_count', { type: 'FormCountOrderByAggregateInput' })
@@ -194,6 +199,7 @@ export const FormScalarWhereWithAggregatesInput = inputObjectType({
     t.field('style', { type: 'JsonNullableWithAggregatesFilter' })
     t.field('favorite', { type: 'BoolWithAggregatesFilter' })
     t.field('folderId', { type: 'StringNullableWithAggregatesFilter' })
+    t.field('responses', { type: 'IntWithAggregatesFilter' })
     t.field('createdAt', { type: 'DateTimeWithAggregatesFilter' })
     t.field('updatedAt', { type: 'DateTimeWithAggregatesFilter' })
   },
@@ -319,7 +325,8 @@ export const AnswerWhereInput = inputObjectType({
     t.list.field('OR', { type: 'AnswerWhereInput' })
     t.list.field('NOT', { type: 'AnswerWhereInput' })
     t.field('id', { type: 'StringFilter' })
-    t.field('value', { type: 'StringNullableFilter' })
+    t.field('value', { type: 'StringFilter' })
+    t.field('responseId', { type: 'StringNullableFilter' })
     t.field('formItemId', { type: 'StringNullableFilter' })
     t.field('FormItem', { type: 'FormItemNullableRelationFilter' })
   },
@@ -332,7 +339,8 @@ export const AnswerOrderByWithRelationInput = inputObjectType({
   name: 'AnswerOrderByWithRelationInput',
   definition(t) {
     t.field('id', { type: 'SortOrder' })
-    t.field('value', { type: 'SortOrderInput' })
+    t.field('value', { type: 'SortOrder' })
+    t.field('responseId', { type: 'SortOrderInput' })
     t.field('formItemId', { type: 'SortOrderInput' })
     t.field('FormItem', { type: 'FormItemOrderByWithRelationInput' })
   },
@@ -348,7 +356,8 @@ export const AnswerWhereUniqueInput = inputObjectType({
     t.list.field('AND', { type: 'AnswerWhereInput' })
     t.list.field('OR', { type: 'AnswerWhereInput' })
     t.list.field('NOT', { type: 'AnswerWhereInput' })
-    t.field('value', { type: 'StringNullableFilter' })
+    t.field('value', { type: 'StringFilter' })
+    t.field('responseId', { type: 'StringNullableFilter' })
     t.field('formItemId', { type: 'StringNullableFilter' })
     t.field('FormItem', { type: 'FormItemNullableRelationFilter' })
   },
@@ -361,7 +370,8 @@ export const AnswerOrderByWithAggregationInput = inputObjectType({
   name: 'AnswerOrderByWithAggregationInput',
   definition(t) {
     t.field('id', { type: 'SortOrder' })
-    t.field('value', { type: 'SortOrderInput' })
+    t.field('value', { type: 'SortOrder' })
+    t.field('responseId', { type: 'SortOrderInput' })
     t.field('formItemId', { type: 'SortOrderInput' })
     t.field('_count', { type: 'AnswerCountOrderByAggregateInput' })
     t.field('_max', { type: 'AnswerMaxOrderByAggregateInput' })
@@ -379,7 +389,8 @@ export const AnswerScalarWhereWithAggregatesInput = inputObjectType({
     t.list.field('OR', { type: 'AnswerScalarWhereWithAggregatesInput' })
     t.list.field('NOT', { type: 'AnswerScalarWhereWithAggregatesInput' })
     t.field('id', { type: 'StringWithAggregatesFilter' })
-    t.field('value', { type: 'StringNullableWithAggregatesFilter' })
+    t.field('value', { type: 'StringWithAggregatesFilter' })
+    t.field('responseId', { type: 'StringNullableWithAggregatesFilter' })
     t.field('formItemId', { type: 'StringNullableWithAggregatesFilter' })
   },
 })
@@ -472,6 +483,7 @@ export const FormCreateInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', { type: 'FormItemCreateNestedManyWithoutFormInput' })
@@ -492,6 +504,7 @@ export const FormUncheckedCreateInput = inputObjectType({
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
     t.field('folderId', { type: 'String' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', {
@@ -512,6 +525,7 @@ export const FormUpdateInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', { type: 'FormItemUpdateManyWithoutFormNestedInput' })
@@ -532,6 +546,7 @@ export const FormUncheckedUpdateInput = inputObjectType({
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', {
@@ -553,6 +568,7 @@ export const FormCreateManyInput = inputObjectType({
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
     t.field('folderId', { type: 'String' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -570,6 +586,7 @@ export const FormUpdateManyMutationInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -588,6 +605,7 @@ export const FormUncheckedUpdateManyInput = inputObjectType({
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -733,7 +751,8 @@ export const AnswerCreateInput = inputObjectType({
   name: 'AnswerCreateInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('value', { type: 'String' })
+    t.nonNull.field('value', { type: 'String' })
+    t.field('responseId', { type: 'String' })
     t.field('FormItem', { type: 'FormItemCreateNestedOneWithoutAnswersInput' })
   },
 })
@@ -745,7 +764,8 @@ export const AnswerUncheckedCreateInput = inputObjectType({
   name: 'AnswerUncheckedCreateInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('value', { type: 'String' })
+    t.nonNull.field('value', { type: 'String' })
+    t.field('responseId', { type: 'String' })
     t.field('formItemId', { type: 'String' })
   },
 })
@@ -757,7 +777,8 @@ export const AnswerUpdateInput = inputObjectType({
   name: 'AnswerUpdateInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('FormItem', { type: 'FormItemUpdateOneWithoutAnswersNestedInput' })
   },
 })
@@ -769,7 +790,8 @@ export const AnswerUncheckedUpdateInput = inputObjectType({
   name: 'AnswerUncheckedUpdateInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('formItemId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
@@ -781,7 +803,8 @@ export const AnswerCreateManyInput = inputObjectType({
   name: 'AnswerCreateManyInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('value', { type: 'String' })
+    t.nonNull.field('value', { type: 'String' })
+    t.field('responseId', { type: 'String' })
     t.field('formItemId', { type: 'String' })
   },
 })
@@ -793,7 +816,8 @@ export const AnswerUpdateManyMutationInput = inputObjectType({
   name: 'AnswerUpdateManyMutationInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
 
@@ -804,7 +828,8 @@ export const AnswerUncheckedUpdateManyInput = inputObjectType({
   name: 'AnswerUncheckedUpdateManyInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
     t.field('formItemId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
@@ -1078,6 +1103,7 @@ export const FormCountOrderByAggregateInput = inputObjectType({
     t.field('style', { type: 'SortOrder' })
     t.field('favorite', { type: 'SortOrder' })
     t.field('folderId', { type: 'SortOrder' })
+    t.field('responses', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -1090,6 +1116,7 @@ export const FormAvgOrderByAggregateInput = inputObjectType({
   name: 'FormAvgOrderByAggregateInput',
   definition(t) {
     t.field('order', { type: 'SortOrder' })
+    t.field('responses', { type: 'SortOrder' })
   },
 })
 
@@ -1105,6 +1132,7 @@ export const FormMaxOrderByAggregateInput = inputObjectType({
     t.field('order', { type: 'SortOrder' })
     t.field('favorite', { type: 'SortOrder' })
     t.field('folderId', { type: 'SortOrder' })
+    t.field('responses', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -1122,6 +1150,7 @@ export const FormMinOrderByAggregateInput = inputObjectType({
     t.field('order', { type: 'SortOrder' })
     t.field('favorite', { type: 'SortOrder' })
     t.field('folderId', { type: 'SortOrder' })
+    t.field('responses', { type: 'SortOrder' })
     t.field('createdAt', { type: 'SortOrder' })
     t.field('updatedAt', { type: 'SortOrder' })
   },
@@ -1134,6 +1163,7 @@ export const FormSumOrderByAggregateInput = inputObjectType({
   name: 'FormSumOrderByAggregateInput',
   definition(t) {
     t.field('order', { type: 'SortOrder' })
+    t.field('responses', { type: 'SortOrder' })
   },
 })
 
@@ -1419,6 +1449,7 @@ export const AnswerCountOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('value', { type: 'SortOrder' })
+    t.field('responseId', { type: 'SortOrder' })
     t.field('formItemId', { type: 'SortOrder' })
   },
 })
@@ -1431,6 +1462,7 @@ export const AnswerMaxOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('value', { type: 'SortOrder' })
+    t.field('responseId', { type: 'SortOrder' })
     t.field('formItemId', { type: 'SortOrder' })
   },
 })
@@ -1443,6 +1475,7 @@ export const AnswerMinOrderByAggregateInput = inputObjectType({
   definition(t) {
     t.field('id', { type: 'SortOrder' })
     t.field('value', { type: 'SortOrder' })
+    t.field('responseId', { type: 'SortOrder' })
     t.field('formItemId', { type: 'SortOrder' })
   },
 })
@@ -2415,6 +2448,7 @@ export const FormCreateWithoutItemsInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('Folder', { type: 'FolderCreateNestedOneWithoutFormsInput' })
@@ -2434,6 +2468,7 @@ export const FormUncheckedCreateWithoutItemsInput = inputObjectType({
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
     t.field('folderId', { type: 'String' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -2457,7 +2492,8 @@ export const AnswerCreateWithoutFormItemInput = inputObjectType({
   name: 'AnswerCreateWithoutFormItemInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('value', { type: 'String' })
+    t.nonNull.field('value', { type: 'String' })
+    t.field('responseId', { type: 'String' })
   },
 })
 
@@ -2468,7 +2504,8 @@ export const AnswerUncheckedCreateWithoutFormItemInput = inputObjectType({
   name: 'AnswerUncheckedCreateWithoutFormItemInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('value', { type: 'String' })
+    t.nonNull.field('value', { type: 'String' })
+    t.field('responseId', { type: 'String' })
   },
 })
 
@@ -2529,6 +2566,7 @@ export const FormUpdateWithoutItemsInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('Folder', { type: 'FolderUpdateOneWithoutFormsNestedInput' })
@@ -2548,6 +2586,7 @@ export const FormUncheckedUpdateWithoutItemsInput = inputObjectType({
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
     t.field('folderId', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -2597,7 +2636,8 @@ export const AnswerScalarWhereInput = inputObjectType({
     t.list.field('OR', { type: 'AnswerScalarWhereInput' })
     t.list.field('NOT', { type: 'AnswerScalarWhereInput' })
     t.field('id', { type: 'StringFilter' })
-    t.field('value', { type: 'StringNullableFilter' })
+    t.field('value', { type: 'StringFilter' })
+    t.field('responseId', { type: 'StringNullableFilter' })
     t.field('formItemId', { type: 'StringNullableFilter' })
   },
 })
@@ -2720,6 +2760,7 @@ export const FormCreateWithoutFolderInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', { type: 'FormItemCreateNestedManyWithoutFormInput' })
@@ -2738,6 +2779,7 @@ export const FormUncheckedCreateWithoutFolderInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.field('items', {
@@ -2818,6 +2860,7 @@ export const FormScalarWhereInput = inputObjectType({
     t.field('style', { type: 'JsonNullableFilter' })
     t.field('favorite', { type: 'BoolFilter' })
     t.field('folderId', { type: 'StringNullableFilter' })
+    t.field('responses', { type: 'IntFilter' })
     t.field('createdAt', { type: 'DateTimeFilter' })
     t.field('updatedAt', { type: 'DateTimeFilter' })
   },
@@ -2902,7 +2945,8 @@ export const AnswerCreateManyFormItemInput = inputObjectType({
   name: 'AnswerCreateManyFormItemInput',
   definition(t) {
     t.field('id', { type: 'String' })
-    t.field('value', { type: 'String' })
+    t.nonNull.field('value', { type: 'String' })
+    t.field('responseId', { type: 'String' })
   },
 })
 
@@ -2913,7 +2957,8 @@ export const AnswerUpdateWithoutFormItemInput = inputObjectType({
   name: 'AnswerUpdateWithoutFormItemInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
 
@@ -2924,7 +2969,8 @@ export const AnswerUncheckedUpdateWithoutFormItemInput = inputObjectType({
   name: 'AnswerUncheckedUpdateWithoutFormItemInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
 
@@ -2935,7 +2981,8 @@ export const AnswerUncheckedUpdateManyWithoutFormItemInput = inputObjectType({
   name: 'AnswerUncheckedUpdateManyWithoutFormItemInput',
   definition(t) {
     t.field('id', { type: 'StringFieldUpdateOperationsInput' })
-    t.field('value', { type: 'NullableStringFieldUpdateOperationsInput' })
+    t.field('value', { type: 'StringFieldUpdateOperationsInput' })
+    t.field('responseId', { type: 'NullableStringFieldUpdateOperationsInput' })
   },
 })
 
@@ -2951,6 +2998,7 @@ export const FormCreateManyFolderInput = inputObjectType({
     t.field('order', { type: 'Int' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'Boolean' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
   },
@@ -2968,6 +3016,7 @@ export const FormUpdateWithoutFolderInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', { type: 'FormItemUpdateManyWithoutFormNestedInput' })
@@ -2986,6 +3035,7 @@ export const FormUncheckedUpdateWithoutFolderInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('items', {
@@ -3006,6 +3056,7 @@ export const FormUncheckedUpdateManyWithoutFolderInput = inputObjectType({
     t.field('order', { type: 'IntFieldUpdateOperationsInput' })
     t.field('style', { type: 'Json' })
     t.field('favorite', { type: 'BoolFieldUpdateOperationsInput' })
+    t.field('responses', { type: 'IntFieldUpdateOperationsInput' })
     t.field('createdAt', { type: 'DateTimeFieldUpdateOperationsInput' })
     t.field('updatedAt', { type: 'DateTimeFieldUpdateOperationsInput' })
   },
@@ -3086,6 +3137,7 @@ export const FormCountAggregateOutputType = objectType({
     t.field('style', { type: 'Int' })
     t.field('favorite', { type: 'Int' })
     t.field('folderId', { type: 'Int' })
+    t.field('responses', { type: 'Int' })
     t.field('createdAt', { type: 'Int' })
     t.field('updatedAt', { type: 'Int' })
     t.field('_all', { type: 'Int' })
@@ -3099,6 +3151,7 @@ export const FormAvgAggregateOutputType = objectType({
   name: 'FormAvgAggregateOutputType',
   definition(t) {
     t.nullable.field('order', { type: 'Float' })
+    t.nullable.field('responses', { type: 'Float' })
   },
 })
 
@@ -3109,6 +3162,7 @@ export const FormSumAggregateOutputType = objectType({
   name: 'FormSumAggregateOutputType',
   definition(t) {
     t.nullable.field('order', { type: 'Int' })
+    t.nullable.field('responses', { type: 'Int' })
   },
 })
 
@@ -3124,6 +3178,7 @@ export const FormMinAggregateOutputType = objectType({
     t.nullable.field('order', { type: 'Int' })
     t.nullable.field('favorite', { type: 'Boolean' })
     t.nullable.field('folderId', { type: 'String' })
+    t.nullable.field('responses', { type: 'Int' })
     t.nullable.field('createdAt', { type: 'DateTime' })
     t.nullable.field('updatedAt', { type: 'DateTime' })
   },
@@ -3141,6 +3196,7 @@ export const FormMaxAggregateOutputType = objectType({
     t.nullable.field('order', { type: 'Int' })
     t.nullable.field('favorite', { type: 'Boolean' })
     t.nullable.field('folderId', { type: 'String' })
+    t.nullable.field('responses', { type: 'Int' })
     t.nullable.field('createdAt', { type: 'DateTime' })
     t.nullable.field('updatedAt', { type: 'DateTime' })
   },
@@ -3237,6 +3293,7 @@ export const AnswerCountAggregateOutputType = objectType({
   definition(t) {
     t.field('id', { type: 'Int' })
     t.field('value', { type: 'Int' })
+    t.field('responseId', { type: 'Int' })
     t.field('formItemId', { type: 'Int' })
     t.field('_all', { type: 'Int' })
   },
@@ -3250,6 +3307,7 @@ export const AnswerMinAggregateOutputType = objectType({
   definition(t) {
     t.nullable.field('id', { type: 'String' })
     t.nullable.field('value', { type: 'String' })
+    t.nullable.field('responseId', { type: 'String' })
     t.nullable.field('formItemId', { type: 'String' })
   },
 })
@@ -3262,6 +3320,7 @@ export const AnswerMaxAggregateOutputType = objectType({
   definition(t) {
     t.nullable.field('id', { type: 'String' })
     t.nullable.field('value', { type: 'String' })
+    t.nullable.field('responseId', { type: 'String' })
     t.nullable.field('formItemId', { type: 'String' })
   },
 })

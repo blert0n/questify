@@ -1,0 +1,18 @@
+query Responses($formId: String!) {
+  findFirstForm(where: { id: { equals: $formId } }) {
+    id
+    responses
+    items(orderBy: { order: asc }) {
+      id
+      name
+      _count {
+        Answers
+      }
+      type
+      Answers {
+        id
+        value
+      }
+    }
+  }
+}

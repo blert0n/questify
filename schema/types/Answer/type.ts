@@ -8,7 +8,8 @@ export const Answer = objectType({
   name: 'Answer',
   definition(t) {
     t.string('id')
-    t.nullable.string('value')
+    t.string('value')
+    t.nullable.string('responseId')
     t.nullable.string('formItemId')
     t.nullable.field('FormItem', {
       type: 'FormItem',

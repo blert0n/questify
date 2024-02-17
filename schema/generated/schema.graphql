@@ -34,31 +34,36 @@ type Answer {
   FormItem(where: FormItemWhereInput): FormItem
   formItemId: String
   id: String!
-  value: String
+  responseId: String
+  value: String!
 }
 
 type AnswerCountAggregateOutputType {
   _all: Int!
   formItemId: Int!
   id: Int!
+  responseId: Int!
   value: Int!
 }
 
 input AnswerCountOrderByAggregateInput {
   formItemId: SortOrder
   id: SortOrder
+  responseId: SortOrder
   value: SortOrder
 }
 
 input AnswerCreateInput {
   FormItem: FormItemCreateNestedOneWithoutAnswersInput
   id: String
-  value: String
+  responseId: String
+  value: String!
 }
 
 input AnswerCreateManyFormItemInput {
   id: String
-  value: String
+  responseId: String
+  value: String!
 }
 
 input AnswerCreateManyFormItemInputEnvelope {
@@ -69,7 +74,8 @@ input AnswerCreateManyFormItemInputEnvelope {
 input AnswerCreateManyInput {
   formItemId: String
   id: String
-  value: String
+  responseId: String
+  value: String!
 }
 
 input AnswerCreateNestedManyWithoutFormItemInput {
@@ -86,7 +92,8 @@ input AnswerCreateOrConnectWithoutFormItemInput {
 
 input AnswerCreateWithoutFormItemInput {
   id: String
-  value: String
+  responseId: String
+  value: String!
 }
 
 input AnswerInput {
@@ -103,24 +110,28 @@ input AnswerListRelationFilter {
 type AnswerMaxAggregateOutputType {
   formItemId: String
   id: String
+  responseId: String
   value: String
 }
 
 input AnswerMaxOrderByAggregateInput {
   formItemId: SortOrder
   id: SortOrder
+  responseId: SortOrder
   value: SortOrder
 }
 
 type AnswerMinAggregateOutputType {
   formItemId: String
   id: String
+  responseId: String
   value: String
 }
 
 input AnswerMinOrderByAggregateInput {
   formItemId: SortOrder
   id: SortOrder
+  responseId: SortOrder
   value: SortOrder
 }
 
@@ -134,19 +145,22 @@ input AnswerOrderByWithAggregationInput {
   _min: AnswerMinOrderByAggregateInput
   formItemId: SortOrderInput
   id: SortOrder
-  value: SortOrderInput
+  responseId: SortOrderInput
+  value: SortOrder
 }
 
 input AnswerOrderByWithRelationInput {
   FormItem: FormItemOrderByWithRelationInput
   formItemId: SortOrderInput
   id: SortOrder
-  value: SortOrderInput
+  responseId: SortOrderInput
+  value: SortOrder
 }
 
 enum AnswerScalarFieldEnum {
   formItemId
   id
+  responseId
   value
 }
 
@@ -156,7 +170,8 @@ input AnswerScalarWhereInput {
   OR: [AnswerScalarWhereInput]
   formItemId: StringNullableFilter
   id: StringFilter
-  value: StringNullableFilter
+  responseId: StringNullableFilter
+  value: StringFilter
 }
 
 input AnswerScalarWhereWithAggregatesInput {
@@ -165,13 +180,15 @@ input AnswerScalarWhereWithAggregatesInput {
   OR: [AnswerScalarWhereWithAggregatesInput]
   formItemId: StringNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
-  value: StringNullableWithAggregatesFilter
+  responseId: StringNullableWithAggregatesFilter
+  value: StringWithAggregatesFilter
 }
 
 input AnswerUncheckedCreateInput {
   formItemId: String
   id: String
-  value: String
+  responseId: String
+  value: String!
 }
 
 input AnswerUncheckedCreateNestedManyWithoutFormItemInput {
@@ -183,24 +200,28 @@ input AnswerUncheckedCreateNestedManyWithoutFormItemInput {
 
 input AnswerUncheckedCreateWithoutFormItemInput {
   id: String
-  value: String
+  responseId: String
+  value: String!
 }
 
 input AnswerUncheckedUpdateInput {
   formItemId: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUncheckedUpdateManyInput {
   formItemId: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUncheckedUpdateManyWithoutFormItemInput {
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUncheckedUpdateManyWithoutFormItemNestedInput {
@@ -219,18 +240,21 @@ input AnswerUncheckedUpdateManyWithoutFormItemNestedInput {
 
 input AnswerUncheckedUpdateWithoutFormItemInput {
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUpdateInput {
   FormItem: FormItemUpdateOneWithoutAnswersNestedInput
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUpdateManyWithWhereWithoutFormItemInput {
@@ -259,7 +283,8 @@ input AnswerUpdateWithWhereUniqueWithoutFormItemInput {
 
 input AnswerUpdateWithoutFormItemInput {
   id: StringFieldUpdateOperationsInput
-  value: NullableStringFieldUpdateOperationsInput
+  responseId: NullableStringFieldUpdateOperationsInput
+  value: StringFieldUpdateOperationsInput
 }
 
 input AnswerUpsertWithWhereUniqueWithoutFormItemInput {
@@ -275,7 +300,8 @@ input AnswerWhereInput {
   OR: [AnswerWhereInput]
   formItemId: StringNullableFilter
   id: StringFilter
-  value: StringNullableFilter
+  responseId: StringNullableFilter
+  value: StringFilter
 }
 
 input AnswerWhereUniqueInput {
@@ -285,7 +311,8 @@ input AnswerWhereUniqueInput {
   OR: [AnswerWhereInput]
   formItemId: StringNullableFilter
   id: String
-  value: StringNullableFilter
+  responseId: StringNullableFilter
+  value: StringFilter
 }
 
 type BatchPayload {
@@ -600,16 +627,19 @@ type Form {
   name: String!
   order: Int!
   ownerId: String!
+  responses: Int!
   style: Json
   updatedAt: DateTime!
 }
 
 type FormAvgAggregateOutputType {
   order: Float
+  responses: Float
 }
 
 input FormAvgOrderByAggregateInput {
   order: SortOrder
+  responses: SortOrder
 }
 
 type FormCountAggregateOutputType {
@@ -621,6 +651,7 @@ type FormCountAggregateOutputType {
   name: Int!
   order: Int!
   ownerId: Int!
+  responses: Int!
   style: Int!
   updatedAt: Int!
 }
@@ -633,6 +664,7 @@ input FormCountOrderByAggregateInput {
   name: SortOrder
   order: SortOrder
   ownerId: SortOrder
+  responses: SortOrder
   style: SortOrder
   updatedAt: SortOrder
 }
@@ -650,6 +682,7 @@ input FormCreateInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -661,6 +694,7 @@ input FormCreateManyFolderInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -678,6 +712,7 @@ input FormCreateManyInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -713,6 +748,7 @@ input FormCreateWithoutFolderInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -725,6 +761,7 @@ input FormCreateWithoutItemsInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -1274,6 +1311,7 @@ type FormMaxAggregateOutputType {
   name: String
   order: Int
   ownerId: String
+  responses: Int
   updatedAt: DateTime
 }
 
@@ -1285,6 +1323,7 @@ input FormMaxOrderByAggregateInput {
   name: SortOrder
   order: SortOrder
   ownerId: SortOrder
+  responses: SortOrder
   updatedAt: SortOrder
 }
 
@@ -1296,6 +1335,7 @@ type FormMinAggregateOutputType {
   name: String
   order: Int
   ownerId: String
+  responses: Int
   updatedAt: DateTime
 }
 
@@ -1307,6 +1347,7 @@ input FormMinOrderByAggregateInput {
   name: SortOrder
   order: SortOrder
   ownerId: SortOrder
+  responses: SortOrder
   updatedAt: SortOrder
 }
 
@@ -1327,6 +1368,7 @@ input FormOrderByWithAggregationInput {
   name: SortOrder
   order: SortOrder
   ownerId: SortOrder
+  responses: SortOrder
   style: SortOrderInput
   updatedAt: SortOrder
 }
@@ -1341,6 +1383,7 @@ input FormOrderByWithRelationInput {
   name: SortOrder
   order: SortOrder
   ownerId: SortOrder
+  responses: SortOrder
   style: SortOrderInput
   updatedAt: SortOrder
 }
@@ -1363,6 +1406,7 @@ enum FormScalarFieldEnum {
   name
   order
   ownerId
+  responses
   style
   updatedAt
 }
@@ -1378,6 +1422,7 @@ input FormScalarWhereInput {
   name: StringFilter
   order: IntFilter
   ownerId: StringFilter
+  responses: IntFilter
   style: JsonNullableFilter
   updatedAt: DateTimeFilter
 }
@@ -1393,16 +1438,19 @@ input FormScalarWhereWithAggregatesInput {
   name: StringWithAggregatesFilter
   order: IntWithAggregatesFilter
   ownerId: StringWithAggregatesFilter
+  responses: IntWithAggregatesFilter
   style: JsonNullableWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
 type FormSumAggregateOutputType {
   order: Int
+  responses: Int
 }
 
 input FormSumOrderByAggregateInput {
   order: SortOrder
+  responses: SortOrder
 }
 
 enum FormType {
@@ -1424,6 +1472,7 @@ input FormUncheckedCreateInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -1443,6 +1492,7 @@ input FormUncheckedCreateWithoutFolderInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -1455,6 +1505,7 @@ input FormUncheckedCreateWithoutItemsInput {
   name: String!
   order: Int
   ownerId: String!
+  responses: Int
   style: Json
   updatedAt: DateTime
 }
@@ -1468,6 +1519,7 @@ input FormUncheckedUpdateInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1480,6 +1532,7 @@ input FormUncheckedUpdateManyInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1491,6 +1544,7 @@ input FormUncheckedUpdateManyWithoutFolderInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1517,6 +1571,7 @@ input FormUncheckedUpdateWithoutFolderInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1529,6 +1584,7 @@ input FormUncheckedUpdateWithoutItemsInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1542,6 +1598,7 @@ input FormUpdateInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1553,6 +1610,7 @@ input FormUpdateManyMutationInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1602,6 +1660,7 @@ input FormUpdateWithoutFolderInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1614,6 +1673,7 @@ input FormUpdateWithoutItemsInput {
   name: StringFieldUpdateOperationsInput
   order: IntFieldUpdateOperationsInput
   ownerId: StringFieldUpdateOperationsInput
+  responses: IntFieldUpdateOperationsInput
   style: Json
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -1643,6 +1703,7 @@ input FormWhereInput {
   name: StringFilter
   order: IntFilter
   ownerId: StringFilter
+  responses: IntFilter
   style: JsonNullableFilter
   updatedAt: DateTimeFilter
 }
@@ -1661,6 +1722,7 @@ input FormWhereUniqueInput {
   order: IntFilter
   ownerId: StringFilter
   ownerId_name: FormOwnerIdNameCompoundUniqueInput
+  responses: IntFilter
   style: JsonNullableFilter
   updatedAt: DateTimeFilter
 }
@@ -1747,13 +1809,13 @@ input JsonNullableWithAggregatesFilter {
 }
 
 type Mutation {
-  createOneAnswer(data: AnswerCreateInput): Answer!
+  createOneAnswer(data: AnswerCreateInput!): Answer!
   createOneForm(data: FormCreateInput!): Form!
   createOneFormItem(data: FormItemCreateInput!): FormItem!
   deleteOneFolder(where: FolderWhereUniqueInput!): Folder
   deleteOneForm(where: FormWhereUniqueInput!): Form
   deleteOneFormItem(where: FormItemWhereUniqueInput!): FormItem
-  submitForm(answers: [AnswerInput!]!): [Answer]
+  submitForm(answers: [AnswerInput!]!, formId: String!): Form
   updateOneForm(data: FormUpdateInput!, where: FormWhereUniqueInput!): Form!
   updateOneFormItem(data: FormItemUpdateInput!, where: FormItemWhereUniqueInput!): FormItem!
   uploadItemImage(base64: String!, formId: String!, itemId: String!): UploadResponse

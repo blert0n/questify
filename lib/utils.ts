@@ -12,6 +12,9 @@ export const htmlToText = (html: string) => {
     .textContent;
 };
 
+export const pluralize = (count: number, noun: string, suffix = "s") =>
+  `${count} ${noun}${count !== 1 ? suffix : ""}`;
+
 export const prepareFormik = (items: FormItem[]) => {
   const fields = items.map((item) => ({
     name: item.id,

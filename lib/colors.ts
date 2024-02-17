@@ -32,3 +32,26 @@ export const getColorShade = (hex: string, weight: number) => {
 
 export const getPrimaryColor = (hex: string) =>
   getColorBrightness(hex) >= 80 ? getColorShade(hex, 50) : hex;
+
+export const pieChartPalette = [
+  "#FF5733",
+  "#66CC99",
+  "#FFCC66",
+  "#3366CC",
+  "#FF6666",
+  "#66FF66",
+  "#9966FF",
+  "#FF33CC",
+  "#66CCCC",
+  "#CC66FF",
+  "#FF9933",
+  "#3399CC",
+  "#FF99CC",
+  "#66FFCC",
+  "#CC3399",
+  "#CCFF66",
+  "#9966CC",
+  "#FF3366",
+  "#66CCFF",
+  "#CC6633",
+];

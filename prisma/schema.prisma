@@ -15,6 +15,7 @@ model Form {
   style     Json?
   favorite  Boolean    @default(false)
   folderId  String?
+  responses Int        @default(0)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @default(now()) @updatedAt
   items     FormItem[]
@@ -40,7 +41,8 @@ model FormItem {
 
 model Answer {
   id         String    @id @default(uuid())
-  value      String?
+  value      String
+  responseId String?
   formItemId String?
   FormItem   FormItem? @relation(fields: [formItemId], references: [id])
 }

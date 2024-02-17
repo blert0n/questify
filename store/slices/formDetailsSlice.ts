@@ -13,8 +13,10 @@ export const createFormDetailsSlice: StateCreator<
   name: "Untitled Form",
   isFavorite: false,
   selectedComponent: "formHeader",
+  activeTab: 0,
   editMode: true,
   loading: false,
+  operation: "",
   updateFormDetails: (prop, value) =>
     set((state) => ({
       ...state,
@@ -32,15 +34,23 @@ export const createFormDetailsSlice: StateCreator<
       return toast.info("At least one form item is required");
     !get().id ? await saveForm() : await editForm(get().id);
   },
-  loadForm: async (id) => {
+  loadForm: async (id, tab = 0) => {
+    set((state) => ({
+      ...state,
+      loading: true,
+      operation: tab === 0 ? "edit" : "viewResponse",
+    }));
     const form = await loadFormData(id);
-    if (!form) return;
+    if (!form) return set((state) => ({ ...state, loading: false }));
     set((state) => ({
       ...state,
       id: form.id,
       name: form.name,
       isFavorite: form.favorite,
       theme: form.style,
+      activeTab: tab,
+      operation: "",
+      loading: false,
       items: form.items.map((item) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { formId, items, ...rest } = item;

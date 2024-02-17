@@ -12,6 +12,8 @@ export interface InitialFormData {
   isFavorite: boolean;
   editMode: boolean;
   selectedComponent: string;
+  activeTab: number;
+  operation: string;
 }
 
 interface Image {

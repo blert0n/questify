@@ -216,7 +216,6 @@ export const editForm = async (formId?: string) => {
   }
 };
 export const loadFormData = async (id: string) => {
-  setLoading(true);
   try {
     const { data: { findFirstForm } = {} } =
       await apolloClient.query<FormDataQuery>({
@@ -226,11 +225,9 @@ export const loadFormData = async (id: string) => {
         },
         fetchPolicy: "network-only",
       });
-    setLoading(false);
     return findFirstForm;
   } catch (e) {
     toast.error("Something went wrong! Please try again later!");
     console.log(e);
-    setLoading(false);
   }
 };

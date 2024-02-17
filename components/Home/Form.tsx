@@ -26,6 +26,7 @@ export default function Form({ form, folder = false }: P) {
     useBoolean(false);
   const editForm = useFormSelectors.use.loadForm();
   const formLoading = useFormSelectors.use.loading();
+  const formOperation = useFormSelectors.use.operation();
   const [deleteForm, { loading: deleteLoading }] = useDeleteFormMutation({
     variables: {
       formId: form.id,
@@ -88,11 +89,12 @@ export default function Form({ form, folder = false }: P) {
               {!folder ? (
                 <Actions
                   id={form.id}
+                  operation={formOperation}
                   visible={isPopoverOpen}
                   toggle={togglePopover}
                   editLoading={formLoading}
                   deleteLoading={deleteLoading}
-                  onEdit={() => editForm(form.id)}
+                  onEdit={(tab) => editForm(form.id, tab)}
                   onDelete={() => void deleteForm()}
                 />
               ) : (

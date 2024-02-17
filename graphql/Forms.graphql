@@ -86,9 +86,8 @@ mutation UpdateForm($data: FormUpdateInput!, $where: FormWhereUniqueInput!) {
   }
 }
 
-mutation SubmitForm($answers: [AnswerInput!]!) {
-  submitForm(answers: $answers) {
+mutation SubmitForm($formId: String!, $answers: [AnswerInput!]!) {
+  submitForm(formId: $formId, answers: $answers) {
     id
-    value
   }
 }

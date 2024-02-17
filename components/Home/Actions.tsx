@@ -5,21 +5,29 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ExternalLink, MoreVertical, Trash, Edit } from "lucide-react";
+import {
+  ExternalLink,
+  MoreVertical,
+  Trash,
+  Edit,
+  MessageCircleMore,
+} from "lucide-react";
 import Link from "next/link";
 
 interface P {
   id?: string;
+  operation: string;
   visible: boolean;
   editLoading: boolean;
   deleteLoading: boolean;
   toggle: () => void;
-  onEdit: () => void;
+  onEdit: (tab: number) => void;
   onDelete: () => void;
 }
 
 export default function Actions({
   id = "",
+  operation = "",
   visible,
   editLoading,
   deleteLoading,
@@ -44,10 +52,27 @@ export default function Actions({
       <PopoverContent className="m-2 mt-0 w-auto xs:w-[200px] flex flex-col p-0">
         <div
           className="flex justify-between items-center text-sm cursor-pointer hover:bg-slate-100 p-2"
-          onClick={onEdit}
+          onClick={() => onEdit(1)}
+        >
+          View responses
+          {editLoading && operation === "viewResponse" ? (
+            <div className="ml-auto">
+              <Loader width={16} height={16} />
+            </div>
+          ) : (
+            <MessageCircleMore
+              className="text-slate-700"
+              strokeWidth={1.5}
+              size={16}
+            />
+          )}
+        </div>
+        <div
+          className="flex justify-between items-center text-sm cursor-pointer hover:bg-slate-100 p-2"
+          onClick={() => onEdit(0)}
         >
           Edit
-          {editLoading ? (
+          {editLoading && operation === "edit" ? (
             <div className="ml-auto">
               <Loader width={16} height={16} />
             </div>

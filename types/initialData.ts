@@ -18,6 +18,8 @@ export const initialFormData: InitialFormData = {
   isFavorite: false,
   editMode: true,
   selectedComponent: "formHeader",
+  activeTab: 0,
+  operation: "",
 };
 
 export const initialTheme: Theme = {

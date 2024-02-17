@@ -45,6 +45,7 @@ export default function Index() {
   const handleSubmit = async (values: Value) => {
     await submitForm({
       variables: {
+        formId: String(router.query.id),
         answers: Object.entries(values)
           .map(([key, value]) => ({
             formItemId: key,

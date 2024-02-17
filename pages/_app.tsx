@@ -17,7 +17,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
     noLayout.includes(router.pathname) ||
     router?.pathname.startsWith("/login") ||
     router?.pathname.startsWith("/sign-up") ||
-    router?.pathname.startsWith("/form/[id]")
+    router?.pathname === "/form/[id]" ||
+    router?.pathname === "/form/[id]/success"
   ) {
     return (
       <ClerkProvider publishableKey={clerkPubKey}>

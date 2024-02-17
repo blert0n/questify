@@ -6,14 +6,16 @@ export type FormDetailsSlice = {
   name: string;
   isFavorite: boolean;
   selectedComponent: string;
+  activeTab: number;
   editMode: boolean;
   loading: boolean;
+  operation: string;
   updateFormDetails: <K extends keyof FormDetailsSlice>(
     prop: K,
     value: FormDetailsSlice[K]
   ) => void;
   saveForm: () => void;
-  loadForm: (id: string) => void;
+  loadForm: (id: string, tab?: number) => void;
   resetForm: () => void;
   loadTemplate: (template: string) => void;
 };

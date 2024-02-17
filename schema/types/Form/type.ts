@@ -14,6 +14,7 @@ export const Form = objectType({
     t.nullable.json('style')
     t.boolean('favorite')
     t.nullable.string('folderId')
+    t.int('responses')
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.list.field('items', {
