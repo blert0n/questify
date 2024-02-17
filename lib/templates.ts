@@ -8,6 +8,8 @@ export const rsvp: FormState = {
   isFavorite: false,
   loading: false,
   selectedComponent: "formHeader",
+  activeTab: 0,
+  operation: "",
   theme: {
     Header: {
       fontSize: "24",
@@ -115,6 +117,8 @@ export const orderRequest: FormState = {
   isFavorite: false,
   loading: false,
   selectedComponent: "formHeader",
+  activeTab: 0,
+  operation: "",
   theme: {
     Text: {
       text: "<p>After you fill out this order request, we will contact you to go over details and availability before the order is completed. If you would like faster service and direct information on current stock and pricing please contact us at Contact us at (123) 456-7890 or no_reply@example.com</p>",
@@ -256,6 +260,8 @@ export const jobApplication: FormState = {
   isFavorite: false,
   loading: false,
   selectedComponent: "formHeader",
+  activeTab: 0,
+  operation: "",
   theme: {
     Text: {
       text: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quis sem odio. Sed commodo vestibulum leo, sit amet tempus odio consectetur in. Mauris dolor elit, dignissim mollis feugiat maximus, faucibus et eros.</p>",
