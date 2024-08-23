@@ -1,0 +1,48 @@
+version: "3"
+services:
+  postgres_main:
+    image: postgres:13-alpine
+    # restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+
+  graphql-engine:
+    image: hasura/graphql-engine:v2.40.2.cli-migrations-v3
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres_main
+    # restart: always
+    env_file: .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - ./migrations/:/hasura-migrations/:ro
+      - ./metadata/:/hasura-metadata/:ro
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres_main:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      #HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'public' # only use this role so the whole unauthenticated world can query
+
+  postgres_logs:
+    image: postgres:15-alpine
+    # restart: always
+    ports:
+      - "5433:5433"
+    volumes:
+      - logs_db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGPORT: 5433
+volumes:
+  db_data:
+  logs_db_data:

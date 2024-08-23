@@ -1,5 +1,5 @@
 overwrite: true
-schema: schema/generated/schema.graphql
+schema: questify-hasura/schema.graphql
 documents: ["graphql/**/*.graphql"]
 generates:
   ./lib/graphql.ts:

@@ -14,7 +14,7 @@ import {
   UpdateFormDocument,
   FormItemUpsertWithWhereUniqueWithoutFormInput,
 } from "@/lib/graphql";
-import { apolloClient } from "@/lib/apollo";
+import { apolloClient } from "@/lib/";
 import { toast } from "react-toastify";
 import {
   closeFormModal,

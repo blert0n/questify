@@ -1,0 +1,14 @@
+schema:
+  - http://localhost:8080/v1/graphql:
+      headers:
+        x-hasura-admin-secret: "1234"
+generates:
+  questify-hasura/schema.json:
+    plugins:
+      - introspection
+  questify-hasura/schema.graphql:
+    plugins:
+      - schema-ast
+    config:
+      commentDescriptions: false
+      includeDirectives: true

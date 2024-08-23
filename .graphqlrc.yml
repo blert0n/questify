@@ -1,2 +1,2 @@
-schema: "./schema/generated/schema.graphql"
+schema: "./questify-hasura/schema.graphql"
 documents: "./graphql/**/*.graphql"

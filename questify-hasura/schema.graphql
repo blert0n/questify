@@ -1,0 +1,2114 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""whether this query should be cached (Hasura Cloud only)"""
+directive @cached(
+  """refresh the cache entry"""
+  refresh: Boolean! = false
+  """measured in seconds"""
+  ttl: Int! = 60
+) on QUERY
+
+"""
+columns and relationships of "Answer"
+"""
+type Answer {
+  formItemId: String
+  id: String!
+  responseId: String
+  value: String!
+}
+
+"""
+aggregated selection of "Answer"
+"""
+type Answer_aggregate {
+  aggregate: Answer_aggregate_fields
+  nodes: [Answer!]!
+}
+
+"""
+aggregate fields of "Answer"
+"""
+type Answer_aggregate_fields {
+  count(columns: [Answer_select_column!], distinct: Boolean): Int!
+  max: Answer_max_fields
+  min: Answer_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "Answer". All fields are combined with a logical 'AND'.
+"""
+input Answer_bool_exp {
+  _and: [Answer_bool_exp!]
+  _not: Answer_bool_exp
+  _or: [Answer_bool_exp!]
+  formItemId: String_comparison_exp
+  id: String_comparison_exp
+  responseId: String_comparison_exp
+  value: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "Answer"
+"""
+enum Answer_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  Answer_pkey
+}
+
+"""
+input type for inserting data into table "Answer"
+"""
+input Answer_insert_input {
+  formItemId: String
+  id: String
+  responseId: String
+  value: String
+}
+
+"""aggregate max on columns"""
+type Answer_max_fields {
+  formItemId: String
+  id: String
+  responseId: String
+  value: String
+}
+
+"""aggregate min on columns"""
+type Answer_min_fields {
+  formItemId: String
+  id: String
+  responseId: String
+  value: String
+}
+
+"""
+response of any mutation on the table "Answer"
+"""
+type Answer_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [Answer!]!
+}
+
+"""
+on_conflict condition type for table "Answer"
+"""
+input Answer_on_conflict {
+  constraint: Answer_constraint!
+  update_columns: [Answer_update_column!]! = []
+  where: Answer_bool_exp
+}
+
+"""Ordering options when selecting data from "Answer"."""
+input Answer_order_by {
+  formItemId: order_by
+  id: order_by
+  responseId: order_by
+  value: order_by
+}
+
+"""primary key columns input for table: Answer"""
+input Answer_pk_columns_input {
+  id: String!
+}
+
+"""
+select columns of table "Answer"
+"""
+enum Answer_select_column {
+  """column name"""
+  formItemId
+  """column name"""
+  id
+  """column name"""
+  responseId
+  """column name"""
+  value
+}
+
+"""
+input type for updating data in table "Answer"
+"""
+input Answer_set_input {
+  formItemId: String
+  id: String
+  responseId: String
+  value: String
+}
+
+"""
+Streaming cursor of the table "Answer"
+"""
+input Answer_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Answer_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Answer_stream_cursor_value_input {
+  formItemId: String
+  id: String
+  responseId: String
+  value: String
+}
+
+"""
+update columns of table "Answer"
+"""
+enum Answer_update_column {
+  """column name"""
+  formItemId
+  """column name"""
+  id
+  """column name"""
+  responseId
+  """column name"""
+  value
+}
+
+input Answer_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: Answer_set_input
+  """filter the rows which have to be updated"""
+  where: Answer_bool_exp!
+}
+
+"""
+Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
+"""
+columns and relationships of "Folder"
+"""
+type Folder {
+  id: String!
+  name: String!
+  ownerId: String!
+}
+
+"""
+aggregated selection of "Folder"
+"""
+type Folder_aggregate {
+  aggregate: Folder_aggregate_fields
+  nodes: [Folder!]!
+}
+
+"""
+aggregate fields of "Folder"
+"""
+type Folder_aggregate_fields {
+  count(columns: [Folder_select_column!], distinct: Boolean): Int!
+  max: Folder_max_fields
+  min: Folder_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "Folder". All fields are combined with a logical 'AND'.
+"""
+input Folder_bool_exp {
+  _and: [Folder_bool_exp!]
+  _not: Folder_bool_exp
+  _or: [Folder_bool_exp!]
+  id: String_comparison_exp
+  name: String_comparison_exp
+  ownerId: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "Folder"
+"""
+enum Folder_constraint {
+  """
+  unique or primary key constraint on columns "ownerId", "name"
+  """
+  Folder_ownerId_name_key
+  """
+  unique or primary key constraint on columns "id"
+  """
+  Folder_pkey
+}
+
+"""
+input type for inserting data into table "Folder"
+"""
+input Folder_insert_input {
+  id: String
+  name: String
+  ownerId: String
+}
+
+"""aggregate max on columns"""
+type Folder_max_fields {
+  id: String
+  name: String
+  ownerId: String
+}
+
+"""aggregate min on columns"""
+type Folder_min_fields {
+  id: String
+  name: String
+  ownerId: String
+}
+
+"""
+response of any mutation on the table "Folder"
+"""
+type Folder_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [Folder!]!
+}
+
+"""
+on_conflict condition type for table "Folder"
+"""
+input Folder_on_conflict {
+  constraint: Folder_constraint!
+  update_columns: [Folder_update_column!]! = []
+  where: Folder_bool_exp
+}
+
+"""Ordering options when selecting data from "Folder"."""
+input Folder_order_by {
+  id: order_by
+  name: order_by
+  ownerId: order_by
+}
+
+"""primary key columns input for table: Folder"""
+input Folder_pk_columns_input {
+  id: String!
+}
+
+"""
+select columns of table "Folder"
+"""
+enum Folder_select_column {
+  """column name"""
+  id
+  """column name"""
+  name
+  """column name"""
+  ownerId
+}
+
+"""
+input type for updating data in table "Folder"
+"""
+input Folder_set_input {
+  id: String
+  name: String
+  ownerId: String
+}
+
+"""
+Streaming cursor of the table "Folder"
+"""
+input Folder_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Folder_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Folder_stream_cursor_value_input {
+  id: String
+  name: String
+  ownerId: String
+}
+
+"""
+update columns of table "Folder"
+"""
+enum Folder_update_column {
+  """column name"""
+  id
+  """column name"""
+  name
+  """column name"""
+  ownerId
+}
+
+input Folder_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: Folder_set_input
+  """filter the rows which have to be updated"""
+  where: Folder_bool_exp!
+}
+
+"""
+columns and relationships of "Form"
+"""
+type Form {
+  createdAt: timestamp!
+  favorite: Boolean!
+  folderId: String
+  id: String!
+  name: String!
+  order: Int!
+  ownerId: String!
+  responses: Int!
+  style(
+    """JSON select path"""
+    path: String
+  ): jsonb
+  updatedAt: timestamp!
+}
+
+"""
+columns and relationships of "FormItem"
+"""
+type FormItem {
+  formId: String!
+  id: String!
+  image(
+    """JSON select path"""
+    path: String
+  ): jsonb
+  items(
+    """JSON select path"""
+    path: String
+  ): jsonb
+  name: String!
+  order: Int!
+  required: Boolean!
+  section: Int!
+  type: FormType!
+}
+
+"""
+aggregated selection of "FormItem"
+"""
+type FormItem_aggregate {
+  aggregate: FormItem_aggregate_fields
+  nodes: [FormItem!]!
+}
+
+"""
+aggregate fields of "FormItem"
+"""
+type FormItem_aggregate_fields {
+  avg: FormItem_avg_fields
+  count(columns: [FormItem_select_column!], distinct: Boolean): Int!
+  max: FormItem_max_fields
+  min: FormItem_min_fields
+  stddev: FormItem_stddev_fields
+  stddev_pop: FormItem_stddev_pop_fields
+  stddev_samp: FormItem_stddev_samp_fields
+  sum: FormItem_sum_fields
+  var_pop: FormItem_var_pop_fields
+  var_samp: FormItem_var_samp_fields
+  variance: FormItem_variance_fields
+}
+
+"""append existing jsonb value of filtered columns with new jsonb value"""
+input FormItem_append_input {
+  image: jsonb
+  items: jsonb
+}
+
+"""aggregate avg on columns"""
+type FormItem_avg_fields {
+  order: Float
+  section: Float
+}
+
+"""
+Boolean expression to filter rows from the table "FormItem". All fields are combined with a logical 'AND'.
+"""
+input FormItem_bool_exp {
+  _and: [FormItem_bool_exp!]
+  _not: FormItem_bool_exp
+  _or: [FormItem_bool_exp!]
+  formId: String_comparison_exp
+  id: String_comparison_exp
+  image: jsonb_comparison_exp
+  items: jsonb_comparison_exp
+  name: String_comparison_exp
+  order: Int_comparison_exp
+  required: Boolean_comparison_exp
+  section: Int_comparison_exp
+  type: FormType_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "FormItem"
+"""
+enum FormItem_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  FormItem_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input FormItem_delete_at_path_input {
+  image: [String!]
+  items: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+"""
+input FormItem_delete_elem_input {
+  image: Int
+  items: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input FormItem_delete_key_input {
+  image: String
+  items: String
+}
+
+"""
+input type for incrementing numeric columns in table "FormItem"
+"""
+input FormItem_inc_input {
+  order: Int
+  section: Int
+}
+
+"""
+input type for inserting data into table "FormItem"
+"""
+input FormItem_insert_input {
+  formId: String
+  id: String
+  image: jsonb
+  items: jsonb
+  name: String
+  order: Int
+  required: Boolean
+  section: Int
+  type: FormType
+}
+
+"""aggregate max on columns"""
+type FormItem_max_fields {
+  formId: String
+  id: String
+  name: String
+  order: Int
+  section: Int
+  type: FormType
+}
+
+"""aggregate min on columns"""
+type FormItem_min_fields {
+  formId: String
+  id: String
+  name: String
+  order: Int
+  section: Int
+  type: FormType
+}
+
+"""
+response of any mutation on the table "FormItem"
+"""
+type FormItem_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [FormItem!]!
+}
+
+"""
+on_conflict condition type for table "FormItem"
+"""
+input FormItem_on_conflict {
+  constraint: FormItem_constraint!
+  update_columns: [FormItem_update_column!]! = []
+  where: FormItem_bool_exp
+}
+
+"""Ordering options when selecting data from "FormItem"."""
+input FormItem_order_by {
+  formId: order_by
+  id: order_by
+  image: order_by
+  items: order_by
+  name: order_by
+  order: order_by
+  required: order_by
+  section: order_by
+  type: order_by
+}
+
+"""primary key columns input for table: FormItem"""
+input FormItem_pk_columns_input {
+  id: String!
+}
+
+"""prepend existing jsonb value of filtered columns with new jsonb value"""
+input FormItem_prepend_input {
+  image: jsonb
+  items: jsonb
+}
+
+"""
+select columns of table "FormItem"
+"""
+enum FormItem_select_column {
+  """column name"""
+  formId
+  """column name"""
+  id
+  """column name"""
+  image
+  """column name"""
+  items
+  """column name"""
+  name
+  """column name"""
+  order
+  """column name"""
+  required
+  """column name"""
+  section
+  """column name"""
+  type
+}
+
+"""
+input type for updating data in table "FormItem"
+"""
+input FormItem_set_input {
+  formId: String
+  id: String
+  image: jsonb
+  items: jsonb
+  name: String
+  order: Int
+  required: Boolean
+  section: Int
+  type: FormType
+}
+
+"""aggregate stddev on columns"""
+type FormItem_stddev_fields {
+  order: Float
+  section: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type FormItem_stddev_pop_fields {
+  order: Float
+  section: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type FormItem_stddev_samp_fields {
+  order: Float
+  section: Float
+}
+
+"""
+Streaming cursor of the table "FormItem"
+"""
+input FormItem_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: FormItem_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input FormItem_stream_cursor_value_input {
+  formId: String
+  id: String
+  image: jsonb
+  items: jsonb
+  name: String
+  order: Int
+  required: Boolean
+  section: Int
+  type: FormType
+}
+
+"""aggregate sum on columns"""
+type FormItem_sum_fields {
+  order: Int
+  section: Int
+}
+
+"""
+update columns of table "FormItem"
+"""
+enum FormItem_update_column {
+  """column name"""
+  formId
+  """column name"""
+  id
+  """column name"""
+  image
+  """column name"""
+  items
+  """column name"""
+  name
+  """column name"""
+  order
+  """column name"""
+  required
+  """column name"""
+  section
+  """column name"""
+  type
+}
+
+input FormItem_updates {
+  """append existing jsonb value of filtered columns with new jsonb value"""
+  _append: FormItem_append_input
+  """
+  delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+  """
+  _delete_at_path: FormItem_delete_at_path_input
+  """
+  delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+  """
+  _delete_elem: FormItem_delete_elem_input
+  """
+  delete key/value pair or string element. key/value pairs are matched based on their key value
+  """
+  _delete_key: FormItem_delete_key_input
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: FormItem_inc_input
+  """prepend existing jsonb value of filtered columns with new jsonb value"""
+  _prepend: FormItem_prepend_input
+  """sets the columns of the filtered rows to the given values"""
+  _set: FormItem_set_input
+  """filter the rows which have to be updated"""
+  where: FormItem_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type FormItem_var_pop_fields {
+  order: Float
+  section: Float
+}
+
+"""aggregate var_samp on columns"""
+type FormItem_var_samp_fields {
+  order: Float
+  section: Float
+}
+
+"""aggregate variance on columns"""
+type FormItem_variance_fields {
+  order: Float
+  section: Float
+}
+
+scalar FormType
+
+"""
+Boolean expression to compare columns of type "FormType". All fields are combined with logical 'AND'.
+"""
+input FormType_comparison_exp {
+  _eq: FormType
+  _gt: FormType
+  _gte: FormType
+  _in: [FormType!]
+  _is_null: Boolean
+  _lt: FormType
+  _lte: FormType
+  _neq: FormType
+  _nin: [FormType!]
+}
+
+"""
+aggregated selection of "Form"
+"""
+type Form_aggregate {
+  aggregate: Form_aggregate_fields
+  nodes: [Form!]!
+}
+
+"""
+aggregate fields of "Form"
+"""
+type Form_aggregate_fields {
+  avg: Form_avg_fields
+  count(columns: [Form_select_column!], distinct: Boolean): Int!
+  max: Form_max_fields
+  min: Form_min_fields
+  stddev: Form_stddev_fields
+  stddev_pop: Form_stddev_pop_fields
+  stddev_samp: Form_stddev_samp_fields
+  sum: Form_sum_fields
+  var_pop: Form_var_pop_fields
+  var_samp: Form_var_samp_fields
+  variance: Form_variance_fields
+}
+
+"""append existing jsonb value of filtered columns with new jsonb value"""
+input Form_append_input {
+  style: jsonb
+}
+
+"""aggregate avg on columns"""
+type Form_avg_fields {
+  order: Float
+  responses: Float
+}
+
+"""
+Boolean expression to filter rows from the table "Form". All fields are combined with a logical 'AND'.
+"""
+input Form_bool_exp {
+  _and: [Form_bool_exp!]
+  _not: Form_bool_exp
+  _or: [Form_bool_exp!]
+  createdAt: timestamp_comparison_exp
+  favorite: Boolean_comparison_exp
+  folderId: String_comparison_exp
+  id: String_comparison_exp
+  name: String_comparison_exp
+  order: Int_comparison_exp
+  ownerId: String_comparison_exp
+  responses: Int_comparison_exp
+  style: jsonb_comparison_exp
+  updatedAt: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "Form"
+"""
+enum Form_constraint {
+  """
+  unique or primary key constraint on columns "ownerId", "name"
+  """
+  Form_ownerId_name_key
+  """
+  unique or primary key constraint on columns "id"
+  """
+  Form_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input Form_delete_at_path_input {
+  style: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+"""
+input Form_delete_elem_input {
+  style: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input Form_delete_key_input {
+  style: String
+}
+
+"""
+input type for incrementing numeric columns in table "Form"
+"""
+input Form_inc_input {
+  order: Int
+  responses: Int
+}
+
+"""
+input type for inserting data into table "Form"
+"""
+input Form_insert_input {
+  createdAt: timestamp
+  favorite: Boolean
+  folderId: String
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+  responses: Int
+  style: jsonb
+  updatedAt: timestamp
+}
+
+"""aggregate max on columns"""
+type Form_max_fields {
+  createdAt: timestamp
+  folderId: String
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+  responses: Int
+  updatedAt: timestamp
+}
+
+"""aggregate min on columns"""
+type Form_min_fields {
+  createdAt: timestamp
+  folderId: String
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+  responses: Int
+  updatedAt: timestamp
+}
+
+"""
+response of any mutation on the table "Form"
+"""
+type Form_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [Form!]!
+}
+
+"""
+on_conflict condition type for table "Form"
+"""
+input Form_on_conflict {
+  constraint: Form_constraint!
+  update_columns: [Form_update_column!]! = []
+  where: Form_bool_exp
+}
+
+"""Ordering options when selecting data from "Form"."""
+input Form_order_by {
+  createdAt: order_by
+  favorite: order_by
+  folderId: order_by
+  id: order_by
+  name: order_by
+  order: order_by
+  ownerId: order_by
+  responses: order_by
+  style: order_by
+  updatedAt: order_by
+}
+
+"""primary key columns input for table: Form"""
+input Form_pk_columns_input {
+  id: String!
+}
+
+"""prepend existing jsonb value of filtered columns with new jsonb value"""
+input Form_prepend_input {
+  style: jsonb
+}
+
+"""
+select columns of table "Form"
+"""
+enum Form_select_column {
+  """column name"""
+  createdAt
+  """column name"""
+  favorite
+  """column name"""
+  folderId
+  """column name"""
+  id
+  """column name"""
+  name
+  """column name"""
+  order
+  """column name"""
+  ownerId
+  """column name"""
+  responses
+  """column name"""
+  style
+  """column name"""
+  updatedAt
+}
+
+"""
+input type for updating data in table "Form"
+"""
+input Form_set_input {
+  createdAt: timestamp
+  favorite: Boolean
+  folderId: String
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+  responses: Int
+  style: jsonb
+  updatedAt: timestamp
+}
+
+"""aggregate stddev on columns"""
+type Form_stddev_fields {
+  order: Float
+  responses: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type Form_stddev_pop_fields {
+  order: Float
+  responses: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type Form_stddev_samp_fields {
+  order: Float
+  responses: Float
+}
+
+"""
+Streaming cursor of the table "Form"
+"""
+input Form_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Form_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Form_stream_cursor_value_input {
+  createdAt: timestamp
+  favorite: Boolean
+  folderId: String
+  id: String
+  name: String
+  order: Int
+  ownerId: String
+  responses: Int
+  style: jsonb
+  updatedAt: timestamp
+}
+
+"""aggregate sum on columns"""
+type Form_sum_fields {
+  order: Int
+  responses: Int
+}
+
+"""
+update columns of table "Form"
+"""
+enum Form_update_column {
+  """column name"""
+  createdAt
+  """column name"""
+  favorite
+  """column name"""
+  folderId
+  """column name"""
+  id
+  """column name"""
+  name
+  """column name"""
+  order
+  """column name"""
+  ownerId
+  """column name"""
+  responses
+  """column name"""
+  style
+  """column name"""
+  updatedAt
+}
+
+input Form_updates {
+  """append existing jsonb value of filtered columns with new jsonb value"""
+  _append: Form_append_input
+  """
+  delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+  """
+  _delete_at_path: Form_delete_at_path_input
+  """
+  delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+  """
+  _delete_elem: Form_delete_elem_input
+  """
+  delete key/value pair or string element. key/value pairs are matched based on their key value
+  """
+  _delete_key: Form_delete_key_input
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: Form_inc_input
+  """prepend existing jsonb value of filtered columns with new jsonb value"""
+  _prepend: Form_prepend_input
+  """sets the columns of the filtered rows to the given values"""
+  _set: Form_set_input
+  """filter the rows which have to be updated"""
+  where: Form_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type Form_var_pop_fields {
+  order: Float
+  responses: Float
+}
+
+"""aggregate var_samp on columns"""
+type Form_var_samp_fields {
+  order: Float
+  responses: Float
+}
+
+"""aggregate variance on columns"""
+type Form_variance_fields {
+  order: Float
+  responses: Float
+}
+
+"""
+Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  """does the column match the given case-insensitive pattern"""
+  _ilike: String
+  _in: [String!]
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+  """does the column match the given pattern"""
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  """does the column NOT match the given case-insensitive pattern"""
+  _nilike: String
+  _nin: [String!]
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+  """does the column NOT match the given pattern"""
+  _nlike: String
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+  """does the column NOT match the given SQL regular expression"""
+  _nsimilar: String
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+  """does the column match the given SQL regular expression"""
+  _similar: String
+}
+
+"""ordering argument of a cursor"""
+enum cursor_ordering {
+  """ascending ordering of the cursor"""
+  ASC
+  """descending ordering of the cursor"""
+  DESC
+}
+
+scalar jsonb
+
+input jsonb_cast_exp {
+  String: String_comparison_exp
+}
+
+"""
+Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'.
+"""
+input jsonb_comparison_exp {
+  _cast: jsonb_cast_exp
+  """is the column contained in the given json value"""
+  _contained_in: jsonb
+  """does the column contain the given json value at the top level"""
+  _contains: jsonb
+  _eq: jsonb
+  _gt: jsonb
+  _gte: jsonb
+  """does the string exist as a top-level key in the column"""
+  _has_key: String
+  """do all of these strings exist as top-level keys in the column"""
+  _has_keys_all: [String!]
+  """do any of these strings exist as top-level keys in the column"""
+  _has_keys_any: [String!]
+  _in: [jsonb!]
+  _is_null: Boolean
+  _lt: jsonb
+  _lte: jsonb
+  _neq: jsonb
+  _nin: [jsonb!]
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "Answer"
+  """
+  delete_Answer(
+    """filter the rows which have to be deleted"""
+    where: Answer_bool_exp!
+  ): Answer_mutation_response
+  """
+  delete single row from the table: "Answer"
+  """
+  delete_Answer_by_pk(id: String!): Answer
+  """
+  delete data from the table: "Folder"
+  """
+  delete_Folder(
+    """filter the rows which have to be deleted"""
+    where: Folder_bool_exp!
+  ): Folder_mutation_response
+  """
+  delete single row from the table: "Folder"
+  """
+  delete_Folder_by_pk(id: String!): Folder
+  """
+  delete data from the table: "Form"
+  """
+  delete_Form(
+    """filter the rows which have to be deleted"""
+    where: Form_bool_exp!
+  ): Form_mutation_response
+  """
+  delete data from the table: "FormItem"
+  """
+  delete_FormItem(
+    """filter the rows which have to be deleted"""
+    where: FormItem_bool_exp!
+  ): FormItem_mutation_response
+  """
+  delete single row from the table: "FormItem"
+  """
+  delete_FormItem_by_pk(id: String!): FormItem
+  """
+  delete single row from the table: "Form"
+  """
+  delete_Form_by_pk(id: String!): Form
+  """
+  delete data from the table: "users"
+  """
+  delete_users(
+    """filter the rows which have to be deleted"""
+    where: users_bool_exp!
+  ): users_mutation_response
+  """
+  delete single row from the table: "users"
+  """
+  delete_users_by_pk(id: String!): users
+  """
+  insert data into the table: "Answer"
+  """
+  insert_Answer(
+    """the rows to be inserted"""
+    objects: [Answer_insert_input!]!
+    """upsert condition"""
+    on_conflict: Answer_on_conflict
+  ): Answer_mutation_response
+  """
+  insert a single row into the table: "Answer"
+  """
+  insert_Answer_one(
+    """the row to be inserted"""
+    object: Answer_insert_input!
+    """upsert condition"""
+    on_conflict: Answer_on_conflict
+  ): Answer
+  """
+  insert data into the table: "Folder"
+  """
+  insert_Folder(
+    """the rows to be inserted"""
+    objects: [Folder_insert_input!]!
+    """upsert condition"""
+    on_conflict: Folder_on_conflict
+  ): Folder_mutation_response
+  """
+  insert a single row into the table: "Folder"
+  """
+  insert_Folder_one(
+    """the row to be inserted"""
+    object: Folder_insert_input!
+    """upsert condition"""
+    on_conflict: Folder_on_conflict
+  ): Folder
+  """
+  insert data into the table: "Form"
+  """
+  insert_Form(
+    """the rows to be inserted"""
+    objects: [Form_insert_input!]!
+    """upsert condition"""
+    on_conflict: Form_on_conflict
+  ): Form_mutation_response
+  """
+  insert data into the table: "FormItem"
+  """
+  insert_FormItem(
+    """the rows to be inserted"""
+    objects: [FormItem_insert_input!]!
+    """upsert condition"""
+    on_conflict: FormItem_on_conflict
+  ): FormItem_mutation_response
+  """
+  insert a single row into the table: "FormItem"
+  """
+  insert_FormItem_one(
+    """the row to be inserted"""
+    object: FormItem_insert_input!
+    """upsert condition"""
+    on_conflict: FormItem_on_conflict
+  ): FormItem
+  """
+  insert a single row into the table: "Form"
+  """
+  insert_Form_one(
+    """the row to be inserted"""
+    object: Form_insert_input!
+    """upsert condition"""
+    on_conflict: Form_on_conflict
+  ): Form
+  """
+  insert data into the table: "users"
+  """
+  insert_users(
+    """the rows to be inserted"""
+    objects: [users_insert_input!]!
+    """upsert condition"""
+    on_conflict: users_on_conflict
+  ): users_mutation_response
+  """
+  insert a single row into the table: "users"
+  """
+  insert_users_one(
+    """the row to be inserted"""
+    object: users_insert_input!
+    """upsert condition"""
+    on_conflict: users_on_conflict
+  ): users
+  """
+  update data of the table: "Answer"
+  """
+  update_Answer(
+    """sets the columns of the filtered rows to the given values"""
+    _set: Answer_set_input
+    """filter the rows which have to be updated"""
+    where: Answer_bool_exp!
+  ): Answer_mutation_response
+  """
+  update single row of the table: "Answer"
+  """
+  update_Answer_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: Answer_set_input
+    pk_columns: Answer_pk_columns_input!
+  ): Answer
+  """
+  update multiples rows of table: "Answer"
+  """
+  update_Answer_many(
+    """updates to execute, in order"""
+    updates: [Answer_updates!]!
+  ): [Answer_mutation_response]
+  """
+  update data of the table: "Folder"
+  """
+  update_Folder(
+    """sets the columns of the filtered rows to the given values"""
+    _set: Folder_set_input
+    """filter the rows which have to be updated"""
+    where: Folder_bool_exp!
+  ): Folder_mutation_response
+  """
+  update single row of the table: "Folder"
+  """
+  update_Folder_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: Folder_set_input
+    pk_columns: Folder_pk_columns_input!
+  ): Folder
+  """
+  update multiples rows of table: "Folder"
+  """
+  update_Folder_many(
+    """updates to execute, in order"""
+    updates: [Folder_updates!]!
+  ): [Folder_mutation_response]
+  """
+  update data of the table: "Form"
+  """
+  update_Form(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: Form_append_input
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: Form_delete_at_path_input
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: Form_delete_elem_input
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: Form_delete_key_input
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: Form_inc_input
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: Form_prepend_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: Form_set_input
+    """filter the rows which have to be updated"""
+    where: Form_bool_exp!
+  ): Form_mutation_response
+  """
+  update data of the table: "FormItem"
+  """
+  update_FormItem(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: FormItem_append_input
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: FormItem_delete_at_path_input
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: FormItem_delete_elem_input
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: FormItem_delete_key_input
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: FormItem_inc_input
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: FormItem_prepend_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: FormItem_set_input
+    """filter the rows which have to be updated"""
+    where: FormItem_bool_exp!
+  ): FormItem_mutation_response
+  """
+  update single row of the table: "FormItem"
+  """
+  update_FormItem_by_pk(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: FormItem_append_input
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: FormItem_delete_at_path_input
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: FormItem_delete_elem_input
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: FormItem_delete_key_input
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: FormItem_inc_input
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: FormItem_prepend_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: FormItem_set_input
+    pk_columns: FormItem_pk_columns_input!
+  ): FormItem
+  """
+  update multiples rows of table: "FormItem"
+  """
+  update_FormItem_many(
+    """updates to execute, in order"""
+    updates: [FormItem_updates!]!
+  ): [FormItem_mutation_response]
+  """
+  update single row of the table: "Form"
+  """
+  update_Form_by_pk(
+    """append existing jsonb value of filtered columns with new jsonb value"""
+    _append: Form_append_input
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: Form_delete_at_path_input
+    """
+    delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array
+    """
+    _delete_elem: Form_delete_elem_input
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: Form_delete_key_input
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: Form_inc_input
+    """prepend existing jsonb value of filtered columns with new jsonb value"""
+    _prepend: Form_prepend_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: Form_set_input
+    pk_columns: Form_pk_columns_input!
+  ): Form
+  """
+  update multiples rows of table: "Form"
+  """
+  update_Form_many(
+    """updates to execute, in order"""
+    updates: [Form_updates!]!
+  ): [Form_mutation_response]
+  """
+  update data of the table: "users"
+  """
+  update_users(
+    """sets the columns of the filtered rows to the given values"""
+    _set: users_set_input
+    """filter the rows which have to be updated"""
+    where: users_bool_exp!
+  ): users_mutation_response
+  """
+  update single row of the table: "users"
+  """
+  update_users_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: users_set_input
+    pk_columns: users_pk_columns_input!
+  ): users
+  """
+  update multiples rows of table: "users"
+  """
+  update_users_many(
+    """updates to execute, in order"""
+    updates: [users_updates!]!
+  ): [users_mutation_response]
+}
+
+"""column ordering options"""
+enum order_by {
+  """in ascending order, nulls last"""
+  asc
+  """in ascending order, nulls first"""
+  asc_nulls_first
+  """in ascending order, nulls last"""
+  asc_nulls_last
+  """in descending order, nulls first"""
+  desc
+  """in descending order, nulls first"""
+  desc_nulls_first
+  """in descending order, nulls last"""
+  desc_nulls_last
+}
+
+type query_root {
+  """
+  fetch data from the table: "Answer"
+  """
+  Answer(
+    """distinct select on columns"""
+    distinct_on: [Answer_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Answer_order_by!]
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): [Answer!]!
+  """
+  fetch aggregated fields from the table: "Answer"
+  """
+  Answer_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Answer_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Answer_order_by!]
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): Answer_aggregate!
+  """fetch data from the table: "Answer" using primary key columns"""
+  Answer_by_pk(id: String!): Answer
+  """
+  fetch data from the table: "Folder"
+  """
+  Folder(
+    """distinct select on columns"""
+    distinct_on: [Folder_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Folder_order_by!]
+    """filter the rows returned"""
+    where: Folder_bool_exp
+  ): [Folder!]!
+  """
+  fetch aggregated fields from the table: "Folder"
+  """
+  Folder_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Folder_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Folder_order_by!]
+    """filter the rows returned"""
+    where: Folder_bool_exp
+  ): Folder_aggregate!
+  """fetch data from the table: "Folder" using primary key columns"""
+  Folder_by_pk(id: String!): Folder
+  """
+  fetch data from the table: "Form"
+  """
+  Form(
+    """distinct select on columns"""
+    distinct_on: [Form_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Form_order_by!]
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): [Form!]!
+  """
+  fetch data from the table: "FormItem"
+  """
+  FormItem(
+    """distinct select on columns"""
+    distinct_on: [FormItem_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItem_order_by!]
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): [FormItem!]!
+  """
+  fetch aggregated fields from the table: "FormItem"
+  """
+  FormItem_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItem_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItem_order_by!]
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): FormItem_aggregate!
+  """fetch data from the table: "FormItem" using primary key columns"""
+  FormItem_by_pk(id: String!): FormItem
+  """
+  fetch aggregated fields from the table: "Form"
+  """
+  Form_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Form_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Form_order_by!]
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): Form_aggregate!
+  """fetch data from the table: "Form" using primary key columns"""
+  Form_by_pk(id: String!): Form
+  """
+  fetch data from the table: "users"
+  """
+  users(
+    """distinct select on columns"""
+    distinct_on: [users_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [users_order_by!]
+    """filter the rows returned"""
+    where: users_bool_exp
+  ): [users!]!
+  """
+  fetch aggregated fields from the table: "users"
+  """
+  users_aggregate(
+    """distinct select on columns"""
+    distinct_on: [users_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [users_order_by!]
+    """filter the rows returned"""
+    where: users_bool_exp
+  ): users_aggregate!
+  """fetch data from the table: "users" using primary key columns"""
+  users_by_pk(id: String!): users
+}
+
+type subscription_root {
+  """
+  fetch data from the table: "Answer"
+  """
+  Answer(
+    """distinct select on columns"""
+    distinct_on: [Answer_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Answer_order_by!]
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): [Answer!]!
+  """
+  fetch aggregated fields from the table: "Answer"
+  """
+  Answer_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Answer_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Answer_order_by!]
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): Answer_aggregate!
+  """fetch data from the table: "Answer" using primary key columns"""
+  Answer_by_pk(id: String!): Answer
+  """
+  fetch data from the table in a streaming manner: "Answer"
+  """
+  Answer_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Answer_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): [Answer!]!
+  """
+  fetch data from the table: "Folder"
+  """
+  Folder(
+    """distinct select on columns"""
+    distinct_on: [Folder_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Folder_order_by!]
+    """filter the rows returned"""
+    where: Folder_bool_exp
+  ): [Folder!]!
+  """
+  fetch aggregated fields from the table: "Folder"
+  """
+  Folder_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Folder_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Folder_order_by!]
+    """filter the rows returned"""
+    where: Folder_bool_exp
+  ): Folder_aggregate!
+  """fetch data from the table: "Folder" using primary key columns"""
+  Folder_by_pk(id: String!): Folder
+  """
+  fetch data from the table in a streaming manner: "Folder"
+  """
+  Folder_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Folder_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Folder_bool_exp
+  ): [Folder!]!
+  """
+  fetch data from the table: "Form"
+  """
+  Form(
+    """distinct select on columns"""
+    distinct_on: [Form_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Form_order_by!]
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): [Form!]!
+  """
+  fetch data from the table: "FormItem"
+  """
+  FormItem(
+    """distinct select on columns"""
+    distinct_on: [FormItem_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItem_order_by!]
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): [FormItem!]!
+  """
+  fetch aggregated fields from the table: "FormItem"
+  """
+  FormItem_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItem_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItem_order_by!]
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): FormItem_aggregate!
+  """fetch data from the table: "FormItem" using primary key columns"""
+  FormItem_by_pk(id: String!): FormItem
+  """
+  fetch data from the table in a streaming manner: "FormItem"
+  """
+  FormItem_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [FormItem_stream_cursor_input]!
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): [FormItem!]!
+  """
+  fetch aggregated fields from the table: "Form"
+  """
+  Form_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Form_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Form_order_by!]
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): Form_aggregate!
+  """fetch data from the table: "Form" using primary key columns"""
+  Form_by_pk(id: String!): Form
+  """
+  fetch data from the table in a streaming manner: "Form"
+  """
+  Form_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Form_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): [Form!]!
+  """
+  fetch data from the table: "users"
+  """
+  users(
+    """distinct select on columns"""
+    distinct_on: [users_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [users_order_by!]
+    """filter the rows returned"""
+    where: users_bool_exp
+  ): [users!]!
+  """
+  fetch aggregated fields from the table: "users"
+  """
+  users_aggregate(
+    """distinct select on columns"""
+    distinct_on: [users_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [users_order_by!]
+    """filter the rows returned"""
+    where: users_bool_exp
+  ): users_aggregate!
+  """fetch data from the table: "users" using primary key columns"""
+  users_by_pk(id: String!): users
+  """
+  fetch data from the table in a streaming manner: "users"
+  """
+  users_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [users_stream_cursor_input]!
+    """filter the rows returned"""
+    where: users_bool_exp
+  ): [users!]!
+}
+
+scalar timestamp
+
+"""
+Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'.
+"""
+input timestamp_comparison_exp {
+  _eq: timestamp
+  _gt: timestamp
+  _gte: timestamp
+  _in: [timestamp!]
+  _is_null: Boolean
+  _lt: timestamp
+  _lte: timestamp
+  _neq: timestamp
+  _nin: [timestamp!]
+}
+
+scalar timestamptz
+
+"""
+Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+"""users"""
+type users {
+  id: String!
+  last_seen: timestamptz!
+  name: String!
+}
+
+"""
+aggregated selection of "users"
+"""
+type users_aggregate {
+  aggregate: users_aggregate_fields
+  nodes: [users!]!
+}
+
+"""
+aggregate fields of "users"
+"""
+type users_aggregate_fields {
+  count(columns: [users_select_column!], distinct: Boolean): Int!
+  max: users_max_fields
+  min: users_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'.
+"""
+input users_bool_exp {
+  _and: [users_bool_exp!]
+  _not: users_bool_exp
+  _or: [users_bool_exp!]
+  id: String_comparison_exp
+  last_seen: timestamptz_comparison_exp
+  name: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "users"
+"""
+enum users_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  users_pkey
+}
+
+"""
+input type for inserting data into table "users"
+"""
+input users_insert_input {
+  id: String
+  last_seen: timestamptz
+  name: String
+}
+
+"""aggregate max on columns"""
+type users_max_fields {
+  id: String
+  last_seen: timestamptz
+  name: String
+}
+
+"""aggregate min on columns"""
+type users_min_fields {
+  id: String
+  last_seen: timestamptz
+  name: String
+}
+
+"""
+response of any mutation on the table "users"
+"""
+type users_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [users!]!
+}
+
+"""
+on_conflict condition type for table "users"
+"""
+input users_on_conflict {
+  constraint: users_constraint!
+  update_columns: [users_update_column!]! = []
+  where: users_bool_exp
+}
+
+"""Ordering options when selecting data from "users"."""
+input users_order_by {
+  id: order_by
+  last_seen: order_by
+  name: order_by
+}
+
+"""primary key columns input for table: users"""
+input users_pk_columns_input {
+  id: String!
+}
+
+"""
+select columns of table "users"
+"""
+enum users_select_column {
+  """column name"""
+  id
+  """column name"""
+  last_seen
+  """column name"""
+  name
+}
+
+"""
+input type for updating data in table "users"
+"""
+input users_set_input {
+  id: String
+  last_seen: timestamptz
+  name: String
+}
+
+"""
+Streaming cursor of the table "users"
+"""
+input users_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: users_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input users_stream_cursor_value_input {
+  id: String
+  last_seen: timestamptz
+  name: String
+}
+
+"""
+update columns of table "users"
+"""
+enum users_update_column {
+  """column name"""
+  id
+  """column name"""
+  last_seen
+  """column name"""
+  name
+}
+
+input users_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: users_set_input
+  """filter the rows which have to be updated"""
+  where: users_bool_exp!
+}

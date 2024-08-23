@@ -52,7 +52,7 @@ module.exports = {
     generator: "nexus",
     output: __dirname + "/schema/types",
     outputs: {
-      schema: __dirname + "/schema/generated/schema.graphql",
+      schema: __dirname + "/questify-hasura/schema.graphql",
       typegen: __dirname + "/schema/generated/nexus.ts",
     },
   },
