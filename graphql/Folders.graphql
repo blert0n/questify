@@ -1,31 +1,36 @@
 query MyFolders {
-  findManyFolder {
+  Folder {
     id
     name
   }
 }
 
 mutation UpsertFolder($id: String!, $name: String!) {
-  upsertOneFolder(
-    where: { id: $id }
-    create: { name: $name, ownerId: "" }
-    update: { name: { set: $name } }
+  insert_Folder(
+    objects: { id: $id, name: $name }
+    on_conflict: { constraint: Folder_pkey, update_columns: [name] }
   ) {
-    id
-    name
+    returning {
+      id
+      name
+    }
   }
 }
+
 mutation DeleteFolder($id: String!) {
-  deleteOneFolder(where: { id: $id }) {
-    id
-    name
+  delete_Folder(where: { id: { _eq: $id } }) {
+    returning {
+      id
+      name
+    }
   }
 }
-mutation UpdateFormFolder(
-  $folder: FolderUpdateOneWithoutFormsNestedInput!
-  $formId: String!
-) {
-  updateOneForm(where: { id: $formId }, data: { Folder: $folder }) {
-    id
-  }
-}
+
+# mutation UpdateFormFolder(
+#   $folder: FolderUpdateOneWithoutFormsNestedInput!
+#   $formId: String!
+# ) {
+#   updateOneForm(where: { id: $formId }, data: { Folder: $folder }) {
+#     id
+#   }
+# }

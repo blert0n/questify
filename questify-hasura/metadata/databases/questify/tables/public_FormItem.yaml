@@ -1,3 +1,15 @@
 table:
   name: FormItem
   schema: public
+object_relationships:
+  - name: Form
+    using:
+      foreign_key_constraint_on: formId
+array_relationships:
+  - name: Answers
+    using:
+      foreign_key_constraint_on:
+        column: formItemId
+        table:
+          name: Answer
+          schema: public

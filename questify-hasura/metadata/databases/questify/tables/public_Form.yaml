@@ -1,3 +1,15 @@
 table:
   name: Form
   schema: public
+object_relationships:
+  - name: Folder
+    using:
+      foreign_key_constraint_on: folderId
+array_relationships:
+  - name: FormItems
+    using:
+      foreign_key_constraint_on:
+        column: formId
+        table:
+          name: FormItem
+          schema: public

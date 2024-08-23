@@ -1,5 +1,5 @@
-mutation CreateForm($data: FormCreateInput!) {
-  createOneForm(data: $data) {
+mutation CreateForm($data: Form_insert_input!) {
+  insert_Form_one(object: $data) {
     id
     name
     createdAt
@@ -7,22 +7,24 @@ mutation CreateForm($data: FormCreateInput!) {
 }
 
 mutation DeleteForm($formId: String!) {
-  deleteOneForm(where: { id: $formId }) {
-    id
-  }
-}
-mutation StarForm($formId: String!, $favorite: Boolean!) {
-  updateOneForm(
-    where: { id: $formId }
-    data: { favorite: { set: $favorite } }
-  ) {
-    id
-    favorite
+  delete_Form(where: { id: { _eq: $formId } }) {
+    returning {
+      id
+    }
   }
 }
 
-query MyForms($orderBy: [FormOrderByWithRelationInput]) {
-  findManyForm(orderBy: $orderBy) {
+mutation StarForm($formId: String!, $favorite: Boolean!) {
+  update_Form(where: { id: { _eq: $formId } }, _set: { favorite: $favorite }) {
+    returning {
+      id
+      favorite
+    }
+  }
+}
+
+query MyForms($orderBy: [Form_order_by!]) {
+  Form(order_by: $orderBy) {
     id
     name
     favorite
@@ -31,7 +33,7 @@ query MyForms($orderBy: [FormOrderByWithRelationInput]) {
   }
 }
 query FolderForms($folderId: String!) {
-  findManyForm(where: { folderId: { equals: $folderId } }) {
+  Form(where: { folderId: { _eq: $folderId } }) {
     id
     name
     favorite
@@ -40,8 +42,9 @@ query FolderForms($folderId: String!) {
     updatedAt
   }
 }
+
 query DefaultFolderForms {
-  findManyForm(where: { folderId: null }) {
+  Form(where: { folderId: { _is_null: true } }) {
     id
     name
     favorite
@@ -50,13 +53,14 @@ query DefaultFolderForms {
     updatedAt
   }
 }
+
 query FormData($formId: String!) {
-  findFirstForm(where: { id: { equals: $formId } }) {
+  Form(where: { id: { _eq: $formId } }) {
     id
     name
     favorite
     style
-    items {
+    FormItems(order_by: { order: asc }) {
       id
       formId
       name
@@ -66,28 +70,5 @@ query FormData($formId: String!) {
       image
       type
     }
-  }
-}
-
-mutation UploadItemImage($formId: String!, $itemId: String!, $base64: String!) {
-  uploadItemImage(formId: $formId, itemId: $itemId, base64: $base64) {
-    success
-  }
-}
-mutation UploadHeaderImage($formId: String!, $base64: String!) {
-  uploaderHeaderImage(formId: $formId, base64: $base64) {
-    success
-  }
-}
-
-mutation UpdateForm($data: FormUpdateInput!, $where: FormWhereUniqueInput!) {
-  updateOneForm(data: $data, where: $where) {
-    id
-  }
-}
-
-mutation SubmitForm($formId: String!, $answers: [AnswerInput!]!) {
-  submitForm(formId: $formId, answers: $answers) {
-    id
   }
 }

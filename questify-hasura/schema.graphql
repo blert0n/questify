@@ -16,6 +16,8 @@ directive @cached(
 columns and relationships of "Answer"
 """
 type Answer {
+  """An object relationship"""
+  FormItem: FormItem
   formItemId: String
   id: String!
   responseId: String
@@ -30,6 +32,17 @@ type Answer_aggregate {
   nodes: [Answer!]!
 }
 
+input Answer_aggregate_bool_exp {
+  count: Answer_aggregate_bool_exp_count
+}
+
+input Answer_aggregate_bool_exp_count {
+  arguments: [Answer_select_column!]
+  distinct: Boolean
+  filter: Answer_bool_exp
+  predicate: Int_comparison_exp!
+}
+
 """
 aggregate fields of "Answer"
 """
@@ -40,9 +53,28 @@ type Answer_aggregate_fields {
 }
 
 """
+order by aggregate values of table "Answer"
+"""
+input Answer_aggregate_order_by {
+  count: order_by
+  max: Answer_max_order_by
+  min: Answer_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "Answer"
+"""
+input Answer_arr_rel_insert_input {
+  data: [Answer_insert_input!]!
+  """upsert condition"""
+  on_conflict: Answer_on_conflict
+}
+
+"""
 Boolean expression to filter rows from the table "Answer". All fields are combined with a logical 'AND'.
 """
 input Answer_bool_exp {
+  FormItem: FormItem_bool_exp
   _and: [Answer_bool_exp!]
   _not: Answer_bool_exp
   _or: [Answer_bool_exp!]
@@ -66,6 +98,7 @@ enum Answer_constraint {
 input type for inserting data into table "Answer"
 """
 input Answer_insert_input {
+  FormItem: FormItem_obj_rel_insert_input
   formItemId: String
   id: String
   responseId: String
@@ -80,12 +113,32 @@ type Answer_max_fields {
   value: String
 }
 
+"""
+order by max() on columns of table "Answer"
+"""
+input Answer_max_order_by {
+  formItemId: order_by
+  id: order_by
+  responseId: order_by
+  value: order_by
+}
+
 """aggregate min on columns"""
 type Answer_min_fields {
   formItemId: String
   id: String
   responseId: String
   value: String
+}
+
+"""
+order by min() on columns of table "Answer"
+"""
+input Answer_min_order_by {
+  formItemId: order_by
+  id: order_by
+  responseId: order_by
+  value: order_by
 }
 
 """
@@ -109,6 +162,7 @@ input Answer_on_conflict {
 
 """Ordering options when selecting data from "Answer"."""
 input Answer_order_by {
+  FormItem: FormItem_order_by
   formItemId: order_by
   id: order_by
   responseId: order_by
@@ -202,6 +256,32 @@ input Boolean_comparison_exp {
 columns and relationships of "Folder"
 """
 type Folder {
+  """An array relationship"""
+  Forms(
+    """distinct select on columns"""
+    distinct_on: [Form_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Form_order_by!]
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): [Form!]!
+  """An aggregate relationship"""
+  Forms_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Form_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Form_order_by!]
+    """filter the rows returned"""
+    where: Form_bool_exp
+  ): Form_aggregate!
   id: String!
   name: String!
   ownerId: String!
@@ -228,6 +308,8 @@ type Folder_aggregate_fields {
 Boolean expression to filter rows from the table "Folder". All fields are combined with a logical 'AND'.
 """
 input Folder_bool_exp {
+  Forms: Form_bool_exp
+  Forms_aggregate: Form_aggregate_bool_exp
   _and: [Folder_bool_exp!]
   _not: Folder_bool_exp
   _or: [Folder_bool_exp!]
@@ -254,6 +336,7 @@ enum Folder_constraint {
 input type for inserting data into table "Folder"
 """
 input Folder_insert_input {
+  Forms: Form_arr_rel_insert_input
   id: String
   name: String
   ownerId: String
@@ -284,6 +367,15 @@ type Folder_mutation_response {
 }
 
 """
+input type for inserting object relation for remote table "Folder"
+"""
+input Folder_obj_rel_insert_input {
+  data: Folder_insert_input!
+  """upsert condition"""
+  on_conflict: Folder_on_conflict
+}
+
+"""
 on_conflict condition type for table "Folder"
 """
 input Folder_on_conflict {
@@ -294,6 +386,7 @@ input Folder_on_conflict {
 
 """Ordering options when selecting data from "Folder"."""
 input Folder_order_by {
+  Forms_aggregate: Form_aggregate_order_by
   id: order_by
   name: order_by
   ownerId: order_by
@@ -365,6 +458,34 @@ input Folder_updates {
 columns and relationships of "Form"
 """
 type Form {
+  """An object relationship"""
+  Folder: Folder
+  """An array relationship"""
+  FormItems(
+    """distinct select on columns"""
+    distinct_on: [FormItem_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItem_order_by!]
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): [FormItem!]!
+  """An aggregate relationship"""
+  FormItems_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItem_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItem_order_by!]
+    """filter the rows returned"""
+    where: FormItem_bool_exp
+  ): FormItem_aggregate!
   createdAt: timestamp!
   favorite: Boolean!
   folderId: String
@@ -384,6 +505,34 @@ type Form {
 columns and relationships of "FormItem"
 """
 type FormItem {
+  """An array relationship"""
+  Answers(
+    """distinct select on columns"""
+    distinct_on: [Answer_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Answer_order_by!]
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): [Answer!]!
+  """An aggregate relationship"""
+  Answers_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Answer_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Answer_order_by!]
+    """filter the rows returned"""
+    where: Answer_bool_exp
+  ): Answer_aggregate!
+  """An object relationship"""
+  Form: Form!
   formId: String!
   id: String!
   image(
@@ -409,6 +558,33 @@ type FormItem_aggregate {
   nodes: [FormItem!]!
 }
 
+input FormItem_aggregate_bool_exp {
+  bool_and: FormItem_aggregate_bool_exp_bool_and
+  bool_or: FormItem_aggregate_bool_exp_bool_or
+  count: FormItem_aggregate_bool_exp_count
+}
+
+input FormItem_aggregate_bool_exp_bool_and {
+  arguments: FormItem_select_column_FormItem_aggregate_bool_exp_bool_and_arguments_columns!
+  distinct: Boolean
+  filter: FormItem_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input FormItem_aggregate_bool_exp_bool_or {
+  arguments: FormItem_select_column_FormItem_aggregate_bool_exp_bool_or_arguments_columns!
+  distinct: Boolean
+  filter: FormItem_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input FormItem_aggregate_bool_exp_count {
+  arguments: [FormItem_select_column!]
+  distinct: Boolean
+  filter: FormItem_bool_exp
+  predicate: Int_comparison_exp!
+}
+
 """
 aggregate fields of "FormItem"
 """
@@ -426,10 +602,36 @@ type FormItem_aggregate_fields {
   variance: FormItem_variance_fields
 }
 
+"""
+order by aggregate values of table "FormItem"
+"""
+input FormItem_aggregate_order_by {
+  avg: FormItem_avg_order_by
+  count: order_by
+  max: FormItem_max_order_by
+  min: FormItem_min_order_by
+  stddev: FormItem_stddev_order_by
+  stddev_pop: FormItem_stddev_pop_order_by
+  stddev_samp: FormItem_stddev_samp_order_by
+  sum: FormItem_sum_order_by
+  var_pop: FormItem_var_pop_order_by
+  var_samp: FormItem_var_samp_order_by
+  variance: FormItem_variance_order_by
+}
+
 """append existing jsonb value of filtered columns with new jsonb value"""
 input FormItem_append_input {
   image: jsonb
   items: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "FormItem"
+"""
+input FormItem_arr_rel_insert_input {
+  data: [FormItem_insert_input!]!
+  """upsert condition"""
+  on_conflict: FormItem_on_conflict
 }
 
 """aggregate avg on columns"""
@@ -439,9 +641,20 @@ type FormItem_avg_fields {
 }
 
 """
+order by avg() on columns of table "FormItem"
+"""
+input FormItem_avg_order_by {
+  order: order_by
+  section: order_by
+}
+
+"""
 Boolean expression to filter rows from the table "FormItem". All fields are combined with a logical 'AND'.
 """
 input FormItem_bool_exp {
+  Answers: Answer_bool_exp
+  Answers_aggregate: Answer_aggregate_bool_exp
+  Form: Form_bool_exp
   _and: [FormItem_bool_exp!]
   _not: FormItem_bool_exp
   _or: [FormItem_bool_exp!]
@@ -502,6 +715,8 @@ input FormItem_inc_input {
 input type for inserting data into table "FormItem"
 """
 input FormItem_insert_input {
+  Answers: Answer_arr_rel_insert_input
+  Form: Form_obj_rel_insert_input
   formId: String
   id: String
   image: jsonb
@@ -523,6 +738,18 @@ type FormItem_max_fields {
   type: FormType
 }
 
+"""
+order by max() on columns of table "FormItem"
+"""
+input FormItem_max_order_by {
+  formId: order_by
+  id: order_by
+  name: order_by
+  order: order_by
+  section: order_by
+  type: order_by
+}
+
 """aggregate min on columns"""
 type FormItem_min_fields {
   formId: String
@@ -531,6 +758,18 @@ type FormItem_min_fields {
   order: Int
   section: Int
   type: FormType
+}
+
+"""
+order by min() on columns of table "FormItem"
+"""
+input FormItem_min_order_by {
+  formId: order_by
+  id: order_by
+  name: order_by
+  order: order_by
+  section: order_by
+  type: order_by
 }
 
 """
@@ -544,6 +783,15 @@ type FormItem_mutation_response {
 }
 
 """
+input type for inserting object relation for remote table "FormItem"
+"""
+input FormItem_obj_rel_insert_input {
+  data: FormItem_insert_input!
+  """upsert condition"""
+  on_conflict: FormItem_on_conflict
+}
+
+"""
 on_conflict condition type for table "FormItem"
 """
 input FormItem_on_conflict {
@@ -554,6 +802,8 @@ input FormItem_on_conflict {
 
 """Ordering options when selecting data from "FormItem"."""
 input FormItem_order_by {
+  Answers_aggregate: Answer_aggregate_order_by
+  Form: Form_order_by
   formId: order_by
   id: order_by
   image: order_by
@@ -601,6 +851,22 @@ enum FormItem_select_column {
 }
 
 """
+select "FormItem_aggregate_bool_exp_bool_and_arguments_columns" columns of table "FormItem"
+"""
+enum FormItem_select_column_FormItem_aggregate_bool_exp_bool_and_arguments_columns {
+  """column name"""
+  required
+}
+
+"""
+select "FormItem_aggregate_bool_exp_bool_or_arguments_columns" columns of table "FormItem"
+"""
+enum FormItem_select_column_FormItem_aggregate_bool_exp_bool_or_arguments_columns {
+  """column name"""
+  required
+}
+
+"""
 input type for updating data in table "FormItem"
 """
 input FormItem_set_input {
@@ -621,16 +887,40 @@ type FormItem_stddev_fields {
   section: Float
 }
 
+"""
+order by stddev() on columns of table "FormItem"
+"""
+input FormItem_stddev_order_by {
+  order: order_by
+  section: order_by
+}
+
 """aggregate stddev_pop on columns"""
 type FormItem_stddev_pop_fields {
   order: Float
   section: Float
 }
 
+"""
+order by stddev_pop() on columns of table "FormItem"
+"""
+input FormItem_stddev_pop_order_by {
+  order: order_by
+  section: order_by
+}
+
 """aggregate stddev_samp on columns"""
 type FormItem_stddev_samp_fields {
   order: Float
   section: Float
+}
+
+"""
+order by stddev_samp() on columns of table "FormItem"
+"""
+input FormItem_stddev_samp_order_by {
+  order: order_by
+  section: order_by
 }
 
 """
@@ -660,6 +950,14 @@ input FormItem_stream_cursor_value_input {
 type FormItem_sum_fields {
   order: Int
   section: Int
+}
+
+"""
+order by sum() on columns of table "FormItem"
+"""
+input FormItem_sum_order_by {
+  order: order_by
+  section: order_by
 }
 
 """
@@ -717,16 +1015,40 @@ type FormItem_var_pop_fields {
   section: Float
 }
 
+"""
+order by var_pop() on columns of table "FormItem"
+"""
+input FormItem_var_pop_order_by {
+  order: order_by
+  section: order_by
+}
+
 """aggregate var_samp on columns"""
 type FormItem_var_samp_fields {
   order: Float
   section: Float
 }
 
+"""
+order by var_samp() on columns of table "FormItem"
+"""
+input FormItem_var_samp_order_by {
+  order: order_by
+  section: order_by
+}
+
 """aggregate variance on columns"""
 type FormItem_variance_fields {
   order: Float
   section: Float
+}
+
+"""
+order by variance() on columns of table "FormItem"
+"""
+input FormItem_variance_order_by {
+  order: order_by
+  section: order_by
 }
 
 scalar FormType
@@ -754,6 +1076,33 @@ type Form_aggregate {
   nodes: [Form!]!
 }
 
+input Form_aggregate_bool_exp {
+  bool_and: Form_aggregate_bool_exp_bool_and
+  bool_or: Form_aggregate_bool_exp_bool_or
+  count: Form_aggregate_bool_exp_count
+}
+
+input Form_aggregate_bool_exp_bool_and {
+  arguments: Form_select_column_Form_aggregate_bool_exp_bool_and_arguments_columns!
+  distinct: Boolean
+  filter: Form_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input Form_aggregate_bool_exp_bool_or {
+  arguments: Form_select_column_Form_aggregate_bool_exp_bool_or_arguments_columns!
+  distinct: Boolean
+  filter: Form_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input Form_aggregate_bool_exp_count {
+  arguments: [Form_select_column!]
+  distinct: Boolean
+  filter: Form_bool_exp
+  predicate: Int_comparison_exp!
+}
+
 """
 aggregate fields of "Form"
 """
@@ -771,9 +1120,35 @@ type Form_aggregate_fields {
   variance: Form_variance_fields
 }
 
+"""
+order by aggregate values of table "Form"
+"""
+input Form_aggregate_order_by {
+  avg: Form_avg_order_by
+  count: order_by
+  max: Form_max_order_by
+  min: Form_min_order_by
+  stddev: Form_stddev_order_by
+  stddev_pop: Form_stddev_pop_order_by
+  stddev_samp: Form_stddev_samp_order_by
+  sum: Form_sum_order_by
+  var_pop: Form_var_pop_order_by
+  var_samp: Form_var_samp_order_by
+  variance: Form_variance_order_by
+}
+
 """append existing jsonb value of filtered columns with new jsonb value"""
 input Form_append_input {
   style: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "Form"
+"""
+input Form_arr_rel_insert_input {
+  data: [Form_insert_input!]!
+  """upsert condition"""
+  on_conflict: Form_on_conflict
 }
 
 """aggregate avg on columns"""
@@ -783,9 +1158,20 @@ type Form_avg_fields {
 }
 
 """
+order by avg() on columns of table "Form"
+"""
+input Form_avg_order_by {
+  order: order_by
+  responses: order_by
+}
+
+"""
 Boolean expression to filter rows from the table "Form". All fields are combined with a logical 'AND'.
 """
 input Form_bool_exp {
+  Folder: Folder_bool_exp
+  FormItems: FormItem_bool_exp
+  FormItems_aggregate: FormItem_aggregate_bool_exp
   _and: [Form_bool_exp!]
   _not: Form_bool_exp
   _or: [Form_bool_exp!]
@@ -848,6 +1234,8 @@ input Form_inc_input {
 input type for inserting data into table "Form"
 """
 input Form_insert_input {
+  Folder: Folder_obj_rel_insert_input
+  FormItems: FormItem_arr_rel_insert_input
   createdAt: timestamp
   favorite: Boolean
   folderId: String
@@ -872,6 +1260,20 @@ type Form_max_fields {
   updatedAt: timestamp
 }
 
+"""
+order by max() on columns of table "Form"
+"""
+input Form_max_order_by {
+  createdAt: order_by
+  folderId: order_by
+  id: order_by
+  name: order_by
+  order: order_by
+  ownerId: order_by
+  responses: order_by
+  updatedAt: order_by
+}
+
 """aggregate min on columns"""
 type Form_min_fields {
   createdAt: timestamp
@@ -885,6 +1287,20 @@ type Form_min_fields {
 }
 
 """
+order by min() on columns of table "Form"
+"""
+input Form_min_order_by {
+  createdAt: order_by
+  folderId: order_by
+  id: order_by
+  name: order_by
+  order: order_by
+  ownerId: order_by
+  responses: order_by
+  updatedAt: order_by
+}
+
+"""
 response of any mutation on the table "Form"
 """
 type Form_mutation_response {
@@ -892,6 +1308,15 @@ type Form_mutation_response {
   affected_rows: Int!
   """data from the rows affected by the mutation"""
   returning: [Form!]!
+}
+
+"""
+input type for inserting object relation for remote table "Form"
+"""
+input Form_obj_rel_insert_input {
+  data: Form_insert_input!
+  """upsert condition"""
+  on_conflict: Form_on_conflict
 }
 
 """
@@ -905,6 +1330,8 @@ input Form_on_conflict {
 
 """Ordering options when selecting data from "Form"."""
 input Form_order_by {
+  Folder: Folder_order_by
+  FormItems_aggregate: FormItem_aggregate_order_by
   createdAt: order_by
   favorite: order_by
   folderId: order_by
@@ -954,6 +1381,22 @@ enum Form_select_column {
 }
 
 """
+select "Form_aggregate_bool_exp_bool_and_arguments_columns" columns of table "Form"
+"""
+enum Form_select_column_Form_aggregate_bool_exp_bool_and_arguments_columns {
+  """column name"""
+  favorite
+}
+
+"""
+select "Form_aggregate_bool_exp_bool_or_arguments_columns" columns of table "Form"
+"""
+enum Form_select_column_Form_aggregate_bool_exp_bool_or_arguments_columns {
+  """column name"""
+  favorite
+}
+
+"""
 input type for updating data in table "Form"
 """
 input Form_set_input {
@@ -975,16 +1418,40 @@ type Form_stddev_fields {
   responses: Float
 }
 
+"""
+order by stddev() on columns of table "Form"
+"""
+input Form_stddev_order_by {
+  order: order_by
+  responses: order_by
+}
+
 """aggregate stddev_pop on columns"""
 type Form_stddev_pop_fields {
   order: Float
   responses: Float
 }
 
+"""
+order by stddev_pop() on columns of table "Form"
+"""
+input Form_stddev_pop_order_by {
+  order: order_by
+  responses: order_by
+}
+
 """aggregate stddev_samp on columns"""
 type Form_stddev_samp_fields {
   order: Float
   responses: Float
+}
+
+"""
+order by stddev_samp() on columns of table "Form"
+"""
+input Form_stddev_samp_order_by {
+  order: order_by
+  responses: order_by
 }
 
 """
@@ -1015,6 +1482,14 @@ input Form_stream_cursor_value_input {
 type Form_sum_fields {
   order: Int
   responses: Int
+}
+
+"""
+order by sum() on columns of table "Form"
+"""
+input Form_sum_order_by {
+  order: order_by
+  responses: order_by
 }
 
 """
@@ -1074,16 +1549,40 @@ type Form_var_pop_fields {
   responses: Float
 }
 
+"""
+order by var_pop() on columns of table "Form"
+"""
+input Form_var_pop_order_by {
+  order: order_by
+  responses: order_by
+}
+
 """aggregate var_samp on columns"""
 type Form_var_samp_fields {
   order: Float
   responses: Float
 }
 
+"""
+order by var_samp() on columns of table "Form"
+"""
+input Form_var_samp_order_by {
+  order: order_by
+  responses: order_by
+}
+
 """aggregate variance on columns"""
 type Form_variance_fields {
   order: Float
   responses: Float
+}
+
+"""
+order by variance() on columns of table "Form"
+"""
+input Form_variance_order_by {
+  order: order_by
+  responses: order_by
 }
 
 """
