@@ -34,6 +34,21 @@ insert_permissions:
         - updatedAt
     comment: ""
 select_permissions:
+  - role: public
+    permission:
+      columns:
+        - createdAt
+        - favorite
+        - folderId
+        - id
+        - name
+        - order
+        - responses
+        - style
+        - updatedAt
+      filter: {}
+      limit: 1
+    comment: ""
   - role: user
     permission:
       columns:

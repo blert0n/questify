@@ -88,11 +88,6 @@ export const saveForm = async () => {
       refetchQueries: [
         {
           query: MyFormsDocument,
-          variables: {
-            orderBy: {
-              createdAt: "desc",
-            },
-          },
         },
       ],
     });

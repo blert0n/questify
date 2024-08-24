@@ -8,14 +8,15 @@ import {
   DialogTitle,
   Input,
 } from "../ui";
-// import {
-//   MyFoldersDocument,
-//   useDeleteFolderMutation,
-//   useUpsertFolderMutation,
-// } from "@/lib/graphql";
+import {
+  MyFoldersDocument,
+  useDeleteFolderMutation,
+  useUpsertFolderMutation,
+} from "@/lib/graphql";
 import { toast } from "react-toastify";
 import { useBoolean } from "usehooks-ts";
 import { cn } from "@/lib";
+import { v4 } from "uuid";
 
 interface P {
   children?: React.ReactNode;
@@ -33,45 +34,45 @@ export default function Actions({
   const { value: open, toggle } = useBoolean(false);
   const [folderName, setFolderName] = useState(value);
 
-  // const [upsertFolder, { loading }] = useUpsertFolderMutation({
-  //   variables: {
-  //     id,
-  //     name: folderName,
-  //   },
-  //   onCompleted() {
-  //     toast.success(
-  //       `${mode === "create" ? "Created" : "Updated"} folder successfully!`
-  //     );
-  //     setFolderName("");
-  //     toggle();
-  //   },
-  //   onError() {
-  //     toast.error("Something went wrong! Please try again later!");
-  //   },
-  //   refetchQueries: [
-  //     {
-  //       query: MyFoldersDocument,
-  //     },
-  //   ],
-  // });
-  // const [deleteFolder, { loading: deleteLoading }] = useDeleteFolderMutation({
-  //   variables: {
-  //     id,
-  //   },
-  //   onCompleted() {
-  //     toast.success(`Deleted folder successfully!`);
-  //     setFolderName("");
-  //     toggle();
-  //   },
-  //   onError() {
-  //     toast.error("Something went wrong! Please try again later!");
-  //   },
-  //   refetchQueries: [
-  //     {
-  //       query: MyFoldersDocument,
-  //     },
-  //   ],
-  // });
+  const [upsertFolder, { loading }] = useUpsertFolderMutation({
+    variables: {
+      id: id.length > 0 ? id : v4(),
+      name: folderName,
+    },
+    onCompleted() {
+      toast.success(
+        `${mode === "create" ? "Created" : "Updated"} folder successfully!`
+      );
+      setFolderName("");
+      toggle();
+    },
+    onError() {
+      toast.error("Something went wrong! Please try again later!");
+    },
+    refetchQueries: [
+      {
+        query: MyFoldersDocument,
+      },
+    ],
+  });
+  const [deleteFolder, { loading: deleteLoading }] = useDeleteFolderMutation({
+    variables: {
+      id,
+    },
+    onCompleted() {
+      toast.success(`Deleted folder successfully!`);
+      setFolderName("");
+      toggle();
+    },
+    onError() {
+      toast.error("Something went wrong! Please try again later!");
+    },
+    refetchQueries: [
+      {
+        query: MyFoldersDocument,
+      },
+    ],
+  });
 
   return (
     <>
@@ -111,8 +112,8 @@ export default function Actions({
               <Button
                 type="button"
                 variant="destructive"
-                // loading={deleteLoading}
-                // onClick={() => void deleteFolder()}
+                loading={deleteLoading}
+                onClick={() => void deleteFolder()}
               >
                 Delete
               </Button>
@@ -123,8 +124,8 @@ export default function Actions({
               </Button>
               <Button
                 type="button"
-                // onClick={() => void upsertFolder()}
-                // loading={loading}
+                onClick={() => void upsertFolder()}
+                loading={loading}
               >
                 Save
               </Button>

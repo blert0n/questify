@@ -21,7 +21,7 @@ generates:
       useTypeImports: true
       declarationKind: "interface"
       directiveArgumentAndInputFieldMappingTypeSuffix: Model
-      maybeValue: T | undefined
+      maybeValue: T | undefined | null
       scalars:
         Decimal: string
         Number: number

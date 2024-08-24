@@ -29,7 +29,19 @@ export const getSessionToken = async () => {
   );
 };
 
-const cache = new InMemoryCache({});
+const cache = new InMemoryCache({
+  // typePolicies: {
+  //   Query: {
+  //     fields: {
+  //       Form: {
+  //         merge: (_existing, _incoming = []) => {
+  //           return _incoming;
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
+});
 
 const GRAPHQL_HTTP_ENDPOINT =
   process.env["NEXT_PUBLIC_HASURA_GRAPHQL_ENDPOINT"] ||
@@ -40,7 +52,7 @@ const authLink = setContext(async (_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      ...(token ? { authorization: `Bearer ${token}` } : {}),
     },
   };
 });
@@ -82,14 +94,14 @@ const QuestifyApolloProvider = ({ children }: PropsWithChildren) => {
       return {
         headers: {
           ...headers,
-          authorization: `Bearer ${token}`,
+          ...(token ? { authorization: `Bearer ${token}` } : {}),
         },
       };
     });
 
     return new ApolloClient({
       link: ApolloLink.from([errorLink, authMiddleware.concat(httpLink)]),
-      cache: new InMemoryCache(),
+      cache,
     });
   }, [getToken]);
 

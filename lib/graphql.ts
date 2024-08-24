@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-export type Maybe<T> = T | undefined;
-export type InputMaybe<T> = T | undefined;
+export type Maybe<T> = T | undefined | null;
+export type InputMaybe<T> = T | undefined | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -25,6 +25,7 @@ export interface Scalars {
 export interface Answer {
   /** An object relationship */
   FormItem?: Maybe<FormItem>;
+  createdAt?: Maybe<Scalars['timestamp']['output']>;
   formItemId?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   responseId?: Maybe<Scalars['String']['output']>;
@@ -82,6 +83,7 @@ export interface Answer_Bool_Exp {
   _and?: InputMaybe<Array<Answer_Bool_Exp>>;
   _not?: InputMaybe<Answer_Bool_Exp>;
   _or?: InputMaybe<Array<Answer_Bool_Exp>>;
+  createdAt?: InputMaybe<Timestamp_Comparison_Exp>;
   formItemId?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
   responseId?: InputMaybe<String_Comparison_Exp>;
@@ -97,6 +99,7 @@ export enum Answer_Constraint {
 /** input type for inserting data into table "Answer" */
 export interface Answer_Insert_Input {
   FormItem?: InputMaybe<FormItem_Obj_Rel_Insert_Input>;
+  createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   formItemId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   responseId?: InputMaybe<Scalars['String']['input']>;
@@ -105,6 +108,7 @@ export interface Answer_Insert_Input {
 
 /** aggregate max on columns */
 export interface Answer_Max_Fields {
+  createdAt?: Maybe<Scalars['timestamp']['output']>;
   formItemId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   responseId?: Maybe<Scalars['String']['output']>;
@@ -113,6 +117,7 @@ export interface Answer_Max_Fields {
 
 /** order by max() on columns of table "Answer" */
 export interface Answer_Max_Order_By {
+  createdAt?: InputMaybe<Order_By>;
   formItemId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   responseId?: InputMaybe<Order_By>;
@@ -121,6 +126,7 @@ export interface Answer_Max_Order_By {
 
 /** aggregate min on columns */
 export interface Answer_Min_Fields {
+  createdAt?: Maybe<Scalars['timestamp']['output']>;
   formItemId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   responseId?: Maybe<Scalars['String']['output']>;
@@ -129,6 +135,7 @@ export interface Answer_Min_Fields {
 
 /** order by min() on columns of table "Answer" */
 export interface Answer_Min_Order_By {
+  createdAt?: InputMaybe<Order_By>;
   formItemId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   responseId?: InputMaybe<Order_By>;
@@ -153,6 +160,7 @@ export interface Answer_On_Conflict {
 /** Ordering options when selecting data from "Answer". */
 export interface Answer_Order_By {
   FormItem?: InputMaybe<FormItem_Order_By>;
+  createdAt?: InputMaybe<Order_By>;
   formItemId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   responseId?: InputMaybe<Order_By>;
@@ -167,6 +175,8 @@ export interface Answer_Pk_Columns_Input {
 /** select columns of table "Answer" */
 export enum Answer_Select_Column {
   /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
   FormItemId = 'formItemId',
   /** column name */
   Id = 'id',
@@ -178,6 +188,7 @@ export enum Answer_Select_Column {
 
 /** input type for updating data in table "Answer" */
 export interface Answer_Set_Input {
+  createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   formItemId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   responseId?: InputMaybe<Scalars['String']['input']>;
@@ -194,6 +205,7 @@ export interface Answer_Stream_Cursor_Input {
 
 /** Initial value of the column from where the streaming should start */
 export interface Answer_Stream_Cursor_Value_Input {
+  createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   formItemId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   responseId?: InputMaybe<Scalars['String']['input']>;
@@ -202,6 +214,8 @@ export interface Answer_Stream_Cursor_Value_Input {
 
 /** update columns of table "Answer" */
 export enum Answer_Update_Column {
+  /** column name */
+  CreatedAt = 'createdAt',
   /** column name */
   FormItemId = 'formItemId',
   /** column name */
@@ -2351,7 +2365,15 @@ export type ResponsesQueryVariables = Exact<{
 }>;
 
 
-export type ResponsesQuery = { Form_by_pk?: { id: string, responses: number, FormItems: Array<{ id: string, name: string, type: any, Answers_aggregate: { aggregate?: { count: number } | undefined }, Answers: Array<{ id: string, value: string }> }> } | undefined };
+export type ResponsesQuery = { Form_by_pk?: { id: string, responses: number, FormItems: Array<{ id: string, name: string, type: any, Answers_aggregate: { aggregate?: { count: number } | undefined | null }, Answers: Array<{ id: string, value: string }> }> } | undefined | null };
+
+export type SubmitFormMutationVariables = Exact<{
+  formId: Scalars['String']['input'];
+  data: Array<Answer_Insert_Input> | Answer_Insert_Input;
+}>;
+
+
+export type SubmitFormMutation = { insert_Answer?: { affected_rows: number } | undefined | null, update_Form?: { affected_rows: number } | undefined | null };
 
 export type MyFoldersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2364,28 +2386,36 @@ export type UpsertFolderMutationVariables = Exact<{
 }>;
 
 
-export type UpsertFolderMutation = { insert_Folder?: { returning: Array<{ id: string, name: string }> } | undefined };
+export type UpsertFolderMutation = { insert_Folder?: { returning: Array<{ id: string, name: string }> } | undefined | null };
 
 export type DeleteFolderMutationVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
 
 
-export type DeleteFolderMutation = { delete_Folder?: { returning: Array<{ id: string, name: string }> } | undefined };
+export type DeleteFolderMutation = { delete_Folder?: { returning: Array<{ id: string, name: string }> } | undefined | null };
+
+export type UpdateFormFolderMutationVariables = Exact<{
+  formId: Scalars['String']['input'];
+  folderId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type UpdateFormFolderMutation = { update_Form?: { returning: Array<{ id: string, folderId?: string | undefined | null }> } | undefined | null };
 
 export type CreateFormMutationVariables = Exact<{
   data: Form_Insert_Input;
 }>;
 
 
-export type CreateFormMutation = { insert_Form_one?: { id: string, name: string, favorite: boolean, createdAt: any, updatedAt: any } | undefined };
+export type CreateFormMutation = { insert_Form_one?: { id: string, name: string, favorite: boolean, createdAt: any, updatedAt: any } | undefined | null };
 
 export type DeleteFormMutationVariables = Exact<{
   formId: Scalars['String']['input'];
 }>;
 
 
-export type DeleteFormMutation = { delete_Form?: { returning: Array<{ id: string }> } | undefined };
+export type DeleteFormMutation = { delete_Form?: { returning: Array<{ id: string }> } | undefined | null };
 
 export type StarFormMutationVariables = Exact<{
   formId: Scalars['String']['input'];
@@ -2393,7 +2423,7 @@ export type StarFormMutationVariables = Exact<{
 }>;
 
 
-export type StarFormMutation = { update_Form?: { returning: Array<{ id: string, favorite: boolean }> } | undefined };
+export type StarFormMutation = { update_Form?: { returning: Array<{ id: string, favorite: boolean }> } | undefined | null };
 
 export type MyFormsQueryVariables = Exact<{
   orderBy?: InputMaybe<Array<Form_Order_By> | Form_Order_By>;
@@ -2407,19 +2437,19 @@ export type FolderFormsQueryVariables = Exact<{
 }>;
 
 
-export type FolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined, createdAt: any, updatedAt: any }> };
+export type FolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined | null, createdAt: any, updatedAt: any }> };
 
 export type DefaultFolderFormsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DefaultFolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined, createdAt: any, updatedAt: any }> };
+export type DefaultFolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined | null, createdAt: any, updatedAt: any }> };
 
 export type FormDataQueryVariables = Exact<{
   formId: Scalars['String']['input'];
 }>;
 
 
-export type FormDataQuery = { Form_by_pk?: { id: string, name: string, favorite: boolean, style?: any | undefined, FormItems: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined, image?: any | undefined, type: any }> } | undefined };
+export type FormDataQuery = { Form_by_pk?: { id: string, name: string, favorite: boolean, style?: any | undefined | null, FormItems: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type: any }> } | undefined | null };
 
 export type UpdateFormMutationVariables = Exact<{
   id: Scalars['String']['input'];
@@ -2429,21 +2459,21 @@ export type UpdateFormMutationVariables = Exact<{
 }>;
 
 
-export type UpdateFormMutation = { update_Form?: { returning: Array<{ id: string, name: string, style?: any | undefined, favorite: boolean }> } | undefined };
+export type UpdateFormMutation = { update_Form?: { returning: Array<{ id: string, name: string, style?: any | undefined | null, favorite: boolean }> } | undefined | null };
 
 export type UpdateFormItemsMutationVariables = Exact<{
   data: Array<FormItem_Insert_Input> | FormItem_Insert_Input;
 }>;
 
 
-export type UpdateFormItemsMutation = { insert_FormItem?: { returning: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined, image?: any | undefined, type: any }> } | undefined };
+export type UpdateFormItemsMutation = { insert_FormItem?: { returning: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type: any }> } | undefined | null };
 
 export type DeleteFormItemsMutationVariables = Exact<{
   ids: Array<Scalars['String']['input']> | Scalars['String']['input'];
 }>;
 
 
-export type DeleteFormItemsMutation = { delete_FormItem?: { affected_rows: number } | undefined };
+export type DeleteFormItemsMutation = { delete_FormItem?: { affected_rows: number } | undefined | null };
 
 
 export const ResponsesDocument = /*#__PURE__*/ gql`
@@ -2501,6 +2531,42 @@ export type ResponsesQueryHookResult = ReturnType<typeof useResponsesQuery>;
 export type ResponsesLazyQueryHookResult = ReturnType<typeof useResponsesLazyQuery>;
 export type ResponsesSuspenseQueryHookResult = ReturnType<typeof useResponsesSuspenseQuery>;
 export type ResponsesQueryResult = Apollo.QueryResult<ResponsesQuery, ResponsesQueryVariables>;
+export const SubmitFormDocument = /*#__PURE__*/ gql`
+    mutation SubmitForm($formId: String!, $data: [Answer_insert_input!]!) {
+  insert_Answer(objects: $data) {
+    affected_rows
+  }
+  update_Form(where: {id: {_eq: $formId}}, _inc: {responses: 1}) {
+    affected_rows
+  }
+}
+    `;
+export type SubmitFormMutationFn = Apollo.MutationFunction<SubmitFormMutation, SubmitFormMutationVariables>;
+
+/**
+ * __useSubmitFormMutation__
+ *
+ * To run a mutation, you first call `useSubmitFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSubmitFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [submitFormMutation, { data, loading, error }] = useSubmitFormMutation({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useSubmitFormMutation(baseOptions?: Apollo.MutationHookOptions<SubmitFormMutation, SubmitFormMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SubmitFormMutation, SubmitFormMutationVariables>(SubmitFormDocument, options);
+      }
+export type SubmitFormMutationHookResult = ReturnType<typeof useSubmitFormMutation>;
+export type SubmitFormMutationResult = Apollo.MutationResult<SubmitFormMutation>;
 export const MyFoldersDocument = /*#__PURE__*/ gql`
     query MyFolders {
   Folder {
@@ -2615,6 +2681,42 @@ export function useDeleteFolderMutation(baseOptions?: Apollo.MutationHookOptions
       }
 export type DeleteFolderMutationHookResult = ReturnType<typeof useDeleteFolderMutation>;
 export type DeleteFolderMutationResult = Apollo.MutationResult<DeleteFolderMutation>;
+export const UpdateFormFolderDocument = /*#__PURE__*/ gql`
+    mutation UpdateFormFolder($formId: String!, $folderId: String) {
+  update_Form(where: {id: {_eq: $formId}}, _set: {folderId: $folderId}) {
+    returning {
+      id
+      folderId
+    }
+  }
+}
+    `;
+export type UpdateFormFolderMutationFn = Apollo.MutationFunction<UpdateFormFolderMutation, UpdateFormFolderMutationVariables>;
+
+/**
+ * __useUpdateFormFolderMutation__
+ *
+ * To run a mutation, you first call `useUpdateFormFolderMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateFormFolderMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateFormFolderMutation, { data, loading, error }] = useUpdateFormFolderMutation({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *      folderId: // value for 'folderId'
+ *   },
+ * });
+ */
+export function useUpdateFormFolderMutation(baseOptions?: Apollo.MutationHookOptions<UpdateFormFolderMutation, UpdateFormFolderMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateFormFolderMutation, UpdateFormFolderMutationVariables>(UpdateFormFolderDocument, options);
+      }
+export type UpdateFormFolderMutationHookResult = ReturnType<typeof useUpdateFormFolderMutation>;
+export type UpdateFormFolderMutationResult = Apollo.MutationResult<UpdateFormFolderMutation>;
 export const CreateFormDocument = /*#__PURE__*/ gql`
     mutation CreateForm($data: Form_insert_input!) {
   insert_Form_one(object: $data) {
@@ -2722,7 +2824,7 @@ export function useStarFormMutation(baseOptions?: Apollo.MutationHookOptions<Sta
 export type StarFormMutationHookResult = ReturnType<typeof useStarFormMutation>;
 export type StarFormMutationResult = Apollo.MutationResult<StarFormMutation>;
 export const MyFormsDocument = /*#__PURE__*/ gql`
-    query MyForms($orderBy: [Form_order_by!]) {
+    query MyForms($orderBy: [Form_order_by!] = {createdAt: desc}) {
   Form(order_by: $orderBy) {
     id
     name

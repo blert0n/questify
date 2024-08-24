@@ -18,6 +18,7 @@ columns and relationships of "Answer"
 type Answer {
   """An object relationship"""
   FormItem: FormItem
+  createdAt: timestamp
   formItemId: String
   id: String!
   responseId: String
@@ -78,6 +79,7 @@ input Answer_bool_exp {
   _and: [Answer_bool_exp!]
   _not: Answer_bool_exp
   _or: [Answer_bool_exp!]
+  createdAt: timestamp_comparison_exp
   formItemId: String_comparison_exp
   id: String_comparison_exp
   responseId: String_comparison_exp
@@ -99,6 +101,7 @@ input type for inserting data into table "Answer"
 """
 input Answer_insert_input {
   FormItem: FormItem_obj_rel_insert_input
+  createdAt: timestamp
   formItemId: String
   id: String
   responseId: String
@@ -107,6 +110,7 @@ input Answer_insert_input {
 
 """aggregate max on columns"""
 type Answer_max_fields {
+  createdAt: timestamp
   formItemId: String
   id: String
   responseId: String
@@ -117,6 +121,7 @@ type Answer_max_fields {
 order by max() on columns of table "Answer"
 """
 input Answer_max_order_by {
+  createdAt: order_by
   formItemId: order_by
   id: order_by
   responseId: order_by
@@ -125,6 +130,7 @@ input Answer_max_order_by {
 
 """aggregate min on columns"""
 type Answer_min_fields {
+  createdAt: timestamp
   formItemId: String
   id: String
   responseId: String
@@ -135,6 +141,7 @@ type Answer_min_fields {
 order by min() on columns of table "Answer"
 """
 input Answer_min_order_by {
+  createdAt: order_by
   formItemId: order_by
   id: order_by
   responseId: order_by
@@ -163,6 +170,7 @@ input Answer_on_conflict {
 """Ordering options when selecting data from "Answer"."""
 input Answer_order_by {
   FormItem: FormItem_order_by
+  createdAt: order_by
   formItemId: order_by
   id: order_by
   responseId: order_by
@@ -179,6 +187,8 @@ select columns of table "Answer"
 """
 enum Answer_select_column {
   """column name"""
+  createdAt
+  """column name"""
   formItemId
   """column name"""
   id
@@ -192,6 +202,7 @@ enum Answer_select_column {
 input type for updating data in table "Answer"
 """
 input Answer_set_input {
+  createdAt: timestamp
   formItemId: String
   id: String
   responseId: String
@@ -210,6 +221,7 @@ input Answer_stream_cursor_input {
 
 """Initial value of the column from where the streaming should start"""
 input Answer_stream_cursor_value_input {
+  createdAt: timestamp
   formItemId: String
   id: String
   responseId: String
@@ -220,6 +232,8 @@ input Answer_stream_cursor_value_input {
 update columns of table "Answer"
 """
 enum Answer_update_column {
+  """column name"""
+  createdAt
   """column name"""
   formItemId
   """column name"""

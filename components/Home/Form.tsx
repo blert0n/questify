@@ -14,7 +14,7 @@ import { Loader } from "@/assets/svg";
 import { useFormSelectors } from "@/store";
 import MoveFolder from "./MoveFolder";
 
-type FormType = MyFormsQuery["Form"][number] & { folderId?: string };
+type FormType = MyFormsQuery["Form"][number] & { folderId?: string | null };
 
 interface P {
   form: FormType;
@@ -102,7 +102,7 @@ export default function Form({ form, folder = false }: P) {
                   visible={isFolderPopoverOpen}
                   toggle={toggleFolderPopover}
                   formId={form.id}
-                  selected={form.folderId || "Default"}
+                  currentFolder={form.folderId || "Default"}
                 />
               )}
             </div>

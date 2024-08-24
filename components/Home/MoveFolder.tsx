@@ -14,54 +14,84 @@ import {
   DialogTitle,
 } from "../ui";
 import { AppSelect } from "../controlled-inputs";
-import { useMyFoldersQuery } from "@/lib/graphql";
+import {
+  DefaultFolderFormsDocument,
+  FolderFormsDocument,
+  useMyFoldersQuery,
+  useUpdateFormFolderMutation,
+} from "@/lib/graphql";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 interface P {
   visible: boolean;
   formId: string;
-  selected: string;
+  currentFolder: string;
   toggle: () => void;
 }
 
-export default function MoveFolder({ visible, formId, selected, toggle }: P) {
+export default function MoveFolder({
+  visible,
+  formId,
+  currentFolder,
+  toggle,
+}: P) {
   const { value: changeFolderPopover, toggle: toggleFolderPopover } =
     useBoolean(false);
-  const [selectedFolderId, setSelectedFolderId] = useState(selected);
+  const [newFolder, setSelectedFolderId] = useState(currentFolder);
   const { data: { Folder: findManyFolder } = {} } = useMyFoldersQuery();
-  // const [updateFormFolder, { loading }] = useUpdateFormFolderMutation({
-  //   variables: {
-  //     folder: {
-  //       ...(selectedFolderId === "Default"
-  //         ? { disconnect: { id: { equals: selected } } }
-  //         : { connect: { id: selectedFolderId } }),
-  //     },
-  //     formId,
-  //   },
-  //   onCompleted() {
-  //     const newFolder =
-  //       findManyFolder?.find((folder) => folder.id === selectedFolderId)
-  //         ?.name ?? "";
-  //     toast.success(`Form moved to ${newFolder} folder`);
-  //     toggleFolderPopover();
-  //   },
-  //   onError() {
-  //     toast.error("Something went wrong! Please try again later!");
-  //     toggleFolderPopover();
-  //   },
-  //   refetchQueries: [
-  //     {
-  //       query: DefaultFolderFormsDocument,
-  //     },
-  //     {
-  //       query: FolderFormsDocument,
-  //       variables: {
-  //         folderId: selected,
-  //       },
-  //     },
-  //   ],
-  // });
+  const [updateFormFolder, { loading }] = useUpdateFormFolderMutation({
+    variables: {
+      formId,
+      folderId: newFolder === "Default" ? null : newFolder,
+    },
+    onCompleted() {
+      const newFolderName =
+        findManyFolder?.find((folder) => folder.id === newFolder)?.name ?? "";
+      toast.success(`Form moved to ${newFolderName} folder`);
+      toggleFolderPopover();
+    },
+    onError() {
+      toast.error("Something went wrong! Please try again later!");
+      toggleFolderPopover();
+    },
+    refetchQueries: [
+      ...(currentFolder !== "Default" &&
+      newFolder !== "Default" &&
+      newFolder !== currentFolder
+        ? [
+            {
+              query: FolderFormsDocument,
+              variables: {
+                folderId: newFolder,
+              },
+            },
+            {
+              query: FolderFormsDocument,
+              variables: {
+                folderId: currentFolder,
+              },
+            },
+          ]
+        : []),
+
+      ...(newFolder === "Default" || currentFolder === "Default"
+        ? [
+            {
+              query: DefaultFolderFormsDocument,
+            },
+            {
+              query: FolderFormsDocument,
+              variables: {
+                folderId: [newFolder, currentFolder].find(
+                  (folder) => folder !== "Default"
+                ),
+              },
+            },
+          ]
+        : []),
+    ],
+  });
   return (
     <>
       <Popover open={visible} onOpenChange={toggle}>
@@ -102,7 +132,7 @@ export default function MoveFolder({ visible, formId, selected, toggle }: P) {
             Select one of the folder options and click save when you are done!
           </DialogDescription>
           <AppSelect
-            defaultValue={selected}
+            defaultValue={currentFolder}
             options={[
               { placeholder: "Default folder", value: "Default" },
               ...(findManyFolder ?? []).map((folder) => ({
@@ -117,10 +147,11 @@ export default function MoveFolder({ visible, formId, selected, toggle }: P) {
               Close
             </Button>
             <Button
-              loading={false}
+              loading={loading}
+              disabled={currentFolder === newFolder || loading}
               onClick={() => {
-                if (selectedFolderId === selected) return toggleFolderPopover();
-                // void updateFormFolder();
+                if (newFolder === currentFolder) return toggleFolderPopover();
+                void updateFormFolder();
               }}
             >
               Save

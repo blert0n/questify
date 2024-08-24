@@ -14,14 +14,12 @@ export default function Selected({ id, onBack }: P) {
         folderId: id,
       },
       skip: id === "Default",
-      fetchPolicy: "cache-and-network",
     });
   const {
     data: { Form: defaultFolderForm } = {},
     loading: defaultFolderLoading,
   } = useDefaultFolderFormsQuery({
     skip: id !== "Default",
-    fetchPolicy: "cache-and-network",
   });
 
   const forms = id !== "Default" ? folderForms : defaultFolderForm;

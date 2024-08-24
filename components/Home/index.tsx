@@ -1,5 +1,5 @@
-import { useMyFormsQuery } from "@/lib/graphql";
-import Form from "./Form";
+import { Form_Order_By, Order_By, useMyFormsQuery } from "@/lib/graphql";
+import FormComponent from "./Form";
 import { Loader } from "@/assets/svg";
 import { Button } from "../ui";
 import { useModalStoreSelectors } from "@/store";
@@ -9,18 +9,18 @@ import { useBoolean } from "usehooks-ts";
 import Filters from "./Filter";
 import { useState } from "react";
 
-const orderByMapper: Record<number, any> = {
-  1: { createdAt: "desc" },
-  2: { updatedAt: "desc" },
-  3: { favorite: "desc" },
+const orderByMapper: Record<number, Form_Order_By> = {
+  1: { createdAt: Order_By.Desc },
+  2: { updatedAt: Order_By.Desc },
+  3: { favorite: Order_By.Desc },
 };
 
 export default function Home() {
   const { value: filterVisible, setValue: toggleFilter } = useBoolean(false);
-  const [orderBy, setOrderBy] = useState<any>({
-    createdAt: "desc",
+  const [orderBy, setOrderBy] = useState<Form_Order_By>({
+    createdAt: Order_By.Desc,
   });
-  const { data: { Form: findManyForm } = {}, loading } = useMyFormsQuery({
+  const { data: { Form } = {}, loading } = useMyFormsQuery({
     variables: {
       orderBy,
     },
@@ -37,7 +37,7 @@ export default function Home() {
           <p className="text-gray-500">Loading forms</p>
         </div>
       )}
-      {!loading && findManyForm && findManyForm.length > 0 && (
+      {!loading && Form && Form.length > 0 && (
         <div className="flex flex-col items-start justify-center gap-4 p-4 pt-0 w-full lg:max-w-4xl ml-auto mr-auto">
           <div className="flex justify-between w-full">
             <p>My forms</p>
@@ -49,11 +49,11 @@ export default function Home() {
             />
           </div>
           <div className={cn("flex flex-wrap gap-4")}>
-            {findManyForm?.map((item) => <Form key={item.id} form={item} />)}
+            {Form?.map((item) => <FormComponent key={item.id} form={item} />)}
           </div>
         </div>
       )}
-      {!loading && !findManyForm?.length && (
+      {!loading && !Form?.length && (
         <div className="flex flex-col items-center gap-6 w-full rounded-md p-6">
           <p className="text-gray-500">You have not created any form yet!</p>
           <Button onClick={openModal}>Create</Button>

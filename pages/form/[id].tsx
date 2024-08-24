@@ -1,6 +1,6 @@
 import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
-import { useFormDataQuery } from "@/lib/graphql";
+import { useFormDataQuery, useSubmitFormMutation } from "@/lib/graphql";
 import { FormItem, initialTheme } from "@/types";
 import { useRouter } from "next/router";
 import Error from "next/error";
@@ -9,6 +9,7 @@ import { Formik, Form } from "formik";
 import { getPrimaryColor, prepareFormik } from "@/lib";
 import { Button } from "@/components/ui";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 interface Value {
   [key: string]: string;
@@ -16,7 +17,7 @@ interface Value {
 
 export default function Index() {
   const router = useRouter();
-  // const [submitForm] = useSubmitFormMutation();
+  const [submitForm] = useSubmitFormMutation();
 
   const { data: { Form_by_pk: findFirstForm } = {}, loading } =
     useFormDataQuery({
@@ -44,30 +45,36 @@ export default function Index() {
   const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
 
   const handleSubmit = async (values: Value) => {
-    console.log(values, "handleValues");
-    // await submitForm({
-    //   variables: {
-    //     formId: String(router.query.id),
-    //     answers: Object.entries(values)
-    //       .map(([key, value]) => ({
-    //         formItemId: key,
-    //         value,
-    //       }))
-    //       .filter((item) => item.value.length > 0),
-    //   },
-    //   onCompleted() {
-    //     router.push(
-    //       {
-    //         pathname: `${router.asPath}/success`,
-    //         query: { backgroundColor: findFirstForm?.style?.secondaryColor },
-    //       },
-    //       `${router.asPath}/success`
-    //     );
-    //   },
-    //   onError() {
-    //     toast.error("Something went wrong! Please try again later!");
-    //   },
-    // });
+    const responseId = uuidv4();
+    await submitForm({
+      variables: {
+        formId: findFirstForm?.id ?? "",
+        data: Object.entries(values)
+          .map(([key, value]) => ({
+            formItemId: key,
+            value,
+          }))
+          .filter((item) => item.value.length > 0)
+          .map((answer) => ({
+            id: uuidv4(),
+            formItemId: answer?.formItemId,
+            value: answer.value,
+            responseId,
+          })),
+      },
+      onCompleted() {
+        router.push(
+          {
+            pathname: `${router.asPath}/success`,
+            query: { backgroundColor: findFirstForm?.style?.secondaryColor },
+          },
+          `${router.asPath}/success`
+        );
+      },
+      onError() {
+        toast.error("Something went wrong! Please try again later!");
+      },
+    });
   };
 
   return (

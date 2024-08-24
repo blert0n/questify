@@ -18,3 +18,12 @@ query Responses($formId: String!) {
     }
   }
 }
+
+mutation SubmitForm($formId: String!, $data: [Answer_insert_input!]!) {
+  insert_Answer(objects: $data) {
+    affected_rows
+  }
+  update_Form(where: { id: { _eq: $formId } }, _inc: { responses: 1 }) {
+    affected_rows
+  }
+}
