@@ -119,6 +119,7 @@ export const rsvp: FormState = {
       options: [],
     },
   ],
+  deletedItems: [],
 };
 export const orderRequest: FormState = {
   name: "Order request",
@@ -262,6 +263,7 @@ export const orderRequest: FormState = {
       origin: "client",
     },
   ],
+  deletedItems: [],
 };
 export const jobApplication: FormState = {
   name: "Job application",
@@ -360,4 +362,5 @@ export const jobApplication: FormState = {
       origin: "client",
     },
   ],
+  deletedItems: [],
 };
