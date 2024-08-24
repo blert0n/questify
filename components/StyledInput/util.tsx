@@ -1,9 +1,13 @@
 import { Descendant, Editor } from "slate";
 import { RenderElementProps, RenderLeafProps } from "slate-react";
-import { CustomEditor, LinkElement, MarkType } from "./Elements";
+import {
+  CustomEditor,
+  LinkElement as LinkElementType,
+  MarkType,
+} from "./Elements";
 
 const LinkElement = (props: RenderElementProps) => {
-  const element = props.element as LinkElement;
+  const element = props.element as LinkElementType;
   return (
     <a href={element.url} {...props.attributes}>
       {props.children}
