@@ -1,10 +1,5 @@
 import { FormItem } from "@/types";
 import {
-  FormItemCreateNestedManyWithoutFormInput,
-  UploadHeaderImageDocument,
-  UploadHeaderImageMutation,
-  UploadItemImageDocument,
-  UploadItemImageMutation,
   CreateFormDocument,
   CreateFormMutation,
   MyFormsDocument,
@@ -12,7 +7,10 @@ import {
   FormDataQuery,
   UpdateFormMutation,
   UpdateFormDocument,
-  FormItemUpsertWithWhereUniqueWithoutFormInput,
+  UpdateFormItemsMutation,
+  UpdateFormItemsDocument,
+  DeleteFormItemsMutation,
+  DeleteFormItemsDocument,
 } from "@/lib/graphql";
 import { apolloClient } from "@/lib/";
 import { toast } from "react-toastify";
@@ -23,48 +21,11 @@ import {
   getTheme,
   getItems,
   getFormDetails,
+  getDeletedItems,
 } from "./";
-import _ from "lodash";
-interface UploadImagesToCdnParams {
-  formId?: string;
-  header?: {
-    url?: string;
-    origin?: string;
-  };
-  items: FormItem[];
-}
-const uploadHeaderImage = async (formId: string, image: string) => {
-  try {
-    await apolloClient.mutate<UploadHeaderImageMutation>({
-      mutation: UploadHeaderImageDocument,
-      variables: {
-        formId,
-        base64: image,
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-const uploadItemImage = async (formId: string, item: FormItem) => {
-  if (item.image?.origin === "server" || !item.image?.dataUrl) return;
-  try {
-    await apolloClient.mutate<UploadItemImageMutation>({
-      mutation: UploadItemImageDocument,
-      variables: {
-        formId,
-        itemId: item.id,
-        base64: item.image?.dataUrl,
-      },
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { v4 as uuidv4 } from "uuid";
 
-export const prepareCreateItems = (
-  items: FormItem[]
-): FormItemCreateNestedManyWithoutFormInput["create"] =>
+export const prepareCreateItems = (items: FormItem[]) =>
   items.map((item) => ({
     id: item.id,
     name: item.name,
@@ -72,10 +33,9 @@ export const prepareCreateItems = (
     required: item.required,
     items: item.options,
     type: item.type,
+    image: item.image,
   }));
-export const prepareUpsertItems = (
-  items: FormItem[]
-): FormItemUpsertWithWhereUniqueWithoutFormInput[] =>
+export const prepareUpsertItems = (items: FormItem[]) =>
   items.map((item) => ({
     where: {
       id: item.id,
@@ -87,6 +47,7 @@ export const prepareUpsertItems = (
       required: item.required,
       items: item.options,
       type: item.type,
+      image: item.image,
     },
     update: {
       name: {
@@ -98,21 +59,12 @@ export const prepareUpsertItems = (
       required: {
         set: item.required,
       },
-      ...(item.image?.origin !== "server" && { image: null }),
+      image: {
+        set: item.image,
+      },
       items: item.options,
     },
   }));
-
-export const uploadImagesToCdn = async (params: UploadImagesToCdnParams) => {
-  if (!params.formId && !params.header?.url && !params.items.length) return;
-  if (params.formId && params.header?.url && params.header?.origin === "client")
-    await uploadHeaderImage(params.formId, params.header.url);
-  if (params.formId && params.items.length > 0) {
-    for (const item of params.items) {
-      await uploadItemImage(params.formId, item);
-    }
-  }
-};
 
 export const saveForm = async () => {
   setLoading(true);
@@ -120,17 +72,16 @@ export const saveForm = async () => {
     const theme = getTheme();
     const formDetails = getFormDetails();
     const formItems = getItems();
-    const themeWithoutImage = _.omit(theme, "Header.image");
-    const response = await apolloClient.mutate<CreateFormMutation>({
+    await apolloClient.mutate<CreateFormMutation>({
       mutation: CreateFormDocument,
       variables: {
         data: {
+          id: uuidv4(),
           name: formDetails.name,
-          items: {
-            create: prepareCreateItems(formItems),
+          FormItems: {
+            data: prepareCreateItems(formItems),
           },
-          style: themeWithoutImage,
-          ownerId: "",
+          style: theme,
           favorite: formDetails.favorite,
         },
       },
@@ -147,14 +98,6 @@ export const saveForm = async () => {
     });
     toast.success("Form created successfully!");
     closeFormModal();
-    uploadImagesToCdn({
-      formId: response.data?.createOneForm.id,
-      header: {
-        url: theme.Header.image?.dataUrl,
-        origin: theme.Header.image?.origin,
-      },
-      items: formItems,
-    });
     resetForm();
     setLoading(false);
   } catch (error) {
@@ -172,39 +115,41 @@ export const editForm = async (formId?: string) => {
     const theme = getTheme();
     const formDetails = getFormDetails();
     const formItems = getItems();
+    const deletedItems = getDeletedItems();
     await apolloClient.mutate<UpdateFormMutation>({
       mutation: UpdateFormDocument,
       variables: {
-        where: {
-          id: formId,
-        },
-        data: {
-          name: {
-            set: formDetails.name,
-          },
-          favorite: {
-            set: formDetails.favorite,
-          },
-          style:
-            theme.Header.image?.origin === "client"
-              ? _.omit(theme, "Header.image")
-              : theme,
-          items: {
-            upsert: prepareUpsertItems(formItems),
-          },
-        },
+        id: formId,
+        name: formDetails.name,
+        style: theme,
+        favorite: formDetails.favorite,
       },
     });
+    await apolloClient.mutate<UpdateFormItemsMutation>({
+      mutation: UpdateFormItemsDocument,
+      variables: {
+        data: formItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          order: item.order,
+          required: item.required,
+          image: item.image,
+          type: item.type,
+          formId: formId,
+          items: item.options ?? [],
+        })),
+      },
+    });
+    if (deletedItems.length > 0) {
+      await apolloClient.mutate<DeleteFormItemsMutation>({
+        mutation: DeleteFormItemsDocument,
+        variables: {
+          ids: deletedItems,
+        },
+      });
+    }
     toast.success("Form updated successfully!");
     closeFormModal();
-    uploadImagesToCdn({
-      formId,
-      header: {
-        url: theme.Header.image?.dataUrl,
-        origin: theme.Header.image?.origin,
-      },
-      items: formItems,
-    });
     resetForm();
     setLoading(false);
   } catch (error) {
@@ -217,7 +162,7 @@ export const editForm = async (formId?: string) => {
 };
 export const loadFormData = async (id: string) => {
   try {
-    const { data: { findFirstForm } = {} } =
+    const { data: { Form_by_pk } = {} } =
       await apolloClient.query<FormDataQuery>({
         query: FormDataDocument,
         variables: {
@@ -225,7 +170,7 @@ export const loadFormData = async (id: string) => {
         },
         fetchPolicy: "network-only",
       });
-    return findFirstForm;
+    return Form_by_pk;
   } catch (e) {
     toast.error("Something went wrong! Please try again later!");
     console.log(e);

@@ -4,12 +4,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { FormOrderByWithRelationInput } from "@/lib/graphql";
 import { Check, Filter } from "lucide-react";
 
 interface P {
   visible: boolean;
-  selected: FormOrderByWithRelationInput;
+  selected: any;
   toggle: (state: boolean) => void;
   onSelect: (filter: number) => void;
 }

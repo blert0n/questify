@@ -1,4 +1,5 @@
-import { FormType, useResponsesQuery } from "@/lib/graphql";
+import { useResponsesQuery } from "@/lib/graphql";
+import { FormType } from "@/types";
 import { List } from "./List";
 import { pluralize } from "@/lib/utils";
 import { PieChart } from "./PieChart";
@@ -18,7 +19,7 @@ const componentMapper = {
 };
 
 export const Responses = ({ formId }: P) => {
-  const { data: { findFirstForm: formData } = {} } = useResponsesQuery({
+  const { data: { Form_by_pk: formData } = {} } = useResponsesQuery({
     variables: {
       formId: String(formId),
     },
@@ -34,8 +35,8 @@ export const Responses = ({ formId }: P) => {
         )}
       </div>
       {Boolean(formData?.responses) &&
-        (formData?.items ?? []).map((item) => {
-          const ResponseComponent = componentMapper[item.type];
+        (formData?.FormItems ?? []).map((item) => {
+          const ResponseComponent = componentMapper[item.type as FormType];
           return (
             <div
               key={item.id}
@@ -43,7 +44,7 @@ export const Responses = ({ formId }: P) => {
             >
               <ResponseComponent
                 name={item.name}
-                count={item._count.Answers}
+                count={item.Answers_aggregate.aggregate?.count ?? 0}
                 answers={item.Answers}
               />
             </div>

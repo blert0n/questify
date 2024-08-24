@@ -1,4 +1,4 @@
-import { FormType } from "@/lib/graphql";
+import { FormType } from "@/types";
 import { IconOption } from "./IconOption";
 import {
   Text,

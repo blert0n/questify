@@ -1,6 +1,6 @@
 import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
-import { useFormDataQuery, useSubmitFormMutation } from "@/lib/graphql";
+import { useFormDataQuery } from "@/lib/graphql";
 import { FormItem, initialTheme } from "@/types";
 import { useRouter } from "next/router";
 import Error from "next/error";
@@ -16,19 +16,20 @@ interface Value {
 
 export default function Index() {
   const router = useRouter();
-  const [submitForm] = useSubmitFormMutation();
+  // const [submitForm] = useSubmitFormMutation();
 
-  const { data: { findFirstForm } = {}, loading } = useFormDataQuery({
-    variables: {
-      formId: String(router.query.id),
-    },
-    skip: typeof router.query.id !== "string",
-  });
+  const { data: { Form_by_pk: findFirstForm } = {}, loading } =
+    useFormDataQuery({
+      variables: {
+        formId: String(router.query.id),
+      },
+      skip: typeof router.query.id !== "string",
+    });
 
   if (!findFirstForm && !loading) return <Error statusCode={404} />;
 
   const formItems: FormItem[] = findFirstForm
-    ? (findFirstForm?.items ?? []).map((item) => {
+    ? (findFirstForm?.FormItems ?? []).map((item) => {
         const { items, ...rest } = item;
         return {
           ...rest,
@@ -43,29 +44,30 @@ export default function Index() {
   const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
 
   const handleSubmit = async (values: Value) => {
-    await submitForm({
-      variables: {
-        formId: String(router.query.id),
-        answers: Object.entries(values)
-          .map(([key, value]) => ({
-            formItemId: key,
-            value,
-          }))
-          .filter((item) => item.value.length > 0),
-      },
-      onCompleted() {
-        router.push(
-          {
-            pathname: `${router.asPath}/success`,
-            query: { backgroundColor: findFirstForm?.style?.secondaryColor },
-          },
-          `${router.asPath}/success`
-        );
-      },
-      onError() {
-        toast.error("Something went wrong! Please try again later!");
-      },
-    });
+    console.log(values, "handleValues");
+    // await submitForm({
+    //   variables: {
+    //     formId: String(router.query.id),
+    //     answers: Object.entries(values)
+    //       .map(([key, value]) => ({
+    //         formItemId: key,
+    //         value,
+    //       }))
+    //       .filter((item) => item.value.length > 0),
+    //   },
+    //   onCompleted() {
+    //     router.push(
+    //       {
+    //         pathname: `${router.asPath}/success`,
+    //         query: { backgroundColor: findFirstForm?.style?.secondaryColor },
+    //       },
+    //       `${router.asPath}/success`
+    //     );
+    //   },
+    //   onError() {
+    //     toast.error("Something went wrong! Please try again later!");
+    //   },
+    // });
   };
 
   return (

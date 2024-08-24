@@ -7,7 +7,8 @@ import { useState } from "react";
 import Selected from "./Selected";
 
 export const List = () => {
-  const { data: { findManyFolder } = {}, loading } = useMyFoldersQuery();
+  const { data: { Folder: findManyFolder } = {}, loading } =
+    useMyFoldersQuery();
   const [selectedFolder, setSelectedFolder] = useState("");
   if (selectedFolder)
     return (

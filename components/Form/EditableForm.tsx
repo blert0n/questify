@@ -1,5 +1,4 @@
-import { FormType } from "@/lib/graphql";
-import { FormItem } from "@/types";
+import { FormItem, FormType } from "@/types";
 import {
   Short,
   Long,

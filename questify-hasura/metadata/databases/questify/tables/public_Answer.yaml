@@ -5,3 +5,52 @@ object_relationships:
   - name: FormItem
     using:
       foreign_key_constraint_on: formItemId
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - formItemId
+        - id
+        - responseId
+        - value
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - formItemId
+        - id
+        - responseId
+        - value
+      filter:
+        FormItem:
+          Form:
+            ownerId:
+              _eq: X-Hasura-User-Id
+      allow_aggregations: true
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - formItemId
+        - id
+        - responseId
+        - value
+      filter:
+        FormItem:
+          Form:
+            ownerId:
+              _eq: X-Hasura-User-Id
+      check: null
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        FormItem:
+          Form:
+            ownerId:
+              _eq: X-Hasura-User-Id
+    comment: ""

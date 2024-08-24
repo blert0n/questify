@@ -1,5 +1,5 @@
 query Responses($formId: String!) {
-  Form(where: { id: { _eq: $formId } }) {
+  Form_by_pk(id: $formId) {
     id
     responses
     FormItems(order_by: { order: asc }) {

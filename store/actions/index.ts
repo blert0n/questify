@@ -10,6 +10,7 @@ export const setLoading = (loading: boolean) =>
 export const resetForm = () => useFormSelectors.getState().resetForm();
 export const getTheme = () => useFormSelectors.getState().theme;
 export const getItems = () => useFormSelectors.getState().items;
+export const getDeletedItems = () => useFormSelectors.getState().deletedItems;
 export const getFormDetails = () => ({
   name: useFormSelectors.getState().name,
   favorite: useFormSelectors.getState().isFavorite,

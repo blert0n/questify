@@ -5,13 +5,14 @@ import { FontPicker } from "./Customizers/FontPicker";
 import { FontSizePicker } from "./Customizers/FontSizePicker";
 import { useBoolean } from "usehooks-ts";
 import { AnimatePresence, motion } from "framer-motion";
-import Chrome from "@uiw/react-color-chrome";
+import dynamic from "next/dynamic";
 import { GithubPlacement } from "@uiw/react-color-github";
 import { Sheet, SheetContent } from "../ui/sheet";
 import { generateShades } from "@/lib";
 import { Uploader } from "../Image";
 import { useFormSelectors } from "@/store";
 import { Theme } from "@/types";
+const Chrome = dynamic(() => import("@uiw/react-color-chrome"), { ssr: false });
 
 interface P {
   visible: boolean;

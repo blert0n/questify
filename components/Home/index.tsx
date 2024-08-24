@@ -1,8 +1,4 @@
-import {
-  FormOrderByWithRelationInput,
-  SortOrder,
-  useMyFormsQuery,
-} from "@/lib/graphql";
+import { useMyFormsQuery } from "@/lib/graphql";
 import Form from "./Form";
 import { Loader } from "@/assets/svg";
 import { Button } from "../ui";
@@ -13,18 +9,18 @@ import { useBoolean } from "usehooks-ts";
 import Filters from "./Filter";
 import { useState } from "react";
 
-const orderByMapper: Record<number, FormOrderByWithRelationInput> = {
-  1: { createdAt: SortOrder.Desc },
-  2: { updatedAt: SortOrder.Desc },
-  3: { favorite: SortOrder.Desc },
+const orderByMapper: Record<number, any> = {
+  1: { createdAt: "desc" },
+  2: { updatedAt: "desc" },
+  3: { favorite: "desc" },
 };
 
 export default function Home() {
   const { value: filterVisible, setValue: toggleFilter } = useBoolean(false);
-  const [orderBy, setOrderBy] = useState<FormOrderByWithRelationInput>({
-    createdAt: SortOrder.Desc,
+  const [orderBy, setOrderBy] = useState<any>({
+    createdAt: "desc",
   });
-  const { data: { findManyForm } = {}, loading } = useMyFormsQuery({
+  const { data: { Form: findManyForm } = {}, loading } = useMyFormsQuery({
     variables: {
       orderBy,
     },

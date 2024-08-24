@@ -51,7 +51,7 @@ export const createFormDetailsSlice: StateCreator<
       activeTab: tab,
       operation: "",
       loading: false,
-      items: form.items.map((item) => {
+      items: (form.FormItems ?? []).map((item) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { formId, items, ...rest } = item;
         const mutableItems = [...item.items];

@@ -8,7 +8,7 @@ interface P {
   onBack: () => void;
 }
 export default function Selected({ id, onBack }: P) {
-  const { data: { findManyForm: folderForms } = {}, loading: folderLoading } =
+  const { data: { Form: folderForms } = {}, loading: folderLoading } =
     useFolderFormsQuery({
       variables: {
         folderId: id,
@@ -17,7 +17,7 @@ export default function Selected({ id, onBack }: P) {
       fetchPolicy: "cache-and-network",
     });
   const {
-    data: { findManyForm: defaultFolderForm } = {},
+    data: { Form: defaultFolderForm } = {},
     loading: defaultFolderLoading,
   } = useDefaultFolderFormsQuery({
     skip: id !== "Default",

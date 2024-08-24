@@ -14,7 +14,7 @@ import { Loader } from "@/assets/svg";
 import { useFormSelectors } from "@/store";
 import MoveFolder from "./MoveFolder";
 
-type FormType = MyFormsQuery["findManyForm"][number] & { folderId?: string };
+type FormType = MyFormsQuery["Form"][number] & { folderId?: string };
 
 interface P {
   form: FormType;

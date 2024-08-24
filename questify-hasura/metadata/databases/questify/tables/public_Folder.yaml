@@ -9,3 +9,49 @@ array_relationships:
         table:
           name: Form
           schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        ownerId:
+          _eq: X-Hasura-User-Id
+      set:
+        ownerId: x-hasura-User-Id
+      columns:
+        - id
+        - name
+        - ownerId
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - ownerId
+      filter:
+        ownerId:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - ownerId
+      filter:
+        ownerId:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        ownerId: x-hasura-User-Id
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        ownerId:
+          _eq: X-Hasura-User-Id
+    comment: ""

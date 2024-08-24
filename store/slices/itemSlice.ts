@@ -15,6 +15,7 @@ export const createItemSlice: StateCreator<
   ItemSlice
 > = (set, get) => ({
   items: [],
+  deletedItems: [],
   updateItem: (id, prop, value) =>
     set((state) => ({
       ...state,
@@ -33,6 +34,7 @@ export const createItemSlice: StateCreator<
         predecessor > 0 ? state.items.at(predecessor - 1)?.id : "formHeader";
       return {
         ...state,
+        deletedItems: state.editMode ? [...state.deletedItems, id] : [],
         selectedComponent: newSelectedId,
         items: state.items.filter((item) => item.id !== id),
       };

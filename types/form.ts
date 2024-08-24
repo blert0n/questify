@@ -1,12 +1,21 @@
 import { fontMapper } from "./../lib/fonts";
-import { FormType } from "@/lib/graphql";
 import { ItemSlice } from "./store";
 import { DraggableProvidedDragHandleProps } from "@hello-pangea/dnd";
 export type FontFamily = keyof typeof fontMapper;
 
+export enum FormType {
+  Date = "DATE",
+  Dropdown = "DROPDOWN",
+  LinearScale = "LINEAR_SCALE",
+  Long = "LONG",
+  MultipleChoice = "MULTIPLE_CHOICE",
+  Short = "SHORT",
+  SingleChoice = "SINGLE_CHOICE",
+}
 export interface InitialFormData {
   id: "";
   items: FormItem[];
+  deletedItems: string[];
   name: string;
   loading: boolean;
   isFavorite: boolean;

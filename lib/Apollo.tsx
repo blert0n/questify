@@ -9,7 +9,25 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { useAuth } from "@clerk/nextjs";
+import { GetTokenOptions } from "@clerk/types";
 import { PropsWithChildren, useMemo } from "react";
+
+type WindowWithClerk = Window & {
+  Clerk?: {
+    session?: {
+      getToken(options?: GetTokenOptions): Promise<string | null>;
+    };
+  };
+};
+
+export const getSessionToken = async () => {
+  if (!(window as WindowWithClerk).Clerk?.session) return null;
+  return (
+    (await (window as WindowWithClerk)?.Clerk?.session?.getToken({
+      template: "questify-hasura",
+    })) ?? null
+  );
+};
 
 const cache = new InMemoryCache({});
 
@@ -18,9 +36,11 @@ const GRAPHQL_HTTP_ENDPOINT =
   "http://localhost:3000/api/graphql";
 
 const authLink = setContext(async (_, { headers }) => {
+  const token = await getSessionToken();
   return {
     headers: {
       ...headers,
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });

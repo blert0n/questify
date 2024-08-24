@@ -2,7 +2,9 @@ mutation CreateForm($data: Form_insert_input!) {
   insert_Form_one(object: $data) {
     id
     name
+    favorite
     createdAt
+    updatedAt
   }
 }
 
@@ -55,7 +57,7 @@ query DefaultFolderForms {
 }
 
 query FormData($formId: String!) {
-  Form(where: { id: { _eq: $formId } }) {
+  Form_by_pk(id: $formId) {
     id
     name
     favorite
@@ -70,5 +72,51 @@ query FormData($formId: String!) {
       image
       type
     }
+  }
+}
+
+mutation UpdateForm(
+  $id: String!
+  $name: String!
+  $style: jsonb!
+  $favorite: Boolean!
+) {
+  update_Form(
+    where: { id: { _eq: $id } }
+    _set: { name: $name, style: $style, favorite: $favorite, updatedAt: now }
+  ) {
+    returning {
+      id
+      name
+      style
+      favorite
+    }
+  }
+}
+
+mutation UpdateFormItems($data: [FormItem_insert_input!]!) {
+  insert_FormItem(
+    objects: $data
+    on_conflict: {
+      constraint: FormItem_pkey
+      update_columns: [image, items, name, order, required, section, type]
+    }
+  ) {
+    returning {
+      id
+      formId
+      name
+      order
+      required
+      items
+      image
+      type
+    }
+  }
+}
+
+mutation DeleteFormItems($ids: [String!]!) {
+  delete_FormItem(where: { id: { _in: $ids } }) {
+    affected_rows
   }
 }

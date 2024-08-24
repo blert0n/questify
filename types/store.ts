@@ -1,5 +1,4 @@
-import { FormType } from "@/lib/graphql";
-import { Theme, FormItem } from "./form";
+import { Theme, FormItem, FormType } from "./form";
 
 export type FormDetailsSlice = {
   id?: string;
@@ -39,6 +38,7 @@ export type ThemeSlice = {
 
 export type ItemSlice = {
   items: FormItem[];
+  deletedItems: string[];
   updateItem: <K extends keyof FormItem>(
     id: string,
     prop: K,

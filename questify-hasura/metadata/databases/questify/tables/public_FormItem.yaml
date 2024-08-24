@@ -13,3 +13,64 @@ array_relationships:
         table:
           name: Answer
           schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - type
+        - required
+        - order
+        - section
+        - image
+        - items
+        - formId
+        - id
+        - name
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - type
+        - required
+        - order
+        - section
+        - image
+        - items
+        - formId
+        - id
+        - name
+      filter:
+        Form:
+          ownerId:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - type
+        - required
+        - order
+        - section
+        - image
+        - items
+        - formId
+        - id
+        - name
+      filter:
+        Form:
+          ownerId:
+            _eq: X-Hasura-User-Id
+      check: null
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        Form:
+          ownerId:
+            _eq: X-Hasura-User-Id
+    comment: ""

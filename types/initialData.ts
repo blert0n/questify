@@ -1,5 +1,4 @@
-import { Theme, FormItem, SubItem, InitialFormData } from "./form";
-import { FormType } from "@/lib/graphql";
+import { Theme, FormItem, SubItem, InitialFormData, FormType } from "./form";
 import { v4 as uuidv4 } from "uuid";
 import { rsvp, orderRequest, jobApplication } from "@/lib/templates";
 import { FormState } from "./";
@@ -13,6 +12,7 @@ export const iconProps = {
 export const initialFormData: InitialFormData = {
   id: "",
   items: [],
+  deletedItems: [],
   name: "Untitled Form",
   loading: false,
   isFavorite: false,

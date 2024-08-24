@@ -1,6 +1,15 @@
 import { FormState } from "@/types";
-import { FormType } from "./graphql";
 import { v4 } from "uuid";
+
+enum FormType {
+  Date = "DATE",
+  Dropdown = "DROPDOWN",
+  LinearScale = "LINEAR_SCALE",
+  Long = "LONG",
+  MultipleChoice = "MULTIPLE_CHOICE",
+  Short = "SHORT",
+  SingleChoice = "SINGLE_CHOICE",
+}
 
 export const rsvp: FormState = {
   name: "Event RSVP",

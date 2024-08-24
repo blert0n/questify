@@ -1,5 +1,4 @@
-import { FormType } from "@/lib/graphql";
-import { FormItem, Theme } from "@/types";
+import { FormItem, Theme, FormType } from "@/types";
 import {
   LiveShortComponent,
   LiveLongComponent,

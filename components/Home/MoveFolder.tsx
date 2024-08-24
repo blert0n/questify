@@ -14,12 +14,7 @@ import {
   DialogTitle,
 } from "../ui";
 import { AppSelect } from "../controlled-inputs";
-import {
-  DefaultFolderFormsDocument,
-  FolderFormsDocument,
-  useMyFoldersQuery,
-  useUpdateFormFolderMutation,
-} from "@/lib/graphql";
+import { useMyFoldersQuery } from "@/lib/graphql";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -34,39 +29,39 @@ export default function MoveFolder({ visible, formId, selected, toggle }: P) {
   const { value: changeFolderPopover, toggle: toggleFolderPopover } =
     useBoolean(false);
   const [selectedFolderId, setSelectedFolderId] = useState(selected);
-  const { data: { findManyFolder } = {} } = useMyFoldersQuery();
-  const [updateFormFolder, { loading }] = useUpdateFormFolderMutation({
-    variables: {
-      folder: {
-        ...(selectedFolderId === "Default"
-          ? { disconnect: { id: { equals: selected } } }
-          : { connect: { id: selectedFolderId } }),
-      },
-      formId,
-    },
-    onCompleted() {
-      const newFolder =
-        findManyFolder?.find((folder) => folder.id === selectedFolderId)
-          ?.name ?? "";
-      toast.success(`Form moved to ${newFolder} folder`);
-      toggleFolderPopover();
-    },
-    onError() {
-      toast.error("Something went wrong! Please try again later!");
-      toggleFolderPopover();
-    },
-    refetchQueries: [
-      {
-        query: DefaultFolderFormsDocument,
-      },
-      {
-        query: FolderFormsDocument,
-        variables: {
-          folderId: selected,
-        },
-      },
-    ],
-  });
+  const { data: { Folder: findManyFolder } = {} } = useMyFoldersQuery();
+  // const [updateFormFolder, { loading }] = useUpdateFormFolderMutation({
+  //   variables: {
+  //     folder: {
+  //       ...(selectedFolderId === "Default"
+  //         ? { disconnect: { id: { equals: selected } } }
+  //         : { connect: { id: selectedFolderId } }),
+  //     },
+  //     formId,
+  //   },
+  //   onCompleted() {
+  //     const newFolder =
+  //       findManyFolder?.find((folder) => folder.id === selectedFolderId)
+  //         ?.name ?? "";
+  //     toast.success(`Form moved to ${newFolder} folder`);
+  //     toggleFolderPopover();
+  //   },
+  //   onError() {
+  //     toast.error("Something went wrong! Please try again later!");
+  //     toggleFolderPopover();
+  //   },
+  //   refetchQueries: [
+  //     {
+  //       query: DefaultFolderFormsDocument,
+  //     },
+  //     {
+  //       query: FolderFormsDocument,
+  //       variables: {
+  //         folderId: selected,
+  //       },
+  //     },
+  //   ],
+  // });
   return (
     <>
       <Popover open={visible} onOpenChange={toggle}>
@@ -122,10 +117,10 @@ export default function MoveFolder({ visible, formId, selected, toggle }: P) {
               Close
             </Button>
             <Button
-              loading={loading}
+              loading={false}
               onClick={() => {
                 if (selectedFolderId === selected) return toggleFolderPopover();
-                void updateFormFolder();
+                // void updateFormFolder();
               }}
             >
               Save
