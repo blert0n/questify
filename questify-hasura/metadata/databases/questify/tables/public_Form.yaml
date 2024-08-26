@@ -43,6 +43,7 @@ select_permissions:
         - id
         - name
         - order
+        - ownerId
         - responses
         - style
         - updatedAt

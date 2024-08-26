@@ -8,6 +8,7 @@ import Templates from "./Templates";
 import { useBoolean } from "usehooks-ts";
 import Filters from "./Filter";
 import { useState } from "react";
+import AppLoader from "../Layout/AppLoader";
 
 const orderByMapper: Record<number, Form_Order_By> = {
   1: { createdAt: Order_By.Desc },
@@ -24,8 +25,10 @@ export default function Home() {
     variables: {
       orderBy,
     },
+    notifyOnNetworkStatusChange: true,
   });
   const openModal = useModalStoreSelectors.use.openModal();
+  if (loading) return <AppLoader />;
   return (
     <div className="flex flex-col gap-4 items-start h-auto lg:max-w-full ml-auto mr-auto">
       <div className="flex items-center justify-center gap-4 pb-4 w-full bg-white shadow-lg">

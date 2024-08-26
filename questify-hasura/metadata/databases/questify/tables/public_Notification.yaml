@@ -1,0 +1,58 @@
+table:
+  name: Notification
+  schema: public
+insert_permissions:
+  - role: public
+    permission:
+      check: {}
+      columns:
+        - description
+        - formId
+        - ownerId
+    comment: ""
+  - role: user
+    permission:
+      check: {}
+      set:
+        ownerId: x-hasura-User-Id
+      columns:
+        - description
+        - formId
+        - ownerId
+        - read
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - read
+        - id
+        - description
+        - formId
+        - ownerId
+        - createdAt
+      filter:
+        ownerId:
+          _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - formId
+        - read
+      filter:
+        ownerId:
+          _eq: X-Hasura-User-Id
+      check: null
+      set:
+        ownerId: x-hasura-User-Id
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        ownerId:
+          _eq: X-Hasura-User-Id
+    comment: ""

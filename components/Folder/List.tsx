@@ -5,6 +5,7 @@ import Folder from "./Folder";
 import Create from "./Create";
 import { useState } from "react";
 import Selected from "./Selected";
+import AppLoader from "../Layout/AppLoader";
 
 export const List = () => {
   const { data: { Folder: findManyFolder } = {}, loading } =
@@ -14,6 +15,8 @@ export const List = () => {
     return (
       <Selected id={selectedFolder} onBack={() => setSelectedFolder("")} />
     );
+  if (loading) return <AppLoader message="Loading folders..." />;
+
   return (
     <div className="flex flex-col gap-4 items-start h-auto lg:max-w-full ml-auto mr-auto pt-4">
       {loading && (

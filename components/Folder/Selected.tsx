@@ -3,6 +3,7 @@ import { cn } from "@/lib";
 import { useDefaultFolderFormsQuery, useFolderFormsQuery } from "@/lib/graphql";
 import { ArrowLeft } from "lucide-react";
 import Form from "../Home/Form";
+import AppLoader from "../Layout/AppLoader";
 interface P {
   id: string;
   onBack: () => void;
@@ -14,16 +15,20 @@ export default function Selected({ id, onBack }: P) {
         folderId: id,
       },
       skip: id === "Default",
+      notifyOnNetworkStatusChange: true,
     });
   const {
     data: { Form: defaultFolderForm } = {},
     loading: defaultFolderLoading,
   } = useDefaultFolderFormsQuery({
     skip: id !== "Default",
+    notifyOnNetworkStatusChange: true,
   });
 
   const forms = id !== "Default" ? folderForms : defaultFolderForm;
   const loading = id !== "Default" ? folderLoading : defaultFolderLoading;
+
+  if (loading) return <AppLoader message="Loading" />;
 
   return (
     <>

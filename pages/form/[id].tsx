@@ -1,6 +1,10 @@
 import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
-import { useFormDataQuery, useSubmitFormMutation } from "@/lib/graphql";
+import {
+  useGetFormQuery,
+  useInsertNotificationMutation,
+  useSubmitFormMutation,
+} from "@/lib/graphql";
 import { FormItem, initialTheme } from "@/types";
 import { useRouter } from "next/router";
 import Error from "next/error";
@@ -10,6 +14,7 @@ import { getPrimaryColor, prepareFormik } from "@/lib";
 import { Button } from "@/components/ui";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
+import AppLoader from "@/components/Layout/AppLoader";
 
 interface Value {
   [key: string]: string;
@@ -18,32 +23,16 @@ interface Value {
 export default function Index() {
   const router = useRouter();
   const [submitForm] = useSubmitFormMutation();
+  const [insertNotification] = useInsertNotificationMutation();
 
-  const { data: { Form_by_pk: findFirstForm } = {}, loading } =
-    useFormDataQuery({
+  const { data: { Form_by_pk: findFirstForm } = {}, loading } = useGetFormQuery(
+    {
       variables: {
         formId: String(router.query.id),
       },
       skip: typeof router.query.id !== "string",
-    });
-
-  if (!findFirstForm && !loading) return <Error statusCode={404} />;
-
-  const formItems: FormItem[] = findFirstForm
-    ? (findFirstForm?.FormItems ?? []).map((item) => {
-        const { items, ...rest } = item;
-        return {
-          ...rest,
-          origin: "server",
-          options: items,
-        };
-      })
-    : [];
-
-  const { initialValues, validationSchema } = prepareFormik(formItems);
-
-  const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
-
+    }
+  );
   const handleSubmit = async (values: Value) => {
     const responseId = uuidv4();
     await submitForm({
@@ -75,7 +64,33 @@ export default function Index() {
         toast.error("Something went wrong! Please try again later!");
       },
     });
+    await insertNotification({
+      variables: {
+        description: findFirstForm?.name ?? "",
+        formId: findFirstForm?.id ?? "",
+        ownerId: findFirstForm?.ownerId ?? "",
+      },
+    });
   };
+  if ((!findFirstForm && loading) || typeof router.query.id === "undefined")
+    return <AppLoader message="Loading form..." />;
+
+  if (!findFirstForm && !loading) return <Error statusCode={404} />;
+
+  const formItems: FormItem[] = findFirstForm
+    ? (findFirstForm?.FormItems ?? []).map((item) => {
+        const { items, ...rest } = item;
+        return {
+          ...rest,
+          origin: "server",
+          options: items,
+        };
+      })
+    : [];
+
+  const { initialValues, validationSchema } = prepareFormik(formItems);
+
+  const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
 
   return (
     <>

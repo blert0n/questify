@@ -1614,6 +1614,254 @@ input Int_comparison_exp {
   _nin: [Int!]
 }
 
+"""user notifications"""
+type Notification {
+  createdAt: timestamp!
+  description: String
+  formId: String
+  id: Int!
+  ownerId: String
+  read: Boolean!
+}
+
+"""
+aggregated selection of "Notification"
+"""
+type Notification_aggregate {
+  aggregate: Notification_aggregate_fields
+  nodes: [Notification!]!
+}
+
+"""
+aggregate fields of "Notification"
+"""
+type Notification_aggregate_fields {
+  avg: Notification_avg_fields
+  count(columns: [Notification_select_column!], distinct: Boolean): Int!
+  max: Notification_max_fields
+  min: Notification_min_fields
+  stddev: Notification_stddev_fields
+  stddev_pop: Notification_stddev_pop_fields
+  stddev_samp: Notification_stddev_samp_fields
+  sum: Notification_sum_fields
+  var_pop: Notification_var_pop_fields
+  var_samp: Notification_var_samp_fields
+  variance: Notification_variance_fields
+}
+
+"""aggregate avg on columns"""
+type Notification_avg_fields {
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "Notification". All fields are combined with a logical 'AND'.
+"""
+input Notification_bool_exp {
+  _and: [Notification_bool_exp!]
+  _not: Notification_bool_exp
+  _or: [Notification_bool_exp!]
+  createdAt: timestamp_comparison_exp
+  description: String_comparison_exp
+  formId: String_comparison_exp
+  id: Int_comparison_exp
+  ownerId: String_comparison_exp
+  read: Boolean_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "Notification"
+"""
+enum Notification_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  Notification_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "Notification"
+"""
+input Notification_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "Notification"
+"""
+input Notification_insert_input {
+  createdAt: timestamp
+  description: String
+  formId: String
+  id: Int
+  ownerId: String
+  read: Boolean
+}
+
+"""aggregate max on columns"""
+type Notification_max_fields {
+  createdAt: timestamp
+  description: String
+  formId: String
+  id: Int
+  ownerId: String
+}
+
+"""aggregate min on columns"""
+type Notification_min_fields {
+  createdAt: timestamp
+  description: String
+  formId: String
+  id: Int
+  ownerId: String
+}
+
+"""
+response of any mutation on the table "Notification"
+"""
+type Notification_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [Notification!]!
+}
+
+"""
+on_conflict condition type for table "Notification"
+"""
+input Notification_on_conflict {
+  constraint: Notification_constraint!
+  update_columns: [Notification_update_column!]! = []
+  where: Notification_bool_exp
+}
+
+"""Ordering options when selecting data from "Notification"."""
+input Notification_order_by {
+  createdAt: order_by
+  description: order_by
+  formId: order_by
+  id: order_by
+  ownerId: order_by
+  read: order_by
+}
+
+"""primary key columns input for table: Notification"""
+input Notification_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "Notification"
+"""
+enum Notification_select_column {
+  """column name"""
+  createdAt
+  """column name"""
+  description
+  """column name"""
+  formId
+  """column name"""
+  id
+  """column name"""
+  ownerId
+  """column name"""
+  read
+}
+
+"""
+input type for updating data in table "Notification"
+"""
+input Notification_set_input {
+  createdAt: timestamp
+  description: String
+  formId: String
+  id: Int
+  ownerId: String
+  read: Boolean
+}
+
+"""aggregate stddev on columns"""
+type Notification_stddev_fields {
+  id: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type Notification_stddev_pop_fields {
+  id: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type Notification_stddev_samp_fields {
+  id: Float
+}
+
+"""
+Streaming cursor of the table "Notification"
+"""
+input Notification_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Notification_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Notification_stream_cursor_value_input {
+  createdAt: timestamp
+  description: String
+  formId: String
+  id: Int
+  ownerId: String
+  read: Boolean
+}
+
+"""aggregate sum on columns"""
+type Notification_sum_fields {
+  id: Int
+}
+
+"""
+update columns of table "Notification"
+"""
+enum Notification_update_column {
+  """column name"""
+  createdAt
+  """column name"""
+  description
+  """column name"""
+  formId
+  """column name"""
+  id
+  """column name"""
+  ownerId
+  """column name"""
+  read
+}
+
+input Notification_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: Notification_inc_input
+  """sets the columns of the filtered rows to the given values"""
+  _set: Notification_set_input
+  """filter the rows which have to be updated"""
+  where: Notification_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type Notification_var_pop_fields {
+  id: Float
+}
+
+"""aggregate var_samp on columns"""
+type Notification_var_samp_fields {
+  id: Float
+}
+
+"""aggregate variance on columns"""
+type Notification_variance_fields {
+  id: Float
+}
+
 """
 Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
 """
@@ -1744,6 +1992,17 @@ type mutation_root {
   """
   delete_Form_by_pk(id: String!): Form
   """
+  delete data from the table: "Notification"
+  """
+  delete_Notification(
+    """filter the rows which have to be deleted"""
+    where: Notification_bool_exp!
+  ): Notification_mutation_response
+  """
+  delete single row from the table: "Notification"
+  """
+  delete_Notification_by_pk(id: Int!): Notification
+  """
   delete data from the table: "users"
   """
   delete_users(
@@ -1826,6 +2085,24 @@ type mutation_root {
     """upsert condition"""
     on_conflict: Form_on_conflict
   ): Form
+  """
+  insert data into the table: "Notification"
+  """
+  insert_Notification(
+    """the rows to be inserted"""
+    objects: [Notification_insert_input!]!
+    """upsert condition"""
+    on_conflict: Notification_on_conflict
+  ): Notification_mutation_response
+  """
+  insert a single row into the table: "Notification"
+  """
+  insert_Notification_one(
+    """the row to be inserted"""
+    object: Notification_insert_input!
+    """upsert condition"""
+    on_conflict: Notification_on_conflict
+  ): Notification
   """
   insert data into the table: "users"
   """
@@ -2013,6 +2290,34 @@ type mutation_root {
     updates: [Form_updates!]!
   ): [Form_mutation_response]
   """
+  update data of the table: "Notification"
+  """
+  update_Notification(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: Notification_inc_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: Notification_set_input
+    """filter the rows which have to be updated"""
+    where: Notification_bool_exp!
+  ): Notification_mutation_response
+  """
+  update single row of the table: "Notification"
+  """
+  update_Notification_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: Notification_inc_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: Notification_set_input
+    pk_columns: Notification_pk_columns_input!
+  ): Notification
+  """
+  update multiples rows of table: "Notification"
+  """
+  update_Notification_many(
+    """updates to execute, in order"""
+    updates: [Notification_updates!]!
+  ): [Notification_mutation_response]
+  """
   update data of the table: "users"
   """
   update_users(
@@ -2183,6 +2488,38 @@ type query_root {
   ): Form_aggregate!
   """fetch data from the table: "Form" using primary key columns"""
   Form_by_pk(id: String!): Form
+  """
+  fetch data from the table: "Notification"
+  """
+  Notification(
+    """distinct select on columns"""
+    distinct_on: [Notification_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Notification_order_by!]
+    """filter the rows returned"""
+    where: Notification_bool_exp
+  ): [Notification!]!
+  """
+  fetch aggregated fields from the table: "Notification"
+  """
+  Notification_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Notification_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Notification_order_by!]
+    """filter the rows returned"""
+    where: Notification_bool_exp
+  ): Notification_aggregate!
+  """fetch data from the table: "Notification" using primary key columns"""
+  Notification_by_pk(id: Int!): Notification
   """
   fetch data from the table: "users"
   """
@@ -2390,6 +2727,49 @@ type subscription_root {
     """filter the rows returned"""
     where: Form_bool_exp
   ): [Form!]!
+  """
+  fetch data from the table: "Notification"
+  """
+  Notification(
+    """distinct select on columns"""
+    distinct_on: [Notification_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Notification_order_by!]
+    """filter the rows returned"""
+    where: Notification_bool_exp
+  ): [Notification!]!
+  """
+  fetch aggregated fields from the table: "Notification"
+  """
+  Notification_aggregate(
+    """distinct select on columns"""
+    distinct_on: [Notification_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Notification_order_by!]
+    """filter the rows returned"""
+    where: Notification_bool_exp
+  ): Notification_aggregate!
+  """fetch data from the table: "Notification" using primary key columns"""
+  Notification_by_pk(id: Int!): Notification
+  """
+  fetch data from the table in a streaming manner: "Notification"
+  """
+  Notification_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Notification_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Notification_bool_exp
+  ): [Notification!]!
   """
   fetch data from the table: "users"
   """

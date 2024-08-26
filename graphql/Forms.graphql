@@ -75,6 +75,25 @@ query FormData($formId: String!) {
     }
   }
 }
+query GetForm($formId: String!) {
+  Form_by_pk(id: $formId) {
+    id
+    name
+    favorite
+    style
+    ownerId
+    FormItems(order_by: { order: asc }) {
+      id
+      formId
+      name
+      order
+      required
+      items
+      image
+      type
+    }
+  }
+}
 
 mutation UpdateForm(
   $id: String!
