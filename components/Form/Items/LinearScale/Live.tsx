@@ -19,6 +19,7 @@ const generateScaleOptions = (start: string = "1", end: string = "10") => {
 export const LiveLinearScale = ({
   item,
   theme = initialTheme,
+  readonly,
 }: FormComponent) => {
   const checkBoxColor = getPrimaryColor(theme.primaryColor);
   const formState = useFormikContext<Record<string, string>>();
@@ -66,10 +67,13 @@ export const LiveLinearScale = ({
               {item.options?.[0].label}
             </div>
             <RadioGroup
+              key={item.id}
               className="flex flex-row flex-wrap gap-4"
               onValueChange={(value) =>
                 formState?.setFieldValue(item.id, value)
               }
+              defaultValue={readonly ? formState.values[item.id] : ""}
+              disabled={readonly}
             >
               {generateScaleOptions(
                 item.options?.[0].value,

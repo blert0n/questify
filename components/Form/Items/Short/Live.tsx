@@ -10,6 +10,7 @@ import ReactHtmlParser from "react-html-parser";
 export const LiveShortComponent = ({
   item,
   theme = initialTheme,
+  readonly,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
   const focusedInputColor = getPrimaryColor(theme.primaryColor);
@@ -68,6 +69,8 @@ export const LiveShortComponent = ({
         }}
         onBlur={() => setInputFocus(false)}
         onFocus={() => setInputFocus(true)}
+        defaultValue={readonly ? formState?.values[item.id] : ""}
+        disabled={readonly}
       />
       {formState?.touched[item.id] && formState?.errors[item.id] && (
         <div className="flex gap-2 items-center text-sm text-red-600">

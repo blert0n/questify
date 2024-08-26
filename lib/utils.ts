@@ -2,6 +2,7 @@ import { FormItem } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { object, string } from "yup";
+import { GetResponsesByIdQuery } from "./graphql";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,10 +16,14 @@ export const htmlToText = (html: string) => {
 export const pluralize = (count: number, noun: string, suffix = "s") =>
   `${count} ${noun}${count !== 1 ? suffix : ""}`;
 
-export const prepareFormik = (items: FormItem[]) => {
+export const prepareFormik = (
+  items: FormItem[],
+  answers: GetResponsesByIdQuery["Answer"]
+) => {
   const fields = items.map((item) => ({
     name: item.id,
-    initialValue: "",
+    initialValue:
+      answers?.find((answer) => answer.FormItem?.id === item.id)?.value ?? "",
     type: item.required
       ? string().required("This is a required field")
       : string(),

@@ -9,6 +9,7 @@ import ReactHtmlParser from "react-html-parser";
 export const LiveOneChoice = ({
   item,
   theme = initialTheme,
+  readonly,
 }: FormComponent) => {
   const checkBoxColor = getPrimaryColor(theme.primaryColor);
   const formState = useFormikContext<Record<string, string>>();
@@ -44,11 +45,14 @@ export const LiveOneChoice = ({
           {item.required && <span className="text-red-600">*</span>}
         </div>
         <RadioGroup
+          key={item.id}
           onValueChange={(value) => {
             !formState?.touched[item.id] &&
               formState?.setTouched({ ...formState?.touched, [item.id]: true });
             formState?.setFieldValue?.(item.id, value);
           }}
+          defaultValue={readonly ? formState.values[item.id] : ""}
+          disabled={readonly}
         >
           {item.options?.map((option) => (
             <div

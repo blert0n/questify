@@ -15,10 +15,35 @@ import { CalendarIcon, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 import ReactHtmlParser from "react-html-parser";
 
-export const LiveDate = ({ item, theme = initialTheme }: FormComponent) => {
-  const [date, setDate] = useState<Date | undefined>();
+const formatDate = (dateString: string) => {
+  const [day, month, year] = dateString.split("-").map(Number);
+
+  const dateObject = new Date(year, month - 1, day);
+
+  const isValid =
+    dateObject &&
+    dateObject.getFullYear() === parseInt(String(year)) &&
+    dateObject.getMonth() === parseInt(String(month)) - 1 &&
+    dateObject.getDate() === parseInt(String(day));
+
+  const formattedDate = new Date(year, month - 1, day);
+
+  return { isValid, formattedDate };
+};
+
+export const LiveDate = ({
+  item,
+  theme = initialTheme,
+  readonly,
+}: FormComponent) => {
   const color = getPrimaryColor(theme.primaryColor);
   const formState = useFormikContext<Record<string, string>>();
+  const formDate = formState?.values?.[item.id];
+  const [date, setDate] = useState<Date | undefined>(
+    readonly && formatDate(formDate).isValid
+      ? formatDate(formDate).formattedDate
+      : undefined
+  );
 
   return (
     <div
@@ -59,7 +84,7 @@ export const LiveDate = ({ item, theme = initialTheme }: FormComponent) => {
           )}
         >
           <Popover>
-            <PopoverTrigger asChild>
+            <PopoverTrigger asChild disabled={readonly}>
               <Button
                 variant={"outline"}
                 className={cn(
@@ -86,6 +111,7 @@ export const LiveDate = ({ item, theme = initialTheme }: FormComponent) => {
                 modifiersStyles={{
                   selected: { background: color },
                 }}
+                disabled={readonly}
               />
             </PopoverContent>
           </Popover>

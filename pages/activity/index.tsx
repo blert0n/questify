@@ -164,6 +164,8 @@ export default function Index() {
               date={dayjs(activity.createdAt).format("DD MMM, YYYY - HH:mm")}
               title="A new response has been submitted"
               description={`There's been new activity on form: ${activity.Form?.name}`}
+              formId={activity.Form?.id}
+              relatedId={activity.relatedId}
             />
           ))}
         </ol>

@@ -10,6 +10,7 @@ import { ShieldAlert } from "lucide-react";
 export const LiveLongComponent = ({
   item,
   theme = initialTheme,
+  readonly,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
   const focusedInputColor = getPrimaryColor(theme.primaryColor);
@@ -47,6 +48,8 @@ export const LiveLongComponent = ({
       </div>
       <Textarea
         name={item.id}
+        defaultValue={readonly ? formState?.values?.[item.id] : ""}
+        disabled={readonly}
         className={cn(
           "w-full py-2 px-0 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none disabled:cursor-default transition-all duration-100 ease-in",
           fontMapper[theme.Text.fontFamily],

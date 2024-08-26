@@ -1,4 +1,3 @@
-import { Search } from "../ui/search";
 import { Menu } from "lucide-react";
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { useMediaScreen } from "@/lib";
@@ -23,7 +22,6 @@ export const Header = ({ toggleNav }: P) => {
           {!smScreen && <NavMobile />}
         </div>
         <div className="flex lg:w-1/2 w-5/6 items-center justify-end">
-          <Search className="md:px-2 px-1" />
           <Notifications />
           <div className="px-2">
             <SignedIn>

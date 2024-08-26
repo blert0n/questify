@@ -27,3 +27,13 @@ mutation SubmitForm($formId: String!, $data: [Answer_insert_input!]!) {
     affected_rows
   }
 }
+
+query GetResponsesById($responseId: String!) {
+  Answer(where: { responseId: { _eq: $responseId } }) {
+    id
+    FormItem {
+      id
+    }
+    value
+  }
+}

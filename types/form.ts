@@ -79,6 +79,7 @@ export interface FormComponent {
   theme: Theme;
   dragHandle?: DraggableProvidedDragHandleProps | null;
   hovered?: boolean;
+  readonly?: boolean;
 }
 
 export interface TextStyling {

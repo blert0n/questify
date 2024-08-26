@@ -3096,6 +3096,13 @@ export type SubmitFormMutationVariables = Exact<{
 
 export type SubmitFormMutation = { insert_Answer?: { affected_rows: number } | undefined | null, update_Form?: { affected_rows: number } | undefined | null };
 
+export type GetResponsesByIdQueryVariables = Exact<{
+  responseId: Scalars['String']['input'];
+}>;
+
+
+export type GetResponsesByIdQuery = { Answer: Array<{ id: string, value: string, FormItem?: { id: string } | undefined | null }> };
+
 export type MyFoldersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3278,6 +3285,7 @@ export type FormsByNameQueryResult = Apollo.QueryResult<FormsByNameQuery, FormsB
 export const ActivitiesDocument = /*#__PURE__*/ gql`
     query Activities($ownerId: String!, $formName: String = "%%", $fromDate: timestamp, $toDate: timestamp, $offset: Int = 0, $limit: Int = 10) {
   Notification(
+    order_by: [{createdAt: desc}]
     where: {_and: {createdAt: {_gte: $fromDate, _lte: $toDate}}, Form: {name: {_like: $formName}}, ownerId: {_eq: $ownerId}}
     offset: $offset
     limit: $limit
@@ -3514,6 +3522,50 @@ export function useSubmitFormMutation(baseOptions?: Apollo.MutationHookOptions<S
       }
 export type SubmitFormMutationHookResult = ReturnType<typeof useSubmitFormMutation>;
 export type SubmitFormMutationResult = Apollo.MutationResult<SubmitFormMutation>;
+export const GetResponsesByIdDocument = /*#__PURE__*/ gql`
+    query GetResponsesById($responseId: String!) {
+  Answer(where: {responseId: {_eq: $responseId}}) {
+    id
+    FormItem {
+      id
+    }
+    value
+  }
+}
+    `;
+
+/**
+ * __useGetResponsesByIdQuery__
+ *
+ * To run a query within a React component, call `useGetResponsesByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetResponsesByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetResponsesByIdQuery({
+ *   variables: {
+ *      responseId: // value for 'responseId'
+ *   },
+ * });
+ */
+export function useGetResponsesByIdQuery(baseOptions: Apollo.QueryHookOptions<GetResponsesByIdQuery, GetResponsesByIdQueryVariables> & ({ variables: GetResponsesByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>(GetResponsesByIdDocument, options);
+      }
+export function useGetResponsesByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>(GetResponsesByIdDocument, options);
+        }
+export function useGetResponsesByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>(GetResponsesByIdDocument, options);
+        }
+export type GetResponsesByIdQueryHookResult = ReturnType<typeof useGetResponsesByIdQuery>;
+export type GetResponsesByIdLazyQueryHookResult = ReturnType<typeof useGetResponsesByIdLazyQuery>;
+export type GetResponsesByIdSuspenseQueryHookResult = ReturnType<typeof useGetResponsesByIdSuspenseQuery>;
+export type GetResponsesByIdQueryResult = Apollo.QueryResult<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>;
 export const MyFoldersDocument = /*#__PURE__*/ gql`
     query MyFolders {
   Folder {

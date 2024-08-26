@@ -6,7 +6,11 @@ import { useFormikContext } from "formik";
 import { ShieldAlert } from "lucide-react";
 import ReactHtmlParser from "react-html-parser";
 
-export const LiveDropdown = ({ item, theme = initialTheme }: FormComponent) => {
+export const LiveDropdown = ({
+  item,
+  theme = initialTheme,
+  readonly,
+}: FormComponent) => {
   const checkMarkColor = getPrimaryColor(theme.primaryColor);
   const formState = useFormikContext<Record<string, string>>();
 
@@ -44,6 +48,8 @@ export const LiveDropdown = ({ item, theme = initialTheme }: FormComponent) => {
         <div className="flex flex-col gap-2 xs:w-auto min-w-[200px] w-full">
           <AppSelect
             key={item.id}
+            defaultValue={readonly ? formState?.values?.[item.id] : ""}
+            disabled={readonly}
             options={item.options?.map((option) => ({
               placeholder: (
                 <div

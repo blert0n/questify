@@ -102,9 +102,8 @@ const Notifications = () => {
           )}
           <div className="flex flex-col">
             {Notification?.map((notification) => (
-              <>
+              <div key={notification.id}>
                 <div
-                  key={notification.id}
                   className={cn(
                     "flex flex-col gap-1 p-2 cursor-pointer shadow-sm",
                     !notification.read && "bg-red-500 bg-opacity-[0.02]"
@@ -136,7 +135,7 @@ const Notifications = () => {
                     {getNotificationTime(notification.createdAt)}
                   </div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
           <Link

@@ -13,6 +13,7 @@ query Activities(
   $limit: Int = 10
 ) {
   Notification(
+    order_by: [{ createdAt: desc }]
     where: {
       _and: { createdAt: { _gte: $fromDate, _lte: $toDate } }
       Form: { name: { _like: $formName } }

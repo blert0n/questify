@@ -10,9 +10,12 @@ import ReactHtmlParser from "react-html-parser";
 export const LiveMultiChoice = ({
   item,
   theme = initialTheme,
+  readonly,
 }: FormComponent) => {
   const formState = useFormikContext<Record<string, string>>();
-  const [checked, setChecked] = useState<string[]>([]);
+  const [checked, setChecked] = useState<string[]>(
+    readonly ? formState?.values?.[item.id].split(",") : []
+  );
 
   const handleCheck = (value: string) => {
     formState?.setTouched({ ...formState?.touched, [item.id]: true });
@@ -86,6 +89,7 @@ export const LiveMultiChoice = ({
                     ? checkBoxColor
                     : "initial",
                 }}
+                disabled={readonly}
               />
               {option.value}
             </div>
