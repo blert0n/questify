@@ -18,7 +18,7 @@ export const pluralize = (count: number, noun: string, suffix = "s") =>
 
 export const prepareFormik = (
   items: FormItem[],
-  answers: GetResponsesByIdQuery["Answer"]
+  answers?: GetResponsesByIdQuery["Answer"]
 ) => {
   const fields = items.map((item) => ({
     name: item.id,
