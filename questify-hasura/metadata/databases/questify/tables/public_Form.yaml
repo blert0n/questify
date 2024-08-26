@@ -68,6 +68,13 @@ select_permissions:
           _eq: X-Hasura-User-Id
     comment: ""
 update_permissions:
+  - role: public
+    permission:
+      columns:
+        - responses
+      filter: {}
+      check: null
+    comment: ""
   - role: user
     permission:
       columns:
