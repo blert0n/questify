@@ -1,0 +1,62 @@
+query FormsByName {
+  Form {
+    id
+    name
+  }
+}
+query Activities(
+  $ownerId: String!
+  $formName: String = "%%"
+  $fromDate: timestamp
+  $toDate: timestamp
+  $offset: Int = 0
+  $limit: Int = 10
+) {
+  Notification(
+    where: {
+      _and: { createdAt: { _gte: $fromDate, _lte: $toDate } }
+      Form: { name: { _like: $formName } }
+      ownerId: { _eq: $ownerId }
+    }
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    description
+    createdAt
+    relatedId
+    Form {
+      id
+      name
+    }
+  }
+}
+query ActivitiesCount(
+  $ownerId: String!
+  $formName: String = "%%"
+  $fromDate: timestamp
+  $toDate: timestamp
+) {
+  Notification_aggregate(
+    where: {
+      _and: { createdAt: { _gte: $fromDate, _lte: $toDate } }
+      Form: { name: { _like: $formName } }
+      ownerId: { _eq: $ownerId }
+    }
+  ) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query OldestNotification($ownerId: String!) {
+  Notification(
+    where: { ownerId: { _eq: $ownerId } }
+    order_by: { createdAt: asc }
+    limit: 1
+  ) {
+    id
+    createdAt
+  }
+}

@@ -1,10 +1,16 @@
 mutation InsertNotification(
   $ownerId: String!
   $formId: String!
-  $description: String!
+  $responseId: String!
+  $description: String
 ) {
   insert_Notification(
-    objects: { description: $description, formId: $formId, ownerId: $ownerId }
+    objects: {
+      description: $description
+      formId: $formId
+      ownerId: $ownerId
+      relatedId: $responseId
+    }
   ) {
     affected_rows
   }
@@ -14,6 +20,7 @@ subscription Notifications($ownerId: String!) {
   Notification(
     where: { ownerId: { _eq: $ownerId } }
     order_by: [{ createdAt: desc }]
+    limit: 5
   ) {
     id
     description
@@ -24,12 +31,7 @@ subscription Notifications($ownerId: String!) {
 
 mutation ReadNotification($id: Int!) {
   update_Notification(where: { id: { _eq: $id } }, _set: { read: true }) {
-    returning {
-      id
-      description
-      createdAt
-      read
-    }
+    affected_rows
   }
 }
 
@@ -38,11 +40,6 @@ mutation ReadAllNotifications($ownerId: String!) {
     where: { ownerId: { _eq: $ownerId } }
     _set: { read: true }
   ) {
-    returning {
-      id
-      description
-      createdAt
-      read
-    }
+    affected_rows
   }
 }

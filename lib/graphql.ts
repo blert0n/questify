@@ -1442,12 +1442,15 @@ export interface Int_Comparison_Exp {
 
 /** user notifications */
 export interface Notification {
+  /** An object relationship */
+  Form?: Maybe<Form>;
   createdAt: Scalars['timestamp']['output'];
   description?: Maybe<Scalars['String']['output']>;
   formId?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   ownerId?: Maybe<Scalars['String']['output']>;
   read: Scalars['Boolean']['output'];
+  relatedId?: Maybe<Scalars['String']['output']>;
 }
 
 /** aggregated selection of "Notification" */
@@ -1485,6 +1488,7 @@ export interface Notification_Avg_Fields {
 
 /** Boolean expression to filter rows from the table "Notification". All fields are combined with a logical 'AND'. */
 export interface Notification_Bool_Exp {
+  Form?: InputMaybe<Form_Bool_Exp>;
   _and?: InputMaybe<Array<Notification_Bool_Exp>>;
   _not?: InputMaybe<Notification_Bool_Exp>;
   _or?: InputMaybe<Array<Notification_Bool_Exp>>;
@@ -1494,6 +1498,7 @@ export interface Notification_Bool_Exp {
   id?: InputMaybe<Int_Comparison_Exp>;
   ownerId?: InputMaybe<String_Comparison_Exp>;
   read?: InputMaybe<Boolean_Comparison_Exp>;
+  relatedId?: InputMaybe<String_Comparison_Exp>;
 }
 
 /** unique or primary key constraints on table "Notification" */
@@ -1509,12 +1514,14 @@ export interface Notification_Inc_Input {
 
 /** input type for inserting data into table "Notification" */
 export interface Notification_Insert_Input {
+  Form?: InputMaybe<Form_Obj_Rel_Insert_Input>;
   createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   formId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   ownerId?: InputMaybe<Scalars['String']['input']>;
   read?: InputMaybe<Scalars['Boolean']['input']>;
+  relatedId?: InputMaybe<Scalars['String']['input']>;
 }
 
 /** aggregate max on columns */
@@ -1524,6 +1531,7 @@ export interface Notification_Max_Fields {
   formId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   ownerId?: Maybe<Scalars['String']['output']>;
+  relatedId?: Maybe<Scalars['String']['output']>;
 }
 
 /** aggregate min on columns */
@@ -1533,6 +1541,7 @@ export interface Notification_Min_Fields {
   formId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
   ownerId?: Maybe<Scalars['String']['output']>;
+  relatedId?: Maybe<Scalars['String']['output']>;
 }
 
 /** response of any mutation on the table "Notification" */
@@ -1552,12 +1561,14 @@ export interface Notification_On_Conflict {
 
 /** Ordering options when selecting data from "Notification". */
 export interface Notification_Order_By {
+  Form?: InputMaybe<Form_Order_By>;
   createdAt?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   formId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   ownerId?: InputMaybe<Order_By>;
   read?: InputMaybe<Order_By>;
+  relatedId?: InputMaybe<Order_By>;
 }
 
 /** primary key columns input for table: Notification */
@@ -1578,7 +1589,9 @@ export enum Notification_Select_Column {
   /** column name */
   OwnerId = 'ownerId',
   /** column name */
-  Read = 'read'
+  Read = 'read',
+  /** column name */
+  RelatedId = 'relatedId'
 }
 
 /** input type for updating data in table "Notification" */
@@ -1589,6 +1602,7 @@ export interface Notification_Set_Input {
   id?: InputMaybe<Scalars['Int']['input']>;
   ownerId?: InputMaybe<Scalars['String']['input']>;
   read?: InputMaybe<Scalars['Boolean']['input']>;
+  relatedId?: InputMaybe<Scalars['String']['input']>;
 }
 
 /** aggregate stddev on columns */
@@ -1622,6 +1636,7 @@ export interface Notification_Stream_Cursor_Value_Input {
   id?: InputMaybe<Scalars['Int']['input']>;
   ownerId?: InputMaybe<Scalars['String']['input']>;
   read?: InputMaybe<Scalars['Boolean']['input']>;
+  relatedId?: InputMaybe<Scalars['String']['input']>;
 }
 
 /** aggregate sum on columns */
@@ -1642,7 +1657,9 @@ export enum Notification_Update_Column {
   /** column name */
   OwnerId = 'ownerId',
   /** column name */
-  Read = 'read'
+  Read = 'read',
+  /** column name */
+  RelatedId = 'relatedId'
 }
 
 export interface Notification_Updates {
@@ -1760,6 +1777,10 @@ export interface Mutation_Root {
   delete_Notification?: Maybe<Notification_Mutation_Response>;
   /** delete single row from the table: "Notification" */
   delete_Notification_by_pk?: Maybe<Notification>;
+  /** delete data from the table: "test" */
+  delete_test?: Maybe<Test_Mutation_Response>;
+  /** delete single row from the table: "test" */
+  delete_test_by_pk?: Maybe<Test>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
@@ -1784,6 +1805,10 @@ export interface Mutation_Root {
   insert_Notification?: Maybe<Notification_Mutation_Response>;
   /** insert a single row into the table: "Notification" */
   insert_Notification_one?: Maybe<Notification>;
+  /** insert data into the table: "test" */
+  insert_test?: Maybe<Test_Mutation_Response>;
+  /** insert a single row into the table: "test" */
+  insert_test_one?: Maybe<Test>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
@@ -1818,6 +1843,12 @@ export interface Mutation_Root {
   update_Notification_by_pk?: Maybe<Notification>;
   /** update multiples rows of table: "Notification" */
   update_Notification_many?: Maybe<Array<Maybe<Notification_Mutation_Response>>>;
+  /** update data of the table: "test" */
+  update_test?: Maybe<Test_Mutation_Response>;
+  /** update single row of the table: "test" */
+  update_test_by_pk?: Maybe<Test>;
+  /** update multiples rows of table: "test" */
+  update_test_many?: Maybe<Array<Maybe<Test_Mutation_Response>>>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
@@ -1883,6 +1914,18 @@ export interface Mutation_RootDelete_NotificationArgs {
 
 /** mutation root */
 export interface Mutation_RootDelete_Notification_By_PkArgs {
+  id: Scalars['Int']['input'];
+}
+
+
+/** mutation root */
+export interface Mutation_RootDelete_TestArgs {
+  where: Test_Bool_Exp;
+}
+
+
+/** mutation root */
+export interface Mutation_RootDelete_Test_By_PkArgs {
   id: Scalars['Int']['input'];
 }
 
@@ -1966,6 +2009,20 @@ export interface Mutation_RootInsert_NotificationArgs {
 export interface Mutation_RootInsert_Notification_OneArgs {
   object: Notification_Insert_Input;
   on_conflict?: InputMaybe<Notification_On_Conflict>;
+}
+
+
+/** mutation root */
+export interface Mutation_RootInsert_TestArgs {
+  objects: Array<Test_Insert_Input>;
+  on_conflict?: InputMaybe<Test_On_Conflict>;
+}
+
+
+/** mutation root */
+export interface Mutation_RootInsert_Test_OneArgs {
+  object: Test_Insert_Input;
+  on_conflict?: InputMaybe<Test_On_Conflict>;
 }
 
 
@@ -2110,6 +2167,28 @@ export interface Mutation_RootUpdate_Notification_ManyArgs {
 
 
 /** mutation root */
+export interface Mutation_RootUpdate_TestArgs {
+  _inc?: InputMaybe<Test_Inc_Input>;
+  _set?: InputMaybe<Test_Set_Input>;
+  where: Test_Bool_Exp;
+}
+
+
+/** mutation root */
+export interface Mutation_RootUpdate_Test_By_PkArgs {
+  _inc?: InputMaybe<Test_Inc_Input>;
+  _set?: InputMaybe<Test_Set_Input>;
+  pk_columns: Test_Pk_Columns_Input;
+}
+
+
+/** mutation root */
+export interface Mutation_RootUpdate_Test_ManyArgs {
+  updates: Array<Test_Updates>;
+}
+
+
+/** mutation root */
 export interface Mutation_RootUpdate_UsersArgs {
   _set?: InputMaybe<Users_Set_Input>;
   where: Users_Bool_Exp;
@@ -2175,6 +2254,12 @@ export interface Query_Root {
   Notification_aggregate: Notification_Aggregate;
   /** fetch data from the table: "Notification" using primary key columns */
   Notification_by_pk?: Maybe<Notification>;
+  /** fetch data from the table: "test" */
+  test: Array<Test>;
+  /** fetch aggregated fields from the table: "test" */
+  test_aggregate: Test_Aggregate;
+  /** fetch data from the table: "test" using primary key columns */
+  test_by_pk?: Maybe<Test>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -2299,6 +2384,29 @@ export interface Query_RootNotification_By_PkArgs {
 }
 
 
+export interface Query_RootTestArgs {
+  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Test_Order_By>>;
+  where?: InputMaybe<Test_Bool_Exp>;
+}
+
+
+export interface Query_RootTest_AggregateArgs {
+  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Test_Order_By>>;
+  where?: InputMaybe<Test_Bool_Exp>;
+}
+
+
+export interface Query_RootTest_By_PkArgs {
+  id: Scalars['Int']['input'];
+}
+
+
 export interface Query_RootUsersArgs {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2362,6 +2470,14 @@ export interface Subscription_Root {
   Notification_by_pk?: Maybe<Notification>;
   /** fetch data from the table in a streaming manner: "Notification" */
   Notification_stream: Array<Notification>;
+  /** fetch data from the table: "test" */
+  test: Array<Test>;
+  /** fetch aggregated fields from the table: "test" */
+  test_aggregate: Test_Aggregate;
+  /** fetch data from the table: "test" using primary key columns */
+  test_by_pk?: Maybe<Test>;
+  /** fetch data from the table in a streaming manner: "test" */
+  test_stream: Array<Test>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -2523,6 +2639,36 @@ export interface Subscription_RootNotification_StreamArgs {
 }
 
 
+export interface Subscription_RootTestArgs {
+  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Test_Order_By>>;
+  where?: InputMaybe<Test_Bool_Exp>;
+}
+
+
+export interface Subscription_RootTest_AggregateArgs {
+  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Test_Order_By>>;
+  where?: InputMaybe<Test_Bool_Exp>;
+}
+
+
+export interface Subscription_RootTest_By_PkArgs {
+  id: Scalars['Int']['input'];
+}
+
+
+export interface Subscription_RootTest_StreamArgs {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Test_Stream_Cursor_Input>>;
+  where?: InputMaybe<Test_Bool_Exp>;
+}
+
+
 export interface Subscription_RootUsersArgs {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2550,6 +2696,189 @@ export interface Subscription_RootUsers_StreamArgs {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Users_Stream_Cursor_Input>>;
   where?: InputMaybe<Users_Bool_Exp>;
+}
+
+/** test */
+export interface Test {
+  id: Scalars['Int']['output'];
+  test?: Maybe<Scalars['String']['output']>;
+}
+
+/** aggregated selection of "test" */
+export interface Test_Aggregate {
+  aggregate?: Maybe<Test_Aggregate_Fields>;
+  nodes: Array<Test>;
+}
+
+/** aggregate fields of "test" */
+export interface Test_Aggregate_Fields {
+  avg?: Maybe<Test_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Test_Max_Fields>;
+  min?: Maybe<Test_Min_Fields>;
+  stddev?: Maybe<Test_Stddev_Fields>;
+  stddev_pop?: Maybe<Test_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Test_Stddev_Samp_Fields>;
+  sum?: Maybe<Test_Sum_Fields>;
+  var_pop?: Maybe<Test_Var_Pop_Fields>;
+  var_samp?: Maybe<Test_Var_Samp_Fields>;
+  variance?: Maybe<Test_Variance_Fields>;
+}
+
+
+/** aggregate fields of "test" */
+export interface Test_Aggregate_FieldsCountArgs {
+  columns?: InputMaybe<Array<Test_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+}
+
+/** aggregate avg on columns */
+export interface Test_Avg_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** Boolean expression to filter rows from the table "test". All fields are combined with a logical 'AND'. */
+export interface Test_Bool_Exp {
+  _and?: InputMaybe<Array<Test_Bool_Exp>>;
+  _not?: InputMaybe<Test_Bool_Exp>;
+  _or?: InputMaybe<Array<Test_Bool_Exp>>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  test?: InputMaybe<String_Comparison_Exp>;
+}
+
+/** unique or primary key constraints on table "test" */
+export enum Test_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  TestPkey = 'test_pkey'
+}
+
+/** input type for incrementing numeric columns in table "test" */
+export interface Test_Inc_Input {
+  id?: InputMaybe<Scalars['Int']['input']>;
+}
+
+/** input type for inserting data into table "test" */
+export interface Test_Insert_Input {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  test?: InputMaybe<Scalars['String']['input']>;
+}
+
+/** aggregate max on columns */
+export interface Test_Max_Fields {
+  id?: Maybe<Scalars['Int']['output']>;
+  test?: Maybe<Scalars['String']['output']>;
+}
+
+/** aggregate min on columns */
+export interface Test_Min_Fields {
+  id?: Maybe<Scalars['Int']['output']>;
+  test?: Maybe<Scalars['String']['output']>;
+}
+
+/** response of any mutation on the table "test" */
+export interface Test_Mutation_Response {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Test>;
+}
+
+/** on_conflict condition type for table "test" */
+export interface Test_On_Conflict {
+  constraint: Test_Constraint;
+  update_columns?: Array<Test_Update_Column>;
+  where?: InputMaybe<Test_Bool_Exp>;
+}
+
+/** Ordering options when selecting data from "test". */
+export interface Test_Order_By {
+  id?: InputMaybe<Order_By>;
+  test?: InputMaybe<Order_By>;
+}
+
+/** primary key columns input for table: test */
+export interface Test_Pk_Columns_Input {
+  id: Scalars['Int']['input'];
+}
+
+/** select columns of table "test" */
+export enum Test_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Test = 'test'
+}
+
+/** input type for updating data in table "test" */
+export interface Test_Set_Input {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  test?: InputMaybe<Scalars['String']['input']>;
+}
+
+/** aggregate stddev on columns */
+export interface Test_Stddev_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate stddev_pop on columns */
+export interface Test_Stddev_Pop_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate stddev_samp on columns */
+export interface Test_Stddev_Samp_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** Streaming cursor of the table "test" */
+export interface Test_Stream_Cursor_Input {
+  /** Stream column input with initial value */
+  initial_value: Test_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+}
+
+/** Initial value of the column from where the streaming should start */
+export interface Test_Stream_Cursor_Value_Input {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  test?: InputMaybe<Scalars['String']['input']>;
+}
+
+/** aggregate sum on columns */
+export interface Test_Sum_Fields {
+  id?: Maybe<Scalars['Int']['output']>;
+}
+
+/** update columns of table "test" */
+export enum Test_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Test = 'test'
+}
+
+export interface Test_Updates {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Test_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Test_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Test_Bool_Exp;
+}
+
+/** aggregate var_pop on columns */
+export interface Test_Var_Pop_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate var_samp on columns */
+export interface Test_Var_Samp_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate variance on columns */
+export interface Test_Variance_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
 }
 
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
@@ -2718,6 +3047,40 @@ export interface Users_Updates {
   where: Users_Bool_Exp;
 }
 
+export type FormsByNameQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FormsByNameQuery = { Form: Array<{ id: string, name: string }> };
+
+export type ActivitiesQueryVariables = Exact<{
+  ownerId: Scalars['String']['input'];
+  formName?: InputMaybe<Scalars['String']['input']>;
+  fromDate?: InputMaybe<Scalars['timestamp']['input']>;
+  toDate?: InputMaybe<Scalars['timestamp']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ActivitiesQuery = { Notification: Array<{ id: number, description?: string | undefined | null, createdAt: any, relatedId?: string | undefined | null, Form?: { id: string, name: string } | undefined | null }> };
+
+export type ActivitiesCountQueryVariables = Exact<{
+  ownerId: Scalars['String']['input'];
+  formName?: InputMaybe<Scalars['String']['input']>;
+  fromDate?: InputMaybe<Scalars['timestamp']['input']>;
+  toDate?: InputMaybe<Scalars['timestamp']['input']>;
+}>;
+
+
+export type ActivitiesCountQuery = { Notification_aggregate: { aggregate?: { count: number } | undefined | null } };
+
+export type OldestNotificationQueryVariables = Exact<{
+  ownerId: Scalars['String']['input'];
+}>;
+
+
+export type OldestNotificationQuery = { Notification: Array<{ id: number, createdAt: any }> };
+
 export type ResponsesQueryVariables = Exact<{
   formId: Scalars['String']['input'];
 }>;
@@ -2759,7 +3122,7 @@ export type UpdateFormFolderMutationVariables = Exact<{
 }>;
 
 
-export type UpdateFormFolderMutation = { update_Form?: { returning: Array<{ id: string, folderId?: string | undefined | null }> } | undefined | null };
+export type UpdateFormFolderMutation = { update_Form?: { affected_rows: number } | undefined | null };
 
 export type CreateFormMutationVariables = Exact<{
   data: Form_Insert_Input;
@@ -2824,14 +3187,14 @@ export type UpdateFormMutationVariables = Exact<{
 }>;
 
 
-export type UpdateFormMutation = { update_Form?: { returning: Array<{ id: string, name: string, style?: any | undefined | null, favorite: boolean }> } | undefined | null };
+export type UpdateFormMutation = { update_Form?: { affected_rows: number } | undefined | null };
 
 export type UpdateFormItemsMutationVariables = Exact<{
   data: Array<FormItem_Insert_Input> | FormItem_Insert_Input;
 }>;
 
 
-export type UpdateFormItemsMutation = { insert_FormItem?: { returning: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type: any }> } | undefined | null };
+export type UpdateFormItemsMutation = { insert_FormItem?: { affected_rows: number } | undefined | null };
 
 export type DeleteFormItemsMutationVariables = Exact<{
   ids: Array<Scalars['String']['input']> | Scalars['String']['input'];
@@ -2843,7 +3206,8 @@ export type DeleteFormItemsMutation = { delete_FormItem?: { affected_rows: numbe
 export type InsertNotificationMutationVariables = Exact<{
   ownerId: Scalars['String']['input'];
   formId: Scalars['String']['input'];
-  description: Scalars['String']['input'];
+  responseId: Scalars['String']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -2861,16 +3225,204 @@ export type ReadNotificationMutationVariables = Exact<{
 }>;
 
 
-export type ReadNotificationMutation = { update_Notification?: { returning: Array<{ id: number, description?: string | undefined | null, createdAt: any, read: boolean }> } | undefined | null };
+export type ReadNotificationMutation = { update_Notification?: { affected_rows: number } | undefined | null };
 
 export type ReadAllNotificationsMutationVariables = Exact<{
   ownerId: Scalars['String']['input'];
 }>;
 
 
-export type ReadAllNotificationsMutation = { update_Notification?: { returning: Array<{ id: number, description?: string | undefined | null, createdAt: any, read: boolean }> } | undefined | null };
+export type ReadAllNotificationsMutation = { update_Notification?: { affected_rows: number } | undefined | null };
 
 
+export const FormsByNameDocument = /*#__PURE__*/ gql`
+    query FormsByName {
+  Form {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useFormsByNameQuery__
+ *
+ * To run a query within a React component, call `useFormsByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFormsByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFormsByNameQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFormsByNameQuery(baseOptions?: Apollo.QueryHookOptions<FormsByNameQuery, FormsByNameQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FormsByNameQuery, FormsByNameQueryVariables>(FormsByNameDocument, options);
+      }
+export function useFormsByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FormsByNameQuery, FormsByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FormsByNameQuery, FormsByNameQueryVariables>(FormsByNameDocument, options);
+        }
+export function useFormsByNameSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FormsByNameQuery, FormsByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FormsByNameQuery, FormsByNameQueryVariables>(FormsByNameDocument, options);
+        }
+export type FormsByNameQueryHookResult = ReturnType<typeof useFormsByNameQuery>;
+export type FormsByNameLazyQueryHookResult = ReturnType<typeof useFormsByNameLazyQuery>;
+export type FormsByNameSuspenseQueryHookResult = ReturnType<typeof useFormsByNameSuspenseQuery>;
+export type FormsByNameQueryResult = Apollo.QueryResult<FormsByNameQuery, FormsByNameQueryVariables>;
+export const ActivitiesDocument = /*#__PURE__*/ gql`
+    query Activities($ownerId: String!, $formName: String = "%%", $fromDate: timestamp, $toDate: timestamp, $offset: Int = 0, $limit: Int = 10) {
+  Notification(
+    where: {_and: {createdAt: {_gte: $fromDate, _lte: $toDate}}, Form: {name: {_like: $formName}}, ownerId: {_eq: $ownerId}}
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    description
+    createdAt
+    relatedId
+    Form {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useActivitiesQuery__
+ *
+ * To run a query within a React component, call `useActivitiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useActivitiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useActivitiesQuery({
+ *   variables: {
+ *      ownerId: // value for 'ownerId'
+ *      formName: // value for 'formName'
+ *      fromDate: // value for 'fromDate'
+ *      toDate: // value for 'toDate'
+ *      offset: // value for 'offset'
+ *      limit: // value for 'limit'
+ *   },
+ * });
+ */
+export function useActivitiesQuery(baseOptions: Apollo.QueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables> & ({ variables: ActivitiesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
+      }
+export function useActivitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
+        }
+export function useActivitiesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
+        }
+export type ActivitiesQueryHookResult = ReturnType<typeof useActivitiesQuery>;
+export type ActivitiesLazyQueryHookResult = ReturnType<typeof useActivitiesLazyQuery>;
+export type ActivitiesSuspenseQueryHookResult = ReturnType<typeof useActivitiesSuspenseQuery>;
+export type ActivitiesQueryResult = Apollo.QueryResult<ActivitiesQuery, ActivitiesQueryVariables>;
+export const ActivitiesCountDocument = /*#__PURE__*/ gql`
+    query ActivitiesCount($ownerId: String!, $formName: String = "%%", $fromDate: timestamp, $toDate: timestamp) {
+  Notification_aggregate(
+    where: {_and: {createdAt: {_gte: $fromDate, _lte: $toDate}}, Form: {name: {_like: $formName}}, ownerId: {_eq: $ownerId}}
+  ) {
+    aggregate {
+      count
+    }
+  }
+}
+    `;
+
+/**
+ * __useActivitiesCountQuery__
+ *
+ * To run a query within a React component, call `useActivitiesCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useActivitiesCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useActivitiesCountQuery({
+ *   variables: {
+ *      ownerId: // value for 'ownerId'
+ *      formName: // value for 'formName'
+ *      fromDate: // value for 'fromDate'
+ *      toDate: // value for 'toDate'
+ *   },
+ * });
+ */
+export function useActivitiesCountQuery(baseOptions: Apollo.QueryHookOptions<ActivitiesCountQuery, ActivitiesCountQueryVariables> & ({ variables: ActivitiesCountQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ActivitiesCountQuery, ActivitiesCountQueryVariables>(ActivitiesCountDocument, options);
+      }
+export function useActivitiesCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ActivitiesCountQuery, ActivitiesCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ActivitiesCountQuery, ActivitiesCountQueryVariables>(ActivitiesCountDocument, options);
+        }
+export function useActivitiesCountSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ActivitiesCountQuery, ActivitiesCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ActivitiesCountQuery, ActivitiesCountQueryVariables>(ActivitiesCountDocument, options);
+        }
+export type ActivitiesCountQueryHookResult = ReturnType<typeof useActivitiesCountQuery>;
+export type ActivitiesCountLazyQueryHookResult = ReturnType<typeof useActivitiesCountLazyQuery>;
+export type ActivitiesCountSuspenseQueryHookResult = ReturnType<typeof useActivitiesCountSuspenseQuery>;
+export type ActivitiesCountQueryResult = Apollo.QueryResult<ActivitiesCountQuery, ActivitiesCountQueryVariables>;
+export const OldestNotificationDocument = /*#__PURE__*/ gql`
+    query OldestNotification($ownerId: String!) {
+  Notification(
+    where: {ownerId: {_eq: $ownerId}}
+    order_by: {createdAt: asc}
+    limit: 1
+  ) {
+    id
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useOldestNotificationQuery__
+ *
+ * To run a query within a React component, call `useOldestNotificationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOldestNotificationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOldestNotificationQuery({
+ *   variables: {
+ *      ownerId: // value for 'ownerId'
+ *   },
+ * });
+ */
+export function useOldestNotificationQuery(baseOptions: Apollo.QueryHookOptions<OldestNotificationQuery, OldestNotificationQueryVariables> & ({ variables: OldestNotificationQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OldestNotificationQuery, OldestNotificationQueryVariables>(OldestNotificationDocument, options);
+      }
+export function useOldestNotificationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OldestNotificationQuery, OldestNotificationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OldestNotificationQuery, OldestNotificationQueryVariables>(OldestNotificationDocument, options);
+        }
+export function useOldestNotificationSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<OldestNotificationQuery, OldestNotificationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<OldestNotificationQuery, OldestNotificationQueryVariables>(OldestNotificationDocument, options);
+        }
+export type OldestNotificationQueryHookResult = ReturnType<typeof useOldestNotificationQuery>;
+export type OldestNotificationLazyQueryHookResult = ReturnType<typeof useOldestNotificationLazyQuery>;
+export type OldestNotificationSuspenseQueryHookResult = ReturnType<typeof useOldestNotificationSuspenseQuery>;
+export type OldestNotificationQueryResult = Apollo.QueryResult<OldestNotificationQuery, OldestNotificationQueryVariables>;
 export const ResponsesDocument = /*#__PURE__*/ gql`
     query Responses($formId: String!) {
   Form_by_pk(id: $formId) {
@@ -3079,10 +3631,7 @@ export type DeleteFolderMutationResult = Apollo.MutationResult<DeleteFolderMutat
 export const UpdateFormFolderDocument = /*#__PURE__*/ gql`
     mutation UpdateFormFolder($formId: String!, $folderId: String) {
   update_Form(where: {id: {_eq: $formId}}, _set: {folderId: $folderId}) {
-    returning {
-      id
-      folderId
-    }
+    affected_rows
   }
 }
     `;
@@ -3464,12 +4013,7 @@ export const UpdateFormDocument = /*#__PURE__*/ gql`
     where: {id: {_eq: $id}}
     _set: {name: $name, style: $style, favorite: $favorite, updatedAt: now}
   ) {
-    returning {
-      id
-      name
-      style
-      favorite
-    }
+    affected_rows
   }
 }
     `;
@@ -3507,16 +4051,7 @@ export const UpdateFormItemsDocument = /*#__PURE__*/ gql`
     objects: $data
     on_conflict: {constraint: FormItem_pkey, update_columns: [image, items, name, order, required, section, type]}
   ) {
-    returning {
-      id
-      formId
-      name
-      order
-      required
-      items
-      image
-      type
-    }
+    affected_rows
   }
 }
     `;
@@ -3578,9 +4113,9 @@ export function useDeleteFormItemsMutation(baseOptions?: Apollo.MutationHookOpti
 export type DeleteFormItemsMutationHookResult = ReturnType<typeof useDeleteFormItemsMutation>;
 export type DeleteFormItemsMutationResult = Apollo.MutationResult<DeleteFormItemsMutation>;
 export const InsertNotificationDocument = /*#__PURE__*/ gql`
-    mutation InsertNotification($ownerId: String!, $formId: String!, $description: String!) {
+    mutation InsertNotification($ownerId: String!, $formId: String!, $responseId: String!, $description: String) {
   insert_Notification(
-    objects: {description: $description, formId: $formId, ownerId: $ownerId}
+    objects: {description: $description, formId: $formId, ownerId: $ownerId, relatedId: $responseId}
   ) {
     affected_rows
   }
@@ -3603,6 +4138,7 @@ export type InsertNotificationMutationFn = Apollo.MutationFunction<InsertNotific
  *   variables: {
  *      ownerId: // value for 'ownerId'
  *      formId: // value for 'formId'
+ *      responseId: // value for 'responseId'
  *      description: // value for 'description'
  *   },
  * });
@@ -3615,7 +4151,11 @@ export type InsertNotificationMutationHookResult = ReturnType<typeof useInsertNo
 export type InsertNotificationMutationResult = Apollo.MutationResult<InsertNotificationMutation>;
 export const NotificationsDocument = /*#__PURE__*/ gql`
     subscription Notifications($ownerId: String!) {
-  Notification(where: {ownerId: {_eq: $ownerId}}, order_by: [{createdAt: desc}]) {
+  Notification(
+    where: {ownerId: {_eq: $ownerId}}
+    order_by: [{createdAt: desc}]
+    limit: 5
+  ) {
     id
     description
     createdAt
@@ -3649,12 +4189,7 @@ export type NotificationsSubscriptionResult = Apollo.SubscriptionResult<Notifica
 export const ReadNotificationDocument = /*#__PURE__*/ gql`
     mutation ReadNotification($id: Int!) {
   update_Notification(where: {id: {_eq: $id}}, _set: {read: true}) {
-    returning {
-      id
-      description
-      createdAt
-      read
-    }
+    affected_rows
   }
 }
     `;
@@ -3686,12 +4221,7 @@ export type ReadNotificationMutationResult = Apollo.MutationResult<ReadNotificat
 export const ReadAllNotificationsDocument = /*#__PURE__*/ gql`
     mutation ReadAllNotifications($ownerId: String!) {
   update_Notification(where: {ownerId: {_eq: $ownerId}}, _set: {read: true}) {
-    returning {
-      id
-      description
-      createdAt
-      read
-    }
+    affected_rows
   }
 }
     `;

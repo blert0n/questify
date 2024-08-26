@@ -51,6 +51,7 @@ export function AppSelect({
           style={{
             fontSize: styles?.triggerFontSize,
           }}
+          className={className}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

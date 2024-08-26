@@ -13,6 +13,9 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
+import Lottie from "lottie-react";
+import notificationsLottie from "@/public/lotties/notifications.json";
+import Link from "next/link";
 dayjs.extend(relativeTime);
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -67,34 +70,52 @@ const Notifications = () => {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-96 p-0 m-4 mt-2">
+      <PopoverContent className="w-72 xxs:w-96 p-0 m-4 mt-2">
         <div className="flex flex-col">
           <div className="flex justify-between p-4 pb-2">
             <div className="text-slate-400 text-xs">Notifications</div>
             <div
               className="text-blue-500 text-xs cursor-pointer focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85]"
               onClick={() => {
-                markAllAsRead();
+                Boolean(unreadNotifications) && markAllAsRead();
               }}
             >
               Mark all as read
             </div>
           </div>
-          <div className="flex flex-col mb-2">
+          {!Notification?.length && (
+            <>
+              <div className="flex flex-col items-center justify-center mb-2">
+                <Lottie
+                  animationData={notificationsLottie}
+                  className="flex justify-center self-center items-center max-w-24 max-h-24"
+                  loop={true}
+                  width={"100%"}
+                  height={"100%"}
+                />
+                <span className="text-sm text-slate-500 uppercase">
+                  No notifications yet!
+                </span>
+              </div>
+              <Separator />
+            </>
+          )}
+          <div className="flex flex-col">
             {Notification?.map((notification) => (
               <>
                 <div
                   key={notification.id}
                   className={cn(
-                    "flex flex-col gap-1 p-2 cursor-pointer",
+                    "flex flex-col gap-1 p-2 cursor-pointer shadow-sm",
                     !notification.read && "bg-red-500 bg-opacity-[0.02]"
                   )}
                   onClick={() => {
-                    markAsRead({
-                      variables: {
-                        id: notification.id,
-                      },
-                    });
+                    !notification.read &&
+                      markAsRead({
+                        variables: {
+                          id: notification.id,
+                        },
+                      });
                   }}
                 >
                   <div className="flex gap-4 items-center">
@@ -115,10 +136,15 @@ const Notifications = () => {
                     {getNotificationTime(notification.createdAt)}
                   </div>
                 </div>
-                <Separator />
               </>
             ))}
           </div>
+          <Link
+            href="activity"
+            className="flex self-center m-2 text-blue-500 text-xs cursor-pointer focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85]"
+          >
+            Go to all activity
+          </Link>
         </div>
       </PopoverContent>
     </Popover>

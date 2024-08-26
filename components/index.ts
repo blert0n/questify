@@ -5,3 +5,4 @@ export * from "./StyledInput";
 export * from "./Form";
 export * from "./controlled-inputs";
 export * from "./Image";
+export * from "./Activity";

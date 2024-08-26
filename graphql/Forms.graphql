@@ -105,12 +105,7 @@ mutation UpdateForm(
     where: { id: { _eq: $id } }
     _set: { name: $name, style: $style, favorite: $favorite, updatedAt: now }
   ) {
-    returning {
-      id
-      name
-      style
-      favorite
-    }
+    affected_rows
   }
 }
 
@@ -122,16 +117,7 @@ mutation UpdateFormItems($data: [FormItem_insert_input!]!) {
       update_columns: [image, items, name, order, required, section, type]
     }
   ) {
-    returning {
-      id
-      formId
-      name
-      order
-      required
-      items
-      image
-      type
-    }
+    affected_rows
   }
 }
 

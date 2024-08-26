@@ -69,6 +69,7 @@ export default function Index() {
         description: findFirstForm?.name ?? "",
         formId: findFirstForm?.id ?? "",
         ownerId: findFirstForm?.ownerId ?? "",
+        responseId,
       },
     });
   };

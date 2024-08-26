@@ -1,6 +1,16 @@
 table:
   name: Notification
   schema: public
+object_relationships:
+  - name: Form
+    using:
+      manual_configuration:
+        column_mapping:
+          formId: id
+        insertion_order: null
+        remote_table:
+          name: Form
+          schema: public
 insert_permissions:
   - role: public
     permission:
@@ -9,17 +19,17 @@ insert_permissions:
         - description
         - formId
         - ownerId
+        - relatedId
     comment: ""
   - role: user
     permission:
       check: {}
-      set:
-        ownerId: x-hasura-User-Id
       columns:
         - description
         - formId
         - ownerId
         - read
+        - relatedId
     comment: ""
 select_permissions:
   - role: public
@@ -31,20 +41,24 @@ select_permissions:
         - id
         - ownerId
         - read
+        - relatedId
       filter: {}
+      allow_aggregations: true
     comment: ""
   - role: user
     permission:
       columns:
-        - read
-        - id
+        - createdAt
         - description
         - formId
+        - id
         - ownerId
-        - createdAt
+        - read
+        - relatedId
       filter:
         ownerId:
           _eq: X-Hasura-User-Id
+      allow_aggregations: true
     comment: ""
 update_permissions:
   - role: user
@@ -53,6 +67,7 @@ update_permissions:
         - description
         - formId
         - read
+        - relatedId
       filter:
         ownerId:
           _eq: X-Hasura-User-Id
