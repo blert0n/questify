@@ -5,6 +5,7 @@ query Responses($formId: String!) {
     FormItems(order_by: { order: asc }) {
       id
       name
+      items
       Answers_aggregate {
         aggregate {
           count

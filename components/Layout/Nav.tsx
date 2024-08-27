@@ -1,7 +1,7 @@
 import Link from "next/link";
 import NavItem from "./NavItem";
 import { useRouter } from "next/router";
-import { Folder, Plus, File, Activity } from "lucide-react";
+import { Folder, Plus, File, Activity, LayoutTemplate } from "lucide-react";
 import { useModalStoreSelectors } from "@/store";
 
 interface P {
@@ -40,6 +40,12 @@ export default function Nav({ closeNavMobile }: P) {
           icon={<Activity size={18} />}
           active={router.pathname.startsWith("/activity")}
           navigateUrl="/activity"
+        />
+        <NavItem
+          title="Templates"
+          icon={<LayoutTemplate size={18} />}
+          active={router.pathname.startsWith("/templates")}
+          navigateUrl="/templates"
         />
         <NavItem
           title="Create"

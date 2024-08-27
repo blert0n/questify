@@ -3086,7 +3086,7 @@ export type ResponsesQueryVariables = Exact<{
 }>;
 
 
-export type ResponsesQuery = { Form_by_pk?: { id: string, responses: number, FormItems: Array<{ id: string, name: string, type: any, Answers_aggregate: { aggregate?: { count: number } | undefined | null }, Answers: Array<{ id: string, value: string }> }> } | undefined | null };
+export type ResponsesQuery = { Form_by_pk?: { id: string, responses: number, FormItems: Array<{ id: string, name: string, items?: any | undefined | null, type: any, Answers_aggregate: { aggregate?: { count: number } | undefined | null }, Answers: Array<{ id: string, value: string }> }> } | undefined | null };
 
 export type SubmitFormMutationVariables = Exact<{
   formId: Scalars['String']['input'];
@@ -3439,6 +3439,7 @@ export const ResponsesDocument = /*#__PURE__*/ gql`
     FormItems(order_by: {order: asc}) {
       id
       name
+      items
       Answers_aggregate {
         aggregate {
           count

@@ -1,6 +1,17 @@
 import { Theme, FormItem, SubItem, InitialFormData, FormType } from "./form";
 import { v4 as uuidv4 } from "uuid";
-import { rsvp, orderRequest, jobApplication } from "@/lib/templates";
+import {
+  rsvp,
+  orderRequest,
+  jobApplication,
+  employeeSurvey,
+  travelSurvey,
+  healthAssessment,
+  petAdoptionInquiry,
+  volunteerInterestForm,
+  demographicInformation,
+  patientSatisfactionSurvey,
+} from "@/lib/templates";
 import { FormState } from "./";
 
 export const iconProps = {
@@ -105,6 +116,13 @@ export const newSubItem: (lastOrder?: number) => SubItem = (lastOrder = 0) => ({
 
 export const templateMapper: Record<string, FormState> = {
   rsvp: rsvp,
-  orderRequest: orderRequest,
-  jobApplication: jobApplication,
+  orderRequest,
+  jobApplication,
+  employeeSurvey,
+  travelSurvey,
+  healthAssessment,
+  petAdoptionInquiry,
+  volunteerInterestForm,
+  demographicInformation,
+  patientSatisfactionSurvey,
 };

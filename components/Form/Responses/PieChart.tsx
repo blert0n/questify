@@ -4,6 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { pieChartPalette } from "@/lib/colors";
 import { useMemo } from "react";
+import { SubItem } from "@/types/form";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Answer {
@@ -15,23 +16,29 @@ interface P {
   name: string;
   count: number;
   answers: Answer[];
+  options: SubItem[];
 }
-const prepareChartData = (answers: Answer[]) => {
-  const positionMap: Record<string, number> = {};
-  answers.forEach((answer) => {
-    const positions = answer.value?.split(",");
-    positions?.forEach((position) => {
-      const trimmedPosition = position.trim();
-      positionMap[trimmedPosition] = (positionMap[trimmedPosition] || 0) + 1;
+const prepareChartData = (answers: Answer[], options: SubItem[]) => {
+  const optionFrequencyMapper: Record<string, number> = {};
+  options.forEach((option) => {
+    const optionLabel = option.value.trim();
+    answers?.forEach((answer) => {
+      if (answer.value?.includes(optionLabel)) {
+        optionFrequencyMapper[optionLabel] =
+          (optionFrequencyMapper[optionLabel] || 0) + 1;
+      }
     });
   });
   return {
-    labels: Object.keys(positionMap),
-    values: Object.values(positionMap),
+    labels: Object.keys(optionFrequencyMapper),
+    values: Object.values(optionFrequencyMapper),
   };
 };
-export const PieChart = ({ name, count, answers }: P) => {
-  const chartData = useMemo(() => prepareChartData(answers), [answers]);
+export const PieChart = ({ name, count, answers, options }: P) => {
+  const chartData = useMemo(
+    () => prepareChartData(answers, options),
+    [answers, options]
+  );
   return (
     <div className="flex flex-col gap-1 h-auto">
       {ReactHtmlParser(name)}

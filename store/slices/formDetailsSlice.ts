@@ -3,6 +3,19 @@ import { FormDetailsSlice, ItemSlice, ThemeSlice, initialTheme } from "@/types";
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";
 import { editForm, loadFormData, openFormModal, saveForm } from "../actions";
+
+const TEMPLATES = [
+  "rsvp",
+  "orderRequest",
+  "jobApplication",
+  "employeeSurvey",
+  "travelSurvey",
+  "healthAssessment",
+  "petAdoptionInquiry",
+  "volunteerInterestForm",
+  "demographicInformation",
+  "patientSatisfactionSurvey",
+];
 export const createFormDetailsSlice: StateCreator<
   ThemeSlice & ItemSlice & FormDetailsSlice,
   [],
@@ -65,7 +78,7 @@ export const createFormDetailsSlice: StateCreator<
     openFormModal();
   },
   loadTemplate: (template) => {
-    if (!["rsvp", "orderRequest", "jobApplication"].includes(template)) return;
+    if (!TEMPLATES.includes(template)) return;
     const templateData = templateMapper[template];
     set((state) => ({
       ...state,

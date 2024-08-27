@@ -1,4 +1,5 @@
 import { pluralize } from "@/lib/utils";
+import { SubItem } from "@/types/form";
 import ReactHtmlParser from "react-html-parser";
 
 interface P {
@@ -8,6 +9,7 @@ interface P {
     id: string;
     value?: string;
   }[];
+  options?: SubItem[];
 }
 export const List = ({ name, count, answers }: P) => {
   return (
