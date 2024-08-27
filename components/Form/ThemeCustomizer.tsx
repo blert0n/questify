@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import { Palette, PlusCircle, X, CheckCheck } from "lucide-react";
-import Circle from "@uiw/react-color-circle";
+import { Palette, X } from "lucide-react";
 import { FontPicker } from "./Customizers/FontPicker";
 import { FontSizePicker } from "./Customizers/FontSizePicker";
-import { useBoolean } from "usehooks-ts";
-import { AnimatePresence, motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import { GithubPlacement } from "@uiw/react-color-github";
 import { Sheet, SheetContent } from "../ui/sheet";
 import { generateShades } from "@/lib";
 import { Uploader } from "../Image";
 import { useFormSelectors } from "@/store";
 import { Theme } from "@/types";
-const Chrome = dynamic(() => import("@uiw/react-color-chrome"), { ssr: false });
+import ColorPicker from "./Customizers/ColorPicker";
 
 interface P {
   visible: boolean;
@@ -20,10 +15,6 @@ interface P {
 }
 
 export const ThemeCustomizer = ({ visible, toggle }: P) => {
-  const { value: isCustomColor, toggle: toggleCustomColor } = useBoolean(false);
-  const { value: showColorPicker, toggle: toggleColorPicker } =
-    useBoolean(false);
-
   const theme = useFormSelectors.use.theme();
   const updateHeaderTheme = useFormSelectors.use.updateHeaderTheme();
   const updateQuestionTheme = useFormSelectors.use.updateQuestionTheme();
@@ -31,8 +22,6 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
   const updateTheme = useFormSelectors.use.updateTheme();
 
   const [shades, setShades] = useState(generateShades(theme.primaryColor));
-  const [chromeColor, setChromeColor] = useState("");
-
   const handlePrimaryColorChange = (color: string) => {
     updateTheme("primaryColor", color);
     const updatedShades = generateShades(color);
@@ -166,91 +155,20 @@ export const ThemeCustomizer = ({ visible, toggle }: P) => {
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <div className="flex justify-between flex-wrap items-center">
             <p className="font-semibold">Color</p>
-            {showColorPicker ? (
-              <CheckCheck
-                className="text-slate-700 cursor-pointer"
-                strokeWidth={1.5}
-                onClick={() => {
-                  toggleColorPicker();
-                  !isCustomColor && toggleCustomColor();
-                  handlePrimaryColorChange(chromeColor || theme.primaryColor);
-                }}
-              />
-            ) : (
-              <PlusCircle
-                className="text-slate-700 cursor-pointer"
-                strokeWidth={1.5}
-                onClick={toggleColorPicker}
-              />
-            )}
           </div>
-          <AnimatePresence initial={false} mode="wait">
-            {showColorPicker && (
-              <motion.div
-                key="customColor"
-                initial={{ x: 1050, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{
-                  duration: 0.3,
-                }}
-                exit={{ x: 1050, opacity: 0 }}
-                className="flex justify-center"
-              >
-                <Chrome
-                  color={chromeColor || theme.primaryColor}
-                  style={{ float: "left" }}
-                  placement={GithubPlacement.Right}
-                  onChange={(color) => {
-                    setChromeColor(color.hex);
-                  }}
-                />
-              </motion.div>
-            )}
-            {!showColorPicker && (
-              <motion.div
-                key="colors"
-                initial={{ x: 1050, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{
-                  duration: 0.3,
-                }}
-                exit={{ x: 1050, opacity: 0 }}
-              >
-                <Circle
-                  key="1"
-                  color={theme.primaryColor}
-                  colors={[
-                    "#ffffff",
-                    "#db4437",
-                    "#673ab7",
-                    "#3f51b5",
-                    "#4285f4",
-                    "#03a9f4",
-                    "#ff5722",
-                    "#ff9800",
-                    "#009688",
-                    "#4caf50",
-                    "#607d8b",
-                    "#9e9e9e",
-                    ...(isCustomColor ? [theme.primaryColor] : []),
-                  ]}
-                  onChange={(color) => {
-                    handlePrimaryColorChange(color.hex);
-                    isCustomColor && toggleCustomColor();
-                  }}
-                  className="colorPicker"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <ColorPicker
+            showColorPicker
+            color={theme.primaryColor}
+            onChange={(color) => handlePrimaryColorChange(color)}
+          />
         </div>
         <div className="p-4 flex flex-col gap-4 shadow-sm">
           <p className="font-semibold">Background</p>
-          <Circle
-            color={theme.secondaryColor}
+          <ColorPicker
+            showColorPicker
             colors={shades}
-            onChange={(color) => updateTheme("secondaryColor", color.hex)}
-            className="colorPicker"
+            color={theme.secondaryColor}
+            onChange={(color) => updateTheme("secondaryColor", color)}
           />
         </div>
       </SheetContent>
