@@ -7,6 +7,9 @@ import Meta from "@/components/Layout/Title";
 import { Formik, Form } from "formik";
 import { prepareFormik } from "@/lib";
 import AppLoader from "@/components/Layout/AppLoader";
+import { PrinterIcon } from "lucide-react";
+import { useReactToPrint } from "react-to-print";
+import { useRef } from "react";
 
 interface P {
   formId?: string;
@@ -31,6 +34,11 @@ const FormResponse = ({ formId, responseId }: P) => {
       },
       skip: !responseId,
     });
+
+  const formRef = useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({
+    content: () => formRef?.current,
+  });
 
   if ((!findFirstForm && loading) || typeof router.query.id === "undefined")
     return <AppLoader message="Loading form..." />;
@@ -72,7 +80,13 @@ const FormResponse = ({ formId, responseId }: P) => {
               onSubmit={(values) => console.log(values)}
             >
               <Form className="flex flex-col gap-2">
-                <div className="flex flex-col gap-4">
+                <PrinterIcon
+                  className="text-slate-700 hover:scale-110 cursor-pointer fill-white self-end"
+                  size={20}
+                  strokeWidth={1.5}
+                  onClick={handlePrint}
+                />
+                <div className="flex flex-col gap-4" ref={formRef}>
                   <LiveForm
                     theme={findFirstForm.style || initialTheme}
                     items={formItems}

@@ -3,6 +3,9 @@ import { FormType, SubItem } from "@/types";
 import { List } from "./List";
 import { pluralize } from "@/lib/utils";
 import { PieChart } from "./PieChart";
+import { LinearScaleChart } from "./LinearScaleChart";
+import Lottie from "lottie-react";
+import waitingResponses from "@/public/lotties/waitingResponses.json";
 
 interface P {
   formId?: string;
@@ -13,7 +16,7 @@ const componentMapper = {
   [FormType.Long]: List,
   [FormType.SingleChoice]: PieChart,
   [FormType.MultipleChoice]: PieChart,
-  [FormType.LinearScale]: PieChart,
+  [FormType.LinearScale]: LinearScaleChart,
   [FormType.Date]: List,
   [FormType.Dropdown]: PieChart,
 };
@@ -27,9 +30,20 @@ export const Responses = ({ formId }: P) => {
   });
   return (
     <div className="flex flex-col gap-4 w-full md:max-w-3xl">
-      <div className="w-full h-16 bg-white shadow-lg rounded-sm p-4 text-lg">
+      <div className="w-full h-auto min-h-16 bg-white shadow-lg rounded-sm p-4 text-lg">
         {!formData || formData.responses === 0 ? (
-          <>Waiting on responses</>
+          <div className="flex flex-col gap-2 justify-center">
+            <Lottie
+              animationData={waitingResponses}
+              className="flex justify-center self-center items-center max-w-24 max-h-24"
+              loop={true}
+              width={"100%"}
+              height={"100%"}
+            />
+            <span className="text-slate-500 text-sm uppercase font-oswald self-center">
+              Waiting on responses
+            </span>
+          </div>
         ) : (
           <>{pluralize(formData.responses, "response")}</>
         )}

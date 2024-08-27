@@ -7,6 +7,16 @@ import { useMemo } from "react";
 import { SubItem } from "@/types/form";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const generateScaleOptions = (start: string = "1", end: string = "10") => {
+  const startNumber = Number(start);
+  const endNumber = Number(end);
+
+  return Array.from(
+    { length: endNumber - startNumber + 1 },
+    (_, index) => startNumber + index
+  ).map(String);
+};
+
 interface Answer {
   id: string;
   value?: string;
@@ -19,13 +29,16 @@ interface P {
   options: SubItem[];
 }
 const prepareChartData = (answers: Answer[], options: SubItem[]) => {
+  const scaleOptions = generateScaleOptions(
+    options?.[0].value,
+    options?.[1].value
+  );
   const optionFrequencyMapper: Record<string, number> = {};
-  options.forEach((option) => {
-    const optionLabel = option.value.trim();
+  scaleOptions.forEach((option) => {
     answers?.forEach((answer) => {
-      if (answer.value?.includes(optionLabel)) {
-        optionFrequencyMapper[optionLabel] =
-          (optionFrequencyMapper[optionLabel] || 0) + 1;
+      if (answer.value?.includes(option)) {
+        optionFrequencyMapper[option] =
+          (optionFrequencyMapper[option] || 0) + 1;
       }
     });
   });
@@ -34,7 +47,7 @@ const prepareChartData = (answers: Answer[], options: SubItem[]) => {
     values: Object.values(optionFrequencyMapper),
   };
 };
-export const PieChart = ({ name, count, answers, options }: P) => {
+export const LinearScaleChart = ({ name, count, answers, options }: P) => {
   const chartData = useMemo(
     () => prepareChartData(answers, options),
     [answers, options]
