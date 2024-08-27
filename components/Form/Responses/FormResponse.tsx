@@ -2,23 +2,21 @@ import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
 import { useGetFormQuery, useGetResponsesByIdQuery } from "@/lib/graphql";
 import { FormItem, initialTheme } from "@/types";
-import { useRouter } from "next/router";
 import Meta from "@/components/Layout/Title";
 import { Formik, Form } from "formik";
-import { prepareFormik } from "@/lib";
+import { cn, prepareFormik } from "@/lib";
 import AppLoader from "@/components/Layout/AppLoader";
-import { PrinterIcon } from "lucide-react";
+import { PrinterIcon, Undo2 } from "lucide-react";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
 
 interface P {
   formId?: string;
   responseId?: string;
+  onBackButton?: () => void;
 }
 
-const FormResponse = ({ formId, responseId }: P) => {
-  const router = useRouter();
-
+const FormResponse = ({ formId, responseId, onBackButton }: P) => {
   const { data: { Form_by_pk: findFirstForm } = {}, loading } = useGetFormQuery(
     {
       variables: {
@@ -40,8 +38,7 @@ const FormResponse = ({ formId, responseId }: P) => {
     content: () => formRef?.current,
   });
 
-  if ((!findFirstForm && loading) || typeof router.query.id === "undefined")
-    return <AppLoader message="Loading form..." />;
+  if (!findFirstForm && loading) return <AppLoader message="Loading form..." />;
 
   if (!findFirstForm && !loading) return null;
 
@@ -63,11 +60,16 @@ const FormResponse = ({ formId, responseId }: P) => {
     Answer ?? []
   );
 
+  const showBackButton = typeof onBackButton === "function";
+
   return (
     <>
       <Meta title={findFirstForm?.name ?? "Form"} />
       <div
-        className="flex flex-col self-start gap-8 items-center h-full w-full p-4 pt-8 overflow-y-auto sticky top-0"
+        className={cn(
+          "flex flex-col self-start gap-8 items-center h-full w-full overflow-y-auto sticky top-0",
+          !showBackButton && "pt-8 p-4"
+        )}
         style={{ backgroundColor: findFirstForm?.style?.secondaryColor }}
       >
         {loading && <Loader />}
@@ -80,12 +82,22 @@ const FormResponse = ({ formId, responseId }: P) => {
               onSubmit={(values) => console.log(values)}
             >
               <Form className="flex flex-col gap-2">
-                <PrinterIcon
-                  className="text-slate-700 hover:scale-110 cursor-pointer fill-white self-end"
-                  size={20}
-                  strokeWidth={1.5}
-                  onClick={handlePrint}
-                />
+                <div className="flex justify-between">
+                  {showBackButton && (
+                    <Undo2
+                      className="text-slate-700 hover:scale-110 cursor-pointer self-start"
+                      size={20}
+                      strokeWidth={1.5}
+                      onClick={() => onBackButton()}
+                    />
+                  )}
+                  <PrinterIcon
+                    className="text-slate-700 hover:scale-110 cursor-pointer fill-white self-end"
+                    size={20}
+                    strokeWidth={1.5}
+                    onClick={handlePrint}
+                  />
+                </div>
                 <div className="flex flex-col gap-4" ref={formRef}>
                   <LiveForm
                     theme={findFirstForm.style || initialTheme}

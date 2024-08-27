@@ -3103,6 +3103,14 @@ export type GetResponsesByIdQueryVariables = Exact<{
 
 export type GetResponsesByIdQuery = { Answer: Array<{ id: string, value: string, FormItem?: { id: string } | undefined | null }> };
 
+export type FormResponsesQueryVariables = Exact<{
+  ownerId: Scalars['String']['input'];
+  formId: Scalars['String']['input'];
+}>;
+
+
+export type FormResponsesQuery = { Notification: Array<{ id: number, createdAt: any, relatedId?: string | undefined | null }> };
+
 export type MyFoldersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3567,6 +3575,52 @@ export type GetResponsesByIdQueryHookResult = ReturnType<typeof useGetResponsesB
 export type GetResponsesByIdLazyQueryHookResult = ReturnType<typeof useGetResponsesByIdLazyQuery>;
 export type GetResponsesByIdSuspenseQueryHookResult = ReturnType<typeof useGetResponsesByIdSuspenseQuery>;
 export type GetResponsesByIdQueryResult = Apollo.QueryResult<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>;
+export const FormResponsesDocument = /*#__PURE__*/ gql`
+    query FormResponses($ownerId: String!, $formId: String!) {
+  Notification(
+    order_by: [{createdAt: desc}]
+    where: {Form: {id: {_eq: $formId}}, ownerId: {_eq: $ownerId}}
+  ) {
+    id
+    createdAt
+    relatedId
+  }
+}
+    `;
+
+/**
+ * __useFormResponsesQuery__
+ *
+ * To run a query within a React component, call `useFormResponsesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFormResponsesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFormResponsesQuery({
+ *   variables: {
+ *      ownerId: // value for 'ownerId'
+ *      formId: // value for 'formId'
+ *   },
+ * });
+ */
+export function useFormResponsesQuery(baseOptions: Apollo.QueryHookOptions<FormResponsesQuery, FormResponsesQueryVariables> & ({ variables: FormResponsesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FormResponsesQuery, FormResponsesQueryVariables>(FormResponsesDocument, options);
+      }
+export function useFormResponsesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FormResponsesQuery, FormResponsesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FormResponsesQuery, FormResponsesQueryVariables>(FormResponsesDocument, options);
+        }
+export function useFormResponsesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FormResponsesQuery, FormResponsesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FormResponsesQuery, FormResponsesQueryVariables>(FormResponsesDocument, options);
+        }
+export type FormResponsesQueryHookResult = ReturnType<typeof useFormResponsesQuery>;
+export type FormResponsesLazyQueryHookResult = ReturnType<typeof useFormResponsesLazyQuery>;
+export type FormResponsesSuspenseQueryHookResult = ReturnType<typeof useFormResponsesSuspenseQuery>;
+export type FormResponsesQueryResult = Apollo.QueryResult<FormResponsesQuery, FormResponsesQueryVariables>;
 export const MyFoldersDocument = /*#__PURE__*/ gql`
     query MyFolders {
   Folder {

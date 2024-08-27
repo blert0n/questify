@@ -1,11 +1,14 @@
 import { useResponsesQuery } from "@/lib/graphql";
 import { FormType, SubItem } from "@/types";
 import { List } from "./List";
-import { pluralize } from "@/lib/utils";
+import { cn, pluralize } from "@/lib/utils";
 import { PieChart } from "./PieChart";
 import { LinearScaleChart } from "./LinearScaleChart";
 import Lottie from "lottie-react";
 import waitingResponses from "@/public/lotties/waitingResponses.json";
+import { Clock, LucideLineChart } from "lucide-react";
+import { useState } from "react";
+import TimelineResponses from "./TimelineResponses";
 
 interface P {
   formId?: string;
@@ -28,6 +31,7 @@ export const Responses = ({ formId }: P) => {
     },
     skip: !formId,
   });
+  const [selectedView, setSelectedView] = useState(0);
   return (
     <div className="flex flex-col gap-4 w-full md:max-w-3xl">
       <div className="w-full h-auto min-h-16 bg-white shadow-lg rounded-sm p-4 text-lg">
@@ -45,10 +49,37 @@ export const Responses = ({ formId }: P) => {
             </span>
           </div>
         ) : (
-          <>{pluralize(formData.responses, "response")}</>
+          <div className="flex justify-between items-start">
+            <span className="text-slate-500 uppercase font-oswald">
+              {pluralize(formData.responses, "response")}
+            </span>
+            <div className="flex flex-col gap-1">
+              <span className="text-slate-500 text-sm">Switch views</span>
+              <div className="flex gap-2">
+                <LucideLineChart
+                  size={28}
+                  className={cn(
+                    "text-slate-700 hover:scale-110 cursor-pointer p-1 rounded-sm",
+                    selectedView === 0 && "bg-slate-200"
+                  )}
+                  strokeWidth={1.5}
+                  onClick={() => setSelectedView(0)}
+                />
+                <Clock
+                  size={28}
+                  className={cn(
+                    "text-slate-700 hover:scale-110 cursor-pointer p-1 rounded-sm",
+                    selectedView === 1 && "bg-slate-200"
+                  )}
+                  strokeWidth={1.5}
+                  onClick={() => setSelectedView(1)}
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
-      {Boolean(formData?.responses) &&
+      {Boolean(formData?.responses && selectedView === 0) &&
         (formData?.FormItems ?? []).map((item) => {
           const options = (item.items ?? []) as SubItem[];
           const ResponseComponent = componentMapper[item.type as FormType];
@@ -66,6 +97,9 @@ export const Responses = ({ formId }: P) => {
             </div>
           );
         })}
+      {Boolean(formData?.responses && selectedView === 1) && (
+        <TimelineResponses formId={formData?.id} />
+      )}
     </div>
   );
 };

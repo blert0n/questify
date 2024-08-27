@@ -38,3 +38,14 @@ query GetResponsesById($responseId: String!) {
     value
   }
 }
+
+query FormResponses($ownerId: String!, $formId: String!) {
+  Notification(
+    order_by: [{ createdAt: desc }]
+    where: { Form: { id: { _eq: $formId } }, ownerId: { _eq: $ownerId } }
+  ) {
+    id
+    createdAt
+    relatedId
+  }
+}
