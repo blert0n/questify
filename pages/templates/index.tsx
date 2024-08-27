@@ -19,37 +19,54 @@ const templates = [
   {
     name: "Patient satisfaction survey",
     mapKey: "patientSatisfactionSurvey",
+    image: "images/patientSatisfactionSurvey.png",
   },
   {
     name: "Demographic Information",
     mapKey: "demographicInformation",
+    image: "images/demographicInformation.png",
   },
   {
     name: "Volunteer interest form",
     mapKey: "volunteerInterestForm",
+    image: "images/volunteerInterestForm.png",
   },
   {
     name: "Pet adoption Inquiry",
     mapKey: "petAdoptionInquiry",
-  },
-  {
-    name: "Health assessment",
-    mapKey: "healthAssessment",
-  },
-  {
-    name: "Employee Survey",
-    mapKey: "employeeSurvey",
+    image: "images/petAdoptionInquiry.png",
   },
   {
     name: "Travel Survey",
     mapKey: "travelSurvey",
+    image: "images/travelSurvey.png",
+  },
+  {
+    name: "Employee Survey",
+    mapKey: "employeeSurvey",
+    image: "images/employeeSurvey.png",
+  },
+  {
+    name: "Health assessment",
+    mapKey: "healthAssessment",
+    image: "images/healthAssessment.png",
+  },
+  {
+    name: "Social media usage",
+    mapKey: "socialMediaUsage",
+    image: "images/socialMediaUsage.png",
+  },
+  {
+    name: "Online shopping experience",
+    mapKey: "onlineShoppingExperience",
+    image: "images/onlineShoppingExperience.png",
   },
 ];
 const Index = () => {
   const loadTemplate = useFormSelectors.use.loadTemplate();
 
   return (
-    <div className="flex flex-col gap-2 text-gray-500 text-sm items-center justify-center bg-white shadow-md p-4 pb-12">
+    <div className="flex flex-col gap-2 text-gray-500 text-sm items-center justify-center bg-white shadow-md p-4 pb-12 h-full">
       <span className="text-slate-500 text-sm uppercase font-oswald m-4">
         Browse Templates
       </span>

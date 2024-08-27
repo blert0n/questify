@@ -11,6 +11,8 @@ import {
   volunteerInterestForm,
   demographicInformation,
   patientSatisfactionSurvey,
+  socialMediaUsage,
+  onlineShoppingExperience,
 } from "@/lib/templates";
 import { FormState } from "./";
 
@@ -125,4 +127,6 @@ export const templateMapper: Record<string, FormState> = {
   volunteerInterestForm,
   demographicInformation,
   patientSatisfactionSurvey,
+  socialMediaUsage,
+  onlineShoppingExperience,
 };

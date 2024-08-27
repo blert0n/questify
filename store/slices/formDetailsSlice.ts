@@ -15,6 +15,8 @@ const TEMPLATES = [
   "volunteerInterestForm",
   "demographicInformation",
   "patientSatisfactionSurvey",
+  "socialMediaUsage",
+  "onlineShoppingExperience",
 ];
 export const createFormDetailsSlice: StateCreator<
   ThemeSlice & ItemSlice & FormDetailsSlice,

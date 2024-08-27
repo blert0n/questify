@@ -58,7 +58,7 @@ export default function Form({ form, folder = false }: P) {
     },
   });
   return (
-    <div className="h-64 shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white">
+    <div className="h-64 w-full max-w-48 shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white">
       <div className="h-full flex flex-col gap-1">
         <div className="flex self-end p-2 w-8">
           {loadingFavorite ? (

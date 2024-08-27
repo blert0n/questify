@@ -25,7 +25,7 @@ export default function Templates() {
   return (
     <div className="flex flex-col gap-2 text-gray-500 text-sm items-center justify-center">
       Start a new form
-      <div className="w-full flex flex-row flex-wrap gap-4 justify-center items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 self-center">
         <div className="flex flex-col gap-2">
           <div
             className="flex flex-col items-center justify-center gap-2 border-[1.5px] border-gray-200 w-[150px] h-[140px] shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white"

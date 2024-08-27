@@ -388,8 +388,8 @@ export const employeeSurvey: FormState = {
       fontFamily: "Open Sans",
       text: "<p>Please fill out this survey to help us understand your satisfaction level.</p>",
     },
-    primaryColor: "#4caf50",
-    secondaryColor: "#c8e6c9",
+    primaryColor: "#db4437",
+    secondaryColor: "#f1b4af",
   },
   items: [
     {
@@ -1541,6 +1541,301 @@ export const patientSatisfactionSurvey: FormState = {
     {
       id: v4(),
       name: "<p>Do you have any additional comments or suggestions?</p>",
+      order: 5,
+      origin: "client",
+      section: 0,
+      type: FormType.Long,
+      required: false,
+      options: [],
+    },
+  ],
+  deletedItems: [],
+};
+
+export const socialMediaUsage: FormState = {
+  name: "Social Media Usage Survey",
+  editMode: true,
+  isFavorite: false,
+  loading: false,
+  selectedComponent: "formHeader",
+  activeTab: 0,
+  operation: "",
+  theme: {
+    Header: {
+      fontSize: "22",
+      fontFamily: "Nunito",
+      text: "<p>Social Media Usage Survey</p>",
+    },
+    Question: {
+      fontSize: "20",
+      fontFamily: "Roboto",
+    },
+    Text: {
+      fontSize: "16",
+      fontFamily: "Lato",
+      text: "<p>We appreciate your input in helping us understand social media habits better.</p>",
+    },
+    primaryColor: "#EF476F",
+    secondaryColor: "#fac7d3",
+  },
+  items: [
+    {
+      id: v4(),
+      name: "<p>How often do you use social media?</p>",
+      order: 1,
+      origin: "client",
+      section: 0,
+      type: FormType.Dropdown,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "Multiple times a day",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "Once a day",
+          order: 2,
+        },
+        {
+          id: v4(),
+          value: "A few times a week",
+          order: 3,
+        },
+        {
+          id: v4(),
+          value: "Rarely",
+          order: 4,
+        },
+        {
+          id: v4(),
+          value: "Never",
+          order: 5,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>Which social media platform do you use the most?</p>",
+      order: 2,
+      origin: "client",
+      section: 0,
+      type: FormType.MultipleChoice,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "Facebook",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "Instagram",
+          order: 2,
+        },
+        {
+          id: v4(),
+          value: "Twitter",
+          order: 3,
+        },
+        {
+          id: v4(),
+          value: "TikTok",
+          order: 4,
+        },
+        {
+          id: v4(),
+          value: "LinkedIn",
+          order: 5,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>How much time do you spend on social media each day?</p>",
+      order: 3,
+      origin: "client",
+      section: 0,
+      type: FormType.LinearScale,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "1",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "10",
+          order: 2,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>Do you feel that social media has a positive or negative impact on your life?</p>",
+      order: 4,
+      origin: "client",
+      section: 0,
+      type: FormType.SingleChoice,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "Positive",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "Negative",
+          order: 2,
+        },
+        {
+          id: v4(),
+          value: "Neutral",
+          order: 3,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>If you could change one thing about social media, what would it be?</p>",
+      order: 5,
+      origin: "client",
+      section: 0,
+      type: FormType.Long,
+      required: false,
+      options: [],
+    },
+  ],
+  deletedItems: [],
+};
+
+export const onlineShoppingExperience: FormState = {
+  name: "Online Shopping Experience Survey",
+  editMode: true,
+  isFavorite: false,
+  loading: false,
+  selectedComponent: "formHeader",
+  activeTab: 0,
+  operation: "",
+  theme: {
+    Header: {
+      fontSize: "22",
+      fontFamily: "Raleway",
+      text: "<p>Online Shopping Experience Survey</p>",
+    },
+    Question: {
+      fontSize: "18",
+      fontFamily: "Inter",
+    },
+    Text: {
+      fontSize: "16",
+      fontFamily: "Barlow",
+      text: "<p>We value your feedback on your online shopping experience. Please help us improve by answering the following questions.</p>",
+    },
+    primaryColor: "#009688",
+    secondaryColor: "#e0f2f1",
+  },
+  items: [
+    {
+      id: v4(),
+      name: "<p>How easy was it to navigate our website?</p>",
+      order: 1,
+      origin: "client",
+      section: 0,
+      type: FormType.LinearScale,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "1",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "10",
+          order: 2,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>How satisfied are you with the product selection available?</p>",
+      order: 2,
+      origin: "client",
+      section: 0,
+      type: FormType.LinearScale,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "1",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "10",
+          order: 2,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>What was your overall experience with our customer service?</p>",
+      order: 3,
+      origin: "client",
+      section: 0,
+      type: FormType.SingleChoice,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "Excellent",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "Good",
+          order: 2,
+        },
+        {
+          id: v4(),
+          value: "Average",
+          order: 3,
+        },
+        {
+          id: v4(),
+          value: "Poor",
+          order: 4,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>Would you recommend our website to others?</p>",
+      order: 4,
+      origin: "client",
+      section: 0,
+      type: FormType.SingleChoice,
+      required: true,
+      options: [
+        {
+          id: v4(),
+          value: "Yes",
+          order: 1,
+        },
+        {
+          id: v4(),
+          value: "No",
+          order: 2,
+        },
+      ],
+    },
+    {
+      id: v4(),
+      name: "<p>Any additional comments or suggestions?</p>",
       order: 5,
       origin: "client",
       section: 0,
