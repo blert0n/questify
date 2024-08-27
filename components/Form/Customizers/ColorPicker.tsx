@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { cn } from "@/lib";
 import { CheckCircle2, Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SketchPicker } from "react-color";
 import { useBoolean } from "usehooks-ts";
 interface P {
@@ -32,10 +32,21 @@ const ColorPicker = ({
   showColorPicker = false,
   onChange,
 }: P) => {
-  const [selectedColor, setSelectedColor] = useState(color ?? "#ffffff");
+  const [selectedColor, setSelectedColor] = useState(
+    color && colors.includes(color) ? color : "#ffffff"
+  );
   const [customColor, setCustomColor] = useState(
     color && colors.includes(color) ? "" : color
   );
+  useEffect(() => {
+    if (color && colors.includes(color)) {
+      setSelectedColor(color);
+      setCustomColor("");
+    } else {
+      setSelectedColor("");
+      setCustomColor(color || "");
+    }
+  }, [color, colors]);
   const [hovered, setHovered] = useState("");
   const { value: isColorPickerVisible, toggle: toggleColorPicker } =
     useBoolean(false);
