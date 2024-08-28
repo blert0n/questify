@@ -99,6 +99,7 @@ export default function Index() {
       <div
         className="flex flex-col self-start gap-8 items-center h-full w-full p-4 pt-8 overflow-y-auto sticky top-0"
         style={{ backgroundColor: findFirstForm?.style?.secondaryColor }}
+        id="form"
       >
         {loading && <Loader />}
         {!loading && findFirstForm && (

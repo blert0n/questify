@@ -46,6 +46,7 @@ select_permissions:
         - ownerId
         - responses
         - style
+        - thumbnail
         - updatedAt
       filter: {}
       limit: 1
@@ -53,15 +54,16 @@ select_permissions:
   - role: user
     permission:
       columns:
+        - createdAt
         - favorite
-        - order
-        - responses
-        - style
         - folderId
         - id
         - name
+        - order
         - ownerId
-        - createdAt
+        - responses
+        - style
+        - thumbnail
         - updatedAt
       filter:
         ownerId:
