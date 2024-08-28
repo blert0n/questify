@@ -11,6 +11,8 @@ import {
   UpdateFormItemsDocument,
   DeleteFormItemsMutation,
   DeleteFormItemsDocument,
+  UpdateFormThumbnailMutation,
+  UpdateFormThumbnailDocument,
 } from "@/lib/graphql";
 import { apolloClient } from "@/lib/";
 import { toast } from "react-toastify";
@@ -26,7 +28,6 @@ import {
 } from "./";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import { gql } from "@apollo/client";
 
 export const prepareCreateItems = (items: FormItem[]) =>
   items.map((item) => ({
@@ -186,25 +187,25 @@ const handleThumbnailUpdate = async (
   backgroundColor?: string
 ) => {
   if (!formId) return;
-  const { data } = await axios.post("/api/screenshot", {
-    formId: formId,
-    fullpage: true,
-    backgroundColor,
-  });
-  const thumbnailFragment = gql`
-    fragment Thumbnail on Form {
-      thumbnail
+  const { data } = await axios.post(
+    process.env.NEXT_PUBLIC_SCREENSHOT_HANDLER ?? "",
+    {
+      id: formId,
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/form/${formId}`,
+      fullpage: true,
+      backgroundColor,
     }
-  `;
+  );
 
-  if (!data.formId || !data.imageUrl) return;
+  if (!data.data?.id || !data.data?.imageUrl) return;
 
-  apolloClient.cache.writeFragment({
-    id: `Form:${data.formId}`,
-    fragment: thumbnailFragment,
-    data: {
-      thumbnail: data.imageUrl,
+  await apolloClient.mutate<UpdateFormThumbnailMutation>({
+    mutation: UpdateFormThumbnailDocument,
+    variables: {
+      id: data.data?.id,
+      imageUrl: data.data?.imageUrl,
     },
   });
+
   thumbnail().set();
 };

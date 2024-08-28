@@ -20,6 +20,22 @@ interface P {
   form: FormType;
   folder?: boolean;
 }
+
+const getFormBackgroundStyle = (
+  url?: string | null,
+  secondaryColor?: string,
+  isLoading?: boolean
+) => {
+  const backgroundStyle = url
+    ? `url(${url}) no-repeat center center / contain, ${secondaryColor}`
+    : secondaryColor;
+
+  return {
+    background: !isLoading ? backgroundStyle : secondaryColor,
+    backgroundColor: secondaryColor,
+  };
+};
+
 export default function Form({ form, folder = false }: P) {
   const { value: isPopoverOpen, toggle: togglePopover } = useBoolean(false);
   const { value: isFolderPopoverOpen, toggle: toggleFolderPopover } =
@@ -27,6 +43,7 @@ export default function Form({ form, folder = false }: P) {
   const editForm = useFormSelectors.use.loadForm();
   const formLoading = useFormSelectors.use.loading();
   const formOperation = useFormSelectors.use.operation();
+  const loadingFormThumbnail = thumbnail().loading;
   const [deleteForm, { loading: deleteLoading }] = useDeleteFormMutation({
     variables: {
       formId: form.id,
@@ -82,27 +99,28 @@ export default function Form({ form, folder = false }: P) {
             )}
           </div>
           <div
-            className="h-full w-full flex justify-center items-center"
+            className="h-full w-full flex flex-col gap-2 justify-center items-center"
             style={{
-              ...(thumbnail().loading !== form.id
-                ? {
-                    background: `
-                ${form.thumbnail ? `url(${form.thumbnail}) no-repeat center center / contain` : form.style.secondaryColor},
-                ${form.style.secondaryColor} /* Adjust color and opacity as needed */
-              `,
-                    backgroundColor: form.style.secondaryColor,
-                  }
-                : { backgroundColor: form.style.secondaryColor }),
+              ...getFormBackgroundStyle(
+                form.thumbnail,
+                form.style.secondaryColor,
+                loadingFormThumbnail === form.id
+              ),
             }}
           >
             <File
               size={72}
               className={cn(
                 "text-gray-500",
-                thumbnail().loading !== form.id && form.thumbnail && "hidden"
+                loadingFormThumbnail !== form.id && form.thumbnail && "hidden"
               )}
               strokeWidth={0.5}
             />
+            {loadingFormThumbnail === form.id && (
+              <span className="text-slate-500 text-xs font-bold uppercase animate-bounce">
+                Generating...
+              </span>
+            )}
           </div>
         </div>
 

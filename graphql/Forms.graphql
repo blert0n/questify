@@ -118,6 +118,17 @@ mutation UpdateForm(
     }
   }
 }
+mutation UpdateFormThumbnail($id: String!, $imageUrl: String!) {
+  update_Form(
+    where: { id: { _eq: $id } }
+    _set: { thumbnail: $imageUrl, updatedAt: now }
+  ) {
+    returning {
+      id
+      thumbnail
+    }
+  }
+}
 
 mutation UpdateFormItems($data: [FormItem_insert_input!]!) {
   insert_FormItem(

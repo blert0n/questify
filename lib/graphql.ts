@@ -2906,6 +2906,14 @@ export type UpdateFormMutationVariables = Exact<{
 
 export type UpdateFormMutation = { update_Form?: { returning: Array<{ id: string, name: string, favorite: boolean, thumbnail?: string | undefined | null, style?: any | undefined | null, createdAt: any, updatedAt: any }> } | undefined | null };
 
+export type UpdateFormThumbnailMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+  imageUrl: Scalars['String']['input'];
+}>;
+
+
+export type UpdateFormThumbnailMutation = { update_Form?: { returning: Array<{ id: string, thumbnail?: string | undefined | null }> } | undefined | null };
+
 export type UpdateFormItemsMutationVariables = Exact<{
   data: Array<FormItem_Insert_Input> | FormItem_Insert_Input;
 }>;
@@ -3864,6 +3872,45 @@ export function useUpdateFormMutation(baseOptions?: Apollo.MutationHookOptions<U
       }
 export type UpdateFormMutationHookResult = ReturnType<typeof useUpdateFormMutation>;
 export type UpdateFormMutationResult = Apollo.MutationResult<UpdateFormMutation>;
+export const UpdateFormThumbnailDocument = /*#__PURE__*/ gql`
+    mutation UpdateFormThumbnail($id: String!, $imageUrl: String!) {
+  update_Form(
+    where: {id: {_eq: $id}}
+    _set: {thumbnail: $imageUrl, updatedAt: now}
+  ) {
+    returning {
+      id
+      thumbnail
+    }
+  }
+}
+    `;
+export type UpdateFormThumbnailMutationFn = Apollo.MutationFunction<UpdateFormThumbnailMutation, UpdateFormThumbnailMutationVariables>;
+
+/**
+ * __useUpdateFormThumbnailMutation__
+ *
+ * To run a mutation, you first call `useUpdateFormThumbnailMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateFormThumbnailMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateFormThumbnailMutation, { data, loading, error }] = useUpdateFormThumbnailMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      imageUrl: // value for 'imageUrl'
+ *   },
+ * });
+ */
+export function useUpdateFormThumbnailMutation(baseOptions?: Apollo.MutationHookOptions<UpdateFormThumbnailMutation, UpdateFormThumbnailMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateFormThumbnailMutation, UpdateFormThumbnailMutationVariables>(UpdateFormThumbnailDocument, options);
+      }
+export type UpdateFormThumbnailMutationHookResult = ReturnType<typeof useUpdateFormThumbnailMutation>;
+export type UpdateFormThumbnailMutationResult = Apollo.MutationResult<UpdateFormThumbnailMutation>;
 export const UpdateFormItemsDocument = /*#__PURE__*/ gql`
     mutation UpdateFormItems($data: [FormItem_insert_input!]!) {
   insert_FormItem(
