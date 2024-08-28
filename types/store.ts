@@ -8,6 +8,7 @@ export type FormDetailsSlice = {
   activeTab: number;
   editMode: boolean;
   loading: boolean;
+  loadingThumbnail: string;
   operation: string;
   updateFormDetails: <K extends keyof FormDetailsSlice>(
     prop: K,

@@ -15,5 +15,13 @@ export const getFormDetails = () => ({
   name: useFormSelectors.getState().name,
   favorite: useFormSelectors.getState().isFavorite,
 });
+export const thumbnail = () => ({
+  loading: useFormSelectors.getState().loadingThumbnail,
+  set: (formId?: string) =>
+    useFormSelectors.setState((state) => ({
+      ...state,
+      loadingThumbnail: formId || "",
+    })),
+});
 
 export * from "./form";

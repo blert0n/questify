@@ -5,7 +5,6 @@ import {
 } from "@/lib/graphql";
 import { File, Star } from "lucide-react";
 import dayjs from "dayjs";
-import { Separator } from "../ui";
 import Actions from "./Actions";
 import { useBoolean } from "usehooks-ts";
 import { toast } from "react-toastify";
@@ -13,6 +12,7 @@ import { cn } from "@/lib";
 import { Loader } from "@/assets/svg";
 import { useFormSelectors } from "@/store";
 import MoveFolder from "./MoveFolder";
+import { thumbnail } from "@/store/actions";
 
 type FormType = MyFormsQuery["Form"][number] & { folderId?: string | null };
 
@@ -60,26 +60,53 @@ export default function Form({ form, folder = false }: P) {
   return (
     <div className="h-64 w-full max-w-48 shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white">
       <div className="h-full flex flex-col gap-1">
-        <div className="flex self-end p-2 w-8">
-          {loadingFavorite ? (
-            <Loader width={16} height={16} />
-          ) : (
-            <Star
+        <div className="relative h-3/4 flex justify-center items-center">
+          <div
+            className="absolute top-0 right-0 p-2 w-8"
+            style={{
+              zIndex: 10, // Ensure it is above other content
+            }}
+          >
+            {loadingFavorite ? (
+              <Loader width={16} height={16} />
+            ) : (
+              <Star
+                className={cn(
+                  "text-slate-700 hover:scale-110 cursor-pointer text-[12px] flex justify-end",
+                  form.favorite && "fill-amber-500 text-amber-500"
+                )}
+                strokeWidth={1.5}
+                size={16}
+                onClick={() => starForm()}
+              />
+            )}
+          </div>
+          <div
+            className="h-full w-full flex justify-center items-center"
+            style={{
+              ...(thumbnail().loading !== form.id
+                ? {
+                    background: `
+                ${form.thumbnail ? `url(${form.thumbnail}) no-repeat center center / contain` : form.style.secondaryColor},
+                ${form.style.secondaryColor} /* Adjust color and opacity as needed */
+              `,
+                    backgroundColor: form.style.secondaryColor,
+                  }
+                : { backgroundColor: form.style.secondaryColor }),
+            }}
+          >
+            <File
+              size={72}
               className={cn(
-                "text-slate-700 hover:scale-110 cursor-pointer text-[12px] flex justify-end",
-                form.favorite && "fill-amber-500 text-amber-500"
+                "text-gray-500",
+                thumbnail().loading !== form.id && form.thumbnail && "hidden"
               )}
-              strokeWidth={1.5}
-              size={16}
-              onClick={() => starForm()}
+              strokeWidth={0.5}
             />
-          )}
+          </div>
         </div>
-        <div className="h-2/3 flex justify-center items-center">
-          <File size={72} className="text-gray-500" strokeWidth={0.5} />
-        </div>
-        <div className="h-1/3 flex flex-col gap-3 justify-end">
-          <Separator />
+
+        <div className="h-1/4 flex flex-col gap-3 justify-end">
           <div className="p-2">
             <div className="text-slate-700 whitespace-nowrap overflow-hidden text-ellipsis">
               {form.name}

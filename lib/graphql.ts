@@ -440,6 +440,7 @@ export interface Form {
   ownerId: Scalars['String']['output'];
   responses: Scalars['Int']['output'];
   style?: Maybe<Scalars['jsonb']['output']>;
+  thumbnail?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['timestamp']['output'];
 }
 
@@ -1084,6 +1085,7 @@ export interface Form_Bool_Exp {
   ownerId?: InputMaybe<String_Comparison_Exp>;
   responses?: InputMaybe<Int_Comparison_Exp>;
   style?: InputMaybe<Jsonb_Comparison_Exp>;
+  thumbnail?: InputMaybe<String_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamp_Comparison_Exp>;
 }
 
@@ -1129,6 +1131,7 @@ export interface Form_Insert_Input {
   ownerId?: InputMaybe<Scalars['String']['input']>;
   responses?: InputMaybe<Scalars['Int']['input']>;
   style?: InputMaybe<Scalars['jsonb']['input']>;
+  thumbnail?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamp']['input']>;
 }
 
@@ -1141,6 +1144,7 @@ export interface Form_Max_Fields {
   order?: Maybe<Scalars['Int']['output']>;
   ownerId?: Maybe<Scalars['String']['output']>;
   responses?: Maybe<Scalars['Int']['output']>;
+  thumbnail?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamp']['output']>;
 }
 
@@ -1153,6 +1157,7 @@ export interface Form_Max_Order_By {
   order?: InputMaybe<Order_By>;
   ownerId?: InputMaybe<Order_By>;
   responses?: InputMaybe<Order_By>;
+  thumbnail?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 }
 
@@ -1165,6 +1170,7 @@ export interface Form_Min_Fields {
   order?: Maybe<Scalars['Int']['output']>;
   ownerId?: Maybe<Scalars['String']['output']>;
   responses?: Maybe<Scalars['Int']['output']>;
+  thumbnail?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['timestamp']['output']>;
 }
 
@@ -1177,6 +1183,7 @@ export interface Form_Min_Order_By {
   order?: InputMaybe<Order_By>;
   ownerId?: InputMaybe<Order_By>;
   responses?: InputMaybe<Order_By>;
+  thumbnail?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 }
 
@@ -1215,6 +1222,7 @@ export interface Form_Order_By {
   ownerId?: InputMaybe<Order_By>;
   responses?: InputMaybe<Order_By>;
   style?: InputMaybe<Order_By>;
+  thumbnail?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 }
 
@@ -1249,6 +1257,8 @@ export enum Form_Select_Column {
   /** column name */
   Style = 'style',
   /** column name */
+  Thumbnail = 'thumbnail',
+  /** column name */
   UpdatedAt = 'updatedAt'
 }
 
@@ -1275,6 +1285,7 @@ export interface Form_Set_Input {
   ownerId?: InputMaybe<Scalars['String']['input']>;
   responses?: InputMaybe<Scalars['Int']['input']>;
   style?: InputMaybe<Scalars['jsonb']['input']>;
+  thumbnail?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamp']['input']>;
 }
 
@@ -1333,6 +1344,7 @@ export interface Form_Stream_Cursor_Value_Input {
   ownerId?: InputMaybe<Scalars['String']['input']>;
   responses?: InputMaybe<Scalars['Int']['input']>;
   style?: InputMaybe<Scalars['jsonb']['input']>;
+  thumbnail?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['timestamp']['input']>;
 }
 
@@ -1368,6 +1380,8 @@ export enum Form_Update_Column {
   Responses = 'responses',
   /** column name */
   Style = 'style',
+  /** column name */
+  Thumbnail = 'thumbnail',
   /** column name */
   UpdatedAt = 'updatedAt'
 }
@@ -1777,10 +1791,6 @@ export interface Mutation_Root {
   delete_Notification?: Maybe<Notification_Mutation_Response>;
   /** delete single row from the table: "Notification" */
   delete_Notification_by_pk?: Maybe<Notification>;
-  /** delete data from the table: "test" */
-  delete_test?: Maybe<Test_Mutation_Response>;
-  /** delete single row from the table: "test" */
-  delete_test_by_pk?: Maybe<Test>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
@@ -1805,10 +1815,6 @@ export interface Mutation_Root {
   insert_Notification?: Maybe<Notification_Mutation_Response>;
   /** insert a single row into the table: "Notification" */
   insert_Notification_one?: Maybe<Notification>;
-  /** insert data into the table: "test" */
-  insert_test?: Maybe<Test_Mutation_Response>;
-  /** insert a single row into the table: "test" */
-  insert_test_one?: Maybe<Test>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
@@ -1843,12 +1849,6 @@ export interface Mutation_Root {
   update_Notification_by_pk?: Maybe<Notification>;
   /** update multiples rows of table: "Notification" */
   update_Notification_many?: Maybe<Array<Maybe<Notification_Mutation_Response>>>;
-  /** update data of the table: "test" */
-  update_test?: Maybe<Test_Mutation_Response>;
-  /** update single row of the table: "test" */
-  update_test_by_pk?: Maybe<Test>;
-  /** update multiples rows of table: "test" */
-  update_test_many?: Maybe<Array<Maybe<Test_Mutation_Response>>>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
@@ -1914,18 +1914,6 @@ export interface Mutation_RootDelete_NotificationArgs {
 
 /** mutation root */
 export interface Mutation_RootDelete_Notification_By_PkArgs {
-  id: Scalars['Int']['input'];
-}
-
-
-/** mutation root */
-export interface Mutation_RootDelete_TestArgs {
-  where: Test_Bool_Exp;
-}
-
-
-/** mutation root */
-export interface Mutation_RootDelete_Test_By_PkArgs {
   id: Scalars['Int']['input'];
 }
 
@@ -2009,20 +1997,6 @@ export interface Mutation_RootInsert_NotificationArgs {
 export interface Mutation_RootInsert_Notification_OneArgs {
   object: Notification_Insert_Input;
   on_conflict?: InputMaybe<Notification_On_Conflict>;
-}
-
-
-/** mutation root */
-export interface Mutation_RootInsert_TestArgs {
-  objects: Array<Test_Insert_Input>;
-  on_conflict?: InputMaybe<Test_On_Conflict>;
-}
-
-
-/** mutation root */
-export interface Mutation_RootInsert_Test_OneArgs {
-  object: Test_Insert_Input;
-  on_conflict?: InputMaybe<Test_On_Conflict>;
 }
 
 
@@ -2167,28 +2141,6 @@ export interface Mutation_RootUpdate_Notification_ManyArgs {
 
 
 /** mutation root */
-export interface Mutation_RootUpdate_TestArgs {
-  _inc?: InputMaybe<Test_Inc_Input>;
-  _set?: InputMaybe<Test_Set_Input>;
-  where: Test_Bool_Exp;
-}
-
-
-/** mutation root */
-export interface Mutation_RootUpdate_Test_By_PkArgs {
-  _inc?: InputMaybe<Test_Inc_Input>;
-  _set?: InputMaybe<Test_Set_Input>;
-  pk_columns: Test_Pk_Columns_Input;
-}
-
-
-/** mutation root */
-export interface Mutation_RootUpdate_Test_ManyArgs {
-  updates: Array<Test_Updates>;
-}
-
-
-/** mutation root */
 export interface Mutation_RootUpdate_UsersArgs {
   _set?: InputMaybe<Users_Set_Input>;
   where: Users_Bool_Exp;
@@ -2254,12 +2206,6 @@ export interface Query_Root {
   Notification_aggregate: Notification_Aggregate;
   /** fetch data from the table: "Notification" using primary key columns */
   Notification_by_pk?: Maybe<Notification>;
-  /** fetch data from the table: "test" */
-  test: Array<Test>;
-  /** fetch aggregated fields from the table: "test" */
-  test_aggregate: Test_Aggregate;
-  /** fetch data from the table: "test" using primary key columns */
-  test_by_pk?: Maybe<Test>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -2384,29 +2330,6 @@ export interface Query_RootNotification_By_PkArgs {
 }
 
 
-export interface Query_RootTestArgs {
-  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Test_Order_By>>;
-  where?: InputMaybe<Test_Bool_Exp>;
-}
-
-
-export interface Query_RootTest_AggregateArgs {
-  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Test_Order_By>>;
-  where?: InputMaybe<Test_Bool_Exp>;
-}
-
-
-export interface Query_RootTest_By_PkArgs {
-  id: Scalars['Int']['input'];
-}
-
-
 export interface Query_RootUsersArgs {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2470,14 +2393,6 @@ export interface Subscription_Root {
   Notification_by_pk?: Maybe<Notification>;
   /** fetch data from the table in a streaming manner: "Notification" */
   Notification_stream: Array<Notification>;
-  /** fetch data from the table: "test" */
-  test: Array<Test>;
-  /** fetch aggregated fields from the table: "test" */
-  test_aggregate: Test_Aggregate;
-  /** fetch data from the table: "test" using primary key columns */
-  test_by_pk?: Maybe<Test>;
-  /** fetch data from the table in a streaming manner: "test" */
-  test_stream: Array<Test>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -2639,36 +2554,6 @@ export interface Subscription_RootNotification_StreamArgs {
 }
 
 
-export interface Subscription_RootTestArgs {
-  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Test_Order_By>>;
-  where?: InputMaybe<Test_Bool_Exp>;
-}
-
-
-export interface Subscription_RootTest_AggregateArgs {
-  distinct_on?: InputMaybe<Array<Test_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Test_Order_By>>;
-  where?: InputMaybe<Test_Bool_Exp>;
-}
-
-
-export interface Subscription_RootTest_By_PkArgs {
-  id: Scalars['Int']['input'];
-}
-
-
-export interface Subscription_RootTest_StreamArgs {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Test_Stream_Cursor_Input>>;
-  where?: InputMaybe<Test_Bool_Exp>;
-}
-
-
 export interface Subscription_RootUsersArgs {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2696,189 +2581,6 @@ export interface Subscription_RootUsers_StreamArgs {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Users_Stream_Cursor_Input>>;
   where?: InputMaybe<Users_Bool_Exp>;
-}
-
-/** test */
-export interface Test {
-  id: Scalars['Int']['output'];
-  test?: Maybe<Scalars['String']['output']>;
-}
-
-/** aggregated selection of "test" */
-export interface Test_Aggregate {
-  aggregate?: Maybe<Test_Aggregate_Fields>;
-  nodes: Array<Test>;
-}
-
-/** aggregate fields of "test" */
-export interface Test_Aggregate_Fields {
-  avg?: Maybe<Test_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Test_Max_Fields>;
-  min?: Maybe<Test_Min_Fields>;
-  stddev?: Maybe<Test_Stddev_Fields>;
-  stddev_pop?: Maybe<Test_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Test_Stddev_Samp_Fields>;
-  sum?: Maybe<Test_Sum_Fields>;
-  var_pop?: Maybe<Test_Var_Pop_Fields>;
-  var_samp?: Maybe<Test_Var_Samp_Fields>;
-  variance?: Maybe<Test_Variance_Fields>;
-}
-
-
-/** aggregate fields of "test" */
-export interface Test_Aggregate_FieldsCountArgs {
-  columns?: InputMaybe<Array<Test_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-}
-
-/** aggregate avg on columns */
-export interface Test_Avg_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-/** Boolean expression to filter rows from the table "test". All fields are combined with a logical 'AND'. */
-export interface Test_Bool_Exp {
-  _and?: InputMaybe<Array<Test_Bool_Exp>>;
-  _not?: InputMaybe<Test_Bool_Exp>;
-  _or?: InputMaybe<Array<Test_Bool_Exp>>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  test?: InputMaybe<String_Comparison_Exp>;
-}
-
-/** unique or primary key constraints on table "test" */
-export enum Test_Constraint {
-  /** unique or primary key constraint on columns "id" */
-  TestPkey = 'test_pkey'
-}
-
-/** input type for incrementing numeric columns in table "test" */
-export interface Test_Inc_Input {
-  id?: InputMaybe<Scalars['Int']['input']>;
-}
-
-/** input type for inserting data into table "test" */
-export interface Test_Insert_Input {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  test?: InputMaybe<Scalars['String']['input']>;
-}
-
-/** aggregate max on columns */
-export interface Test_Max_Fields {
-  id?: Maybe<Scalars['Int']['output']>;
-  test?: Maybe<Scalars['String']['output']>;
-}
-
-/** aggregate min on columns */
-export interface Test_Min_Fields {
-  id?: Maybe<Scalars['Int']['output']>;
-  test?: Maybe<Scalars['String']['output']>;
-}
-
-/** response of any mutation on the table "test" */
-export interface Test_Mutation_Response {
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Test>;
-}
-
-/** on_conflict condition type for table "test" */
-export interface Test_On_Conflict {
-  constraint: Test_Constraint;
-  update_columns?: Array<Test_Update_Column>;
-  where?: InputMaybe<Test_Bool_Exp>;
-}
-
-/** Ordering options when selecting data from "test". */
-export interface Test_Order_By {
-  id?: InputMaybe<Order_By>;
-  test?: InputMaybe<Order_By>;
-}
-
-/** primary key columns input for table: test */
-export interface Test_Pk_Columns_Input {
-  id: Scalars['Int']['input'];
-}
-
-/** select columns of table "test" */
-export enum Test_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Test = 'test'
-}
-
-/** input type for updating data in table "test" */
-export interface Test_Set_Input {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  test?: InputMaybe<Scalars['String']['input']>;
-}
-
-/** aggregate stddev on columns */
-export interface Test_Stddev_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-/** aggregate stddev_pop on columns */
-export interface Test_Stddev_Pop_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-/** aggregate stddev_samp on columns */
-export interface Test_Stddev_Samp_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-/** Streaming cursor of the table "test" */
-export interface Test_Stream_Cursor_Input {
-  /** Stream column input with initial value */
-  initial_value: Test_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-}
-
-/** Initial value of the column from where the streaming should start */
-export interface Test_Stream_Cursor_Value_Input {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  test?: InputMaybe<Scalars['String']['input']>;
-}
-
-/** aggregate sum on columns */
-export interface Test_Sum_Fields {
-  id?: Maybe<Scalars['Int']['output']>;
-}
-
-/** update columns of table "test" */
-export enum Test_Update_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Test = 'test'
-}
-
-export interface Test_Updates {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Test_Inc_Input>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Test_Set_Input>;
-  /** filter the rows which have to be updated */
-  where: Test_Bool_Exp;
-}
-
-/** aggregate var_pop on columns */
-export interface Test_Var_Pop_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-/** aggregate var_samp on columns */
-export interface Test_Var_Samp_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
-}
-
-/** aggregate variance on columns */
-export interface Test_Variance_Fields {
-  id?: Maybe<Scalars['Float']['output']>;
 }
 
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
@@ -3166,7 +2868,7 @@ export type MyFormsQueryVariables = Exact<{
 }>;
 
 
-export type MyFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, createdAt: any, updatedAt: any }> };
+export type MyFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, thumbnail?: string | undefined | null, style?: any | undefined | null, createdAt: any, updatedAt: any }> };
 
 export type FolderFormsQueryVariables = Exact<{
   folderId: Scalars['String']['input'];
@@ -3202,7 +2904,7 @@ export type UpdateFormMutationVariables = Exact<{
 }>;
 
 
-export type UpdateFormMutation = { update_Form?: { affected_rows: number } | undefined | null };
+export type UpdateFormMutation = { update_Form?: { returning: Array<{ id: string, name: string, favorite: boolean, thumbnail?: string | undefined | null, style?: any | undefined | null, createdAt: any, updatedAt: any }> } | undefined | null };
 
 export type UpdateFormItemsMutationVariables = Exact<{
   data: Array<FormItem_Insert_Input> | FormItem_Insert_Input;
@@ -3880,6 +3582,8 @@ export const MyFormsDocument = /*#__PURE__*/ gql`
     id
     name
     favorite
+    thumbnail
+    style
     createdAt
     updatedAt
   }
@@ -4120,7 +3824,15 @@ export const UpdateFormDocument = /*#__PURE__*/ gql`
     where: {id: {_eq: $id}}
     _set: {name: $name, style: $style, favorite: $favorite, updatedAt: now}
   ) {
-    affected_rows
+    returning {
+      id
+      name
+      favorite
+      thumbnail
+      style
+      createdAt
+      updatedAt
+    }
   }
 }
     `;

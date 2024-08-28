@@ -31,6 +31,7 @@ export const createFormDetailsSlice: StateCreator<
   activeTab: 0,
   editMode: true,
   loading: false,
+  loadingThumbnail: "",
   operation: "",
   updateFormDetails: (prop, value) =>
     set((state) => ({

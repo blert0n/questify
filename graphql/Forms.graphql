@@ -30,6 +30,8 @@ query MyForms($orderBy: [Form_order_by!] = { createdAt: desc }) {
     id
     name
     favorite
+    thumbnail
+    style
     createdAt
     updatedAt
   }
@@ -105,7 +107,15 @@ mutation UpdateForm(
     where: { id: { _eq: $id } }
     _set: { name: $name, style: $style, favorite: $favorite, updatedAt: now }
   ) {
-    affected_rows
+    returning {
+      id
+      name
+      favorite
+      thumbnail
+      style
+      createdAt
+      updatedAt
+    }
   }
 }
 

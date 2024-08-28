@@ -22,8 +22,11 @@ import {
   getItems,
   getFormDetails,
   getDeletedItems,
+  thumbnail,
 } from "./";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+import { gql } from "@apollo/client";
 
 export const prepareCreateItems = (items: FormItem[]) =>
   items.map((item) => ({
@@ -72,7 +75,7 @@ export const saveForm = async () => {
     const theme = getTheme();
     const formDetails = getFormDetails();
     const formItems = getItems();
-    await apolloClient.mutate<CreateFormMutation>({
+    const response = await apolloClient.mutate<CreateFormMutation>({
       mutation: CreateFormDocument,
       variables: {
         data: {
@@ -95,6 +98,10 @@ export const saveForm = async () => {
     closeFormModal();
     resetForm();
     setLoading(false);
+    void handleThumbnailUpdate(
+      response.data?.insert_Form_one?.id,
+      theme.secondaryColor
+    );
   } catch (error) {
     setLoading(false);
     console.error("Error saving form:", error);
@@ -106,6 +113,7 @@ export const saveForm = async () => {
 export const editForm = async (formId?: string) => {
   if (!formId) return;
   setLoading(true);
+  thumbnail().set(formId);
   try {
     const theme = getTheme();
     const formDetails = getFormDetails();
@@ -147,6 +155,7 @@ export const editForm = async (formId?: string) => {
     closeFormModal();
     resetForm();
     setLoading(false);
+    void handleThumbnailUpdate(formId, theme.secondaryColor);
   } catch (error) {
     setLoading(false);
     console.error("Error saving form:", error);
@@ -170,4 +179,32 @@ export const loadFormData = async (id: string) => {
     toast.error("Something went wrong! Please try again later!");
     console.log(e);
   }
+};
+
+const handleThumbnailUpdate = async (
+  formId?: string,
+  backgroundColor?: string
+) => {
+  if (!formId) return;
+  const { data } = await axios.post("/api/screenshot", {
+    formId: formId,
+    fullpage: true,
+    backgroundColor,
+  });
+  const thumbnailFragment = gql`
+    fragment Thumbnail on Form {
+      thumbnail
+    }
+  `;
+
+  if (!data.data.formId.id || !data.data.imageUrl) return;
+
+  apolloClient.cache.writeFragment({
+    id: `Form:${data.data.formId.id}`,
+    fragment: thumbnailFragment,
+    data: {
+      thumbnail: data.data.imageUrl,
+    },
+  });
+  thumbnail().set();
 };
