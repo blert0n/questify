@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { v2 as cloudinary } from "cloudinary";
 import { createClient } from "@vercel/postgres";
 
-const URL = process.env.NEXT_PUBLIC_FRONTEND_URL ?? "http://localhost:3000";
+const URL = "https://questify-pro.vercel.app" ?? "http://localhost:3000";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -65,6 +65,7 @@ const takeScreenshot = async (
     await browser.close();
     return screenshotBuffer;
   } catch (error) {
+    console.error("Screenshot capture error:", error);
     return null;
   }
 };
@@ -122,9 +123,13 @@ export default async function handler(
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Updating thumbnail failed" });
     }
-    res
-      .status(200)
-      .json({ success: true, data: { formId: result.rows[0], imageUrl } });
+
+    const data = {
+      formId: result.rows[0].id,
+      imageUrl,
+    };
+
+    res.status(200).json({ success: true, data });
   } catch (error) {
     console.error("Database update error:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -132,5 +137,5 @@ export default async function handler(
     await client.end();
   }
 
-  res.status(200).json({ imageUrl });
+  res.status(200).json({ success: true });
 }

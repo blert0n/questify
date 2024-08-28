@@ -197,13 +197,13 @@ const handleThumbnailUpdate = async (
     }
   `;
 
-  if (!data.data.formId.id || !data.data.imageUrl) return;
+  if (!data.formId || !data.imageUrl) return;
 
   apolloClient.cache.writeFragment({
-    id: `Form:${data.data.formId.id}`,
+    id: `Form:${data.formId}`,
     fragment: thumbnailFragment,
     data: {
-      thumbnail: data.data.imageUrl,
+      thumbnail: data.imageUrl,
     },
   });
   thumbnail().set();
