@@ -2875,12 +2875,12 @@ export type FolderFormsQueryVariables = Exact<{
 }>;
 
 
-export type FolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined | null, createdAt: any, updatedAt: any }> };
+export type FolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, thumbnail?: string | undefined | null, style?: any | undefined | null, createdAt: any, updatedAt: any }> };
 
 export type DefaultFolderFormsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DefaultFolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, folderId?: string | undefined | null, createdAt: any, updatedAt: any }> };
+export type DefaultFolderFormsQuery = { Form: Array<{ id: string, name: string, favorite: boolean, thumbnail?: string | undefined | null, style?: any | undefined | null, createdAt: any, updatedAt: any }> };
 
 export type FormDataQueryVariables = Exact<{
   formId: Scalars['String']['input'];
@@ -3636,7 +3636,8 @@ export const FolderFormsDocument = /*#__PURE__*/ gql`
     id
     name
     favorite
-    folderId
+    thumbnail
+    style
     createdAt
     updatedAt
   }
@@ -3681,7 +3682,8 @@ export const DefaultFolderFormsDocument = /*#__PURE__*/ gql`
     id
     name
     favorite
-    folderId
+    thumbnail
+    style
     createdAt
     updatedAt
   }

@@ -42,7 +42,8 @@ query FolderForms($folderId: String!) {
     id
     name
     favorite
-    folderId
+    thumbnail
+    style
     createdAt
     updatedAt
   }
@@ -53,7 +54,8 @@ query DefaultFolderForms {
     id
     name
     favorite
-    folderId
+    thumbnail
+    style
     createdAt
     updatedAt
   }

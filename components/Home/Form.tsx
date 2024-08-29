@@ -103,7 +103,7 @@ export default function Form({ form, folder = false }: P) {
             style={{
               ...getFormBackgroundStyle(
                 form.thumbnail,
-                form.style.secondaryColor,
+                form.style?.secondaryColor ?? "#ffffff",
                 loadingFormThumbnail === form.id
               ),
             }}
