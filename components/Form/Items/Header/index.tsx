@@ -1,16 +1,13 @@
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
-import StyledInput from "../../../StyledInput";
 import { useFormSelectors } from "@/store";
-import { deserializeString } from "../../../StyledInput/deserializer";
+import { RichTextEditor } from "@/components/RichTextEditor";
 
 export const FormHeader = () => {
   const theme = useFormSelectors.use.theme();
   const updateThemeHeader = useFormSelectors.use.updateHeaderTheme();
   const updateThemeText = useFormSelectors.use.updateTextTheme();
   const updateForm = useFormSelectors.use.updateFormDetails();
-  const formHeader = deserializeString(theme.Header.text);
-  const formDescription = deserializeString(theme.Text.text);
   const selected = useFormSelectors.use.selectedComponent() === "formHeader";
 
   return (
@@ -23,7 +20,7 @@ export const FormHeader = () => {
     >
       <div
         className={cn(
-          "h-full rounded-b-md p-6 bg-white",
+          "h-full rounded-b-md p-6 pb-2 bg-white",
           !selected && "cursor-pointer"
         )}
         style={{
@@ -32,27 +29,33 @@ export const FormHeader = () => {
             : "none",
         }}
       >
-        <StyledInput
-          className={cn(
-            "w-full",
-            fontSizeMapper(theme.Header.fontSize),
-            fontMapper[theme.Header.fontFamily]
-          )}
-          initialValue={formHeader}
+        <RichTextEditor
+          options={{
+            className: cn(
+              "w-full",
+              fontSizeMapper(theme.Header.fontSize),
+              fontMapper[theme.Header.fontFamily]
+            ),
+            showBottomBorder: selected,
+          }}
+          value={theme.Header.text}
+          placeholder="Form name"
+          name="form-header"
           onChange={(html) => updateThemeHeader("text", html)}
-          noLineBreak
-          showBottomBorder={selected}
         />
-        <StyledInput
-          className={cn(
-            "w-full",
-            fontSizeMapper(theme.Text.fontSize),
-            fontMapper[theme.Text.fontFamily]
-          )}
-          initialValue={formDescription}
+        <RichTextEditor
+          options={{
+            className: cn(
+              "w-full",
+              fontSizeMapper(theme.Text.fontSize),
+              fontMapper[theme.Text.fontFamily]
+            ),
+            showBottomBorder: selected,
+          }}
+          value={theme.Text.text}
+          placeholder="Form description"
+          name="form-description"
           onChange={(html) => updateThemeText("text", html)}
-          noLineBreak
-          showBottomBorder={selected}
         />
       </div>
     </div>

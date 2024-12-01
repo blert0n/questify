@@ -1,5 +1,5 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui";
-import { cn, getPrimaryColor } from "@/lib";
+import { cn, getPrimaryColor, transform } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialTheme } from "@/types";
 import { useFormikContext } from "formik";
@@ -47,12 +47,12 @@ export const LiveLinearScale = ({
       <div className="flex flex-col justify-between items-start gap-6">
         <div
           className={cn(
-            "flex gap-[2px]",
+            "flex gap-[2px] w-full",
             fontMapper[theme.Question.fontFamily],
             fontSizeMapper(theme.Question.fontSize)
           )}
         >
-          {ReactHtmlParser(item.name)}
+          {ReactHtmlParser(item.name, { transform })}
           {item.required && <span className="text-red-600">*</span>}
         </div>
         <div className="flex flex-col gap-2 min-w-[200px] w-full px-1">

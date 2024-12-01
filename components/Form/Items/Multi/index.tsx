@@ -1,5 +1,3 @@
-import StyledInput from "@/components/StyledInput";
-import { deserializeString } from "@/components/StyledInput/deserializer";
 import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormSelectors } from "@/store";
@@ -10,6 +8,7 @@ import { Option } from "../ChoiceComponents/Option";
 import { GripHorizontal } from "lucide-react";
 import { Droppable } from "@hello-pangea/dnd";
 import { Addon } from "../ChoiceComponents/Addon";
+import { RichTextEditor } from "@/components/RichTextEditor";
 
 export const Multi = ({
   item,
@@ -18,7 +17,6 @@ export const Multi = ({
   hovered,
   dragHandle,
 }: FormComponent) => {
-  const question = deserializeString(item.name);
   const updateItem = useFormSelectors.use.updateItem();
   const duplicateItem = useFormSelectors.use.duplicateItem();
   const deleteItem = useFormSelectors.use.deleteItem();
@@ -49,16 +47,19 @@ export const Multi = ({
         </div>
       )}
       <div className="flex justify-between items-start gap-6 pb-1 px-6">
-        <StyledInput
-          initialValue={question}
-          className={cn(
-            "w-5/6 py-0",
-            fontSizeMapper(theme.Question.fontSize),
-            fontMapper[theme.Question.fontFamily]
-          )}
+        <RichTextEditor
+          value={item.name}
+          options={{
+            className: cn(
+              "w-5/6",
+              fontSizeMapper(theme.Question.fontSize),
+              fontMapper[theme.Question.fontFamily]
+            ),
+            showBottomBorder: selected,
+          }}
           onChange={(html) => updateItem(item.id, "name", html)}
-          noLineBreak
-          showBottomBorder={selected}
+          name={`form-question-${item.id}`}
+          placeholder="Question"
         />
         {selected && (
           <div className="flex w-1/6 justify-end">

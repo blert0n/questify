@@ -36,7 +36,7 @@ const prepareChartData = (answers: Answer[], options: SubItem[]) => {
   const optionFrequencyMapper: Record<string, number> = {};
   scaleOptions.forEach((option) => {
     answers?.forEach((answer) => {
-      if (answer.value?.includes(option)) {
+      if (answer.value === option) {
         optionFrequencyMapper[option] =
           (optionFrequencyMapper[option] || 0) + 1;
       }

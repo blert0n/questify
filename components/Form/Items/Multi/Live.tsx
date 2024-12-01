@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui";
-import { cn, getPrimaryColor } from "@/lib";
+import { cn, getPrimaryColor, transform } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialTheme } from "@/types";
 import { useFormikContext } from "formik";
@@ -59,12 +59,12 @@ export const LiveMultiChoice = ({
       <div className="flex flex-col justify-between items-start gap-3">
         <div
           className={cn(
-            "flex gap-[2px]",
+            "flex gap-[2px] w-full",
             fontMapper[theme.Question.fontFamily],
             fontSizeMapper(theme.Question.fontSize)
           )}
         >
-          {ReactHtmlParser(item.name)}
+          {ReactHtmlParser(item.name, { transform })}
           {item.required && <span className="text-red-600">*</span>}
         </div>
         <div

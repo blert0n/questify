@@ -37,3 +37,10 @@ export const prepareFormik = (
   const validationSchema = object().shape(SchemaObject);
   return { initialValues, validationSchema };
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const transform = (node: any, index: number) => {
+  if (index === 0 && node.type === "tag") {
+    node.attribs.class = `${node.attribs?.class ?? ""} w-full`;
+  }
+};

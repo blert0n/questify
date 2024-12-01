@@ -2,7 +2,7 @@ import ReactHtmlParser from "react-html-parser";
 import { useState } from "react";
 import { FormComponent, initialTheme } from "@/types";
 import { Textarea } from "@/components/ui";
-import { cn, getPrimaryColor } from "@/lib";
+import { cn, getPrimaryColor, transform } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormikContext } from "formik";
 import { ShieldAlert } from "lucide-react";
@@ -38,12 +38,12 @@ export const LiveLongComponent = ({
       )}
       <div
         className={cn(
-          "flex gap-[2px]",
+          "flex gap-[2px] w-full",
           fontMapper[theme.Question.fontFamily],
           fontSizeMapper(theme.Question.fontSize)
         )}
       >
-        {ReactHtmlParser(item.name)}
+        {ReactHtmlParser(item.name, { transform })}
         {item.required && <span className="text-red-600">*</span>}
       </div>
       <Textarea

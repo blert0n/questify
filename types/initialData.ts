@@ -50,8 +50,8 @@ export const initialTheme: Theme = {
     fontFamily: "Open Sans",
     text: "Description",
   },
-  primaryColor: "#ffffff",
-  secondaryColor: "#d9d9d9",
+  primaryColor: "#673ab7",
+  secondaryColor: "#e1d8f1",
 };
 
 const generateOptions = (type: FormType) => {
