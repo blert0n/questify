@@ -15,6 +15,7 @@ interface P {
 }
 
 const componentMapper = {
+  [FormType.Text]: () => <span />,
   [FormType.Short]: List,
   [FormType.Long]: List,
   [FormType.SingleChoice]: PieChart,
