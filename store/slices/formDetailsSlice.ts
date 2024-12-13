@@ -1,5 +1,11 @@
 import { initialFormData, templateMapper } from "./../../types/initialData";
-import { FormDetailsSlice, ItemSlice, ThemeSlice, initialTheme } from "@/types";
+import {
+  FormDetailsSlice,
+  FormType,
+  ItemSlice,
+  ThemeSlice,
+  initialTheme,
+} from "@/types";
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";
 import { editForm, loadFormData, openFormModal, saveForm } from "../actions";
@@ -75,6 +81,7 @@ export const createFormDetailsSlice: StateCreator<
           ...rest,
           options: mutableItems,
           origin: "server",
+          type: item.type as FormType,
         };
       }),
     }));

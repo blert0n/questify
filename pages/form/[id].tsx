@@ -5,7 +5,7 @@ import {
   useInsertNotificationMutation,
   useSubmitFormMutation,
 } from "@/lib/graphql";
-import { FormItem, initialTheme } from "@/types";
+import { FormItem, FormType, initialTheme } from "@/types";
 import { useRouter } from "next/router";
 import Error from "next/error";
 import Meta from "@/components/Layout/Title";
@@ -85,6 +85,7 @@ export default function Index() {
           ...rest,
           origin: "server",
           options: items,
+          type: item.type as FormType,
         };
       })
     : [];
