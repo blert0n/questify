@@ -85,7 +85,10 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = React.memo(
             }
             ErrorBoundary={LexicalErrorBoundary}
           />
-          <ToolbarPlugin isEditorFocused={focus} toggleFocus={toggleFocus} />
+          <ToolbarPlugin
+            isEditorFocused={Boolean(focus && options?.showBottomBorder)}
+            toggleFocus={toggleFocus}
+          />
         </div>
         <HistoryPlugin />
         <OnChangePlugin value={value} onChange={onChange} />

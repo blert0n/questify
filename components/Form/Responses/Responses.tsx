@@ -33,7 +33,7 @@ export const Responses = ({ formId }: P) => {
   });
   const [selectedView, setSelectedView] = useState(0);
   return (
-    <div className="flex flex-col gap-4 w-full md:max-w-3xl">
+    <div className="flex flex-col gap-4 w-full md:max-w-3xl p-4">
       <div className="w-full h-auto min-h-16 bg-white shadow-lg rounded-sm p-4 text-lg">
         {!formData || formData.responses === 0 ? (
           <div className="flex flex-col gap-2 justify-center">

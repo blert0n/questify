@@ -29,14 +29,21 @@ export const createItemSlice: StateCreator<
     })),
   deleteItem: (id) => {
     set((state) => {
+      const deletedItem = state.items.find((item) => item.id === id);
+      if (!deletedItem) return state;
       const predecessor = state.items.findIndex((item) => item.id === id);
       const newSelectedId =
         predecessor > 0 ? state.items.at(predecessor - 1)?.id : "formHeader";
+      const filteredItems = state.items.filter((item) => item.id !== id);
+      const updatedItems = filteredItems.map((item) => {
+        if (item.order < deletedItem.order) return item;
+        return { ...item, order: item.order - 1 };
+      });
       return {
         ...state,
         deletedItems: state.editMode ? [...state.deletedItems, id] : [],
         selectedComponent: newSelectedId,
-        items: state.items.filter((item) => item.id !== id),
+        items: updatedItems,
       };
     });
   },
@@ -67,14 +74,43 @@ export const createItemSlice: StateCreator<
       };
     });
   },
-  addItem: (type) => {
-    const lastOrder = get().items.at(-1)?.order;
-    const newItem = newInputItem(type, lastOrder);
-    set((state) => ({
-      ...state,
-      selectedComponent: newItem.id,
-      items: [...state.items, newItem],
-    }));
+  addItem: (type, index) => {
+    console.log(type, index, "addItem");
+    const lastOrder = get().items.at(-1)?.order ?? 0;
+    const newItem = newInputItem(type, index ?? lastOrder);
+
+    console.log(lastOrder, "lastOrder");
+    console.log(newItem, "newItem");
+
+    set((state) => {
+      if (index === undefined || lastOrder === 0) {
+        return {
+          ...state,
+          selectedComponent: newItem.id,
+          items: [...state.items, newItem],
+        };
+      }
+
+      // console.log(state.items.slice(0, index), "upperItems");
+      // console.log(state.items.slice(index), "lowerItems");
+
+      const items = [
+        ...state.items.slice(0, index),
+        newItem,
+        ...state.items.slice(index).map((item) => ({
+          ...item,
+          order: item.order + 1,
+        })),
+      ];
+
+      console.log("updatedItems", items);
+
+      return {
+        ...state,
+        selectedComponent: newItem.id,
+        items,
+      };
+    });
   },
   reorder: (startIndex, endIndex) => {
     set((state) => {

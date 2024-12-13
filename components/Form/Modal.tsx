@@ -4,9 +4,11 @@ import { Form } from "./Form";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
 import { useFormSelectors } from "@/store";
-import { AddItem } from "./AddComponent/AddItem";
 import { cn } from "@/lib";
 import { Responses } from "./Responses/Responses";
+import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+import { Elements } from "./AddComponent/Elements";
+import { FormType } from "@/types";
 
 const tabs = [
   {
@@ -56,20 +58,44 @@ export const FullScreenModal = ({
 }: P) => {
   const { value: themeCustomizer, toggle: toggleThemeCustomizer } =
     useBoolean(false);
-  const { value: isAddPopoverOpen, toggle: toggleAddPopover } =
-    useBoolean(false);
-
   const activeTab = useFormSelectors.use.activeTab();
   const updateForm = useFormSelectors.use.updateFormDetails();
+  const addItem = useFormSelectors.use.addItem();
   const resetForm = useFormSelectors.use.resetForm();
   const theme = useFormSelectors.use.theme();
   const formId = useFormSelectors.use.id?.();
-  const editMode = useFormSelectors.use.editMode();
+  const reorder = useFormSelectors.use.reorder();
+  const reorderOptions = useFormSelectors.use.reorderOptions();
 
   const handleModalClose = () => {
     resetForm();
     closeFn();
   };
+
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) return;
+    if (
+      result.source.droppableId === "elements" &&
+      result.destination.droppableId === "elements"
+    )
+      return;
+    if (
+      result.source.droppableId === "elements" &&
+      result.destination.droppableId === "droppable"
+    ) {
+      console.log(result, "result");
+      addItem(result.draggableId as FormType, result.destination.index);
+      return;
+    }
+    if (result.type === "formItems") {
+      return reorder(result.source.index, result.destination.index);
+    }
+    if (result.type.includes("options-")) {
+      const itemId = result.type.split("options-")[1];
+      reorderOptions(itemId, result.source.index, result.destination.index);
+    }
+  };
+
   return (
     <Sheet open={visible}>
       <SheetContent
@@ -95,16 +121,25 @@ export const FullScreenModal = ({
           ))}
         </div>
         <div
-          className="flex flex-col self-start gap-8 items-center h-full w-full p-4 overflow-y-auto sticky top-0"
+          className="flex flex-col self-start gap-8 items-center h-full w-full overflow-y-auto"
           style={{ backgroundColor: theme.secondaryColor }}
         >
           {activeTab === 0 ? (
-            <>
-              {editMode && (
-                <AddItem visible={isAddPopoverOpen} toggle={toggleAddPopover} />
-              )}
-              <Form />
-            </>
+            <DragDropContext onDragEnd={onDragEnd}>
+              <div className="flex flex-grow md:flex-row flex-col md:gap-8 gap-4 w-full">
+                <div className="bg-white min-w-64 p-4 shadow-inner sticky top-0">
+                  <div className="sticky top-0">
+                    <div className="text-gray-500 font-semibold mb-4">
+                      Elements
+                    </div>
+                    <Elements />
+                  </div>
+                </div>
+                <div className="p-8 w-full flex-grow">
+                  <Form />
+                </div>
+              </div>
+            </DragDropContext>
           ) : (
             <Responses formId={formId} />
           )}

@@ -4,6 +4,7 @@ import { DraggableProvidedDragHandleProps } from "@hello-pangea/dnd";
 export type FontFamily = keyof typeof fontMapper;
 
 export enum FormType {
+  Text = "TEXT",
   Date = "DATE",
   Dropdown = "DROPDOWN",
   LinearScale = "LINEAR_SCALE",

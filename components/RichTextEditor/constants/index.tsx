@@ -1,8 +1,6 @@
 import {
   RotateCw,
   RotateCcw,
-  // Code,
-  Highlighter,
   AlignJustify,
   AlignLeft,
   AlignRight,
@@ -13,6 +11,8 @@ import {
   ItalicIcon,
   Strikethrough,
   UnderlineIcon,
+  // Highlighter,
+  // Code,
 } from "lucide-react";
 
 export enum RichTextAction {
@@ -50,12 +50,6 @@ export const RICH_TEXT_OPTIONS = [
     label: "Underline",
   },
   {
-    id: RichTextAction.Highlight,
-    icon: <Highlighter size={18} strokeWidth={1.5} />,
-    label: "Highlight",
-    fontSize: 10,
-  },
-  {
     id: RichTextAction.Strikethrough,
     icon: <Strikethrough size={18} strokeWidth={1.5} />,
     label: "Strikethrough",
@@ -70,6 +64,12 @@ export const RICH_TEXT_OPTIONS = [
     icon: <Subscript size={18} strokeWidth={1.5} />,
     label: "Subscript",
   },
+  // {
+  //   id: RichTextAction.Highlight,
+  //   icon: <Highlighter size={18} strokeWidth={1.5} />,
+  //   label: "Highlight",
+  //   fontSize: 10,
+  // },
   // {
   //   id: RichTextAction.Code,
   //   icon: <Code size={18} strokeWidth={1.5} />,

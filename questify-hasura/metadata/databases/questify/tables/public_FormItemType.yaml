@@ -1,0 +1,4 @@
+table:
+  name: FormItemType
+  schema: public
+is_enum: true

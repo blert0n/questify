@@ -45,7 +45,7 @@ export type ItemSlice = {
     prop: K,
     value: FormItem[K]
   ) => void;
-  addItem: (type: FormType) => void;
+  addItem: (type: FormType, index?: number) => void;
   deleteItem: (id: string) => void;
   duplicateItem: (id: string) => void;
   reorder: (startIndex: number, endIndex: number) => void;

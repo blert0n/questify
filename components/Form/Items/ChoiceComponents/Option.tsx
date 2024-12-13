@@ -72,6 +72,7 @@ export const Option = ({
               )}
               value={value}
               onChange={(e) => onChange?.(e.target.value)}
+              placeholder="Option label"
             />
             {selected && !locked && (
               <X

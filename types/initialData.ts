@@ -102,7 +102,7 @@ export const newInputItem: (type: FormType, lastOrder?: number) => FormItem = (
   lastOrder = 0
 ) => ({
   id: uuidv4(),
-  name: "Question",
+  name: type === FormType.Text ? "" : "Question",
   order: lastOrder + 1,
   origin: "client",
   section: 0,

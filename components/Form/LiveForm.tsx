@@ -9,9 +9,11 @@ import {
   LiveDropdown,
   HeaderImage,
   LiveHeader,
+  LiveText,
 } from "./Items";
 
 const componentMapper = {
+  [FormType.Text]: LiveText,
   [FormType.Short]: LiveShortComponent,
   [FormType.Long]: LiveLongComponent,
   [FormType.SingleChoice]: LiveOneChoice,

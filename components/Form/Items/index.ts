@@ -1,5 +1,6 @@
 export * from "./Header";
 export * from "./HeaderImage";
+export * from "./Header/Live";
 export * from "./ItemActions";
 export * from "./Long";
 export * from "./Long/Live";
@@ -15,4 +16,5 @@ export * from "./LinearScale";
 export * from "./LinearScale/Live";
 export * from "./Date";
 export * from "./Date/Live";
-export * from "./Header/Live";
+export * from "./Text";
+export * from "./Text/Live";

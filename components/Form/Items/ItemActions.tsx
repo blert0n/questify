@@ -1,4 +1,4 @@
-import { FormItem, iconProps } from "@/types";
+import { FormItem, FormType, iconProps } from "@/types";
 import { Switch, Separator } from "@/components/ui";
 import { Copy, Trash } from "lucide-react";
 import { useFormSelectors } from "@/store";
@@ -25,14 +25,22 @@ export const ItemActions = ({
           <div className="flex justify-end items-center gap-4 w-full">
             <Copy {...iconProps} onClick={onDuplicate} />
             <Trash {...iconProps} onClick={onDelete} />
-            <Separator orientation="vertical" className="h-[24px]" decorative />
-            Required{" "}
-            <Switch
-              checked={item.required}
-              onCheckedChange={(checked) =>
-                updateItem(item.id, "required", checked)
-              }
-            />
+            {item.type !== FormType.Text && (
+              <>
+                <Separator
+                  orientation="vertical"
+                  className="h-[24px]"
+                  decorative
+                />
+                Required{" "}
+                <Switch
+                  checked={item.required}
+                  onCheckedChange={(checked) =>
+                    updateItem(item.id, "required", checked)
+                  }
+                />
+              </>
+            )}
           </div>
         </div>
       )}
