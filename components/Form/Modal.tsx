@@ -83,7 +83,6 @@ export const FullScreenModal = ({
       result.source.droppableId === "elements" &&
       result.destination.droppableId === "droppable"
     ) {
-      console.log(result, "result");
       addItem(
         result.draggableId as FormItemType_Enum,
         result.destination.index
@@ -112,7 +111,7 @@ export const FullScreenModal = ({
           saveFn={saveFn}
           toggleThemeCustomizer={toggleThemeCustomizer}
         />
-        <div className="flex justify-center items-center sm:gap-4 gap-2 bg-white">
+        <div className="flex justify-center items-center sm:gap-4 gap-2 bg-white border-b-[1px] border-slate-400">
           {tabs.map((tab) => (
             <Tab
               key={tab.index}
@@ -130,7 +129,7 @@ export const FullScreenModal = ({
           {activeTab === 0 ? (
             <DragDropContext onDragEnd={onDragEnd}>
               <div className="flex flex-grow md:flex-row flex-col md:gap-8 gap-4 w-full">
-                <div className="bg-white min-w-64 p-4 shadow-inner sticky top-0">
+                <div className="bg-white min-w-64 p-4 sticky top-0 z-20 shadow-lg">
                   <div className="sticky top-0">
                     <div className="text-gray-500 font-semibold mb-4">
                       Elements

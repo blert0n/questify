@@ -75,12 +75,8 @@ export const createItemSlice: StateCreator<
     });
   },
   addItem: (type, index) => {
-    console.log(type, index, "addItem");
     const lastOrder = get().items.at(-1)?.order ?? 0;
     const newItem = newInputItem(type, index ?? lastOrder);
-
-    console.log(lastOrder, "lastOrder");
-    console.log(newItem, "newItem");
 
     set((state) => {
       if (index === undefined || lastOrder === 0) {
@@ -91,9 +87,6 @@ export const createItemSlice: StateCreator<
         };
       }
 
-      // console.log(state.items.slice(0, index), "upperItems");
-      // console.log(state.items.slice(index), "lowerItems");
-
       const items = [
         ...state.items.slice(0, index),
         newItem,
@@ -102,8 +95,6 @@ export const createItemSlice: StateCreator<
           order: item.order + 1,
         })),
       ];
-
-      console.log("updatedItems", items);
 
       return {
         ...state,
