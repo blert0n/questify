@@ -1,4 +1,4 @@
-import { Theme, FormItem, SubItem, InitialFormData, FormType } from "./form";
+import { Theme, FormItem, SubItem, InitialFormData } from "./form";
 import { v4 as uuidv4 } from "uuid";
 import {
   rsvp,
@@ -15,6 +15,7 @@ import {
   onlineShoppingExperience,
 } from "@/lib/templates";
 import { FormState } from "./";
+import { FormItemType_Enum } from "@/lib/graphql";
 
 export const iconProps = {
   size: 20,
@@ -54,9 +55,9 @@ export const initialTheme: Theme = {
   secondaryColor: "#e1d8f1",
 };
 
-const generateOptions = (type: FormType) => {
+const generateOptions = (type: FormItemType_Enum) => {
   switch (type) {
-    case FormType.LinearScale:
+    case FormItemType_Enum.LinearScale:
       return {
         options: [
           {
@@ -73,9 +74,9 @@ const generateOptions = (type: FormType) => {
           },
         ],
       };
-    case FormType.SingleChoice:
-    case FormType.MultipleChoice:
-    case FormType.Dropdown:
+    case FormItemType_Enum.SingleChoice:
+    case FormItemType_Enum.MultipleChoice:
+    case FormItemType_Enum.Dropdown:
       return {
         options: [
           {
@@ -97,12 +98,12 @@ const generateOptions = (type: FormType) => {
   }
 };
 
-export const newInputItem: (type: FormType, lastOrder?: number) => FormItem = (
-  type,
-  lastOrder = 0
-) => ({
+export const newInputItem: (
+  type: FormItemType_Enum,
+  lastOrder?: number
+) => FormItem = (type, lastOrder = 0) => ({
   id: uuidv4(),
-  name: type === FormType.Text ? "" : "Question",
+  name: type === FormItemType_Enum.Text ? "" : "Question",
   order: lastOrder + 1,
   origin: "client",
   section: 0,
@@ -117,7 +118,7 @@ export const newSubItem: (lastOrder?: number) => SubItem = (lastOrder = 0) => ({
 });
 
 export const templateMapper: Record<string, FormState> = {
-  rsvp: rsvp,
+  rsvp,
   orderRequest,
   jobApplication,
   employeeSurvey,

@@ -1,18 +1,9 @@
+import { FormItemType_Enum } from "@/lib/graphql";
 import { fontMapper } from "./../lib/fonts";
 import { ItemSlice } from "./store";
 import { DraggableProvidedDragHandleProps } from "@hello-pangea/dnd";
 export type FontFamily = keyof typeof fontMapper;
 
-export enum FormType {
-  Text = "TEXT",
-  Date = "DATE",
-  Dropdown = "DROPDOWN",
-  LinearScale = "LINEAR_SCALE",
-  Long = "LONG",
-  MultipleChoice = "MULTIPLE_CHOICE",
-  Short = "SHORT",
-  SingleChoice = "SINGLE_CHOICE",
-}
 export interface InitialFormData {
   id: "";
   items: FormItem[];
@@ -63,7 +54,7 @@ export interface FormItem {
   required: boolean;
   options?: SubItem[];
   image?: Image;
-  type: FormType;
+  type?: FormItemType_Enum | null;
   origin: "server" | "client";
 }
 

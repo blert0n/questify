@@ -1,15 +1,6 @@
+import { FormItemType_Enum } from "@/lib/graphql";
 import { FormState } from "@/types";
 import { v4 } from "uuid";
-
-enum FormType {
-  Date = "DATE",
-  Dropdown = "DROPDOWN",
-  LinearScale = "LINEAR_SCALE",
-  Long = "LONG",
-  MultipleChoice = "MULTIPLE_CHOICE",
-  Short = "SHORT",
-  SingleChoice = "SINGLE_CHOICE",
-}
 
 export const rsvp: FormState = {
   name: "Event RSVP",
@@ -53,7 +44,7 @@ export const rsvp: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -74,7 +65,7 @@ export const rsvp: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       required: false,
       options: [],
     },
@@ -84,7 +75,7 @@ export const rsvp: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -115,7 +106,7 @@ export const rsvp: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -163,7 +154,7 @@ export const orderRequest: FormState = {
       name: "<p>Are you a new or existing customer?</p>",
       order: 1,
       required: false,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       options: [
         {
           id: v4(),
@@ -183,7 +174,7 @@ export const orderRequest: FormState = {
       name: "<p>What is the item you would like to order?</p>",
       order: 2,
       required: false,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       options: [],
       origin: "client",
     },
@@ -192,7 +183,7 @@ export const orderRequest: FormState = {
       name: "<p>What color(s) would you like to order?</p>",
       order: 3,
       required: false,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       options: [
         {
           id: v4(),
@@ -222,7 +213,7 @@ export const orderRequest: FormState = {
       name: "<p>Your name</p>",
       order: 4,
       required: true,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       options: [],
       origin: "client",
     },
@@ -231,7 +222,7 @@ export const orderRequest: FormState = {
       name: "<p>Phone number</p>",
       order: 5,
       required: true,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       options: [],
       origin: "client",
     },
@@ -240,7 +231,7 @@ export const orderRequest: FormState = {
       name: "<p>Preferred contact method</p>",
       order: 6,
       required: false,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       options: [
         {
           id: v4(),
@@ -260,7 +251,7 @@ export const orderRequest: FormState = {
       name: "<p>Questions and comments</p>",
       order: 7,
       required: false,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       options: [],
       origin: "client",
     },
@@ -308,7 +299,7 @@ export const jobApplication: FormState = {
       name: "<p>Full name</p>",
       order: 1,
       required: true,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       options: [],
       origin: "client",
     },
@@ -317,7 +308,7 @@ export const jobApplication: FormState = {
       name: "<p>Email</p>",
       order: 2,
       required: true,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       options: [],
       origin: "client",
     },
@@ -326,7 +317,7 @@ export const jobApplication: FormState = {
       name: "<p>Phone number</p>",
       order: 3,
       required: true,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       options: [],
       origin: "client",
     },
@@ -335,7 +326,7 @@ export const jobApplication: FormState = {
       name: "<p>Which position(s) are you interested in?</p>",
       order: 4,
       required: true,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       options: [
         {
           id: v4(),
@@ -360,7 +351,7 @@ export const jobApplication: FormState = {
       name: "<p>Submit your cover letter or resume</p>",
       order: 5,
       required: false,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       options: [],
       origin: "client",
     },
@@ -402,7 +393,7 @@ export const employeeSurvey: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -425,7 +416,7 @@ export const employeeSurvey: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       required: true,
       options: [
         {
@@ -456,7 +447,7 @@ export const employeeSurvey: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -477,7 +468,7 @@ export const employeeSurvey: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.Dropdown,
+      type: FormItemType_Enum.Dropdown,
       required: true,
       options: [
         {
@@ -513,7 +504,7 @@ export const employeeSurvey: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -523,7 +514,7 @@ export const employeeSurvey: FormState = {
       order: 6,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -546,7 +537,7 @@ export const employeeSurvey: FormState = {
       order: 7,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: false,
       options: [
         {
@@ -577,7 +568,7 @@ export const employeeSurvey: FormState = {
       order: 8,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -619,7 +610,7 @@ export const travelSurvey: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -642,7 +633,7 @@ export const travelSurvey: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       required: true,
       options: [
         {
@@ -673,7 +664,7 @@ export const travelSurvey: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -709,7 +700,7 @@ export const travelSurvey: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -719,7 +710,7 @@ export const travelSurvey: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -740,7 +731,7 @@ export const travelSurvey: FormState = {
       order: 6,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -782,7 +773,7 @@ export const healthAssessment: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -813,7 +804,7 @@ export const healthAssessment: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -836,7 +827,7 @@ export const healthAssessment: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       required: true,
       options: [
         {
@@ -867,7 +858,7 @@ export const healthAssessment: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -877,7 +868,7 @@ export const healthAssessment: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -908,7 +899,7 @@ export const healthAssessment: FormState = {
       order: 6,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -950,7 +941,7 @@ export const petAdoptionInquiry: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -976,7 +967,7 @@ export const petAdoptionInquiry: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -999,7 +990,7 @@ export const petAdoptionInquiry: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.Short,
+      type: FormItemType_Enum.Short,
       required: false,
       options: [],
     },
@@ -1009,7 +1000,7 @@ export const petAdoptionInquiry: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1035,7 +1026,7 @@ export const petAdoptionInquiry: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       required: true,
       options: [
         {
@@ -1061,7 +1052,7 @@ export const petAdoptionInquiry: FormState = {
       order: 6,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -1103,7 +1094,7 @@ export const volunteerInterestForm: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       required: true,
       options: [
         {
@@ -1134,7 +1125,7 @@ export const volunteerInterestForm: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.Dropdown,
+      type: FormItemType_Enum.Dropdown,
       required: true,
       options: [
         {
@@ -1165,7 +1156,7 @@ export const volunteerInterestForm: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: true,
       options: [],
     },
@@ -1175,7 +1166,7 @@ export const volunteerInterestForm: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: false,
       options: [
         {
@@ -1196,7 +1187,7 @@ export const volunteerInterestForm: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -1238,7 +1229,7 @@ export const demographicInformation: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.Dropdown,
+      type: FormItemType_Enum.Dropdown,
       required: true,
       options: [
         {
@@ -1284,7 +1275,7 @@ export const demographicInformation: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1315,7 +1306,7 @@ export const demographicInformation: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.Dropdown,
+      type: FormItemType_Enum.Dropdown,
       required: true,
       options: [
         {
@@ -1351,7 +1342,7 @@ export const demographicInformation: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1387,7 +1378,7 @@ export const demographicInformation: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.Dropdown,
+      type: FormItemType_Enum.Dropdown,
       required: true,
       options: [
         {
@@ -1455,7 +1446,7 @@ export const patientSatisfactionSurvey: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -1476,7 +1467,7 @@ export const patientSatisfactionSurvey: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -1497,7 +1488,7 @@ export const patientSatisfactionSurvey: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1533,7 +1524,7 @@ export const patientSatisfactionSurvey: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -1554,7 +1545,7 @@ export const patientSatisfactionSurvey: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -1596,7 +1587,7 @@ export const socialMediaUsage: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.Dropdown,
+      type: FormItemType_Enum.Dropdown,
       required: true,
       options: [
         {
@@ -1632,7 +1623,7 @@ export const socialMediaUsage: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.MultipleChoice,
+      type: FormItemType_Enum.MultipleChoice,
       required: true,
       options: [
         {
@@ -1668,7 +1659,7 @@ export const socialMediaUsage: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -1689,7 +1680,7 @@ export const socialMediaUsage: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1715,7 +1706,7 @@ export const socialMediaUsage: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },
@@ -1757,7 +1748,7 @@ export const onlineShoppingExperience: FormState = {
       order: 1,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -1778,7 +1769,7 @@ export const onlineShoppingExperience: FormState = {
       order: 2,
       origin: "client",
       section: 0,
-      type: FormType.LinearScale,
+      type: FormItemType_Enum.LinearScale,
       required: true,
       options: [
         {
@@ -1799,7 +1790,7 @@ export const onlineShoppingExperience: FormState = {
       order: 3,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1830,7 +1821,7 @@ export const onlineShoppingExperience: FormState = {
       order: 4,
       origin: "client",
       section: 0,
-      type: FormType.SingleChoice,
+      type: FormItemType_Enum.SingleChoice,
       required: true,
       options: [
         {
@@ -1851,7 +1842,7 @@ export const onlineShoppingExperience: FormState = {
       order: 5,
       origin: "client",
       section: 0,
-      type: FormType.Long,
+      type: FormItemType_Enum.Long,
       required: false,
       options: [],
     },

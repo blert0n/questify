@@ -562,7 +562,7 @@ type FormItem {
   order: Int!
   required: Boolean!
   section: Int!
-  type: String
+  type: FormItemType_enum
 }
 
 """enum for form item types"""
@@ -605,6 +605,28 @@ enum FormItemType_constraint {
   unique or primary key constraint on columns "type"
   """
   FormItemType_pkey
+}
+
+enum FormItemType_enum {
+  DATE
+  DROPDOWN
+  LINEAR_SCALE
+  LONG
+  MULTIPLE_CHOICE
+  SHORT
+  SINGLE_CHOICE
+  TEXT
+}
+
+"""
+Boolean expression to compare columns of type "FormItemType_enum". All fields are combined with logical 'AND'.
+"""
+input FormItemType_enum_comparison_exp {
+  _eq: FormItemType_enum
+  _in: [FormItemType_enum!]
+  _is_null: Boolean
+  _neq: FormItemType_enum
+  _nin: [FormItemType_enum!]
 }
 
 """
@@ -814,7 +836,7 @@ input FormItem_bool_exp {
   order: Int_comparison_exp
   required: Boolean_comparison_exp
   section: Int_comparison_exp
-  type: String_comparison_exp
+  type: FormItemType_enum_comparison_exp
 }
 
 """
@@ -873,7 +895,7 @@ input FormItem_insert_input {
   order: Int
   required: Boolean
   section: Int
-  type: String
+  type: FormItemType_enum
 }
 
 """aggregate max on columns"""
@@ -883,7 +905,6 @@ type FormItem_max_fields {
   name: String
   order: Int
   section: Int
-  type: String
 }
 
 """
@@ -895,7 +916,6 @@ input FormItem_max_order_by {
   name: order_by
   order: order_by
   section: order_by
-  type: order_by
 }
 
 """aggregate min on columns"""
@@ -905,7 +925,6 @@ type FormItem_min_fields {
   name: String
   order: Int
   section: Int
-  type: String
 }
 
 """
@@ -917,7 +936,6 @@ input FormItem_min_order_by {
   name: order_by
   order: order_by
   section: order_by
-  type: order_by
 }
 
 """
@@ -1026,7 +1044,7 @@ input FormItem_set_input {
   order: Int
   required: Boolean
   section: Int
-  type: String
+  type: FormItemType_enum
 }
 
 """aggregate stddev on columns"""
@@ -1091,7 +1109,7 @@ input FormItem_stream_cursor_value_input {
   order: Int
   required: Boolean
   section: Int
-  type: String
+  type: FormItemType_enum
 }
 
 """aggregate sum on columns"""

@@ -1,5 +1,5 @@
-import { useResponsesQuery } from "@/lib/graphql";
-import { FormType, SubItem } from "@/types";
+import { FormItemType_Enum, useResponsesQuery } from "@/lib/graphql";
+import { SubItem } from "@/types";
 import { List } from "./List";
 import { cn, pluralize } from "@/lib/utils";
 import { PieChart } from "./PieChart";
@@ -10,19 +10,21 @@ import { Clock, LucideLineChart } from "lucide-react";
 import { useState } from "react";
 import TimelineResponses from "./TimelineResponses";
 
+const EMPTY_COMPONENT = () => <span />;
+
 interface P {
   formId?: string;
 }
 
 const componentMapper = {
-  [FormType.Text]: () => <span />,
-  [FormType.Short]: List,
-  [FormType.Long]: List,
-  [FormType.SingleChoice]: PieChart,
-  [FormType.MultipleChoice]: PieChart,
-  [FormType.LinearScale]: LinearScaleChart,
-  [FormType.Date]: List,
-  [FormType.Dropdown]: PieChart,
+  [FormItemType_Enum.Text]: EMPTY_COMPONENT,
+  [FormItemType_Enum.Short]: List,
+  [FormItemType_Enum.Long]: List,
+  [FormItemType_Enum.SingleChoice]: PieChart,
+  [FormItemType_Enum.MultipleChoice]: PieChart,
+  [FormItemType_Enum.LinearScale]: LinearScaleChart,
+  [FormItemType_Enum.Date]: List,
+  [FormItemType_Enum.Dropdown]: PieChart,
 };
 
 export const Responses = ({ formId }: P) => {
@@ -83,7 +85,9 @@ export const Responses = ({ formId }: P) => {
       {Boolean(formData?.responses && selectedView === 0) &&
         (formData?.FormItems ?? []).map((item) => {
           const options = (item.items ?? []) as SubItem[];
-          const ResponseComponent = componentMapper[item.type as FormType];
+          const ResponseComponent = item.type
+            ? componentMapper[item.type]
+            : EMPTY_COMPONENT;
           return (
             <div
               key={item.id}

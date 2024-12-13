@@ -1,4 +1,5 @@
-import { Theme, FormItem, FormType } from "./form";
+import { FormItemType_Enum } from "@/lib/graphql";
+import { Theme, FormItem } from "./form";
 
 export type FormDetailsSlice = {
   id?: string;
@@ -45,7 +46,7 @@ export type ItemSlice = {
     prop: K,
     value: FormItem[K]
   ) => void;
-  addItem: (type: FormType, index?: number) => void;
+  addItem: (type: FormItemType_Enum, index?: number) => void;
   deleteItem: (id: string) => void;
   duplicateItem: (id: string) => void;
   reorder: (startIndex: number, endIndex: number) => void;

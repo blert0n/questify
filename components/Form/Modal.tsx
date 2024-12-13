@@ -8,7 +8,7 @@ import { cn } from "@/lib";
 import { Responses } from "./Responses/Responses";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import { Elements } from "./AddComponent/Elements";
-import { FormType } from "@/types";
+import { FormItemType_Enum } from "@/lib/graphql";
 
 const tabs = [
   {
@@ -84,7 +84,10 @@ export const FullScreenModal = ({
       result.destination.droppableId === "droppable"
     ) {
       console.log(result, "result");
-      addItem(result.draggableId as FormType, result.destination.index);
+      addItem(
+        result.draggableId as FormItemType_Enum,
+        result.destination.index
+      );
       return;
     }
     if (result.type === "formItems") {

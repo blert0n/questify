@@ -8,64 +8,64 @@ import {
   ScaleIcon,
   TextIcon,
 } from "@/assets/svg";
+import { FormItemType_Enum } from "@/lib/graphql";
 import { useMediaScreen } from "@/lib/useMediaScreen";
 import { useFormSelectors } from "@/store";
-import { FormType } from "@/types";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 
 const elements = [
   {
     index: 1,
-    key: "TEXT",
+    key: FormItemType_Enum.Text,
     icon: <TextIcon className="hover:scale-110" />,
     title: "Text",
     shortTitle: "Text",
   },
   {
     index: 2,
-    key: "SHORT",
+    key: FormItemType_Enum.Short,
     icon: <ShortInputIcon className="hover:scale-110" />,
     title: "Short Input",
     shortTitle: "Short",
   },
   {
     index: 3,
-    key: "LONG",
+    key: FormItemType_Enum.Long,
     icon: <TextareaIcon className="hover:scale-110" />,
     title: "Textarea Input",
     shortTitle: "Textarea",
   },
   {
     index: 4,
-    key: "SINGLE_CHOICE",
+    key: FormItemType_Enum.SingleChoice,
     icon: <SingleChoiceIcon className="hover:scale-110" />,
     title: "Single choice",
     shortTitle: "Single",
   },
   {
     index: 5,
-    key: "MULTIPLE_CHOICE",
+    key: FormItemType_Enum.MultipleChoice,
     icon: <MultiChoiceIcon className="hover:scale-110" />,
     title: "Multiple choice",
     shortTitle: "Multiple",
   },
   {
     index: 6,
-    key: "LINEAR_SCALE",
+    key: FormItemType_Enum.LinearScale,
     icon: <ScaleIcon className="hover:scale-110" />,
     title: "Scale",
     shortTitle: "Scale",
   },
   {
     index: 7,
-    key: "DROPDOWN",
+    key: FormItemType_Enum.Dropdown,
     icon: <DropdownIcon className="hover:scale-110" />,
     title: "Dropdown",
     shortTitle: "Dropdown",
   },
   {
     index: 8,
-    key: "DATE",
+    key: FormItemType_Enum.Date,
     icon: <DatetimeIcon className="hover:scale-110" />,
     title: "Date",
     shortTitle: "Date",
@@ -97,7 +97,7 @@ export function Elements() {
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
-                  onClick={() => addItem(element.key as FormType)}
+                  onClick={() => addItem(element.key)}
                 >
                   <div className="md:w-full border-gray-100 border-[1px] rounded-sm flex items-center p-1 gap-2 cursor-move hover:border-[#5ca4fa]">
                     {element.icon}

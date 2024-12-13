@@ -485,7 +485,7 @@ export interface FormItem {
   order: Scalars['Int']['output'];
   required: Scalars['Boolean']['output'];
   section: Scalars['Int']['output'];
-  type?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<FormItemType_Enum>;
 }
 
 
@@ -557,6 +557,26 @@ export interface FormItemType_Bool_Exp {
 export enum FormItemType_Constraint {
   /** unique or primary key constraint on columns "type" */
   FormItemTypePkey = 'FormItemType_pkey'
+}
+
+export enum FormItemType_Enum {
+  Date = 'DATE',
+  Dropdown = 'DROPDOWN',
+  LinearScale = 'LINEAR_SCALE',
+  Long = 'LONG',
+  MultipleChoice = 'MULTIPLE_CHOICE',
+  Short = 'SHORT',
+  SingleChoice = 'SINGLE_CHOICE',
+  Text = 'TEXT'
+}
+
+/** Boolean expression to compare columns of type "FormItemType_enum". All fields are combined with logical 'AND'. */
+export interface FormItemType_Enum_Comparison_Exp {
+  _eq?: InputMaybe<FormItemType_Enum>;
+  _in?: InputMaybe<Array<FormItemType_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<FormItemType_Enum>;
+  _nin?: InputMaybe<Array<FormItemType_Enum>>;
 }
 
 /** input type for inserting data into table "FormItemType" */
@@ -747,7 +767,7 @@ export interface FormItem_Bool_Exp {
   order?: InputMaybe<Int_Comparison_Exp>;
   required?: InputMaybe<Boolean_Comparison_Exp>;
   section?: InputMaybe<Int_Comparison_Exp>;
-  type?: InputMaybe<String_Comparison_Exp>;
+  type?: InputMaybe<FormItemType_Enum_Comparison_Exp>;
 }
 
 /** unique or primary key constraints on table "FormItem" */
@@ -792,7 +812,7 @@ export interface FormItem_Insert_Input {
   order?: InputMaybe<Scalars['Int']['input']>;
   required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<FormItemType_Enum>;
 }
 
 /** aggregate max on columns */
@@ -802,7 +822,6 @@ export interface FormItem_Max_Fields {
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   section?: Maybe<Scalars['Int']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
 }
 
 /** order by max() on columns of table "FormItem" */
@@ -812,7 +831,6 @@ export interface FormItem_Max_Order_By {
   name?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   section?: InputMaybe<Order_By>;
-  type?: InputMaybe<Order_By>;
 }
 
 /** aggregate min on columns */
@@ -822,7 +840,6 @@ export interface FormItem_Min_Fields {
   name?: Maybe<Scalars['String']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   section?: Maybe<Scalars['Int']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
 }
 
 /** order by min() on columns of table "FormItem" */
@@ -832,7 +849,6 @@ export interface FormItem_Min_Order_By {
   name?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   section?: InputMaybe<Order_By>;
-  type?: InputMaybe<Order_By>;
 }
 
 /** response of any mutation on the table "FormItem" */
@@ -927,7 +943,7 @@ export interface FormItem_Set_Input {
   order?: InputMaybe<Scalars['Int']['input']>;
   required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<FormItemType_Enum>;
 }
 
 /** aggregate stddev on columns */
@@ -984,7 +1000,7 @@ export interface FormItem_Stream_Cursor_Value_Input {
   order?: InputMaybe<Scalars['Int']['input']>;
   required?: InputMaybe<Scalars['Boolean']['input']>;
   section?: InputMaybe<Scalars['Int']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<FormItemType_Enum>;
 }
 
 /** aggregate sum on columns */
@@ -3017,7 +3033,7 @@ export type ResponsesQueryVariables = Exact<{
 }>;
 
 
-export type ResponsesQuery = { Form_by_pk?: { id: string, responses: number, FormItems: Array<{ id: string, name: string, items?: any | undefined | null, type?: string | undefined | null, Answers_aggregate: { aggregate?: { count: number } | undefined | null }, Answers: Array<{ id: string, value: string }> }> } | undefined | null };
+export type ResponsesQuery = { Form_by_pk?: { id: string, responses: number, FormItems: Array<{ id: string, name: string, items?: any | undefined | null, type?: FormItemType_Enum | undefined | null, Answers_aggregate: { aggregate?: { count: number } | undefined | null }, Answers: Array<{ id: string, value: string }> }> } | undefined | null };
 
 export type SubmitFormMutationVariables = Exact<{
   formId: Scalars['String']['input'];
@@ -3116,14 +3132,14 @@ export type FormDataQueryVariables = Exact<{
 }>;
 
 
-export type FormDataQuery = { Form_by_pk?: { id: string, name: string, favorite: boolean, style?: any | undefined | null, FormItems: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type?: string | undefined | null }> } | undefined | null };
+export type FormDataQuery = { Form_by_pk?: { id: string, name: string, favorite: boolean, style?: any | undefined | null, FormItems: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type?: FormItemType_Enum | undefined | null }> } | undefined | null };
 
 export type GetFormQueryVariables = Exact<{
   formId: Scalars['String']['input'];
 }>;
 
 
-export type GetFormQuery = { Form_by_pk?: { id: string, name: string, favorite: boolean, style?: any | undefined | null, ownerId: string, FormItems: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type?: string | undefined | null }> } | undefined | null };
+export type GetFormQuery = { Form_by_pk?: { id: string, name: string, favorite: boolean, style?: any | undefined | null, ownerId: string, FormItems: Array<{ id: string, formId: string, name: string, order: number, required: boolean, items?: any | undefined | null, image?: any | undefined | null, type?: FormItemType_Enum | undefined | null }> } | undefined | null };
 
 export type UpdateFormMutationVariables = Exact<{
   id: Scalars['String']['input'];

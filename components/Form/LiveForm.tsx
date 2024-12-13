@@ -1,4 +1,4 @@
-import { FormItem, Theme, FormType } from "@/types";
+import { FormItem, Theme } from "@/types";
 import {
   LiveShortComponent,
   LiveLongComponent,
@@ -11,16 +11,19 @@ import {
   LiveHeader,
   LiveText,
 } from "./Items";
+import { FormItemType_Enum } from "@/lib/graphql";
+
+const EMPTY_COMPONENT = () => <span />;
 
 const componentMapper = {
-  [FormType.Text]: LiveText,
-  [FormType.Short]: LiveShortComponent,
-  [FormType.Long]: LiveLongComponent,
-  [FormType.SingleChoice]: LiveOneChoice,
-  [FormType.MultipleChoice]: LiveMultiChoice,
-  [FormType.LinearScale]: LiveLinearScale,
-  [FormType.Date]: LiveDate,
-  [FormType.Dropdown]: LiveDropdown,
+  [FormItemType_Enum.Text]: LiveText,
+  [FormItemType_Enum.Short]: LiveShortComponent,
+  [FormItemType_Enum.Long]: LiveLongComponent,
+  [FormItemType_Enum.SingleChoice]: LiveOneChoice,
+  [FormItemType_Enum.MultipleChoice]: LiveMultiChoice,
+  [FormItemType_Enum.LinearScale]: LiveLinearScale,
+  [FormItemType_Enum.Date]: LiveDate,
+  [FormItemType_Enum.Dropdown]: LiveDropdown,
 };
 
 interface P {
@@ -37,7 +40,9 @@ export default function LiveForm({ theme, items, readonly = false }: P) {
       {items
         .sort((a, b) => a.order - b.order)
         .map((item) => {
-          const DynamicComponent = componentMapper[item.type];
+          const DynamicComponent = item.type
+            ? componentMapper[item.type]
+            : EMPTY_COMPONENT;
           return (
             <DynamicComponent
               key={item.id}

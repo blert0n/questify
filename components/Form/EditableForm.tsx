@@ -1,4 +1,4 @@
-import { FormItem, FormType } from "@/types";
+import { FormItem } from "@/types";
 import {
   Short,
   Long,
@@ -15,16 +15,19 @@ import { useFormSelectors } from "@/store";
 import { Draggable, DraggableStyle, Droppable } from "@hello-pangea/dnd";
 import { cn, getPrimaryColor } from "@/lib";
 import { useState } from "react";
+import { FormItemType_Enum } from "@/lib/graphql";
+
+const EMPTY_COMPONENT = () => <span />;
 
 const componentMapper = {
-  [FormType.Text]: Text,
-  [FormType.Short]: Short,
-  [FormType.Long]: Long,
-  [FormType.SingleChoice]: Single,
-  [FormType.MultipleChoice]: Multi,
-  [FormType.LinearScale]: LinearScale,
-  [FormType.Date]: Date,
-  [FormType.Dropdown]: Dropdown,
+  [FormItemType_Enum.Text]: Text,
+  [FormItemType_Enum.Short]: Short,
+  [FormItemType_Enum.Long]: Long,
+  [FormItemType_Enum.SingleChoice]: Single,
+  [FormItemType_Enum.MultipleChoice]: Multi,
+  [FormItemType_Enum.LinearScale]: LinearScale,
+  [FormItemType_Enum.Date]: Date,
+  [FormItemType_Enum.Dropdown]: Dropdown,
 };
 
 const getItemStyle = (
@@ -62,7 +65,9 @@ export default function EditableForm({ items }: P) {
             {items
               .sort((a, b) => a.order - b.order)
               .map((item, index) => {
-                const DynamicComponent = componentMapper[item.type];
+                const DynamicComponent = item.type
+                  ? componentMapper[item.type]
+                  : EMPTY_COMPONENT;
                 const selected = selectedComponent === item.id;
                 const isHovered = hovered === item.id;
                 return (

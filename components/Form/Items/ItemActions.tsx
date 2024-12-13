@@ -1,7 +1,8 @@
-import { FormItem, FormType, iconProps } from "@/types";
+import { FormItem, iconProps } from "@/types";
 import { Switch, Separator } from "@/components/ui";
 import { Copy, Trash } from "lucide-react";
 import { useFormSelectors } from "@/store";
+import { FormItemType_Enum } from "@/lib/graphql";
 
 interface P {
   item: FormItem;
@@ -25,7 +26,7 @@ export const ItemActions = ({
           <div className="flex justify-end items-center gap-4 w-full">
             <Copy {...iconProps} onClick={onDuplicate} />
             <Trash {...iconProps} onClick={onDelete} />
-            {item.type !== FormType.Text && (
+            {item.type !== FormItemType_Enum.Text && (
               <>
                 <Separator
                   orientation="vertical"

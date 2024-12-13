@@ -1,7 +1,7 @@
 import { Loader } from "@/assets/svg";
 import LiveForm from "@/components/Form/LiveForm";
 import { useGetFormQuery, useGetResponsesByIdQuery } from "@/lib/graphql";
-import { FormItem, FormType, initialTheme } from "@/types";
+import { FormItem, initialTheme } from "@/types";
 import Meta from "@/components/Layout/Title";
 import { Formik, Form } from "formik";
 import { cn, prepareFormik } from "@/lib";
@@ -51,7 +51,6 @@ const FormResponse = ({ formId, responseId, onBackButton }: P) => {
           ...rest,
           origin: "server",
           options: items,
-          type: item.type as FormType,
         };
       })
     : [];
