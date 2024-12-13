@@ -562,7 +562,140 @@ type FormItem {
   order: Int!
   required: Boolean!
   section: Int!
-  type: FormType!
+  type: String
+}
+
+"""enum for form item types"""
+type FormItemType {
+  type: String!
+}
+
+"""
+aggregated selection of "FormItemType"
+"""
+type FormItemType_aggregate {
+  aggregate: FormItemType_aggregate_fields
+  nodes: [FormItemType!]!
+}
+
+"""
+aggregate fields of "FormItemType"
+"""
+type FormItemType_aggregate_fields {
+  count(columns: [FormItemType_select_column!], distinct: Boolean): Int!
+  max: FormItemType_max_fields
+  min: FormItemType_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "FormItemType". All fields are combined with a logical 'AND'.
+"""
+input FormItemType_bool_exp {
+  _and: [FormItemType_bool_exp!]
+  _not: FormItemType_bool_exp
+  _or: [FormItemType_bool_exp!]
+  type: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "FormItemType"
+"""
+enum FormItemType_constraint {
+  """
+  unique or primary key constraint on columns "type"
+  """
+  FormItemType_pkey
+}
+
+"""
+input type for inserting data into table "FormItemType"
+"""
+input FormItemType_insert_input {
+  type: String
+}
+
+"""aggregate max on columns"""
+type FormItemType_max_fields {
+  type: String
+}
+
+"""aggregate min on columns"""
+type FormItemType_min_fields {
+  type: String
+}
+
+"""
+response of any mutation on the table "FormItemType"
+"""
+type FormItemType_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [FormItemType!]!
+}
+
+"""
+on_conflict condition type for table "FormItemType"
+"""
+input FormItemType_on_conflict {
+  constraint: FormItemType_constraint!
+  update_columns: [FormItemType_update_column!]! = []
+  where: FormItemType_bool_exp
+}
+
+"""Ordering options when selecting data from "FormItemType"."""
+input FormItemType_order_by {
+  type: order_by
+}
+
+"""primary key columns input for table: FormItemType"""
+input FormItemType_pk_columns_input {
+  type: String!
+}
+
+"""
+select columns of table "FormItemType"
+"""
+enum FormItemType_select_column {
+  """column name"""
+  type
+}
+
+"""
+input type for updating data in table "FormItemType"
+"""
+input FormItemType_set_input {
+  type: String
+}
+
+"""
+Streaming cursor of the table "FormItemType"
+"""
+input FormItemType_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: FormItemType_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input FormItemType_stream_cursor_value_input {
+  type: String
+}
+
+"""
+update columns of table "FormItemType"
+"""
+enum FormItemType_update_column {
+  """column name"""
+  type
+}
+
+input FormItemType_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: FormItemType_set_input
+  """filter the rows which have to be updated"""
+  where: FormItemType_bool_exp!
 }
 
 """
@@ -681,7 +814,7 @@ input FormItem_bool_exp {
   order: Int_comparison_exp
   required: Boolean_comparison_exp
   section: Int_comparison_exp
-  type: FormType_comparison_exp
+  type: String_comparison_exp
 }
 
 """
@@ -740,7 +873,7 @@ input FormItem_insert_input {
   order: Int
   required: Boolean
   section: Int
-  type: FormType
+  type: String
 }
 
 """aggregate max on columns"""
@@ -750,7 +883,7 @@ type FormItem_max_fields {
   name: String
   order: Int
   section: Int
-  type: FormType
+  type: String
 }
 
 """
@@ -772,7 +905,7 @@ type FormItem_min_fields {
   name: String
   order: Int
   section: Int
-  type: FormType
+  type: String
 }
 
 """
@@ -893,7 +1026,7 @@ input FormItem_set_input {
   order: Int
   required: Boolean
   section: Int
-  type: FormType
+  type: String
 }
 
 """aggregate stddev on columns"""
@@ -958,7 +1091,7 @@ input FormItem_stream_cursor_value_input {
   order: Int
   required: Boolean
   section: Int
-  type: FormType
+  type: String
 }
 
 """aggregate sum on columns"""
@@ -1064,23 +1197,6 @@ order by variance() on columns of table "FormItem"
 input FormItem_variance_order_by {
   order: order_by
   section: order_by
-}
-
-scalar FormType
-
-"""
-Boolean expression to compare columns of type "FormType". All fields are combined with logical 'AND'.
-"""
-input FormType_comparison_exp {
-  _eq: FormType
-  _gt: FormType
-  _gte: FormType
-  _in: [FormType!]
-  _is_null: Boolean
-  _lt: FormType
-  _lte: FormType
-  _neq: FormType
-  _nin: [FormType!]
 }
 
 """
@@ -2015,6 +2131,17 @@ type mutation_root {
     where: FormItem_bool_exp!
   ): FormItem_mutation_response
   """
+  delete data from the table: "FormItemType"
+  """
+  delete_FormItemType(
+    """filter the rows which have to be deleted"""
+    where: FormItemType_bool_exp!
+  ): FormItemType_mutation_response
+  """
+  delete single row from the table: "FormItemType"
+  """
+  delete_FormItemType_by_pk(type: String!): FormItemType
+  """
   delete single row from the table: "FormItem"
   """
   delete_FormItem_by_pk(id: String!): FormItem
@@ -2098,6 +2225,24 @@ type mutation_root {
     """upsert condition"""
     on_conflict: FormItem_on_conflict
   ): FormItem_mutation_response
+  """
+  insert data into the table: "FormItemType"
+  """
+  insert_FormItemType(
+    """the rows to be inserted"""
+    objects: [FormItemType_insert_input!]!
+    """upsert condition"""
+    on_conflict: FormItemType_on_conflict
+  ): FormItemType_mutation_response
+  """
+  insert a single row into the table: "FormItemType"
+  """
+  insert_FormItemType_one(
+    """the row to be inserted"""
+    object: FormItemType_insert_input!
+    """upsert condition"""
+    on_conflict: FormItemType_on_conflict
+  ): FormItemType
   """
   insert a single row into the table: "FormItem"
   """
@@ -2254,6 +2399,30 @@ type mutation_root {
     """filter the rows which have to be updated"""
     where: FormItem_bool_exp!
   ): FormItem_mutation_response
+  """
+  update data of the table: "FormItemType"
+  """
+  update_FormItemType(
+    """sets the columns of the filtered rows to the given values"""
+    _set: FormItemType_set_input
+    """filter the rows which have to be updated"""
+    where: FormItemType_bool_exp!
+  ): FormItemType_mutation_response
+  """
+  update single row of the table: "FormItemType"
+  """
+  update_FormItemType_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: FormItemType_set_input
+    pk_columns: FormItemType_pk_columns_input!
+  ): FormItemType
+  """
+  update multiples rows of table: "FormItemType"
+  """
+  update_FormItemType_many(
+    """updates to execute, in order"""
+    updates: [FormItemType_updates!]!
+  ): [FormItemType_mutation_response]
   """
   update single row of the table: "FormItem"
   """
@@ -2486,6 +2655,38 @@ type query_root {
     where: FormItem_bool_exp
   ): [FormItem!]!
   """
+  fetch data from the table: "FormItemType"
+  """
+  FormItemType(
+    """distinct select on columns"""
+    distinct_on: [FormItemType_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemType_order_by!]
+    """filter the rows returned"""
+    where: FormItemType_bool_exp
+  ): [FormItemType!]!
+  """
+  fetch aggregated fields from the table: "FormItemType"
+  """
+  FormItemType_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItemType_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemType_order_by!]
+    """filter the rows returned"""
+    where: FormItemType_bool_exp
+  ): FormItemType_aggregate!
+  """fetch data from the table: "FormItemType" using primary key columns"""
+  FormItemType_by_pk(type: String!): FormItemType
+  """
   fetch aggregated fields from the table: "FormItem"
   """
   FormItem_aggregate(
@@ -2702,6 +2903,49 @@ type subscription_root {
     """filter the rows returned"""
     where: FormItem_bool_exp
   ): [FormItem!]!
+  """
+  fetch data from the table: "FormItemType"
+  """
+  FormItemType(
+    """distinct select on columns"""
+    distinct_on: [FormItemType_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemType_order_by!]
+    """filter the rows returned"""
+    where: FormItemType_bool_exp
+  ): [FormItemType!]!
+  """
+  fetch aggregated fields from the table: "FormItemType"
+  """
+  FormItemType_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItemType_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemType_order_by!]
+    """filter the rows returned"""
+    where: FormItemType_bool_exp
+  ): FormItemType_aggregate!
+  """fetch data from the table: "FormItemType" using primary key columns"""
+  FormItemType_by_pk(type: String!): FormItemType
+  """
+  fetch data from the table in a streaming manner: "FormItemType"
+  """
+  FormItemType_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [FormItemType_stream_cursor_input]!
+    """filter the rows returned"""
+    where: FormItemType_bool_exp
+  ): [FormItemType!]!
   """
   fetch aggregated fields from the table: "FormItem"
   """
