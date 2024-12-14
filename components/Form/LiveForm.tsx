@@ -10,6 +10,8 @@ import {
   HeaderImage,
   LiveHeader,
   LiveText,
+  LiveCheckboxGrid,
+  LiveMultipleChoiceGrid,
 } from "./Items";
 import { FormItemType_Enum } from "@/lib/graphql";
 
@@ -24,6 +26,8 @@ const componentMapper = {
   [FormItemType_Enum.LinearScale]: LiveLinearScale,
   [FormItemType_Enum.Date]: LiveDate,
   [FormItemType_Enum.Dropdown]: LiveDropdown,
+  [FormItemType_Enum.SingleChoiceGrid]: LiveCheckboxGrid,
+  [FormItemType_Enum.MultipleChoiceGrid]: LiveMultipleChoiceGrid,
 };
 
 interface P {

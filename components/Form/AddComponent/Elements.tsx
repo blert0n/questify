@@ -7,6 +7,8 @@ import {
   DatetimeIcon,
   ScaleIcon,
   TextIcon,
+  MultiChoiceGrid,
+  OneChoiceGrid,
 } from "@/assets/svg";
 import { FormItemType_Enum } from "@/lib/graphql";
 import { useMediaScreen } from "@/lib/useMediaScreen";
@@ -15,56 +17,60 @@ import { Draggable, Droppable } from "@hello-pangea/dnd";
 
 const elements = [
   {
-    index: 1,
     key: FormItemType_Enum.Text,
     icon: <TextIcon className="hover:scale-110" />,
     title: "Text",
     shortTitle: "Text",
   },
   {
-    index: 2,
     key: FormItemType_Enum.Short,
     icon: <ShortInputIcon className="hover:scale-110" />,
     title: "Short Input",
     shortTitle: "Short",
   },
   {
-    index: 3,
     key: FormItemType_Enum.Long,
     icon: <TextareaIcon className="hover:scale-110" />,
     title: "Textarea Input",
     shortTitle: "Textarea",
   },
   {
-    index: 4,
     key: FormItemType_Enum.SingleChoice,
     icon: <SingleChoiceIcon className="hover:scale-110" />,
     title: "Single choice",
     shortTitle: "Single",
   },
   {
-    index: 5,
+    key: FormItemType_Enum.SingleChoiceGrid,
+    icon: <OneChoiceGrid className="hover:scale-110" />,
+    title: "Grid checkbox",
+    shortTitle: "Grid box",
+  },
+  {
     key: FormItemType_Enum.MultipleChoice,
     icon: <MultiChoiceIcon className="hover:scale-110" />,
     title: "Multiple choice",
     shortTitle: "Multiple",
   },
   {
-    index: 6,
+    key: FormItemType_Enum.MultipleChoiceGrid,
+    icon: <MultiChoiceGrid className="hover:scale-110" />,
+    title: "Multi grid",
+    shortTitle: "Multi grid",
+  },
+  {
     key: FormItemType_Enum.LinearScale,
     icon: <ScaleIcon className="hover:scale-110" />,
     title: "Scale",
     shortTitle: "Scale",
   },
   {
-    index: 7,
     key: FormItemType_Enum.Dropdown,
     icon: <DropdownIcon className="hover:scale-110" />,
     title: "Dropdown",
     shortTitle: "Dropdown",
   },
   {
-    index: 8,
     key: FormItemType_Enum.Date,
     icon: <DatetimeIcon className="hover:scale-110" />,
     title: "Date",
@@ -83,11 +89,11 @@ export function Elements() {
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          {elements.map((element) => (
+          {elements.map((element, index) => (
             <Draggable
               key={element.key}
               draggableId={element.key}
-              index={element.index}
+              index={index}
               isDragDisabled={!isMdScreen}
             >
               {(provided) => (

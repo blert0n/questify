@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { OnChangePlugin as LexicalOnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
-import { $getRoot, $insertNodes } from "lexical";
+import {
+  $getRoot,
+  $insertNodes,
+  $setSelection,
+  CLEAR_HISTORY_COMMAND,
+} from "lexical";
 
 interface P {
   value: string;
@@ -25,8 +30,9 @@ const OnChangePlugin = ({ value, onChange }: P) => {
         const parser = new DOMParser();
         const dom = parser.parseFromString(value, "text/html");
         const nodes = $generateNodesFromDOM(editor, dom);
-
         $insertNodes(nodes);
+        $setSelection(null);
+        editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
       }
     });
   }, [editor, value, isFirstRender]);

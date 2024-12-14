@@ -8,3 +8,5 @@ export * from "./form/DropdownIcon";
 export * from "./form/DatetimeIcon";
 export * from "./form/ScaleIcon";
 export * from "./form/TextIcon";
+export * from "./form/MultiChoiceGrid";
+export * from "./form/OneChoiceGrid";

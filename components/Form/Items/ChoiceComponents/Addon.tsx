@@ -6,8 +6,22 @@ import { useState } from "react";
 import { Option } from "./types";
 
 const orderMapper: Record<string, JSX.Element> = {
-  single: <Circle className="text-slate-700" strokeWidth={1.5} />,
-  multi: <Square className="text-slate-700" strokeWidth={1.5} />,
+  single: (
+    <Circle
+      className="text-slate-700"
+      strokeWidth={1.5}
+      height={22}
+      width={22}
+    />
+  ),
+  multi: (
+    <Square
+      className="text-slate-700"
+      strokeWidth={1.5}
+      height={22}
+      width={22}
+    />
+  ),
 };
 
 export const Addon = ({
@@ -16,6 +30,7 @@ export const Addon = ({
   type,
   styling,
   onClick,
+  value,
 }: Option) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -45,7 +60,7 @@ export const Addon = ({
               onClick?.();
             }}
           >
-            Add option
+            {value ?? "Add option"}
           </Button>
         )}
       </div>

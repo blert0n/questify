@@ -55,3 +55,8 @@ export const pieChartPalette = [
   "#66CCFF",
   "#CC6633",
 ];
+
+export const getRandomColorFromPalette = () => {
+  const randomIndex = Math.floor(Math.random() * pieChartPalette.length);
+  return pieChartPalette[randomIndex];
+};

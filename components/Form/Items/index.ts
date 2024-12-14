@@ -18,3 +18,7 @@ export * from "./Date";
 export * from "./Date/Live";
 export * from "./Text";
 export * from "./Text/Live";
+export * from "./CheckboxGrid";
+export * from "./CheckboxGrid/Live";
+export * from "./MultipleChoiceGrid";
+export * from "./MultipleChoiceGrid/Live";

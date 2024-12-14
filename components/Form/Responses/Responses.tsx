@@ -1,4 +1,8 @@
-import { FormItemType_Enum, useResponsesQuery } from "@/lib/graphql";
+import {
+  FormItemType_Enum,
+  useResponseCounterSubscription,
+  useResponsesQuery,
+} from "@/lib/graphql";
 import { SubItem } from "@/types";
 import { List } from "./List";
 import { cn, pluralize } from "@/lib/utils";
@@ -9,6 +13,8 @@ import waitingResponses from "@/public/lotties/waitingResponses.json";
 import { Clock, LucideLineChart } from "lucide-react";
 import { useState } from "react";
 import TimelineResponses from "./TimelineResponses";
+import { GridCheckboxChart } from "./GridCheckboxChart";
+import { MultipleChoiceGridChart } from "./MultipleChoiceGridChart";
 
 const EMPTY_COMPONENT = () => <span />;
 
@@ -21,24 +27,36 @@ const componentMapper = {
   [FormItemType_Enum.Short]: List,
   [FormItemType_Enum.Long]: List,
   [FormItemType_Enum.SingleChoice]: PieChart,
+  [FormItemType_Enum.SingleChoiceGrid]: GridCheckboxChart,
   [FormItemType_Enum.MultipleChoice]: PieChart,
+  [FormItemType_Enum.MultipleChoiceGrid]: MultipleChoiceGridChart,
   [FormItemType_Enum.LinearScale]: LinearScaleChart,
   [FormItemType_Enum.Date]: List,
   [FormItemType_Enum.Dropdown]: PieChart,
 };
 
 export const Responses = ({ formId }: P) => {
-  const { data: { Form_by_pk: formData } = {} } = useResponsesQuery({
+  const { data: { Form_by_pk: formData } = {}, refetch: refetchForm } =
+    useResponsesQuery({
+      variables: {
+        formId: String(formId),
+      },
+      skip: !formId,
+    });
+  const { data: responsesCounter } = useResponseCounterSubscription({
     variables: {
       formId: String(formId),
     },
     skip: !formId,
+    onData: () => {
+      refetchForm();
+    },
   });
   const [selectedView, setSelectedView] = useState(0);
   return (
     <div className="flex flex-col gap-4 w-full md:max-w-3xl p-4">
       <div className="w-full h-auto min-h-16 bg-white shadow-lg rounded-sm p-4 text-lg">
-        {!formData || formData.responses === 0 ? (
+        {!formData || responsesCounter?.Form_by_pk?.responses === 0 ? (
           <div className="flex flex-col gap-2 justify-center">
             <Lottie
               animationData={waitingResponses}
@@ -54,7 +72,10 @@ export const Responses = ({ formId }: P) => {
         ) : (
           <div className="flex justify-between items-start">
             <span className="text-slate-500 uppercase font-oswald">
-              {pluralize(formData.responses, "response")}
+              {pluralize(
+                responsesCounter?.Form_by_pk?.responses ?? 0,
+                "response"
+              )}
             </span>
             <div className="flex flex-col gap-1">
               <span className="text-slate-500 text-sm">Switch views</span>
@@ -82,7 +103,7 @@ export const Responses = ({ formId }: P) => {
           </div>
         )}
       </div>
-      {Boolean(formData?.responses && selectedView === 0) &&
+      {Boolean(responsesCounter?.Form_by_pk?.responses && selectedView === 0) &&
         (formData?.FormItems ?? []).map((item) => {
           const options = (item.items ?? []) as SubItem[];
           const ResponseComponent = item.type
@@ -102,9 +123,9 @@ export const Responses = ({ formId }: P) => {
             </div>
           );
         })}
-      {Boolean(formData?.responses && selectedView === 1) && (
-        <TimelineResponses formId={formData?.id} />
-      )}
+      {Boolean(
+        responsesCounter?.Form_by_pk?.responses && selectedView === 1
+      ) && <TimelineResponses formId={formData?.id} />}
     </div>
   );
 };

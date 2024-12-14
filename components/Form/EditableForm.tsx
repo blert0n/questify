@@ -10,6 +10,8 @@ import {
   HeaderImage,
   FormHeader,
   Text,
+  CheckboxGrid,
+  MultipleChoiceGrid,
 } from "./Items";
 import { useFormSelectors } from "@/store";
 import { Draggable, DraggableStyle, Droppable } from "@hello-pangea/dnd";
@@ -28,6 +30,8 @@ const componentMapper = {
   [FormItemType_Enum.LinearScale]: LinearScale,
   [FormItemType_Enum.Date]: Date,
   [FormItemType_Enum.Dropdown]: Dropdown,
+  [FormItemType_Enum.SingleChoiceGrid]: CheckboxGrid,
+  [FormItemType_Enum.MultipleChoiceGrid]: MultipleChoiceGrid,
 };
 
 const getItemStyle = (

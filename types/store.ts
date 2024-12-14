@@ -52,7 +52,7 @@ export type ItemSlice = {
   reorder: (startIndex: number, endIndex: number) => void;
 };
 export type SubItemSlice = {
-  addOption: (itemId: string) => void;
+  addOption: (itemId: string, grid?: "row" | "column") => void;
   updateOption: (itemId: string, subItemId: string, value: string) => void;
   updateOptionLabel: (itemId: string, subItemId: string, label: string) => void;
   deleteOption: (itemId: string, subItemId: string) => void;
@@ -60,6 +60,12 @@ export type SubItemSlice = {
     itemId: string,
     startIndex: number,
     endIndex: number
+  ) => void;
+  reorderGrid: (
+    itemId: string,
+    startIndex: number,
+    endIndex: number,
+    direction: "row" | "column"
   ) => void;
 };
 

@@ -49,3 +49,9 @@ query FormResponses($ownerId: String!, $formId: String!) {
     relatedId
   }
 }
+
+subscription ResponseCounter($formId: String!) {
+  Form_by_pk(id: $formId) {
+    responses
+  }
+}

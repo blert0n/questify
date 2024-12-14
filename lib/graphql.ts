@@ -565,8 +565,10 @@ export enum FormItemType_Enum {
   LinearScale = 'LINEAR_SCALE',
   Long = 'LONG',
   MultipleChoice = 'MULTIPLE_CHOICE',
+  MultipleChoiceGrid = 'MULTIPLE_CHOICE_GRID',
   Short = 'SHORT',
   SingleChoice = 'SINGLE_CHOICE',
+  SingleChoiceGrid = 'SINGLE_CHOICE_GRID',
   Text = 'TEXT'
 }
 
@@ -3058,6 +3060,13 @@ export type FormResponsesQueryVariables = Exact<{
 
 export type FormResponsesQuery = { Notification: Array<{ id: number, createdAt: any, relatedId?: string | undefined | null }> };
 
+export type ResponseCounterSubscriptionVariables = Exact<{
+  formId: Scalars['String']['input'];
+}>;
+
+
+export type ResponseCounterSubscription = { Form_by_pk?: { responses: number } | undefined | null };
+
 export type MyFoldersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3576,6 +3585,36 @@ export type FormResponsesQueryHookResult = ReturnType<typeof useFormResponsesQue
 export type FormResponsesLazyQueryHookResult = ReturnType<typeof useFormResponsesLazyQuery>;
 export type FormResponsesSuspenseQueryHookResult = ReturnType<typeof useFormResponsesSuspenseQuery>;
 export type FormResponsesQueryResult = Apollo.QueryResult<FormResponsesQuery, FormResponsesQueryVariables>;
+export const ResponseCounterDocument = /*#__PURE__*/ gql`
+    subscription ResponseCounter($formId: String!) {
+  Form_by_pk(id: $formId) {
+    responses
+  }
+}
+    `;
+
+/**
+ * __useResponseCounterSubscription__
+ *
+ * To run a query within a React component, call `useResponseCounterSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useResponseCounterSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useResponseCounterSubscription({
+ *   variables: {
+ *      formId: // value for 'formId'
+ *   },
+ * });
+ */
+export function useResponseCounterSubscription(baseOptions: Apollo.SubscriptionHookOptions<ResponseCounterSubscription, ResponseCounterSubscriptionVariables> & ({ variables: ResponseCounterSubscriptionVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<ResponseCounterSubscription, ResponseCounterSubscriptionVariables>(ResponseCounterDocument, options);
+      }
+export type ResponseCounterSubscriptionHookResult = ReturnType<typeof useResponseCounterSubscription>;
+export type ResponseCounterSubscriptionResult = Apollo.SubscriptionResult<ResponseCounterSubscription>;
 export const MyFoldersDocument = /*#__PURE__*/ gql`
     query MyFolders {
   Folder {

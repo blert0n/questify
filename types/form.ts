@@ -63,6 +63,7 @@ export interface SubItem {
   value: string;
   order: number;
   label?: string;
+  grid?: "row" | "column";
 }
 
 export interface FormComponent {

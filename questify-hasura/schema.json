@@ -3888,6 +3888,12 @@
             "deprecationReason": null
           },
           {
+            "name": "MULTIPLE_CHOICE_GRID",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SHORT",
             "description": null,
             "isDeprecated": false,
@@ -3895,6 +3901,12 @@
           },
           {
             "name": "SINGLE_CHOICE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SINGLE_CHOICE_GRID",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

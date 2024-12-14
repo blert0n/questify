@@ -66,6 +66,7 @@ export const FullScreenModal = ({
   const formId = useFormSelectors.use.id?.();
   const reorder = useFormSelectors.use.reorder();
   const reorderOptions = useFormSelectors.use.reorderOptions();
+  const reorderGrid = useFormSelectors.use.reorderGrid();
 
   const handleModalClose = () => {
     resetForm();
@@ -89,11 +90,52 @@ export const FullScreenModal = ({
       );
       return;
     }
-    if (result.type === "formItems") {
+    const dragType = result.type;
+    if (dragType.includes("grid-checkbox-row")) {
+      const dragged = dragType.split(".").at(-1);
+      if (!dragged) return;
+      return reorderGrid(
+        dragged,
+        result.source.index,
+        result.destination.index,
+        "row"
+      );
+    }
+    if (dragType.includes("grid-checkbox-column")) {
+      const dragged = dragType.split(".").at(-1);
+      if (!dragged) return;
+      return reorderGrid(
+        dragged,
+        result.source.index,
+        result.destination.index,
+        "column"
+      );
+    }
+    if (dragType.includes("multiple-choice-grid-row")) {
+      const dragged = dragType.split(".").at(-1);
+      if (!dragged) return;
+      return reorderGrid(
+        dragged,
+        result.source.index,
+        result.destination.index,
+        "row"
+      );
+    }
+    if (dragType.includes("multiple-choice-grid-column")) {
+      const dragged = dragType.split(".").at(-1);
+      if (!dragged) return;
+      return reorderGrid(
+        dragged,
+        result.source.index,
+        result.destination.index,
+        "column"
+      );
+    }
+    if (dragType === "formItems") {
       return reorder(result.source.index, result.destination.index);
     }
-    if (result.type.includes("options-")) {
-      const itemId = result.type.split("options-")[1];
+    if (dragType.includes("options-")) {
+      const itemId = dragType.split("options-")[1];
       reorderOptions(itemId, result.source.index, result.destination.index);
     }
   };

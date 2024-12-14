@@ -4,6 +4,7 @@ import {
   FormDetailsSlice,
   SubItemSlice,
   newSubItem,
+  newGridItem,
 } from "@/types";
 import { StateCreator } from "zustand";
 
@@ -13,7 +14,7 @@ export const createSubItemSlice: StateCreator<
   [],
   SubItemSlice
 > = (set) => ({
-  addOption: (itemId) => {
+  addOption: (itemId, grid) => {
     set((state) => {
       const item = state.items.find((item) => item.id === itemId);
       if (!item) return state;
@@ -21,7 +22,13 @@ export const createSubItemSlice: StateCreator<
         ...state,
         items: state.items.map((item) => {
           if (item.id !== itemId) return item;
-          const subItem = newSubItem(item.options?.length);
+          const lastIndex = grid
+            ? item.options?.filter((option) => option.grid === grid).length
+            : item.options?.length;
+          const subItem = grid
+            ? newGridItem(grid, lastIndex)
+            : newSubItem(lastIndex);
+
           const existingOptions = item.options ?? [];
           return {
             ...item,
@@ -111,6 +118,36 @@ export const createSubItemSlice: StateCreator<
           return {
             ...item,
             options: subItems,
+          };
+        }),
+      };
+    });
+  },
+  reorderGrid: (itemId, startIndex, endIndex, direction) => {
+    set((state) => {
+      const item = state.items.find((item) => item.id === itemId);
+      if (!item) return state;
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item.id !== itemId) return item;
+          const affectedGridItems = [...(item.options ?? [])].filter(
+            (item) => item.grid === direction
+          );
+          const unaffectedGridItems = [...(item.options ?? [])].filter(
+            (item) => item.grid !== direction
+          );
+          const [draggedItem] = affectedGridItems.splice(startIndex, 1);
+          affectedGridItems.splice(endIndex, 0, draggedItem);
+
+          const updatedAffected = affectedGridItems.map((option, index) => ({
+            ...option,
+            order: index + 1,
+          }));
+
+          return {
+            ...item,
+            options: [...updatedAffected, ...unaffectedGridItems],
           };
         }),
       };
