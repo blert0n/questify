@@ -15,8 +15,9 @@ import { useState } from "react";
 import TimelineResponses from "./TimelineResponses";
 import { GridCheckboxChart } from "./GridCheckboxChart";
 import { MultipleChoiceGridChart } from "./MultipleChoiceGridChart";
+import { RatingChart } from "./RatingChart";
 
-const EMPTY_COMPONENT = () => <span />;
+const EMPTY_COMPONENT = () => null;
 
 interface P {
   formId?: string;
@@ -33,6 +34,7 @@ const componentMapper = {
   [FormItemType_Enum.LinearScale]: LinearScaleChart,
   [FormItemType_Enum.Date]: List,
   [FormItemType_Enum.Dropdown]: PieChart,
+  [FormItemType_Enum.Rating]: RatingChart,
 };
 
 export const Responses = ({ formId }: P) => {

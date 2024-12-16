@@ -14,6 +14,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { ScrollArea, ScrollBar } from "@/components/ui";
+import type { Answer, AnswerMap, ChartData } from "./types";
+import { optionsChart } from "./constants";
 
 ChartJS.register(
   CategoryScale,
@@ -23,51 +25,12 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const optionsChart = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Answers chart",
-    },
-  },
-};
-
-interface Answer {
-  id: string;
-  value?: string;
-}
-
-interface AnswerMap {
-  [rowId: string]: string;
-}
 
 interface P {
   name: string;
   count: number;
   answers: Answer[];
   options: SubItem[];
-}
-
-interface ChartData {
-  labels: string[];
-  datasets: {
-    label: string;
-    data: number[];
-    backgroundColor: string;
-  }[];
-}
-
-interface ChartData {
-  labels: string[];
-  datasets: {
-    label: string;
-    data: number[];
-    backgroundColor: string;
-  }[];
 }
 
 const prepareChartData = (
@@ -127,7 +90,7 @@ export const GridCheckboxChart = ({ name, count, answers, options }: P) => {
         {pluralize(count, "response")}
       </div>
       <ScrollArea className="w-full whitespace-nowrap rounded-md p-2">
-        <Bar options={optionsChart} data={chartData} />
+        <Bar options={optionsChart()} data={chartData} />
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </div>

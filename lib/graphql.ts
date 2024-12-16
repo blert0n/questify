@@ -566,6 +566,7 @@ export enum FormItemType_Enum {
   Long = 'LONG',
   MultipleChoice = 'MULTIPLE_CHOICE',
   MultipleChoiceGrid = 'MULTIPLE_CHOICE_GRID',
+  Rating = 'RATING',
   Short = 'SHORT',
   SingleChoice = 'SINGLE_CHOICE',
   SingleChoiceGrid = 'SINGLE_CHOICE_GRID',

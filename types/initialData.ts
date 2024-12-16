@@ -32,6 +32,7 @@ const titleMapper = {
   SINGLE_CHOICE: "Single choice",
   SINGLE_CHOICE_GRID: "Single choice grid",
   TEXT: "Paragraph",
+  RATING: "Rating",
 };
 
 export const iconProps = {
@@ -88,6 +89,16 @@ const generateOptions = (type: FormItemType_Enum): Options => {
             value: "10",
             order: 2,
             label: "Label",
+          },
+        ],
+      };
+    case FormItemType_Enum.Rating:
+      return {
+        options: [
+          {
+            id: uuidv4(),
+            value: "5",
+            order: 1,
           },
         ],
       };

@@ -8,7 +8,7 @@ export const Form = () => {
   const theme = useFormSelectors.use.theme();
 
   return (
-    <div className="flex flex-col gap-4 w-full md:max-w-3xl">
+    <div className="flex flex-col gap-4 w-full md:max-w-3xl mx-auto">
       {editMode ? (
         <EditableForm items={items} />
       ) : (

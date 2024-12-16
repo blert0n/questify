@@ -14,6 +14,7 @@ import {
   LiveMultipleChoiceGrid,
 } from "./Items";
 import { FormItemType_Enum } from "@/lib/graphql";
+import { LiveRating } from "./Items/Rating/Live";
 
 const EMPTY_COMPONENT = () => <span />;
 
@@ -28,6 +29,7 @@ const componentMapper = {
   [FormItemType_Enum.Dropdown]: LiveDropdown,
   [FormItemType_Enum.SingleChoiceGrid]: LiveCheckboxGrid,
   [FormItemType_Enum.MultipleChoiceGrid]: LiveMultipleChoiceGrid,
+  [FormItemType_Enum.Rating]: LiveRating,
 };
 
 interface P {

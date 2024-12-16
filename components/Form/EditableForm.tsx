@@ -18,6 +18,7 @@ import { Draggable, DraggableStyle, Droppable } from "@hello-pangea/dnd";
 import { cn, getPrimaryColor } from "@/lib";
 import { useState } from "react";
 import { FormItemType_Enum } from "@/lib/graphql";
+import { Rating } from "./Items/Rating";
 
 const EMPTY_COMPONENT = () => <span />;
 
@@ -32,6 +33,7 @@ const componentMapper = {
   [FormItemType_Enum.Dropdown]: Dropdown,
   [FormItemType_Enum.SingleChoiceGrid]: CheckboxGrid,
   [FormItemType_Enum.MultipleChoiceGrid]: MultipleChoiceGrid,
+  [FormItemType_Enum.Rating]: Rating,
 };
 
 const getItemStyle = (

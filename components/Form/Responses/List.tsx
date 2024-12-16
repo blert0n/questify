@@ -1,14 +1,12 @@
 import { pluralize } from "@/lib/utils";
 import { SubItem } from "@/types/form";
 import ReactHtmlParser from "react-html-parser";
+import type { Answer } from "./types";
 
 interface P {
   name: string;
   count: number;
-  answers: {
-    id: string;
-    value?: string;
-  }[];
+  answers: Answer[];
   options?: SubItem[];
 }
 export const List = ({ name, count, answers }: P) => {

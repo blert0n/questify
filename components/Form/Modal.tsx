@@ -171,14 +171,7 @@ export const FullScreenModal = ({
           {activeTab === 0 ? (
             <DragDropContext onDragEnd={onDragEnd}>
               <div className="flex flex-grow md:flex-row flex-col md:gap-8 gap-4 w-full">
-                <div className="bg-white min-w-64 p-4 sticky top-0 z-20 shadow-lg">
-                  <div className="sticky top-0">
-                    <div className="text-gray-500 font-semibold mb-4">
-                      Elements
-                    </div>
-                    <Elements />
-                  </div>
-                </div>
+                <Elements />
                 <div className="p-8 w-full flex-grow">
                   <Form />
                 </div>

@@ -5,6 +5,7 @@ import { Pie } from "react-chartjs-2";
 import { pieChartPalette } from "@/lib/colors";
 import { useMemo } from "react";
 import { SubItem } from "@/types/form";
+import type { Answer } from "./types";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const generateScaleOptions = (start: string = "1", end: string = "10") => {
@@ -16,11 +17,6 @@ const generateScaleOptions = (start: string = "1", end: string = "10") => {
     (_, index) => startNumber + index
   ).map(String);
 };
-
-interface Answer {
-  id: string;
-  value?: string;
-}
 
 interface P {
   name: string;

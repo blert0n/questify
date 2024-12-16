@@ -5,12 +5,8 @@ import { Pie } from "react-chartjs-2";
 import { pieChartPalette } from "@/lib/colors";
 import { useMemo } from "react";
 import { SubItem } from "@/types/form";
+import type { Answer } from "./types";
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-interface Answer {
-  id: string;
-  value?: string;
-}
 
 interface P {
   name: string;
