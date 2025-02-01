@@ -85,6 +85,11 @@ type NonFunctionKeyNames<T> = Exclude<
 >;
 type RemoveFunctions<T> = Pick<T, NonFunctionKeyNames<T>>;
 
-export type FormState = RemoveFunctions<
+type FormStateWithoutFunctions = RemoveFunctions<
   ThemeSlice & ItemSlice & FormDetailsSlice
+>;
+
+export type FormState = Omit<
+  FormStateWithoutFunctions,
+  "selectedResponse" | "responsesTab"
 >;
