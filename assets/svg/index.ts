@@ -11,3 +11,4 @@ export * from "./form/TextIcon";
 export * from "./form/MultiChoiceGrid";
 export * from "./form/OneChoiceGrid";
 export * from "./form/RatingIcon";
+export * from "./form/PhoneNumberIcon";

@@ -2,8 +2,9 @@ import TimelineItem from "@/components/Activity/Timeline";
 import { useFormResponsesQuery } from "@/lib/graphql";
 import { useAuth } from "@clerk/nextjs";
 import dayjs from "dayjs";
-import { useState } from "react";
 import FormResponse from "./FormResponse";
+import { setSelectedResponse } from "@/store/actions";
+import { useFormSelectors } from "@/store";
 
 interface P {
   formId?: string;
@@ -18,7 +19,7 @@ const TimelineResponses = ({ formId }: P) => {
     },
     skip: !formId || !userId,
   });
-  const [selectedResponse, setSelectedResponse] = useState("");
+  const selectedResponse = useFormSelectors().selectedResponse;
 
   if (selectedResponse)
     return (

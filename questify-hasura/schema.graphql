@@ -565,6 +565,237 @@ type FormItem {
   type: FormItemType_enum
 }
 
+"""extra settings for form items"""
+type FormItemMeta {
+  """An object relationship"""
+  FormItem: FormItem!
+  formItemId: String!
+  id: Int!
+  key: String!
+  value: String!
+}
+
+"""
+aggregated selection of "FormItemMeta"
+"""
+type FormItemMeta_aggregate {
+  aggregate: FormItemMeta_aggregate_fields
+  nodes: [FormItemMeta!]!
+}
+
+"""
+aggregate fields of "FormItemMeta"
+"""
+type FormItemMeta_aggregate_fields {
+  avg: FormItemMeta_avg_fields
+  count(columns: [FormItemMeta_select_column!], distinct: Boolean): Int!
+  max: FormItemMeta_max_fields
+  min: FormItemMeta_min_fields
+  stddev: FormItemMeta_stddev_fields
+  stddev_pop: FormItemMeta_stddev_pop_fields
+  stddev_samp: FormItemMeta_stddev_samp_fields
+  sum: FormItemMeta_sum_fields
+  var_pop: FormItemMeta_var_pop_fields
+  var_samp: FormItemMeta_var_samp_fields
+  variance: FormItemMeta_variance_fields
+}
+
+"""aggregate avg on columns"""
+type FormItemMeta_avg_fields {
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "FormItemMeta". All fields are combined with a logical 'AND'.
+"""
+input FormItemMeta_bool_exp {
+  FormItem: FormItem_bool_exp
+  _and: [FormItemMeta_bool_exp!]
+  _not: FormItemMeta_bool_exp
+  _or: [FormItemMeta_bool_exp!]
+  formItemId: String_comparison_exp
+  id: Int_comparison_exp
+  key: String_comparison_exp
+  value: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "FormItemMeta"
+"""
+enum FormItemMeta_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  FormItemMeta_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "FormItemMeta"
+"""
+input FormItemMeta_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "FormItemMeta"
+"""
+input FormItemMeta_insert_input {
+  FormItem: FormItem_obj_rel_insert_input
+  formItemId: String
+  id: Int
+  key: String
+  value: String
+}
+
+"""aggregate max on columns"""
+type FormItemMeta_max_fields {
+  formItemId: String
+  id: Int
+  key: String
+  value: String
+}
+
+"""aggregate min on columns"""
+type FormItemMeta_min_fields {
+  formItemId: String
+  id: Int
+  key: String
+  value: String
+}
+
+"""
+response of any mutation on the table "FormItemMeta"
+"""
+type FormItemMeta_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+  """data from the rows affected by the mutation"""
+  returning: [FormItemMeta!]!
+}
+
+"""
+on_conflict condition type for table "FormItemMeta"
+"""
+input FormItemMeta_on_conflict {
+  constraint: FormItemMeta_constraint!
+  update_columns: [FormItemMeta_update_column!]! = []
+  where: FormItemMeta_bool_exp
+}
+
+"""Ordering options when selecting data from "FormItemMeta"."""
+input FormItemMeta_order_by {
+  FormItem: FormItem_order_by
+  formItemId: order_by
+  id: order_by
+  key: order_by
+  value: order_by
+}
+
+"""primary key columns input for table: FormItemMeta"""
+input FormItemMeta_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "FormItemMeta"
+"""
+enum FormItemMeta_select_column {
+  """column name"""
+  formItemId
+  """column name"""
+  id
+  """column name"""
+  key
+  """column name"""
+  value
+}
+
+"""
+input type for updating data in table "FormItemMeta"
+"""
+input FormItemMeta_set_input {
+  formItemId: String
+  id: Int
+  key: String
+  value: String
+}
+
+"""aggregate stddev on columns"""
+type FormItemMeta_stddev_fields {
+  id: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type FormItemMeta_stddev_pop_fields {
+  id: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type FormItemMeta_stddev_samp_fields {
+  id: Float
+}
+
+"""
+Streaming cursor of the table "FormItemMeta"
+"""
+input FormItemMeta_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: FormItemMeta_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input FormItemMeta_stream_cursor_value_input {
+  formItemId: String
+  id: Int
+  key: String
+  value: String
+}
+
+"""aggregate sum on columns"""
+type FormItemMeta_sum_fields {
+  id: Int
+}
+
+"""
+update columns of table "FormItemMeta"
+"""
+enum FormItemMeta_update_column {
+  """column name"""
+  formItemId
+  """column name"""
+  id
+  """column name"""
+  key
+  """column name"""
+  value
+}
+
+input FormItemMeta_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: FormItemMeta_inc_input
+  """sets the columns of the filtered rows to the given values"""
+  _set: FormItemMeta_set_input
+  """filter the rows which have to be updated"""
+  where: FormItemMeta_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type FormItemMeta_var_pop_fields {
+  id: Float
+}
+
+"""aggregate var_samp on columns"""
+type FormItemMeta_var_samp_fields {
+  id: Float
+}
+
+"""aggregate variance on columns"""
+type FormItemMeta_variance_fields {
+  id: Float
+}
+
 """enum for form item types"""
 type FormItemType {
   type: String!
@@ -614,6 +845,7 @@ enum FormItemType_enum {
   LONG
   MULTIPLE_CHOICE
   MULTIPLE_CHOICE_GRID
+  PHONE_NUMBER
   RATING
   SHORT
   SINGLE_CHOICE
@@ -2152,6 +2384,17 @@ type mutation_root {
     where: FormItem_bool_exp!
   ): FormItem_mutation_response
   """
+  delete data from the table: "FormItemMeta"
+  """
+  delete_FormItemMeta(
+    """filter the rows which have to be deleted"""
+    where: FormItemMeta_bool_exp!
+  ): FormItemMeta_mutation_response
+  """
+  delete single row from the table: "FormItemMeta"
+  """
+  delete_FormItemMeta_by_pk(id: Int!): FormItemMeta
+  """
   delete data from the table: "FormItemType"
   """
   delete_FormItemType(
@@ -2246,6 +2489,24 @@ type mutation_root {
     """upsert condition"""
     on_conflict: FormItem_on_conflict
   ): FormItem_mutation_response
+  """
+  insert data into the table: "FormItemMeta"
+  """
+  insert_FormItemMeta(
+    """the rows to be inserted"""
+    objects: [FormItemMeta_insert_input!]!
+    """upsert condition"""
+    on_conflict: FormItemMeta_on_conflict
+  ): FormItemMeta_mutation_response
+  """
+  insert a single row into the table: "FormItemMeta"
+  """
+  insert_FormItemMeta_one(
+    """the row to be inserted"""
+    object: FormItemMeta_insert_input!
+    """upsert condition"""
+    on_conflict: FormItemMeta_on_conflict
+  ): FormItemMeta
   """
   insert data into the table: "FormItemType"
   """
@@ -2420,6 +2681,34 @@ type mutation_root {
     """filter the rows which have to be updated"""
     where: FormItem_bool_exp!
   ): FormItem_mutation_response
+  """
+  update data of the table: "FormItemMeta"
+  """
+  update_FormItemMeta(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: FormItemMeta_inc_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: FormItemMeta_set_input
+    """filter the rows which have to be updated"""
+    where: FormItemMeta_bool_exp!
+  ): FormItemMeta_mutation_response
+  """
+  update single row of the table: "FormItemMeta"
+  """
+  update_FormItemMeta_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: FormItemMeta_inc_input
+    """sets the columns of the filtered rows to the given values"""
+    _set: FormItemMeta_set_input
+    pk_columns: FormItemMeta_pk_columns_input!
+  ): FormItemMeta
+  """
+  update multiples rows of table: "FormItemMeta"
+  """
+  update_FormItemMeta_many(
+    """updates to execute, in order"""
+    updates: [FormItemMeta_updates!]!
+  ): [FormItemMeta_mutation_response]
   """
   update data of the table: "FormItemType"
   """
@@ -2676,6 +2965,38 @@ type query_root {
     where: FormItem_bool_exp
   ): [FormItem!]!
   """
+  fetch data from the table: "FormItemMeta"
+  """
+  FormItemMeta(
+    """distinct select on columns"""
+    distinct_on: [FormItemMeta_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemMeta_order_by!]
+    """filter the rows returned"""
+    where: FormItemMeta_bool_exp
+  ): [FormItemMeta!]!
+  """
+  fetch aggregated fields from the table: "FormItemMeta"
+  """
+  FormItemMeta_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItemMeta_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemMeta_order_by!]
+    """filter the rows returned"""
+    where: FormItemMeta_bool_exp
+  ): FormItemMeta_aggregate!
+  """fetch data from the table: "FormItemMeta" using primary key columns"""
+  FormItemMeta_by_pk(id: Int!): FormItemMeta
+  """
   fetch data from the table: "FormItemType"
   """
   FormItemType(
@@ -2924,6 +3245,49 @@ type subscription_root {
     """filter the rows returned"""
     where: FormItem_bool_exp
   ): [FormItem!]!
+  """
+  fetch data from the table: "FormItemMeta"
+  """
+  FormItemMeta(
+    """distinct select on columns"""
+    distinct_on: [FormItemMeta_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemMeta_order_by!]
+    """filter the rows returned"""
+    where: FormItemMeta_bool_exp
+  ): [FormItemMeta!]!
+  """
+  fetch aggregated fields from the table: "FormItemMeta"
+  """
+  FormItemMeta_aggregate(
+    """distinct select on columns"""
+    distinct_on: [FormItemMeta_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FormItemMeta_order_by!]
+    """filter the rows returned"""
+    where: FormItemMeta_bool_exp
+  ): FormItemMeta_aggregate!
+  """fetch data from the table: "FormItemMeta" using primary key columns"""
+  FormItemMeta_by_pk(id: Int!): FormItemMeta
+  """
+  fetch data from the table in a streaming manner: "FormItemMeta"
+  """
+  FormItemMeta_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [FormItemMeta_stream_cursor_input]!
+    """filter the rows returned"""
+    where: FormItemMeta_bool_exp
+  ): [FormItemMeta!]!
   """
   fetch data from the table: "FormItemType"
   """

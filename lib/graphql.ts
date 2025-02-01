@@ -520,6 +520,218 @@ export interface FormItemItemsArgs {
   path?: InputMaybe<Scalars['String']['input']>;
 }
 
+/** extra settings for form items */
+export interface FormItemMeta {
+  /** An object relationship */
+  FormItem: FormItem;
+  formItemId: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  key: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+}
+
+/** aggregated selection of "FormItemMeta" */
+export interface FormItemMeta_Aggregate {
+  aggregate?: Maybe<FormItemMeta_Aggregate_Fields>;
+  nodes: Array<FormItemMeta>;
+}
+
+/** aggregate fields of "FormItemMeta" */
+export interface FormItemMeta_Aggregate_Fields {
+  avg?: Maybe<FormItemMeta_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<FormItemMeta_Max_Fields>;
+  min?: Maybe<FormItemMeta_Min_Fields>;
+  stddev?: Maybe<FormItemMeta_Stddev_Fields>;
+  stddev_pop?: Maybe<FormItemMeta_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<FormItemMeta_Stddev_Samp_Fields>;
+  sum?: Maybe<FormItemMeta_Sum_Fields>;
+  var_pop?: Maybe<FormItemMeta_Var_Pop_Fields>;
+  var_samp?: Maybe<FormItemMeta_Var_Samp_Fields>;
+  variance?: Maybe<FormItemMeta_Variance_Fields>;
+}
+
+
+/** aggregate fields of "FormItemMeta" */
+export interface FormItemMeta_Aggregate_FieldsCountArgs {
+  columns?: InputMaybe<Array<FormItemMeta_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+}
+
+/** aggregate avg on columns */
+export interface FormItemMeta_Avg_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** Boolean expression to filter rows from the table "FormItemMeta". All fields are combined with a logical 'AND'. */
+export interface FormItemMeta_Bool_Exp {
+  FormItem?: InputMaybe<FormItem_Bool_Exp>;
+  _and?: InputMaybe<Array<FormItemMeta_Bool_Exp>>;
+  _not?: InputMaybe<FormItemMeta_Bool_Exp>;
+  _or?: InputMaybe<Array<FormItemMeta_Bool_Exp>>;
+  formItemId?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  key?: InputMaybe<String_Comparison_Exp>;
+  value?: InputMaybe<String_Comparison_Exp>;
+}
+
+/** unique or primary key constraints on table "FormItemMeta" */
+export enum FormItemMeta_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  FormItemMetaPkey = 'FormItemMeta_pkey'
+}
+
+/** input type for incrementing numeric columns in table "FormItemMeta" */
+export interface FormItemMeta_Inc_Input {
+  id?: InputMaybe<Scalars['Int']['input']>;
+}
+
+/** input type for inserting data into table "FormItemMeta" */
+export interface FormItemMeta_Insert_Input {
+  FormItem?: InputMaybe<FormItem_Obj_Rel_Insert_Input>;
+  formItemId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+/** aggregate max on columns */
+export interface FormItemMeta_Max_Fields {
+  formItemId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  key?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+}
+
+/** aggregate min on columns */
+export interface FormItemMeta_Min_Fields {
+  formItemId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  key?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+}
+
+/** response of any mutation on the table "FormItemMeta" */
+export interface FormItemMeta_Mutation_Response {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<FormItemMeta>;
+}
+
+/** on_conflict condition type for table "FormItemMeta" */
+export interface FormItemMeta_On_Conflict {
+  constraint: FormItemMeta_Constraint;
+  update_columns?: Array<FormItemMeta_Update_Column>;
+  where?: InputMaybe<FormItemMeta_Bool_Exp>;
+}
+
+/** Ordering options when selecting data from "FormItemMeta". */
+export interface FormItemMeta_Order_By {
+  FormItem?: InputMaybe<FormItem_Order_By>;
+  formItemId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  key?: InputMaybe<Order_By>;
+  value?: InputMaybe<Order_By>;
+}
+
+/** primary key columns input for table: FormItemMeta */
+export interface FormItemMeta_Pk_Columns_Input {
+  id: Scalars['Int']['input'];
+}
+
+/** select columns of table "FormItemMeta" */
+export enum FormItemMeta_Select_Column {
+  /** column name */
+  FormItemId = 'formItemId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "FormItemMeta" */
+export interface FormItemMeta_Set_Input {
+  formItemId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+/** aggregate stddev on columns */
+export interface FormItemMeta_Stddev_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate stddev_pop on columns */
+export interface FormItemMeta_Stddev_Pop_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate stddev_samp on columns */
+export interface FormItemMeta_Stddev_Samp_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** Streaming cursor of the table "FormItemMeta" */
+export interface FormItemMeta_Stream_Cursor_Input {
+  /** Stream column input with initial value */
+  initial_value: FormItemMeta_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+}
+
+/** Initial value of the column from where the streaming should start */
+export interface FormItemMeta_Stream_Cursor_Value_Input {
+  formItemId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+}
+
+/** aggregate sum on columns */
+export interface FormItemMeta_Sum_Fields {
+  id?: Maybe<Scalars['Int']['output']>;
+}
+
+/** update columns of table "FormItemMeta" */
+export enum FormItemMeta_Update_Column {
+  /** column name */
+  FormItemId = 'formItemId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Key = 'key',
+  /** column name */
+  Value = 'value'
+}
+
+export interface FormItemMeta_Updates {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<FormItemMeta_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<FormItemMeta_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: FormItemMeta_Bool_Exp;
+}
+
+/** aggregate var_pop on columns */
+export interface FormItemMeta_Var_Pop_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate var_samp on columns */
+export interface FormItemMeta_Var_Samp_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
+/** aggregate variance on columns */
+export interface FormItemMeta_Variance_Fields {
+  id?: Maybe<Scalars['Float']['output']>;
+}
+
 /** enum for form item types */
 export interface FormItemType {
   type: Scalars['String']['output'];
@@ -566,6 +778,7 @@ export enum FormItemType_Enum {
   Long = 'LONG',
   MultipleChoice = 'MULTIPLE_CHOICE',
   MultipleChoiceGrid = 'MULTIPLE_CHOICE_GRID',
+  PhoneNumber = 'PHONE_NUMBER',
   Rating = 'RATING',
   Short = 'SHORT',
   SingleChoice = 'SINGLE_CHOICE',
@@ -1904,6 +2117,10 @@ export interface Mutation_Root {
   delete_Form?: Maybe<Form_Mutation_Response>;
   /** delete data from the table: "FormItem" */
   delete_FormItem?: Maybe<FormItem_Mutation_Response>;
+  /** delete data from the table: "FormItemMeta" */
+  delete_FormItemMeta?: Maybe<FormItemMeta_Mutation_Response>;
+  /** delete single row from the table: "FormItemMeta" */
+  delete_FormItemMeta_by_pk?: Maybe<FormItemMeta>;
   /** delete data from the table: "FormItemType" */
   delete_FormItemType?: Maybe<FormItemType_Mutation_Response>;
   /** delete single row from the table: "FormItemType" */
@@ -1932,6 +2149,10 @@ export interface Mutation_Root {
   insert_Form?: Maybe<Form_Mutation_Response>;
   /** insert data into the table: "FormItem" */
   insert_FormItem?: Maybe<FormItem_Mutation_Response>;
+  /** insert data into the table: "FormItemMeta" */
+  insert_FormItemMeta?: Maybe<FormItemMeta_Mutation_Response>;
+  /** insert a single row into the table: "FormItemMeta" */
+  insert_FormItemMeta_one?: Maybe<FormItemMeta>;
   /** insert data into the table: "FormItemType" */
   insert_FormItemType?: Maybe<FormItemType_Mutation_Response>;
   /** insert a single row into the table: "FormItemType" */
@@ -1964,6 +2185,12 @@ export interface Mutation_Root {
   update_Form?: Maybe<Form_Mutation_Response>;
   /** update data of the table: "FormItem" */
   update_FormItem?: Maybe<FormItem_Mutation_Response>;
+  /** update data of the table: "FormItemMeta" */
+  update_FormItemMeta?: Maybe<FormItemMeta_Mutation_Response>;
+  /** update single row of the table: "FormItemMeta" */
+  update_FormItemMeta_by_pk?: Maybe<FormItemMeta>;
+  /** update multiples rows of table: "FormItemMeta" */
+  update_FormItemMeta_many?: Maybe<Array<Maybe<FormItemMeta_Mutation_Response>>>;
   /** update data of the table: "FormItemType" */
   update_FormItemType?: Maybe<FormItemType_Mutation_Response>;
   /** update single row of the table: "FormItemType" */
@@ -2026,6 +2253,18 @@ export interface Mutation_RootDelete_FormArgs {
 /** mutation root */
 export interface Mutation_RootDelete_FormItemArgs {
   where: FormItem_Bool_Exp;
+}
+
+
+/** mutation root */
+export interface Mutation_RootDelete_FormItemMetaArgs {
+  where: FormItemMeta_Bool_Exp;
+}
+
+
+/** mutation root */
+export interface Mutation_RootDelete_FormItemMeta_By_PkArgs {
+  id: Scalars['Int']['input'];
 }
 
 
@@ -2116,6 +2355,20 @@ export interface Mutation_RootInsert_FormArgs {
 export interface Mutation_RootInsert_FormItemArgs {
   objects: Array<FormItem_Insert_Input>;
   on_conflict?: InputMaybe<FormItem_On_Conflict>;
+}
+
+
+/** mutation root */
+export interface Mutation_RootInsert_FormItemMetaArgs {
+  objects: Array<FormItemMeta_Insert_Input>;
+  on_conflict?: InputMaybe<FormItemMeta_On_Conflict>;
+}
+
+
+/** mutation root */
+export interface Mutation_RootInsert_FormItemMeta_OneArgs {
+  object: FormItemMeta_Insert_Input;
+  on_conflict?: InputMaybe<FormItemMeta_On_Conflict>;
 }
 
 
@@ -2238,6 +2491,28 @@ export interface Mutation_RootUpdate_FormItemArgs {
   _prepend?: InputMaybe<FormItem_Prepend_Input>;
   _set?: InputMaybe<FormItem_Set_Input>;
   where: FormItem_Bool_Exp;
+}
+
+
+/** mutation root */
+export interface Mutation_RootUpdate_FormItemMetaArgs {
+  _inc?: InputMaybe<FormItemMeta_Inc_Input>;
+  _set?: InputMaybe<FormItemMeta_Set_Input>;
+  where: FormItemMeta_Bool_Exp;
+}
+
+
+/** mutation root */
+export interface Mutation_RootUpdate_FormItemMeta_By_PkArgs {
+  _inc?: InputMaybe<FormItemMeta_Inc_Input>;
+  _set?: InputMaybe<FormItemMeta_Set_Input>;
+  pk_columns: FormItemMeta_Pk_Columns_Input;
+}
+
+
+/** mutation root */
+export interface Mutation_RootUpdate_FormItemMeta_ManyArgs {
+  updates: Array<FormItemMeta_Updates>;
 }
 
 
@@ -2373,6 +2648,12 @@ export interface Query_Root {
   Form: Array<Form>;
   /** fetch data from the table: "FormItem" */
   FormItem: Array<FormItem>;
+  /** fetch data from the table: "FormItemMeta" */
+  FormItemMeta: Array<FormItemMeta>;
+  /** fetch aggregated fields from the table: "FormItemMeta" */
+  FormItemMeta_aggregate: FormItemMeta_Aggregate;
+  /** fetch data from the table: "FormItemMeta" using primary key columns */
+  FormItemMeta_by_pk?: Maybe<FormItemMeta>;
   /** fetch data from the table: "FormItemType" */
   FormItemType: Array<FormItemType>;
   /** fetch aggregated fields from the table: "FormItemType" */
@@ -2463,6 +2744,29 @@ export interface Query_RootFormItemArgs {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<FormItem_Order_By>>;
   where?: InputMaybe<FormItem_Bool_Exp>;
+}
+
+
+export interface Query_RootFormItemMetaArgs {
+  distinct_on?: InputMaybe<Array<FormItemMeta_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<FormItemMeta_Order_By>>;
+  where?: InputMaybe<FormItemMeta_Bool_Exp>;
+}
+
+
+export interface Query_RootFormItemMeta_AggregateArgs {
+  distinct_on?: InputMaybe<Array<FormItemMeta_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<FormItemMeta_Order_By>>;
+  where?: InputMaybe<FormItemMeta_Bool_Exp>;
+}
+
+
+export interface Query_RootFormItemMeta_By_PkArgs {
+  id: Scalars['Int']['input'];
 }
 
 
@@ -2583,6 +2887,14 @@ export interface Subscription_Root {
   Form: Array<Form>;
   /** fetch data from the table: "FormItem" */
   FormItem: Array<FormItem>;
+  /** fetch data from the table: "FormItemMeta" */
+  FormItemMeta: Array<FormItemMeta>;
+  /** fetch aggregated fields from the table: "FormItemMeta" */
+  FormItemMeta_aggregate: FormItemMeta_Aggregate;
+  /** fetch data from the table: "FormItemMeta" using primary key columns */
+  FormItemMeta_by_pk?: Maybe<FormItemMeta>;
+  /** fetch data from the table in a streaming manner: "FormItemMeta" */
+  FormItemMeta_stream: Array<FormItemMeta>;
   /** fetch data from the table: "FormItemType" */
   FormItemType: Array<FormItemType>;
   /** fetch aggregated fields from the table: "FormItemType" */
@@ -2697,6 +3009,36 @@ export interface Subscription_RootFormItemArgs {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<FormItem_Order_By>>;
   where?: InputMaybe<FormItem_Bool_Exp>;
+}
+
+
+export interface Subscription_RootFormItemMetaArgs {
+  distinct_on?: InputMaybe<Array<FormItemMeta_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<FormItemMeta_Order_By>>;
+  where?: InputMaybe<FormItemMeta_Bool_Exp>;
+}
+
+
+export interface Subscription_RootFormItemMeta_AggregateArgs {
+  distinct_on?: InputMaybe<Array<FormItemMeta_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<FormItemMeta_Order_By>>;
+  where?: InputMaybe<FormItemMeta_Bool_Exp>;
+}
+
+
+export interface Subscription_RootFormItemMeta_By_PkArgs {
+  id: Scalars['Int']['input'];
+}
+
+
+export interface Subscription_RootFormItemMeta_StreamArgs {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<FormItemMeta_Stream_Cursor_Input>>;
+  where?: InputMaybe<FormItemMeta_Bool_Exp>;
 }
 
 

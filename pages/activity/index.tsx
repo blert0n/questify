@@ -19,6 +19,7 @@ import AppLoader from "@/components/Layout/AppLoader";
 import Lottie from "lottie-react";
 import noActivityLottie from "@/public/lotties/noActivity.json";
 import { PaginationPrevious, PaginationNext } from "@/components/ui/pagination";
+import { useFormSelectors } from "@/store";
 dayjs.extend(utc);
 dayjs.extend(advancedFormat);
 
@@ -40,6 +41,8 @@ export default function Index() {
     to: getTimestamp(new Date(), "end"),
   });
   const [offset, setOffset] = useState(0);
+
+  const loadResponse = useFormSelectors().loadForm;
 
   const getActivitiesQueryVariables = useMemo(() => {
     return {
@@ -166,6 +169,10 @@ export default function Index() {
               description={`There's been new activity on form: ${activity.Form?.name}`}
               formId={activity.Form?.id}
               relatedId={activity.relatedId}
+              onViewItem={() => {
+                if (!activity.Form?.id || !activity.relatedId) return;
+                loadResponse(activity.Form?.id, 1, activity.relatedId);
+              }}
             />
           ))}
         </ol>

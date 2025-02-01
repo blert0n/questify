@@ -22,3 +22,7 @@ export * from "./CheckboxGrid";
 export * from "./CheckboxGrid/Live";
 export * from "./MultipleChoiceGrid";
 export * from "./MultipleChoiceGrid/Live";
+export * from "./Rating";
+export * from "./Rating/Live";
+export * from "./PhoneNumber";
+export * from "./PhoneNumber/Live";

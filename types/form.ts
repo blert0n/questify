@@ -15,6 +15,8 @@ export interface InitialFormData {
   selectedComponent: string;
   activeTab: number;
   operation: string;
+  selectedResponse: "";
+  responsesTab: 0;
 }
 
 interface Image {
@@ -87,3 +89,9 @@ export interface HeaderStyling {
   fontSize: Theme["Header"]["fontSize"];
   fontFamily: Theme["Header"]["fontFamily"];
 }
+
+export type FormItemMeta =
+  | "max_length"
+  | "default_value"
+  | "placeholder_text"
+  | "default_country_code";

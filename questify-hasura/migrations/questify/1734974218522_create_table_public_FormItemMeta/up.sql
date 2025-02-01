@@ -1,0 +1,1 @@
+CREATE TABLE "public"."FormItemMeta" ("id" serial NOT NULL, "key" text NOT NULL, "value" text NOT NULL, "formItemId" text NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("formItemId") REFERENCES "public"."FormItem"("id") ON UPDATE restrict ON DELETE cascade, UNIQUE ("id"));COMMENT ON TABLE "public"."FormItemMeta" IS E'extra settings for form items';

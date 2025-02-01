@@ -33,6 +33,8 @@ export const createFormDetailsSlice: StateCreator<
   loading: false,
   loadingThumbnail: "",
   operation: "",
+  selectedResponse: "",
+  responsesTab: 0,
   updateFormDetails: (prop, value) =>
     set((state) => ({
       ...state,
@@ -50,7 +52,7 @@ export const createFormDetailsSlice: StateCreator<
       return toast.info("At least one form item is required");
     !get().id ? await saveForm() : await editForm(get().id);
   },
-  loadForm: async (id, tab = 0) => {
+  loadForm: async (id, tab = 0, response) => {
     set((state) => ({
       ...state,
       loading: true,
@@ -77,6 +79,12 @@ export const createFormDetailsSlice: StateCreator<
           origin: "server",
         };
       }),
+      ...(response
+        ? {
+            selectedResponse: response,
+            responsesTab: 1,
+          }
+        : {}),
     }));
     openFormModal();
   },

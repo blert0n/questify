@@ -11,11 +11,12 @@ import { LinearScaleChart } from "./LinearScaleChart";
 import Lottie from "lottie-react";
 import waitingResponses from "@/public/lotties/waitingResponses.json";
 import { Clock, LucideLineChart } from "lucide-react";
-import { useState } from "react";
 import TimelineResponses from "./TimelineResponses";
 import { GridCheckboxChart } from "./GridCheckboxChart";
 import { MultipleChoiceGridChart } from "./MultipleChoiceGridChart";
 import { RatingChart } from "./RatingChart";
+import { useFormSelectors } from "@/store";
+import { setResponsesTab } from "@/store/actions";
 
 const EMPTY_COMPONENT = () => null;
 
@@ -35,6 +36,7 @@ const componentMapper = {
   [FormItemType_Enum.Date]: List,
   [FormItemType_Enum.Dropdown]: PieChart,
   [FormItemType_Enum.Rating]: RatingChart,
+  [FormItemType_Enum.PhoneNumber]: List,
 };
 
 export const Responses = ({ formId }: P) => {
@@ -54,7 +56,7 @@ export const Responses = ({ formId }: P) => {
       refetchForm();
     },
   });
-  const [selectedView, setSelectedView] = useState(0);
+  const selectedView = useFormSelectors().responsesTab;
   return (
     <div className="flex flex-col gap-4 w-full md:max-w-3xl p-4">
       <div className="w-full h-auto min-h-16 bg-white shadow-lg rounded-sm p-4 text-lg">
@@ -89,7 +91,7 @@ export const Responses = ({ formId }: P) => {
                     selectedView === 0 && "bg-slate-200"
                   )}
                   strokeWidth={1.5}
-                  onClick={() => setSelectedView(0)}
+                  onClick={() => setResponsesTab(0)}
                 />
                 <Clock
                   size={28}
@@ -98,7 +100,7 @@ export const Responses = ({ formId }: P) => {
                     selectedView === 1 && "bg-slate-200"
                   )}
                   strokeWidth={1.5}
-                  onClick={() => setSelectedView(1)}
+                  onClick={() => setResponsesTab(1)}
                 />
               </div>
             </div>

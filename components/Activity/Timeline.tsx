@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 interface P {
   date?: string;
   title?: string;
@@ -16,7 +15,6 @@ const TimelineItem = ({
   relatedId,
   onViewItem,
 }: P) => {
-  const router = useRouter();
   return (
     <li className="mb-4 ms-4">
       <div className="absolute w-3 h-3 bg-red-500 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
@@ -32,14 +30,7 @@ const TimelineItem = ({
       {formId && relatedId && (
         <div
           className="flex self-center text-blue-500 text-xs cursor-pointer mb-4 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85]"
-          onClick={() => {
-            if (typeof onViewItem !== "function")
-              return router.push({
-                pathname: "/form/[id]/[response]",
-                query: { id: formId, response: relatedId },
-              });
-            onViewItem();
-          }}
+          onClick={onViewItem}
         >
           View response
         </div>

@@ -11,12 +11,14 @@ export type FormDetailsSlice = {
   loading: boolean;
   loadingThumbnail: string;
   operation: string;
+  selectedResponse: string;
+  responsesTab: number;
   updateFormDetails: <K extends keyof FormDetailsSlice>(
     prop: K,
     value: FormDetailsSlice[K]
   ) => void;
   saveForm: () => void;
-  loadForm: (id: string, tab?: number) => void;
+  loadForm: (id: string, tab?: number, response?: string) => void;
   resetForm: () => void;
   loadTemplate: (template: string) => void;
 };

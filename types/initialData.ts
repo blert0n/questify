@@ -33,6 +33,7 @@ const titleMapper = {
   SINGLE_CHOICE_GRID: "Single choice grid",
   TEXT: "Paragraph",
   RATING: "Rating",
+  PHONE_NUMBER: "Phone number",
 };
 
 export const iconProps = {
@@ -52,6 +53,8 @@ export const initialFormData: InitialFormData = {
   selectedComponent: "formHeader",
   activeTab: 0,
   operation: "",
+  selectedResponse: "",
+  responsesTab: 0,
 };
 
 export const initialTheme: Theme = {

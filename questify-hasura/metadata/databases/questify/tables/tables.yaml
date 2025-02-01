@@ -2,6 +2,7 @@
 - "!include public_Folder.yaml"
 - "!include public_Form.yaml"
 - "!include public_FormItem.yaml"
+- "!include public_FormItemMeta.yaml"
 - "!include public_FormItemType.yaml"
 - "!include public_Notification.yaml"
 - "!include public_users.yaml"

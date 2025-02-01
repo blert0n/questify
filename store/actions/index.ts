@@ -24,4 +24,9 @@ export const thumbnail = () => ({
     })),
 });
 
+export const setSelectedResponse = (selectedResponse = "") =>
+  useFormSelectors.setState((state) => ({ ...state, selectedResponse }));
+export const setResponsesTab = (responsesTab = 0) =>
+  useFormSelectors.setState((state) => ({ ...state, responsesTab }));
+
 export * from "./form";

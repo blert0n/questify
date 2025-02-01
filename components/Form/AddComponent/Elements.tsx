@@ -10,6 +10,7 @@ import {
   MultiChoiceGrid,
   OneChoiceGrid,
   RatingIcon,
+  PhoneNumberIcon,
 } from "@/assets/svg";
 import { Input, ScrollArea, ScrollBar } from "@/components/ui";
 import { FormItemType_Enum } from "@/lib/graphql";
@@ -86,6 +87,12 @@ const elements = [
     icon: <RatingIcon className="hover:scale-110" />,
     title: "Rating",
     shortTitle: "Rating",
+  },
+  {
+    key: FormItemType_Enum.PhoneNumber,
+    icon: <PhoneNumberIcon className="hover:scale-110" />,
+    title: "Phone number",
+    shortTitle: "Phone",
   },
 ];
 

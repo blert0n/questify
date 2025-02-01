@@ -70,6 +70,7 @@
     "react-dropzone": "^14.2.3",
     "react-html-parser": "^2.0.2",
     "react-image-crop": "^11.0.2",
+    "react-phone-input-2": "^2.15.1",
     "react-to-print": "^2.15.1",
     "react-toastify": "^10.0.3",
     "shadcn": "^2.1.7",
