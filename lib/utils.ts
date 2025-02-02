@@ -3,6 +3,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { object, string } from "yup";
 import { GetResponsesByIdQuery } from "./graphql";
+import { DOMNode } from "html-react-parser";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -38,9 +39,8 @@ export const prepareFormik = (
   return { initialValues, validationSchema };
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const transform = (node: any, index: number) => {
-  if (index === 0 && node.type === "tag") {
+export const replace = (node: DOMNode, index: number) => {
+  if (node.type === "tag" && index === 0) {
     node.attribs.class = `${node.attribs?.class ?? ""} w-full`;
   }
 };

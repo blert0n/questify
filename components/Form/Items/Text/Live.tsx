@@ -1,8 +1,8 @@
-import { cn, transform } from "@/lib";
+import { cn } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { FormComponent, initialTheme } from "@/types";
 import { useFormikContext } from "formik";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 
 export const LiveText = ({ item, theme = initialTheme }: FormComponent) => {
   const formState = useFormikContext<Record<string, string>>();
@@ -29,12 +29,11 @@ export const LiveText = ({ item, theme = initialTheme }: FormComponent) => {
       )}
       <div
         className={cn(
-          "w-full",
           fontMapper[theme.Question.fontFamily],
           fontSizeMapper(theme.Question.fontSize)
         )}
       >
-        {ReactHtmlParser(item.name, { transform })}
+        {parse(item.name)}
       </div>
     </div>
   );

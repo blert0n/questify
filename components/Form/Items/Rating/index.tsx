@@ -105,7 +105,7 @@ export const Rating = ({
             </div>
           )}
           {selectedComponent !== item.id && (
-            <div className="flex justify-around md:items-center gap-4 md:flex-row flex-col items-start">
+            <div className="flex md:items-center gap-4 md:flex-row flex-col items-start">
               <div className="flex xxs:gap-1 gap-[0.5px]">
                 {Array(Number.parseInt(item.options?.[0].value ?? "5"))
                   .fill(0)

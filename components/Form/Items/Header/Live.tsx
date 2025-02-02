@@ -1,7 +1,7 @@
 import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { Theme } from "@/types";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 
 interface P {
   theme: Theme;
@@ -21,7 +21,7 @@ export const LiveHeader = ({ theme }: P) => {
           fontSizeMapper(theme.Header.fontSize)
         )}
       >
-        {ReactHtmlParser(theme.Header.text)}
+        {parse(theme.Header.text)}
       </div>
       <div
         className={cn(
@@ -29,7 +29,7 @@ export const LiveHeader = ({ theme }: P) => {
           fontSizeMapper(theme.Text.fontSize)
         )}
       >
-        {ReactHtmlParser(theme.Text.text)}
+        {parse(theme.Text.text)}
       </div>
     </div>
   );

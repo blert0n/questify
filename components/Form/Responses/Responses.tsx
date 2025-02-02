@@ -108,25 +108,27 @@ export const Responses = ({ formId }: P) => {
         )}
       </div>
       {Boolean(responsesCounter?.Form_by_pk?.responses && selectedView === 0) &&
-        (formData?.FormItems ?? []).map((item) => {
-          const options = (item.items ?? []) as SubItem[];
-          const ResponseComponent = item.type
-            ? componentMapper[item.type]
-            : EMPTY_COMPONENT;
-          return (
-            <div
-              key={item.id}
-              className="w-full bg-white shadow-lg rounded-sm p-4"
-            >
-              <ResponseComponent
-                name={item.name}
-                count={item.Answers_aggregate.aggregate?.count ?? 0}
-                answers={item.Answers}
-                options={options}
-              />
-            </div>
-          );
-        })}
+        (formData?.FormItems ?? [])
+          .filter((item) => item.type !== FormItemType_Enum.Text)
+          .map((item) => {
+            const options = (item.items ?? []) as SubItem[];
+            const ResponseComponent = item.type
+              ? componentMapper[item.type]
+              : EMPTY_COMPONENT;
+            return (
+              <div
+                key={item.id}
+                className="w-full bg-white shadow-lg rounded-sm p-4"
+              >
+                <ResponseComponent
+                  name={item.name}
+                  count={item.Answers_aggregate.aggregate?.count ?? 0}
+                  answers={item.Answers}
+                  options={options}
+                />
+              </div>
+            );
+          })}
       {Boolean(
         responsesCounter?.Form_by_pk?.responses && selectedView === 1
       ) && <TimelineResponses formId={formData?.id} />}

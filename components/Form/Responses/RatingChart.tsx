@@ -1,5 +1,5 @@
 import { pluralize } from "@/lib/utils";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 import { useMemo } from "react";
 import { SubItem } from "@/types/form";
 import {
@@ -70,7 +70,7 @@ export const RatingChart = ({ name, count, answers, options }: P) => {
 
   return (
     <div className="flex flex-col gap-1 h-auto">
-      {ReactHtmlParser(name)}
+      {parse(name)}
       <div className="text-sm text-gray-500">
         {pluralize(count, "response")}
       </div>

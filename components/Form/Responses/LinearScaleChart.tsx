@@ -1,5 +1,5 @@
 import { pluralize } from "@/lib/utils";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { pieChartPalette } from "@/lib/colors";
@@ -51,7 +51,7 @@ export const LinearScaleChart = ({ name, count, answers, options }: P) => {
 
   return (
     <div className="flex flex-col gap-1 h-auto">
-      {ReactHtmlParser(name)}
+      {parse(name)}
       <div className="text-sm text-gray-500">
         {pluralize(count, "response")}
       </div>

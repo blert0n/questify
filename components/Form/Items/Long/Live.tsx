@@ -1,8 +1,8 @@
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 import { useState } from "react";
 import { FormComponent, initialTheme } from "@/types";
 import { Textarea } from "@/components/ui";
-import { cn, getPrimaryColor, transform } from "@/lib";
+import { cn, getPrimaryColor } from "@/lib";
 import { fontMapper, fontSizeMapper } from "@/lib/fonts";
 import { useFormikContext } from "formik";
 import { ShieldAlert } from "lucide-react";
@@ -20,12 +20,17 @@ export const LiveLongComponent = ({
     <div
       key={`long-${item.id}`}
       className={cn(
-        "flex flex-col gap-3 w-full h-auto rounded-md p-6 bg-white",
+        "relative flex flex-col gap-3 w-full h-auto rounded-md p-6 bg-white",
         formState?.touched[item.id] &&
           formState?.errors[item.id] &&
           "border-[1px] border-red-600"
       )}
     >
+      {item.required && (
+        <div className="absolute top-0 right-0 text-red-500 text-[18px] p-2 rounded-bl-md">
+          *
+        </div>
+      )}
       {item.image?.dataUrl && (
         <div className="flex justify-center max-h-[300px] object-contain">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -38,13 +43,11 @@ export const LiveLongComponent = ({
       )}
       <div
         className={cn(
-          "flex gap-[2px] w-full",
           fontMapper[theme.Question.fontFamily],
           fontSizeMapper(theme.Question.fontSize)
         )}
       >
-        {ReactHtmlParser(item.name, { transform })}
-        {item.required && <span className="text-red-600">*</span>}
+        {parse(item.name)}
       </div>
       <Textarea
         name={item.id}
