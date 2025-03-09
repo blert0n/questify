@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import Error from "next/error";
 import Meta from "@/components/Layout/Title";
 import { Formik, Form } from "formik";
-import { getPrimaryColor, prepareFormik } from "@/lib";
+import { createYupSchema, getPrimaryColor, prepareFormik } from "@/lib";
 import { Button } from "@/components/ui";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
@@ -89,7 +89,9 @@ export default function Index() {
       })
     : [];
 
-  const { initialValues, validationSchema } = prepareFormik(formItems);
+  const { initialValues } = prepareFormik(formItems);
+
+  const validationSchema = createYupSchema(formItems);
 
   const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
 

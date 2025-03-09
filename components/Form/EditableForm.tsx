@@ -20,6 +20,7 @@ import { Draggable, DraggableStyle, Droppable } from "@hello-pangea/dnd";
 import { cn, getPrimaryColor } from "@/lib";
 import { useState } from "react";
 import { FormItemType_Enum } from "@/lib/graphql";
+import { PlusIcon } from "lucide-react";
 
 const EMPTY_COMPONENT = () => <span />;
 
@@ -117,8 +118,8 @@ export default function EditableForm({ items }: P) {
               })}
             <div
               className={cn(
-                "min-h-24 rounded-md flex justify-center items-center shadow-lg invisible",
-                items.length === 0 && "visible"
+                "min-h-12 rounded-md flex justify-center items-center shadow-lg"
+                // items.length === 0 && "visible"
               )}
               style={
                 editMode
@@ -129,7 +130,8 @@ export default function EditableForm({ items }: P) {
                   : {}
               }
             >
-              Drag and drop items here
+              <PlusIcon className="hover:scale-110 hover:cursor-pointer" />
+              Drop new items
               {provided.placeholder}
             </div>
           </div>
