@@ -36,7 +36,7 @@ const getFormBackgroundStyle = (
   };
 };
 
-export default function Form({ form, folder = false }: P) {
+export default function ListFormItem({ form, folder = false }: P) {
   const { value: isPopoverOpen, toggle: togglePopover } = useBoolean(false);
   const { value: isFolderPopoverOpen, toggle: toggleFolderPopover } =
     useBoolean(false);

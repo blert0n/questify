@@ -1,5 +1,5 @@
 import { Form_Order_By, Order_By, useMyFormsQuery } from "@/lib/graphql";
-import FormComponent from "./Form";
+import FormComponent from "./ListFormItem";
 import { Loader } from "@/assets/svg";
 import { Button } from "../ui";
 import { useModalStoreSelectors } from "@/store";

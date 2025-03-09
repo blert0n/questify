@@ -2,7 +2,7 @@ import { Loader } from "@/assets/svg";
 import { cn } from "@/lib";
 import { useDefaultFolderFormsQuery, useFolderFormsQuery } from "@/lib/graphql";
 import { ArrowLeft } from "lucide-react";
-import Form from "../Home/Form";
+import ListFormItem from "../Home/ListFormItem";
 import AppLoader from "../Layout/AppLoader";
 interface P {
   id: string;
@@ -48,7 +48,9 @@ export default function Selected({ id, onBack }: P) {
         {!loading && forms && forms.length > 0 && (
           <div className="flex flex-col items-start justify-center gap-4 p-4 pt-0 w-full lg:max-w-4xl ml-auto mr-auto">
             <div className={cn("flex flex-wrap gap-4")}>
-              {forms?.map((item) => <Form key={item.id} form={item} folder />)}
+              {forms?.map((item) => (
+                <ListFormItem key={item.id} form={item} folder />
+              ))}
             </div>
           </div>
         )}

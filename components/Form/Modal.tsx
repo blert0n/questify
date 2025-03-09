@@ -1,6 +1,6 @@
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Header } from "./Header";
-import { Form } from "./Form";
+import { FormBuilder } from "./FormBuilder";
 import { useBoolean } from "usehooks-ts";
 import { ThemeCustomizer } from "./ThemeCustomizer";
 import { useFormSelectors } from "@/store";
@@ -173,7 +173,7 @@ export const FullScreenModal = ({
               <div className="flex flex-grow md:flex-row flex-col md:gap-8 gap-4 w-full">
                 <Elements />
                 <div className="p-8 w-full flex-grow">
-                  <Form />
+                  <FormBuilder />
                 </div>
               </div>
             </DragDropContext>

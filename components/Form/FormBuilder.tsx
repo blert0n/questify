@@ -2,7 +2,7 @@ import { useFormSelectors } from "@/store";
 import LiveForm from "./LiveForm";
 import EditableForm from "./EditableForm";
 
-export const Form = () => {
+export const FormBuilder = () => {
   const editMode = useFormSelectors.use.editMode();
   const items = useFormSelectors.use.items();
   const theme = useFormSelectors.use.theme();
