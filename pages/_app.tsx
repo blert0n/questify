@@ -4,6 +4,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import AppLayout from "@/components/Layout/App";
 import { clerkAppearance, QuestifyApolloProvider } from "@/lib";
 import FontProvider from "@/components/Layout/FontProvider";
+import { Analytics } from "@vercel/analytics/react";
+
 if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }
@@ -21,6 +23,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   ) {
     return (
       <ClerkProvider publishableKey={clerkPubKey}>
+        <Analytics />
         <QuestifyApolloProvider>
           <FontProvider>
             <Component {...pageProps} />
@@ -31,6 +34,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   }
   return (
     <ClerkProvider publishableKey={clerkPubKey} appearance={clerkAppearance}>
+      <Analytics />
       <QuestifyApolloProvider>
         <AppLayout>
           <FontProvider>
