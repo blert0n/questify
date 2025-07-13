@@ -20,6 +20,7 @@ export const LiveLinearScale = ({
   item,
   theme = initialTheme,
   readonly,
+  visible,
 }: FormComponent) => {
   const checkBoxColor = getPrimaryColor(theme.primaryColor);
   const formState = useFormikContext<Record<string, string>>();
@@ -31,7 +32,9 @@ export const LiveLinearScale = ({
         "relative flex flex-col gap-3 w-full min-h-[120px] rounded-md bg-white p-6 overflow-hidden",
         formState?.touched[item.id] &&
           formState?.errors[item.id] &&
-          "border-[1px] border-red-600"
+          "border-[1px] border-red-600",
+        visible && "visible",
+        !visible && "hidden"
       )}
     >
       {item.required && (

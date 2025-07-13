@@ -6,12 +6,12 @@ import {
   DropdownIcon,
   DatetimeIcon,
   ScaleIcon,
-  TextIcon,
   MultiChoiceGrid,
   OneChoiceGrid,
   RatingIcon,
   PhoneNumberIcon,
 } from "@/assets/svg";
+import { SectionIcon } from "@/assets/svg/form/Section";
 import { Input, ScrollArea, ScrollBar } from "@/components/ui";
 import { FormItemType_Enum } from "@/lib/graphql";
 import { useMediaScreen } from "@/lib/useMediaScreen";
@@ -23,10 +23,10 @@ import { useBoolean } from "usehooks-ts";
 
 const elements = [
   {
-    key: FormItemType_Enum.Text,
-    icon: <TextIcon className="hover:scale-110" />,
-    title: "Text",
-    shortTitle: "Text",
+    key: FormItemType_Enum.Section,
+    icon: <SectionIcon className="hover:scale-110" />,
+    title: "Section",
+    shortTitle: "Section",
   },
   {
     key: FormItemType_Enum.Short,

@@ -7,6 +7,7 @@ import {
 } from "@/types";
 import { StateCreator } from "zustand";
 import { v4 as uuidv4 } from "uuid";
+import { FormItemType_Enum } from "@/lib/graphql";
 
 export const createItemSlice: StateCreator<
   ThemeSlice & ItemSlice & FormDetailsSlice,
@@ -31,9 +32,16 @@ export const createItemSlice: StateCreator<
     set((state) => {
       const deletedItem = state.items.find((item) => item.id === id);
       if (!deletedItem) return state;
-      const predecessor = state.items.findIndex((item) => item.id === id);
+      const nonSectionItems = state.items.filter(
+        (item) => item.type !== FormItemType_Enum.Section
+      );
+      const deletedItemIndex = nonSectionItems.findIndex(
+        (item) => item.id === id
+      );
       const newSelectedId =
-        predecessor > 0 ? state.items.at(predecessor - 1)?.id : "formHeader";
+        deletedItemIndex > 0
+          ? nonSectionItems.at(deletedItemIndex - 1)?.id
+          : "formHeader";
       const filteredItems = state.items.filter((item) => item.id !== id);
       const updatedItems = filteredItems.map((item) => {
         if (item.order < deletedItem.order) return item;
@@ -42,7 +50,9 @@ export const createItemSlice: StateCreator<
       return {
         ...state,
         deletedItems: state.editMode ? [...state.deletedItems, id] : [],
-        selectedComponent: newSelectedId,
+        ...(deletedItem.type !== FormItemType_Enum.Section
+          ? { selectedComponent: newSelectedId }
+          : {}),
         items: updatedItems,
       };
     });
@@ -82,7 +92,9 @@ export const createItemSlice: StateCreator<
       if (index === undefined || lastOrder === 0) {
         return {
           ...state,
-          selectedComponent: newItem.id,
+          ...(type !== FormItemType_Enum.Section
+            ? { selectedComponent: newItem.id }
+            : {}),
           items: [...state.items, newItem],
         };
       }
@@ -98,7 +110,9 @@ export const createItemSlice: StateCreator<
 
       return {
         ...state,
-        selectedComponent: newItem.id,
+        ...(type !== FormItemType_Enum.Section
+          ? { selectedComponent: newItem.id }
+          : {}),
         items,
       };
     });
@@ -118,5 +132,24 @@ export const createItemSlice: StateCreator<
         items,
       };
     });
+  },
+  getPagesMap: (items) => {
+    const sortedItems = [...items].sort((a, b) => a.order - b.order);
+    const pages: Record<number, number[]> = {};
+    let currentPage = 1;
+
+    for (const item of sortedItems) {
+      if (!pages[currentPage]) {
+        pages[currentPage] = [];
+      }
+
+      pages[currentPage].push(item.order);
+
+      if (item.type === "SECTION") {
+        currentPage++;
+      }
+    }
+
+    return pages;
   },
 });

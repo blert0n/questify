@@ -17,24 +17,24 @@ export const ScaleIcon = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="M10 11.125H13.1875"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M10 23.875H13.1875"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M21.6875 11.125L29.125 11.125"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M21.6875 23.875L29.125 23.875"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
-      <path d="M10 17.5H22.75" stroke="#F1EBFC" stroke-linecap="round"></path>
+      <path d="M10 17.5H22.75" stroke="#F1EBFC" strokeLinecap="round"></path>
       <rect
         x="15.3125"
         y="9"

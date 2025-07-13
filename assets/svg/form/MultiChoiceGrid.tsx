@@ -24,7 +24,7 @@ export const MultiChoiceGrid = (props: SVGProps<SVGSVGElement>) => {
             d="M14.5 17.5L18.2895 22L26.5 14"
             stroke="#F1EBFC"
             stroke-width="3"
-            stroke-linecap="round"
+            strokeLinecap="round"
             stroke-linejoin="round"
           ></path>
           <defs>
@@ -76,7 +76,7 @@ export const MultiChoiceGrid = (props: SVGProps<SVGSVGElement>) => {
             d="M14.5 17.5L18.2895 22L26.5 14"
             stroke="#F1EBFC"
             stroke-width="3"
-            stroke-linecap="round"
+            strokeLinecap="round"
             stroke-linejoin="round"
           ></path>
           <defs>
@@ -128,7 +128,7 @@ export const MultiChoiceGrid = (props: SVGProps<SVGSVGElement>) => {
             d="M14.5 17.5L18.2895 22L26.5 14"
             stroke="#F1EBFC"
             stroke-width="3"
-            stroke-linecap="round"
+            strokeLinecap="round"
             stroke-linejoin="round"
           ></path>
           <defs>
@@ -180,7 +180,7 @@ export const MultiChoiceGrid = (props: SVGProps<SVGSVGElement>) => {
             d="M14.5 17.5L18.2895 22L26.5 14"
             stroke="#F1EBFC"
             stroke-width="3"
-            stroke-linecap="round"
+            strokeLinecap="round"
             stroke-linejoin="round"
           ></path>
           <defs>

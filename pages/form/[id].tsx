@@ -10,8 +10,7 @@ import { useRouter } from "next/router";
 import Error from "next/error";
 import Meta from "@/components/Layout/Title";
 import { Formik, Form } from "formik";
-import { createYupSchema, getPrimaryColor, prepareFormik } from "@/lib";
-import { Button } from "@/components/ui";
+import { createYupSchema, prepareFormik } from "@/lib";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import AppLoader from "@/components/Layout/AppLoader";
@@ -93,8 +92,6 @@ export default function Index() {
 
   const validationSchema = createYupSchema(formItems);
 
-  const primaryColor = getPrimaryColor(findFirstForm?.style.primaryColor);
-
   return (
     <>
       <Meta title={findFirstForm?.name ?? "Form"} />
@@ -112,29 +109,14 @@ export default function Index() {
               validateOnChange
               onSubmit={(values) => handleSubmit(values)}
             >
-              {({ handleSubmit, isSubmitting }) => (
-                <Form className="flex flex-col gap-2">
-                  <div className="flex flex-col gap-4">
-                    <LiveForm
-                      theme={findFirstForm.style || initialTheme}
-                      items={formItems}
-                    />
-                  </div>
-                  <div className="flex justify-end items-center gap-2">
-                    <Button
-                      type="submit"
-                      size={"sm"}
-                      style={{
-                        backgroundColor: primaryColor,
-                      }}
-                      loading={isSubmitting}
-                      onClick={() => handleSubmit()}
-                    >
-                      Submit
-                    </Button>
-                  </div>
-                </Form>
-              )}
+              <Form className="flex flex-col gap-2">
+                <div className="flex flex-col gap-4">
+                  <LiveForm
+                    theme={findFirstForm.style || initialTheme}
+                    items={formItems}
+                  />
+                </div>
+              </Form>
             </Formik>
           </div>
         )}

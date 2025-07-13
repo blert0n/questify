@@ -12,7 +12,7 @@ export const FormBuilder = () => {
       {editMode ? (
         <EditableForm items={items} />
       ) : (
-        <LiveForm theme={theme} items={items} />
+        <LiveForm theme={theme} items={items} showSubmit={false} />
       )}
     </div>
   );

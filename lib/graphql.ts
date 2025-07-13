@@ -24,7 +24,6 @@ export interface Scalars {
 export interface Answer {
   /** An object relationship */
   FormItem?: Maybe<FormItem>;
-  createdAt?: Maybe<Scalars['timestamp']['output']>;
   formItemId?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   responseId?: Maybe<Scalars['String']['output']>;
@@ -82,7 +81,6 @@ export interface Answer_Bool_Exp {
   _and?: InputMaybe<Array<Answer_Bool_Exp>>;
   _not?: InputMaybe<Answer_Bool_Exp>;
   _or?: InputMaybe<Array<Answer_Bool_Exp>>;
-  createdAt?: InputMaybe<Timestamp_Comparison_Exp>;
   formItemId?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
   responseId?: InputMaybe<String_Comparison_Exp>;
@@ -98,7 +96,6 @@ export enum Answer_Constraint {
 /** input type for inserting data into table "Answer" */
 export interface Answer_Insert_Input {
   FormItem?: InputMaybe<FormItem_Obj_Rel_Insert_Input>;
-  createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   formItemId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   responseId?: InputMaybe<Scalars['String']['input']>;
@@ -107,7 +104,6 @@ export interface Answer_Insert_Input {
 
 /** aggregate max on columns */
 export interface Answer_Max_Fields {
-  createdAt?: Maybe<Scalars['timestamp']['output']>;
   formItemId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   responseId?: Maybe<Scalars['String']['output']>;
@@ -116,7 +112,6 @@ export interface Answer_Max_Fields {
 
 /** order by max() on columns of table "Answer" */
 export interface Answer_Max_Order_By {
-  createdAt?: InputMaybe<Order_By>;
   formItemId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   responseId?: InputMaybe<Order_By>;
@@ -125,7 +120,6 @@ export interface Answer_Max_Order_By {
 
 /** aggregate min on columns */
 export interface Answer_Min_Fields {
-  createdAt?: Maybe<Scalars['timestamp']['output']>;
   formItemId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
   responseId?: Maybe<Scalars['String']['output']>;
@@ -134,7 +128,6 @@ export interface Answer_Min_Fields {
 
 /** order by min() on columns of table "Answer" */
 export interface Answer_Min_Order_By {
-  createdAt?: InputMaybe<Order_By>;
   formItemId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   responseId?: InputMaybe<Order_By>;
@@ -159,7 +152,6 @@ export interface Answer_On_Conflict {
 /** Ordering options when selecting data from "Answer". */
 export interface Answer_Order_By {
   FormItem?: InputMaybe<FormItem_Order_By>;
-  createdAt?: InputMaybe<Order_By>;
   formItemId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   responseId?: InputMaybe<Order_By>;
@@ -174,8 +166,6 @@ export interface Answer_Pk_Columns_Input {
 /** select columns of table "Answer" */
 export enum Answer_Select_Column {
   /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
   FormItemId = 'formItemId',
   /** column name */
   Id = 'id',
@@ -187,7 +177,6 @@ export enum Answer_Select_Column {
 
 /** input type for updating data in table "Answer" */
 export interface Answer_Set_Input {
-  createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   formItemId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   responseId?: InputMaybe<Scalars['String']['input']>;
@@ -204,7 +193,6 @@ export interface Answer_Stream_Cursor_Input {
 
 /** Initial value of the column from where the streaming should start */
 export interface Answer_Stream_Cursor_Value_Input {
-  createdAt?: InputMaybe<Scalars['timestamp']['input']>;
   formItemId?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   responseId?: InputMaybe<Scalars['String']['input']>;
@@ -213,8 +201,6 @@ export interface Answer_Stream_Cursor_Value_Input {
 
 /** update columns of table "Answer" */
 export enum Answer_Update_Column {
-  /** column name */
-  CreatedAt = 'createdAt',
   /** column name */
   FormItemId = 'formItemId',
   /** column name */
@@ -780,6 +766,7 @@ export enum FormItemType_Enum {
   MultipleChoiceGrid = 'MULTIPLE_CHOICE_GRID',
   PhoneNumber = 'PHONE_NUMBER',
   Rating = 'RATING',
+  Section = 'SECTION',
   Short = 'SHORT',
   SingleChoice = 'SINGLE_CHOICE',
   SingleChoiceGrid = 'SINGLE_CHOICE_GRID',
@@ -3589,8 +3576,8 @@ export function useFormsByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FormsByNameQuery, FormsByNameQueryVariables>(FormsByNameDocument, options);
         }
-export function useFormsByNameSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FormsByNameQuery, FormsByNameQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useFormsByNameSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<FormsByNameQuery, FormsByNameQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<FormsByNameQuery, FormsByNameQueryVariables>(FormsByNameDocument, options);
         }
 export type FormsByNameQueryHookResult = ReturnType<typeof useFormsByNameQuery>;
@@ -3646,8 +3633,8 @@ export function useActivitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
         }
-export function useActivitiesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useActivitiesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ActivitiesQuery, ActivitiesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<ActivitiesQuery, ActivitiesQueryVariables>(ActivitiesDocument, options);
         }
 export type ActivitiesQueryHookResult = ReturnType<typeof useActivitiesQuery>;
@@ -3693,8 +3680,8 @@ export function useActivitiesCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<ActivitiesCountQuery, ActivitiesCountQueryVariables>(ActivitiesCountDocument, options);
         }
-export function useActivitiesCountSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ActivitiesCountQuery, ActivitiesCountQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useActivitiesCountSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ActivitiesCountQuery, ActivitiesCountQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<ActivitiesCountQuery, ActivitiesCountQueryVariables>(ActivitiesCountDocument, options);
         }
 export type ActivitiesCountQueryHookResult = ReturnType<typeof useActivitiesCountQuery>;
@@ -3738,8 +3725,8 @@ export function useOldestNotificationLazyQuery(baseOptions?: Apollo.LazyQueryHoo
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<OldestNotificationQuery, OldestNotificationQueryVariables>(OldestNotificationDocument, options);
         }
-export function useOldestNotificationSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<OldestNotificationQuery, OldestNotificationQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useOldestNotificationSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<OldestNotificationQuery, OldestNotificationQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<OldestNotificationQuery, OldestNotificationQueryVariables>(OldestNotificationDocument, options);
         }
 export type OldestNotificationQueryHookResult = ReturnType<typeof useOldestNotificationQuery>;
@@ -3794,8 +3781,8 @@ export function useResponsesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<ResponsesQuery, ResponsesQueryVariables>(ResponsesDocument, options);
         }
-export function useResponsesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ResponsesQuery, ResponsesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useResponsesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ResponsesQuery, ResponsesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<ResponsesQuery, ResponsesQueryVariables>(ResponsesDocument, options);
         }
 export type ResponsesQueryHookResult = ReturnType<typeof useResponsesQuery>;
@@ -3874,8 +3861,8 @@ export function useGetResponsesByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookO
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>(GetResponsesByIdDocument, options);
         }
-export function useGetResponsesByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useGetResponsesByIdSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetResponsesByIdQuery, GetResponsesByIdQueryVariables>(GetResponsesByIdDocument, options);
         }
 export type GetResponsesByIdQueryHookResult = ReturnType<typeof useGetResponsesByIdQuery>;
@@ -3920,8 +3907,8 @@ export function useFormResponsesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FormResponsesQuery, FormResponsesQueryVariables>(FormResponsesDocument, options);
         }
-export function useFormResponsesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FormResponsesQuery, FormResponsesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useFormResponsesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<FormResponsesQuery, FormResponsesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<FormResponsesQuery, FormResponsesQueryVariables>(FormResponsesDocument, options);
         }
 export type FormResponsesQueryHookResult = ReturnType<typeof useFormResponsesQuery>;
@@ -3990,8 +3977,8 @@ export function useMyFoldersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<MyFoldersQuery, MyFoldersQueryVariables>(MyFoldersDocument, options);
         }
-export function useMyFoldersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MyFoldersQuery, MyFoldersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useMyFoldersSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<MyFoldersQuery, MyFoldersQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<MyFoldersQuery, MyFoldersQueryVariables>(MyFoldersDocument, options);
         }
 export type MyFoldersQueryHookResult = ReturnType<typeof useMyFoldersQuery>;
@@ -4249,8 +4236,8 @@ export function useMyFormsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<My
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<MyFormsQuery, MyFormsQueryVariables>(MyFormsDocument, options);
         }
-export function useMyFormsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MyFormsQuery, MyFormsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useMyFormsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<MyFormsQuery, MyFormsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<MyFormsQuery, MyFormsQueryVariables>(MyFormsDocument, options);
         }
 export type MyFormsQueryHookResult = ReturnType<typeof useMyFormsQuery>;
@@ -4295,8 +4282,8 @@ export function useFolderFormsLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FolderFormsQuery, FolderFormsQueryVariables>(FolderFormsDocument, options);
         }
-export function useFolderFormsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FolderFormsQuery, FolderFormsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useFolderFormsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<FolderFormsQuery, FolderFormsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<FolderFormsQuery, FolderFormsQueryVariables>(FolderFormsDocument, options);
         }
 export type FolderFormsQueryHookResult = ReturnType<typeof useFolderFormsQuery>;
@@ -4340,8 +4327,8 @@ export function useDefaultFolderFormsLazyQuery(baseOptions?: Apollo.LazyQueryHoo
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>(DefaultFolderFormsDocument, options);
         }
-export function useDefaultFolderFormsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useDefaultFolderFormsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<DefaultFolderFormsQuery, DefaultFolderFormsQueryVariables>(DefaultFolderFormsDocument, options);
         }
 export type DefaultFolderFormsQueryHookResult = ReturnType<typeof useDefaultFolderFormsQuery>;
@@ -4393,8 +4380,8 @@ export function useFormDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<F
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<FormDataQuery, FormDataQueryVariables>(FormDataDocument, options);
         }
-export function useFormDataSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FormDataQuery, FormDataQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useFormDataSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<FormDataQuery, FormDataQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<FormDataQuery, FormDataQueryVariables>(FormDataDocument, options);
         }
 export type FormDataQueryHookResult = ReturnType<typeof useFormDataQuery>;
@@ -4447,8 +4434,8 @@ export function useGetFormLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
         }
-export function useGetFormSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useGetFormSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetFormQuery, GetFormQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetFormQuery, GetFormQueryVariables>(GetFormDocument, options);
         }
 export type GetFormQueryHookResult = ReturnType<typeof useGetFormQuery>;

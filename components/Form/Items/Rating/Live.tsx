@@ -10,6 +10,7 @@ export const LiveRating = ({
   item,
   theme = initialTheme,
   readonly,
+  visible,
 }: FormComponent) => {
   const formState = useFormikContext<Record<string, string>>();
   const formValue = formState?.values?.[item.id];
@@ -21,7 +22,9 @@ export const LiveRating = ({
         "relative flex flex-col gap-3 w-full h-auto rounded-md bg-white p-6",
         formState?.touched[item.id] &&
           formState?.errors[item.id] &&
-          "border-[1px] border-red-600"
+          "border-[1px] border-red-600",
+        visible && "visible",
+        !visible && "hidden"
       )}
     >
       {item.required && (

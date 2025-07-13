@@ -11,6 +11,7 @@ export const LiveShortComponent = ({
   item,
   theme = initialTheme,
   readonly,
+  visible,
 }: FormComponent) => {
   const [inputFocus, setInputFocus] = useState(false);
   const focusedInputColor = getPrimaryColor(theme.primaryColor);
@@ -23,7 +24,9 @@ export const LiveShortComponent = ({
         "relative flex flex-col gap-3 w-full h-auto rounded-md p-6 bg-white",
         formState?.touched[item.id] &&
           formState?.errors[item.id] &&
-          "border-[1px] border-red-600"
+          "border-[1px] border-red-600",
+        visible && "visible",
+        !visible && "hidden"
       )}
     >
       {item.required && (

@@ -52,6 +52,7 @@ export type ItemSlice = {
   deleteItem: (id: string) => void;
   duplicateItem: (id: string) => void;
   reorder: (startIndex: number, endIndex: number) => void;
+  getPagesMap: (items: FormItem[]) => Record<number, number[]>;
 };
 export type SubItemSlice = {
   addOption: (itemId: string, grid?: "row" | "column") => void;

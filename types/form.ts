@@ -75,6 +75,9 @@ export interface FormComponent {
   dragHandle?: DraggableProvidedDragHandleProps | null;
   hovered?: boolean;
   readonly?: boolean;
+  pageNumber?: number;
+  visible?: boolean;
+  onPageChange?: (direction: "prev" | "next") => void;
 }
 
 export interface TextStyling {

@@ -27,12 +27,12 @@ export const ShortInputIcon = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="M9.16663 18.667H17.1"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M9.16663 23.2002H25.0333"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <rect
         x="24.5"

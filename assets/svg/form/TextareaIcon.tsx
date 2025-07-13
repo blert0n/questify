@@ -27,17 +27,17 @@ export const TextareaIcon = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="M9.70837 15.2915H20.125"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M9.70837 20.5H30.5417"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M9.70837 25.7085H30.5417"
         stroke="#F1EBFC"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <rect
         x="25.5"

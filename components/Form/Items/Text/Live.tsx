@@ -4,7 +4,11 @@ import { FormComponent, initialTheme } from "@/types";
 import { useFormikContext } from "formik";
 import parse from "html-react-parser";
 
-export const LiveText = ({ item, theme = initialTheme }: FormComponent) => {
+export const LiveText = ({
+  item,
+  theme = initialTheme,
+  visible,
+}: FormComponent) => {
   const formState = useFormikContext<Record<string, string>>();
 
   return (
@@ -14,7 +18,9 @@ export const LiveText = ({ item, theme = initialTheme }: FormComponent) => {
         "flex flex-col gap-3 w-full h-auto rounded-md p-6 bg-white",
         formState?.touched[item.id] &&
           formState?.errors[item.id] &&
-          "border-[1px] border-red-600"
+          "border-[1px] border-red-600",
+        visible && "visible",
+        !visible && "hidden"
       )}
     >
       {item.image?.dataUrl && (

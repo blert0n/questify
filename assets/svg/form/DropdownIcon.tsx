@@ -28,7 +28,7 @@ export const DropdownIcon = (props: SVGProps<SVGSVGElement>) => {
         d="M14.5 15L20.5 21L26.5 15"
         stroke="#F1EBFC"
         stroke-width="1.1"
-        stroke-linecap="round"
+        strokeLinecap="round"
         stroke-linejoin="round"
       ></path>
       <rect

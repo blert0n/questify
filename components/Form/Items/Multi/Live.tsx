@@ -11,6 +11,7 @@ export const LiveMultiChoice = ({
   item,
   theme = initialTheme,
   readonly,
+  visible,
 }: FormComponent) => {
   const formState = useFormikContext<Record<string, string>>();
   const [checked, setChecked] = useState<string[]>(
@@ -43,7 +44,9 @@ export const LiveMultiChoice = ({
         "relative flex flex-col gap-3 w-full h-auto rounded-md bg-white p-6",
         formState?.touched[item.id] &&
           formState?.errors[item.id] &&
-          "border-[1px] border-red-600"
+          "border-[1px] border-red-600",
+        visible && "visible",
+        !visible && "hidden"
       )}
     >
       {item.required && (

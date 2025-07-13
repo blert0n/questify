@@ -24,19 +24,19 @@ export const DatetimeIcon = (props: SVGProps<SVGSVGElement>) => {
         d="M14.5117 5V9.48"
         stroke="url(#paint1_linear_3931_27537)"
         stroke-width="1.5"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M25.5117 5V9.48"
         stroke="url(#paint2_linear_3931_27537)"
         stroke-width="1.5"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M11.5 14H20.5H29.5"
         stroke="#F1EBFC"
         stroke-width="1.05"
-        stroke-linecap="round"
+        strokeLinecap="round"
         stroke-linejoin="round"
       ></path>
       <rect

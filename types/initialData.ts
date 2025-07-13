@@ -34,6 +34,7 @@ const titleMapper = {
   TEXT: "Paragraph",
   RATING: "Rating",
   PHONE_NUMBER: "Phone number",
+  SECTION: "Page",
 };
 
 export const iconProps = {

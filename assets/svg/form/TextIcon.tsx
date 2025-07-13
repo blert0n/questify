@@ -28,19 +28,19 @@ export const TextIcon = (props: SVGProps<SVGSVGElement>) => {
         d="M19.5831 12.0903V23.9085"
         stroke="white"
         stroke-width="1.1"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M17.2198 24.4995H21.9471"
         stroke="white"
         stroke-width="1.1"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M26.0833 14.4541V12.8631C26.0833 12.11 25.4727 11.4995 24.7196 11.4995H14.4469C13.6938 11.4995 13.0833 12.11 13.0833 12.8631V14.4541"
         stroke="white"
         stroke-width="1.1"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
       <path
         d="M31.225 23.4474C31.7046 23.1706 32.2954 23.1706 32.775 23.4474L37.7202 26.3026C38.1998 26.5794 38.4952 27.0911 38.4952 27.6449V33.3551C38.4952 33.9089 38.1998 34.4206 37.7202 34.6974L32.775 37.5526C32.2954 37.8294 31.7046 37.8294 31.225 37.5526L26.2798 34.6974C25.8002 34.4206 25.5048 33.9089 25.5048 33.3551V27.6449C25.5048 27.0911 25.8002 26.5794 26.2798 26.3026L31.225 23.4474Z"
