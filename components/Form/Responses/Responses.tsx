@@ -37,6 +37,7 @@ const componentMapper = {
   [FormItemType_Enum.Dropdown]: PieChart,
   [FormItemType_Enum.Rating]: RatingChart,
   [FormItemType_Enum.PhoneNumber]: List,
+  [FormItemType_Enum.Section]: EMPTY_COMPONENT,
 };
 
 export const Responses = ({ formId }: P) => {
