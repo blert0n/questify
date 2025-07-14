@@ -23,6 +23,7 @@ export const createAiSlice: StateCreator<
   resetMessages: () =>
     set((state) => ({ ...state, messages: [INITIAL_MESSAGE] })),
   prompt: async (prompt) => {
+    if (!process.env.NEXT_PUBLIC_QUESTIFY_BOT) return;
     const { session, setAiThinking, items } = get();
 
     set((state) => ({
@@ -39,7 +40,7 @@ export const createAiSlice: StateCreator<
 
     setAiThinking(true);
 
-    const response = await fetch("/api/ai", {
+    const response = await fetch(process.env.NEXT_PUBLIC_QUESTIFY_BOT, {
       method: "POST",
       body: JSON.stringify({
         conversation: session,
