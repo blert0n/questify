@@ -2,7 +2,7 @@ import Link from "next/link";
 import NavItem from "./NavItem";
 import { useRouter } from "next/router";
 import { Folder, Plus, File, Activity, LayoutTemplate } from "lucide-react";
-import { useModalStoreSelectors } from "@/store";
+import { useFormSelectors, useModalStoreSelectors } from "@/store";
 
 interface P {
   closeNavMobile?: () => void;
@@ -10,6 +10,7 @@ interface P {
 export default function Nav({ closeNavMobile }: P) {
   const router = useRouter();
   const openModal = useModalStoreSelectors.use.openModal();
+  const resetSession = useFormSelectors.use.resetSession();
 
   return (
     <div className="flex flex-col">
@@ -55,6 +56,7 @@ export default function Nav({ closeNavMobile }: P) {
           onClick={() => {
             closeNavMobile?.();
             openModal();
+            resetSession();
           }}
         />
       </div>

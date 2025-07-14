@@ -9,6 +9,7 @@ import {
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";
 import { editForm, loadFormData, openFormModal, saveForm } from "../actions";
+import { v4 as uuidv4 } from "uuid";
 
 const TEMPLATES = [
   "rsvp",
@@ -50,6 +51,7 @@ export const createFormDetailsSlice: StateCreator<
     set((state) => ({
       ...state,
       theme: initialTheme,
+      session: uuidv4(),
       ...initialFormData,
     }));
   },
@@ -58,6 +60,7 @@ export const createFormDetailsSlice: StateCreator<
       return toast.info("At least one form item is required");
     !get().id ? await saveForm() : await editForm(get().id);
     get().resetMessages();
+    get().resetSession();
   },
   loadForm: async (id, tab = 0, response) => {
     set((state) => ({

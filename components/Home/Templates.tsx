@@ -21,6 +21,7 @@ const templates = [
 export default function Templates() {
   const loadTemplate = useFormSelectors.use.loadTemplate();
   const openModal = useModalStoreSelectors.use.openModal();
+  const resetSession = useFormSelectors.use.resetSession();
 
   return (
     <div className="flex flex-col gap-2 text-gray-500 text-sm items-center justify-center">
@@ -29,7 +30,10 @@ export default function Templates() {
         <div className="flex flex-col gap-2">
           <div
             className="flex flex-col items-center justify-center gap-2 border-[1.5px] border-gray-200 w-[150px] h-[140px] shadow-md hover:shadow-xl hover:cursor-pointer rounded-md bg-white"
-            onClick={openModal}
+            onClick={() => {
+              openModal();
+              resetSession();
+            }}
           >
             <Plus size={48} className="text-gray-500" strokeWidth={0.5} />
           </div>

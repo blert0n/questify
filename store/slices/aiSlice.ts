@@ -20,6 +20,7 @@ export const createAiSlice: StateCreator<
   isOpen: false,
   isAiThinking: false,
   messages: [INITIAL_MESSAGE],
+  resetSession: () => set((state) => ({ ...state, session: uuidv4() })),
   resetMessages: () =>
     set((state) => ({ ...state, messages: [INITIAL_MESSAGE] })),
   prompt: async (prompt) => {

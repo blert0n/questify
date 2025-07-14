@@ -78,6 +78,7 @@ export type AiSlice = {
   isOpen: boolean;
   isAiThinking: boolean;
   messages: Message[];
+  resetSession: () => void;
   resetMessages: () => void;
   prompt: (prompt: string) => Promise<void>;
   open: () => void;

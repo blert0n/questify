@@ -2,7 +2,7 @@ import { Form_Order_By, Order_By, useMyFormsQuery } from "@/lib/graphql";
 import FormComponent from "./ListFormItem";
 import { Loader } from "@/assets/svg";
 import { Button } from "../ui";
-import { useModalStoreSelectors } from "@/store";
+import { useFormSelectors, useModalStoreSelectors } from "@/store";
 import { cn } from "@/lib";
 import Templates from "./Templates";
 import { useBoolean } from "usehooks-ts";
@@ -28,6 +28,7 @@ export default function Home() {
     notifyOnNetworkStatusChange: true,
   });
   const openModal = useModalStoreSelectors.use.openModal();
+  const resetSession = useFormSelectors.use.resetSession();
   if (loading) return <AppLoader />;
   return (
     <div className="flex flex-col gap-4 items-start h-auto lg:max-w-full ml-auto mr-auto">
@@ -56,14 +57,23 @@ export default function Home() {
               "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 self-center"
             )}
           >
-            {Form?.map((item) => <FormComponent key={item.id} form={item} />)}
+            {Form?.map((item) => (
+              <FormComponent key={item.id} form={item} />
+            ))}
           </div>
         </div>
       )}
       {!loading && !Form?.length && (
         <div className="flex flex-col items-center gap-6 w-full rounded-md p-6">
           <p className="text-gray-500">You have not created any form yet!</p>
-          <Button onClick={openModal}>Create</Button>
+          <Button
+            onClick={() => {
+              openModal();
+              resetSession();
+            }}
+          >
+            Create
+          </Button>
         </div>
       )}
     </div>

@@ -17,6 +17,7 @@ export default function AppLayout({ children }: P) {
   const closeModal = useModalStoreSelectors.use.closeModal();
   const isModalVisible = useModalStoreSelectors.use.isModalVisible();
   const saveForm = useFormSelectors.use.saveForm();
+  const resetSession = useFormSelectors.use.resetSession();
 
   return (
     <>
@@ -57,7 +58,10 @@ export default function AppLayout({ children }: P) {
           <div className="h-[100%] bg-secondary overflow-auto">
             <FullScreenModal
               visible={isModalVisible}
-              closeFn={closeModal}
+              closeFn={() => {
+                closeModal();
+                resetSession();
+              }}
               saveFn={saveForm}
             />
             {children}
