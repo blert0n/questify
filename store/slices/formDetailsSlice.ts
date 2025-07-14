@@ -1,5 +1,11 @@
 import { initialFormData, templateMapper } from "./../../types/initialData";
-import { FormDetailsSlice, ItemSlice, ThemeSlice, initialTheme } from "@/types";
+import {
+  AiSlice,
+  FormDetailsSlice,
+  ItemSlice,
+  ThemeSlice,
+  initialTheme,
+} from "@/types";
 import { toast } from "react-toastify";
 import { StateCreator } from "zustand";
 import { editForm, loadFormData, openFormModal, saveForm } from "../actions";
@@ -19,7 +25,7 @@ const TEMPLATES = [
   "onlineShoppingExperience",
 ];
 export const createFormDetailsSlice: StateCreator<
-  ThemeSlice & ItemSlice & FormDetailsSlice,
+  ThemeSlice & ItemSlice & FormDetailsSlice & AiSlice,
   [],
   [],
   FormDetailsSlice
@@ -51,6 +57,7 @@ export const createFormDetailsSlice: StateCreator<
     if (!get().items.length)
       return toast.info("At least one form item is required");
     !get().id ? await saveForm() : await editForm(get().id);
+    get().resetMessages();
   },
   loadForm: async (id, tab = 0, response) => {
     set((state) => ({

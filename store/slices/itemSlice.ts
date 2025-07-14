@@ -17,6 +17,9 @@ export const createItemSlice: StateCreator<
 > = (set, get) => ({
   items: [],
   deletedItems: [],
+  setItems: (items) => {
+    set((state) => ({ ...state, items }));
+  },
   updateItem: (id, prop, value) =>
     set((state) => ({
       ...state,

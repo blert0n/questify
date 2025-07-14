@@ -67,9 +67,11 @@ export const FullScreenModal = ({
   const reorder = useFormSelectors.use.reorder();
   const reorderOptions = useFormSelectors.use.reorderOptions();
   const reorderGrid = useFormSelectors.use.reorderGrid();
+  const resetAiMessages = useFormSelectors.use.resetMessages();
 
   const handleModalClose = () => {
     resetForm();
+    resetAiMessages();
     closeFn();
   };
 

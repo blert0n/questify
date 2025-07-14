@@ -22,6 +22,7 @@ import { cn, getPrimaryColor } from "@/lib";
 import { useState } from "react";
 import { FormItemType_Enum } from "@/lib/graphql";
 import { PlusIcon } from "lucide-react";
+import AI from "./AI/AI";
 
 const EMPTY_COMPONENT = () => <span />;
 
@@ -154,6 +155,7 @@ export default function EditableForm({ items }: P) {
           </div>
         )}
       </Droppable>
+      <AI />
     </>
   );
 }

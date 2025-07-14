@@ -42,6 +42,7 @@ export type ThemeSlice = {
 
 export type ItemSlice = {
   items: FormItem[];
+  setItems: (items: FormItem[]) => void;
   deletedItems: string[];
   updateItem: <K extends keyof FormItem>(
     id: string,
@@ -72,6 +73,18 @@ export type SubItemSlice = {
   ) => void;
 };
 
+export type AiSlice = {
+  session: string;
+  isOpen: boolean;
+  isAiThinking: boolean;
+  messages: Message[];
+  resetMessages: () => void;
+  prompt: (prompt: string) => Promise<void>;
+  open: () => void;
+  close: () => void;
+  setAiThinking: (thinking: boolean) => void;
+};
+
 export type ThemeKeys = keyof Theme;
 export type HeaderThemeKeys = keyof Theme["Header"];
 export type QuestionThemeKeys = keyof Theme["Question"];
@@ -94,3 +107,10 @@ export type FormState = Omit<
   FormStateWithoutFunctions,
   "selectedResponse" | "responsesTab"
 >;
+
+export type Message = {
+  content: string;
+  role: "user" | "assistant";
+  timestamp: Date;
+  type?: "options";
+};
