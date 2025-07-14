@@ -62,7 +62,8 @@ export default function LiveForm({
   const formik = useFormikContext<Record<string, string>>();
   const getPagesMap = useFormSelectors.use.getPagesMap();
   const pagesMap = getPagesMap(items);
-  const maxPage = Math.max(...Object.keys(pagesMap).map(Number));
+  const pagesMapKeys = Object.keys(pagesMap);
+  const maxPage = Math.max(...pagesMapKeys.map(Number));
   const [page, setPage] = useState(1);
 
   const handlePageChange = (direction: "next" | "prev") => {
@@ -100,7 +101,10 @@ export default function LiveForm({
         })}
       <div className="flex justify-between items-center gap-2">
         <div
-          className={cn("flex items-center gap-1", maxPage === 1 && "hidden")}
+          className={cn(
+            "flex items-center gap-1",
+            pagesMapKeys.length <= 1 && "hidden"
+          )}
         >
           <Button
             className={cn(page === 1 && "hidden")}
